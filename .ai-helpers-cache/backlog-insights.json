@@ -1,0 +1,143 @@
+{
+  "topFiles": [
+    {
+      "file": "nootropic/contextSnapshotHelper.ts",
+      "count": 21
+    },
+    {
+      "file": "nootropic/utils/security/secretsManager.ts",
+      "count": 20
+    },
+    {
+      "file": "Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js",
+      "count": 14
+    },
+    {
+      "file": "nootropic/scripts/generateBacklogTodos.ts",
+      "count": 9
+    },
+    {
+      "file": "Rocketship/extension/src/extension.ts",
+      "count": 8
+    }
+  ],
+  "oldestTodos": [
+    {
+      "id": "todo:nootropic/adapters/KafkaEventBus.ts:18",
+      "description": "[TODO] // TODO: Integrate OTel metrics via telemetry.ts or a shared metrics module (nootropic/adapters/KafkaEventBus.ts:18)",
+      "days": 9999
+    },
+    {
+      "id": "todo:nootropic/adapters/KafkaEventBus.ts:48",
+      "description": "[TODO] * - OTel traces/metrics/logs are emitted for all operations (TODO) (nootropic/adapters/KafkaEventBus.ts:48)",
+      "days": 9999
+    },
+    {
+      "id": "todo:nootropic/agents/EnsembleAgent.ts:33",
+      "description": "[TODO] // TODO: Add WeightedVotingStrategy, SyntacticVotingStrategy, SemanticVotingStrategy, BehavioralVotingStrategy, MetaLLMVotingStrategy (nootropic/agents/EnsembleAgent.ts:33)",
+      "days": 9999
+    },
+    {
+      "id": "todo:nootropic/agents/FormalVerifierAgent.ts:21",
+      "description": "[TODO] * Emits events for each step. TODO: Integrate real TLA+/Coq/Lean and LLM logic. (nootropic/agents/FormalVerifierAgent.ts:21)",
+      "days": 9999
+    },
+    {
+      "id": "todo:nootropic/agents/FormalVerifierAgent.ts:35",
+      "description": "[TODO] // TODO: Generate formal spec (stub) (nootropic/agents/FormalVerifierAgent.ts:35)",
+      "days": 9999
+    }
+  ],
+  "nextSprint": [
+    {
+      "id": "todo:nootropic/contextMutationEngine.ts:88",
+      "description": "[TODO] const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]'); (nootropic/contextMutationEngine.ts:88)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:238",
+      "description": "[TODO] // --- 10. TODO/FIXME Extraction --- (nootropic/contextSnapshotHelper.ts:238)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:239",
+      "description": "[TODO] // NOTE: Extraction logic is for migration/cleanup. All future TODO/FIXME must follow the 2025 policy (actionable, attributed, resolved promptly). (nootropic/contextSnapshotHelper.ts:239)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:273",
+      "description": "[TODO] if (/TODO|FIXME/.test(line)) { (nootropic/contextSnapshotHelper.ts:273)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:466",
+      "description": "[TODO] * @param todos TODO entries (nootropic/contextSnapshotHelper.ts:466)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:578",
+      "description": "[TODO] // --- TODOs for future agents (2025 policy: must be actionable, attributed, and resolved promptly) --- (nootropic/contextSnapshotHelper.ts:578)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:579",
+      "description": "[TODO] // - Implement delta mode for memory efficiency (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:579)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:580",
+      "description": "[TODO] // - Add semantic search index for fast context lookup (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:580)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:581",
+      "description": "[TODO] // - Integrate with test/lint runners for live status (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:581)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:582",
+      "description": "[TODO] // - Add memory budget estimator and context trimmer (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:582)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed.",
+      "aiSuggestedPriority": "top",
+      "dependentCount": 0
+    }
+  ]
+}

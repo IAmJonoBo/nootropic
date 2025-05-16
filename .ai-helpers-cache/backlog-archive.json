@@ -1,0 +1,76 @@
+[
+  {
+    "id": "event-driven-mutation-suggestion-traceability",
+    "description": "Implement event-driven mutation suggestion traceability: emit, log, and replay v1.mutationSuggested events for all mutation/refactor suggestions. Schema-validated, versioned, and compatible with distributed event bus backends. See docs/orchestration.md, contextMutationEngine.ts, memoryLaneHelper.ts, and describe registry.",
+    "status": "implemented",
+    "priority": "high",
+    "note": "Feature is now fully implemented and documented. All mutation/refactor suggestions are traceable via structured events, with full audit and replay support. Pruned redundant/duplicate items related to event-driven mutation/refactor traceability, event-driven logging, or observability. These are now consolidated into a single canonical backlog entry. See agentBacklog.json and describe registry.",
+    "references": [
+      "docs/orchestration.md#event-driven-mutation-suggestion-traceability",
+      "contextMutationEngine.ts",
+      "memoryLaneHelper.ts",
+      "utils/describe/planned_event_driven_mutation_suggestion_traceability.ts"
+    ]
+  },
+  {
+    "id": "event-driven-mutation-suggestion-traceability",
+    "description": "Implements full traceability for all mutation/refactor suggestions via structured event emission. Every suggestion (schema drift, TODO, test gap) emits a v1.mutationSuggested event, which is logged, replayable, and observable via the event bus. Events are schema-validated, versioned, and compatible with distributed backends (NATS, Kafka, Dapr, JSONL). See docs/orchestration.md and memoryLaneHelper.ts for details.",
+    "status": "implemented",
+    "priority": "high",
+    "eventSchema": {
+      "title": "v1.mutationSuggested",
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "description": "Unique event identifier (UUID)."
+        },
+        "type": {
+          "const": "v1.mutationSuggested"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^v[0-9]+\\.[0-9]+$",
+          "description": "Semantic version of the event schema (e.g., v1.0)."
+        },
+        "source": {
+          "type": "string",
+          "description": "Originating agent/module/service."
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "correlationId": {
+          "type": "string",
+          "description": "Correlation ID for tracing related events."
+        },
+        "topic": {
+          "type": "string",
+          "description": "Logical topic/queue for advanced patterns."
+        }
+      },
+      "required": [
+        "eventId",
+        "type",
+        "version",
+        "source",
+        "agentId",
+        "timestamp",
+        "payload"
+      ]
+    },
+    "traceability": "All mutation suggestions are logged to the event bus and memory lane, supporting full replay, audit, and distributed observability.",
+    "references": [
+      "docs/orchestration.md#event-driven-mutation-suggestion-traceability",
+      "memoryLaneHelper.ts"
+    ],
+    "note": "Redundant or duplicate backlog items related to mutation/refactor traceability, event-driven logging, or observability have been folded into this entry."
+  }
+]

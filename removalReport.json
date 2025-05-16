@@ -1,0 +1,28 @@
+{
+  "removed": [],
+  "skipped": [
+    "All candidate files were modified within the last 30 days and were skipped per policy."
+  ],
+  "deadCodeTools": {
+    "semgrep": "Not available (npm error)",
+    "codeql": "Not available (npm error)",
+    "periphery": "Not available (npm error)",
+    "knip": "Ran successfully"
+  },
+  "docSync": {
+    "status": "failed",
+    "missingInDocs": [
+      "OrchestrationEngine", "utils", "quality/selfcheck", "contextSnapshotHelper", "semanticIndexBuilder", "./agents/BaseAgent.js", "./agents/DataCollectorAgent.js", "./agents/WriterAgent.js", "./agents/ReviewerAgent.js", "agentProfileRegistry", "agentIntentRegistry", "docDiagramGenerator", "liveMutationPRHelper"
+    ],
+    "missingInCode": [
+      "quality system", "plugin architecture", "agent discovery", "describe registry", "CLI usage", "event bus abstraction", "cache management", "context handover", "multi-agent orchestration", "event-driven MAS patterns", "agent event interface", "streaming backend integration", "supervisor agent pattern", "pre-commit/Husky hooks", "onboarding instructions", "sample config files", "ci/cd integration", "ajv-cli validation in ci", "github actions workflow", "matrix validation strategy", "ci/cd troubleshooting", "onboarding guide", "contributing.md", "setup and environment requirements", "coding standards", "onboarding troubleshooting", "schema validation onboarding", "editor config recommendations", "api documentation generation", "typedoc integration", "tsdoc style enforcement", "typedoc.json config", "api doc workflow", "api doc best practices", "tsdoc/typedoc/eslint/ci integration", "monorepo typescript config", "event-driven agent example (WriterAgent)", "updated agent event interface", "event-driven agent pattern", "event-driven traceability (liveMutationPRHelper)", "structured event emission", "event payload convention", "event schema references", "event-driven mutation suggestion traceability", "contextMutationEngine event emission", "mutationSuggested event schema", "TypeScript type-casting note"
+    ]
+  },
+  "recommendations": [
+    "Install and configure semgrep, codeql, and periphery for full dead code/security analysis.",
+    "Update docs/docManifest.json to include all described modules/capabilities.",
+    "Update describe() outputs to cover all referenced doc sections.",
+    "Add/expand tests for modules lacking coverage.",
+    "Re-run the audit after addressing the above."
+  ]
+} 

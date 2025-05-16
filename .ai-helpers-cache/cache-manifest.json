@@ -1,0 +1,192 @@
+[
+  {
+    "fileName": "analytics.log",
+    "type": "other",
+    "size": 0,
+    "lastModified": "2025-05-12T13:36:43.484Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "asyncapi-spec.yaml",
+    "type": "yaml",
+    "size": 39805,
+    "lastModified": "2025-05-15T16:27:37.260Z",
+    "compressed": false,
+    "archive": false,
+    "description": "Auto-generated AsyncAPI spec for event-driven APIs",
+    "llmUsageHint": "Use for event-driven API schema"
+  },
+  {
+    "fileName": "backlog-archive.json",
+    "type": "json-data",
+    "size": 3386,
+    "lastModified": "2025-05-15T16:45:38.915Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "backlog-insights.json",
+    "type": "json-data",
+    "size": 5974,
+    "lastModified": "2025-05-15T16:45:39.865Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "backlog-summary.json",
+    "type": "json-data",
+    "size": 137490,
+    "lastModified": "2025-05-15T16:45:39.382Z",
+    "compressed": false,
+    "archive": false,
+    "description": "Machine-usable summary of actionable backlog items",
+    "llmUsageHint": "Use for backlog/roadmap automation"
+  },
+  {
+    "fileName": "code-dependency-graph.json",
+    "type": "json-data",
+    "size": 20526,
+    "lastModified": "2025-05-15T14:30:59.809Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "context-graph.json",
+    "type": "json-data",
+    "size": 145401,
+    "lastModified": "2025-05-15T14:44:32.758Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "context.json",
+    "type": "json-data",
+    "size": 0,
+    "lastModified": "2025-05-12T13:36:43.484Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "describe-registry.json",
+    "type": "json-data",
+    "size": 54959,
+    "lastModified": "2025-05-15T16:03:02.587Z",
+    "compressed": false,
+    "archive": false,
+    "description": "Canonical registry of all capabilities",
+    "llmUsageHint": "Use for capability discovery and introspection"
+  },
+  {
+    "fileName": "event-schema.json",
+    "type": "json-data",
+    "size": 13462,
+    "lastModified": "2025-05-13T14:06:11.970Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "feature-table.md",
+    "type": "markdown",
+    "size": 2828,
+    "lastModified": "2025-05-14T17:06:52.933Z",
+    "compressed": false,
+    "archive": false,
+    "description": "Auto-generated feature table for docs/LLM use",
+    "llmUsageHint": "Use for summarizing available features"
+  },
+  {
+    "fileName": "knip-unused.json",
+    "type": "json-data",
+    "size": 4086,
+    "lastModified": "2025-05-13T18:25:58.879Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "manifest.json",
+    "type": "json-data",
+    "size": 3396,
+    "lastModified": "2025-05-12T14:04:15.141Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "memory.json",
+    "type": "json-data",
+    "size": 0,
+    "lastModified": "2025-05-12T13:36:43.484Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "openapi-spec.yaml",
+    "type": "yaml",
+    "size": 28103,
+    "lastModified": "2025-05-15T16:27:36.718Z",
+    "compressed": false,
+    "archive": false,
+    "description": "Auto-generated OpenAPI spec for all APIs",
+    "llmUsageHint": "Use for API schema and endpoint discovery"
+  },
+  {
+    "fileName": "periphery-report.json",
+    "type": "json-data",
+    "size": 0,
+    "lastModified": "2025-05-13T18:30:11.759Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "semantic-embeddings.json",
+    "type": "json-data",
+    "size": 720313,
+    "lastModified": "2025-05-15T14:46:52.929Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  },
+  {
+    "fileName": "semantic-index.json",
+    "type": "json-data",
+    "size": 0,
+    "lastModified": "2025-05-12T13:36:43.484Z",
+    "compressed": false,
+    "archive": false,
+    "description": "Semantic search index for code, docs, and agent messages",
+    "llmUsageHint": "Use for semantic search and retrieval"
+  },
+  {
+    "fileName": "semgrep-report.json",
+    "type": "json-data",
+    "size": 0,
+    "lastModified": "2025-05-13T18:29:49.019Z",
+    "compressed": false,
+    "archive": false,
+    "description": "",
+    "llmUsageHint": ""
+  }
+]

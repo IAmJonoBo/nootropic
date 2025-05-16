@@ -1,0 +1,2338 @@
+[
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 1,
+    "text": "import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { createCircuitBreaker } from '@rocketship/core'; import type { PromptRenderer } from '../prompts/PromptRenderer.js'; import Ajv2020, { JSONSchemaType } from 'ajv/dist/2020';  /**  * BaseAgent: Abstract base class for all Rocketship agents.  * - Enforces contract-first, schema-driven agent development.  * - All agents must implement the execute() method and reference their I/O schemas.",
+    "embedding": [
+      920696
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 11,
+    "text": " * - See shared/schemas/ for agent schemas and docs/agents.md for agent contract details.  */  const Ajv = Ajv2020;  export abstract class BaseAgent<I = any, O = any> {   /**    * The agent's name (used for logging, telemetry, and config lookup)    */   abstract name: string;",
+    "embedding": [
+      880022
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 21,
+    "text": "   /**    * The agent's input schema (JSON Schema reference)    */   abstract inputSchema: JSONSchemaType<I>;    /**    * The agent's output schema (JSON Schema reference)    */   abstract outputSchema: JSONSchemaType<O>;",
+    "embedding": [
+      2588
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 31,
+    "text": "   protected ajv = new Ajv({ allErrors: true });    protected telemetryService: TelemetryService;   protected metricsService: MetricsService;    constructor(     protected telemetryService: TelemetryService,     protected metricsService: MetricsService   ) {",
+    "embedding": [
+      187795
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 41,
+    "text": "    this.telemetryService = telemetryService;     this.metricsService = metricsService;   }    /**    * Main agent entrypoint. Must be implemented by all agents.    * @param input - Validated input matching inputSchema    * @returns output - Must match outputSchema    */   abstract run(input: I): Promise<O>;",
+    "embedding": [
+      890110
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 51,
+    "text": "   /**    * Entrypoint: validates input/output and calls run().    */   async execute(input: I): Promise<O> {     const correlationId = this.generateCorrelationId?.() || crypto.randomUUID();     // Validate input     const validateInputFn = this.ajv.compile(this.inputSchema);     if (!validateInputFn(input)) {       this.telemetryService.emitEvent('agent.input_validation_failed', { agent: this.name, correlationId });",
+    "embedding": [
+      336674
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 61,
+    "text": "      throw new Error(`Input validation failed: ${JSON.stringify(validateInputFn.errors)}`);     }     // Start telemetry span and metric     const span = this.telemetryService.startSpan(`${this.name}.execute`, { correlationId });     const startTime = Date.now();     let output: O;     try {       output = await this.run(input);       span.setAttribute('outcome', 'success');       this.telemetryService.emitEvent('agent.execute_success', { agent: this.name, correlationId });",
+    "embedding": [
+      872612
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 71,
+    "text": "    } catch (err) {       span.setAttribute('outcome', 'error');       this.telemetryService.emitEvent('agent.execute_error', { agent: this.name, correlationId, error: err });       throw err;     } finally {       span.end();       const durationSeconds = (Date.now() - startTime) / 1000;       this.metricsService.recordHistogram('agent.execute.duration_seconds', durationSeconds, { agent: this.name });     }     // Validate output",
+    "embedding": [
+      787993
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 81,
+    "text": "    const validateOutputFn = this.ajv.compile(this.outputSchema);     if (!validateOutputFn(output)) {       this.telemetryService.emitEvent('agent.output_validation_failed', { agent: this.name, correlationId });       throw new Error(`Output validation failed: ${JSON.stringify(validateOutputFn.errors)}`);     }     return output;   }    /**    * Wrap a promise-returning call in a circuit breaker.",
+    "embedding": [
+      728746
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 91,
+    "text": "   */   protected async withCircuitBreaker<T>(     fn: () => Promise<T>,     options: CircuitBreakerOptions   ): Promise<T> {     const breaker = createCircuitBreaker(fn, options);     return breaker.fire();   }    /**",
+    "embedding": [
+      120322
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 101,
+    "text": "   * Optional: Agent-specific initialization logic    */   initialize?(): Promise<void>;    /**    * Emit a telemetry event for partial/degraded success (fallbacks, degraded results, etc.)    * @param reason - Reason for partial success (e.g., 'fallback', 'degraded', etc.)    * @param correlationId - Correlation ID for tracing    */   protected emitPartialSuccess(reason: string, correlationId: string) {",
+    "embedding": [
+      975597
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/BaseAgent.ts",
+    "line": 111,
+    "text": "    this.telemetryService.emitEvent({       name: `${this.name}.partial_success`,       timestamp: Date.now(),       attributes: { agent: this.name, outcome: 'partial_success', reason },       correlationId,     });   } }",
+    "embedding": [
+      915650
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.d.ts",
+    "line": 1,
+    "text": "import { CancellationToken } from 'vscode'; import { ContextChunk } from '@rocketship/shared'; import { InferenceService } from '../services/InferenceService.js'; export interface CoderAgentParams {     taskId: string;     codeContext: string;     language: string;     contextChunks?: ContextChunk[];     sessionId: string; }",
+    "embedding": [
+      735222
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.d.ts",
+    "line": 11,
+    "text": "export interface CoderAgentResponse {     code: string;     diff?: string;     metadata?: Record<string, any>; } export declare class CoderAgent {     private inference;     constructor(inference: InferenceService);     execute(params: CoderAgentParams, token: CancellationToken): Promise<CoderAgentResponse>; }",
+    "embedding": [
+      305892
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.d.ts",
+    "line": 21,
+    "text": "//# sourceMappingURL=CoderAgent.d.ts.map",
+    "embedding": [
+      782913
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 1,
+    "text": "// CoderAgent: Generates or modifies code based on plans or prompts. // See [CHANGELOG.md] for canonical structure and refactor principles. // TODO: Implement CoderAgent logic.  import { BaseAgent } from './BaseAgent.js'; import coderSchema from '../../../shared/schemas/coder.schema.json' assert { type: 'json' }; import { injectable } from 'tsyringe'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; // eslint-disable-next-line import/extensions -- Type-only import, no .js extension for types",
+    "embedding": [
+      344293
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 11,
+    "text": "import type { CoderAgentResponse } from '../../../shared/dist/types/coder.js'; import path from 'path'; import { v4 as uuidv4 } from 'uuid'; import { createCircuitBreaker } from '@rocketship/core'; import { LLMService } from '../services/LLMService.js'; import { VectorDBService } from '../services/VectorDBService.js'; import { DocsAgent } from './DocsAgent.js'; import jsdiff from 'diff';  /**",
+    "embedding": [
+      42932
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 21,
+    "text": " * CoderAgent: Generates or modifies code based on plans or prompts.  * Extends AgentBase for contract-first, DI-driven, observable-by-default logic.  * See docs/CONVENTIONS.md and docs/agents.md for standards.  */  // Centralized feature flag utility (to be moved to shared utils if reused) const featureFlags = {   enableContextGrounding: false,   enableSelfReview: false,   enableDiffOutput: false,",
+    "embedding": [
+      130843
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 31,
+    "text": "};  // Configurable threshold for auto-regeneration const config = {   critic: { autoRegenerateConfidence: 0.7 } };  @injectable() export class CoderAgent extends BaseAgent<unknown, CoderAgentResponse> {   name = 'CoderAgent';",
+    "embedding": [
+      997387
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 41,
+    "text": "  inputSchema = coderSchema as any;   outputSchema = coderSchema as any;    protected telemetryService: TelemetryService;   protected metricsService: MetricsService;   protected promptRenderer: (templatePath: string, data: any) => string;   protected llmService: LLMService;   protected vectorDbService: VectorDBService;   protected docsAgent: DocsAgent; ",
+    "embedding": [
+      264279
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 51,
+    "text": "  constructor(     telemetryService: TelemetryService,     metricsService: MetricsService,     promptRenderer: (templatePath: string, data: any) => string,     llmService: LLMService,     vectorDbService: VectorDBService,     docsAgent: DocsAgent   ) {     super({       name: 'CoderAgent',",
+    "embedding": [
+      778707
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 61,
+    "text": "      inputSchema: coderSchema as any,       outputSchema: coderSchema as any,       telemetryService,       metricsService,       promptRenderer,       llmService,       vectorDbService     });     this.telemetryService = telemetryService;     this.metricsService = metricsService;",
+    "embedding": [
+      201077
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 71,
+    "text": "    this.promptRenderer = promptRenderer;     this.llmService = llmService;     this.vectorDbService = vectorDbService;     this.docsAgent = docsAgent;   }    /**    * Main agent logic: contract-first, DI-driven, observable-by-default.    * @param input - Validated input matching inputSchema    * @returns output - Must match outputSchema",
+    "embedding": [
+      90153
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 81,
+    "text": "   */   async run(input: any, context: { correlationId?: string } = {}): Promise<CoderAgentResponse> {     const correlationId = context.correlationId || uuidv4();     let fallback = false;     let code = '// Stub code';     let diff = '+ stub diff';     let metadata: CoderAgentResponse['metadata'] = {};     let contextChunks: any[] = [];     let apiDocs = '';     let styleGuide = '';",
+    "embedding": [
+      924372
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 91,
+    "text": "    let planStep = input?.task?.description || '';      // 1. Context chunking & API grounding (feature-flagged)     this.telemetryService.emitEvent({       name: 'CoderAgent.context_grounding.start',       timestamp: Date.now(),       attributes: { phase: 'context_grounding' },       correlationId     });     if (featureFlags.enableContextGrounding && this.vectorDbService && this.docsAgent) {",
+    "embedding": [
+      559592
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 101,
+    "text": "      try {         // VectorDBService for context chunks         const vectorBreaker = createCircuitBreaker(async () => {           return await this.vectorDbService.search(input?.symbol || '');         });         contextChunks = await vectorBreaker.fire();         // DocsAgent for API docs         apiDocs = await this.docsAgent.run({           symbol: input?.symbol || '',           language: input?.language || 'typescript',",
+    "embedding": [
+      107813
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 111,
+    "text": "          sessionId: input?.sessionId || uuidv4(),           contextChunks         });         this.telemetryService.emitEvent({           name: 'CoderAgent.context_grounding.success',           timestamp: Date.now(),           attributes: { phase: 'context_grounding', outcome: 'success', chunks: contextChunks.length },           correlationId         });       } catch (err) {",
+    "embedding": [
+      802653
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 121,
+    "text": "        this.telemetryService.emitEvent({           name: 'CoderAgent.context_grounding.error',           timestamp: Date.now(),           attributes: { phase: 'context_grounding', outcome: 'error', error: (err as Error)?.message },           correlationId         });         this.metricsService.recordAgentInvocation('CoderAgent', 'context_grounding_error');         fallback = true;       }     }",
+    "embedding": [
+      638924
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 131,
+    "text": "     // 2. Prompt construction     this.telemetryService.emitEvent({       name: 'CoderAgent.prompt_construction.start',       timestamp: Date.now(),       attributes: { phase: 'prompt_construction' },       correlationId     });     const templatePath = path.resolve('extension/src/prompts/coder.tpl');     const prompt = this.promptRenderer(templatePath, {",
+    "embedding": [
+      602812
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 141,
+    "text": "      input,       planStep,       contextChunks,       docs: apiDocs,       styleGuide     });     this.telemetryService.emitEvent({       name: 'CoderAgent.prompt.rendered',       timestamp: Date.now(),       attributes: { phase: 'prompt.rendered' },",
+    "embedding": [
+      821204
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 151,
+    "text": "      correlationId     });      // 3. LLM invocation     this.telemetryService.emitEvent({       name: 'CoderAgent.llm_invocation.start',       timestamp: Date.now(),       attributes: { phase: 'llm_invocation' },       correlationId     });",
+    "embedding": [
+      569356
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 161,
+    "text": "    if (this.llmService) {       try {         const llmBreaker = createCircuitBreaker(async () => {           return await this.llmService.generate(prompt);         });         code = await llmBreaker.fire();         this.telemetryService.emitEvent({           name: 'CoderAgent.llm_invocation.success',           timestamp: Date.now(),           attributes: { phase: 'llm_invocation', outcome: 'success' },",
+    "embedding": [
+      601741
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 171,
+    "text": "          correlationId         });         // Emit code.generated event after code is produced         this.telemetryService.emitEvent({           name: 'CoderAgent.code.generated',           timestamp: Date.now(),           attributes: { phase: 'code_generation', outcome: 'success' },           correlationId         });       } catch (err) {",
+    "embedding": [
+      899094
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 181,
+    "text": "        this.telemetryService.emitEvent({           name: 'CoderAgent.llm_invocation.error',           timestamp: Date.now(),           attributes: { phase: 'llm_invocation', outcome: 'error', error: (err as Error)?.message },           correlationId         });         this.metricsService.recordAgentInvocation('CoderAgent', 'llm_invocation_error');         fallback = true;       }     }",
+    "embedding": [
+      810317
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 191,
+    "text": "     // 4. Diff generation (feature-flagged)     this.telemetryService.emitEvent({       name: 'CoderAgent.diff_generation.start',       timestamp: Date.now(),       attributes: { phase: 'diff_generation' },       correlationId     });     if (featureFlags.enableDiffOutput) {       // Use jsdiff to compute unified diff (stub: compare input.code to generated code)",
+    "embedding": [
+      163204
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 201,
+    "text": "      const oldCode = input?.code || '';       diff = jsdiff.createPatch('generated', oldCode, code);       this.telemetryService.emitEvent({         name: 'CoderAgent.diff_generation.success',         timestamp: Date.now(),         attributes: { phase: 'diff_generation', outcome: 'success' },         correlationId       });     } ",
+    "embedding": [
+      675920
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 211,
+    "text": "    // 5. Self-review loop (feature-flagged)     this.telemetryService.emitEvent({       name: 'CoderAgent.self_review.start',       timestamp: Date.now(),       attributes: { phase: 'self_review' },       correlationId     });     if (featureFlags.enableSelfReview) {       // Async event: emit criticRequest and await response or fallback after timeout       // (Stub: simulate async critic review)",
+    "embedding": [
+      427688
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 221,
+    "text": "      this.telemetryService.emitEvent({         name: 'CoderAgent.critic_request.emitted',         timestamp: Date.now(),         attributes: { phase: 'self_review', outcome: 'emitted' },         correlationId       });       // Simulate async wait and configurable threshold       const criticConfidence = 0.8; // Stub value       if (criticConfidence < config.critic.autoRegenerateConfidence) {         // Auto-regenerate or suggest edits (stub: fallback)",
+    "embedding": [
+      470712
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 231,
+    "text": "        fallback = true;         this.telemetryService.emitEvent({           name: 'CoderAgent.self_review.regenerate',           timestamp: Date.now(),           attributes: { phase: 'self_review', outcome: 'regenerate' },           correlationId         });       }     } ",
+    "embedding": [
+      62968
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 241,
+    "text": "    // 6. Synergy: emit testRequest and reflexionHandoff events (event-driven, default no-op)     this.telemetryService.emitEvent({       name: 'CoderAgent.testRequest.emitted',       timestamp: Date.now(),       attributes: { phase: 'handoff', outcome: 'testRequest' },       correlationId     });     this.telemetryService.emitEvent({       name: 'CoderAgent.reflexionHandoff.emitted',       timestamp: Date.now(),",
+    "embedding": [
+      467443
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 251,
+    "text": "      attributes: { phase: 'handoff', outcome: 'reflexionHandoff' },       correlationId     });      // 7. Resilience/fallback logic (feature-flagged)     if (fallback) {       this.emitPartialSuccess('fallback', correlationId);       return {         code: '// Fallback code',         diff: '',",
+    "embedding": [
+      612768
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CoderAgent.ts",
+    "line": 261,
+    "text": "        metadata: { fallback: true }       };     }      return { code, diff, metadata };   } }",
+    "embedding": [
+      447208
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.d.ts",
+    "line": 1,
+    "text": "import { CancellationToken } from 'vscode'; import { InferenceService } from '../services/InferenceService.js'; export interface CriticAgentParams {     code: string;     tests?: string[];     sessionId: string; } export interface CriticAgentResponse {     feedback: string;     issues: Array<{",
+    "embedding": [
+      842698
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.d.ts",
+    "line": 11,
+    "text": "        line: number;         message: string;         severity: 'info' | 'warning' | 'error';     }>; } export declare class CriticAgent {     private inference;     constructor(inference: InferenceService);     execute(params: CriticAgentParams, token: CancellationToken): Promise<CriticAgentResponse>; }",
+    "embedding": [
+      24813
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.d.ts",
+    "line": 21,
+    "text": "//# sourceMappingURL=CriticAgent.d.ts.map",
+    "embedding": [
+      712856
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.ts'; import criticInputSchema from '../../../shared/schemas/critic.input.schema.json' assert { type: 'json' }; import criticOutputSchema from '../../../shared/schemas/critic.output.schema.json' assert { type: 'json' }; import type { CriticAgentInput } from '../generated/critic.input.d.ts'; import type { CriticAgentOutput } from '../generated/critic.output.d.ts'; import { ConfigService } from '../services/ConfigService.ts'; import { TelemetryService } from '../services/TelemetryService.ts'; import { MetricsService } from '../services/MetricsService.ts'; import { renderPrompt } from '../utils/promptRenderer.ts';",
+    "embedding": [
+      565069
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 11,
+    "text": "import { LLMService } from '../services/LLMService.ts'; import { createCircuitBreaker } from '@rocketship/core'; import crypto from 'crypto';  /**  * CriticAgent: Reviews code, enforces standards, suggests improvements.  * Extends BaseAgent for contract-first, DI-driven, observable-by-default logic.  * See docs/CONVENTIONS.md and docs/agents.md for standards.  */ @injectable()",
+    "embedding": [
+      137111
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 21,
+    "text": "export class CriticAgent extends BaseAgent<CriticAgentInput, CriticAgentOutput> {   name = 'CriticAgent';   inputSchema = criticInputSchema as any;   outputSchema = criticOutputSchema as any;    constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(LLMService) protected llmService: LLMService",
+    "embedding": [
+      620137
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 31,
+    "text": "  ) {     super(telemetryService, metricsService);   }    async run(input: CriticAgentInput, context: { correlationId?: string } = {}): Promise<CriticAgentOutput> {     // Static analysis + rule checks + feedback via LLM     const code = input.code;     const testsContext = (input.tests || []).map((t: string) => `// test: ${t}`).join('\\n');      const prompt = `",
+    "embedding": [
+      466256
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 41,
+    "text": "You are an expert code critic. Given the code below and optional tests, provide structured feedback and list issues.  Code: ${code}  Tests: ${testsContext}  Output a JSON object with \"feedback\" and \"issues\" (each with line, message, severity). Example: {",
+    "embedding": [
+      68014
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 51,
+    "text": "  \"feedback\": \"Consider variable naming improvements.\",   \"issues\": [ { \"line\": 12, \"message\": \"Unused variable x\", \"severity\": \"warning\" } ] } `;      // LLM invocation with circuit breaker     let resultText: string;     const res = await this.withCircuitBreaker(       () => this.llmService.generate(prompt),       { name: 'critic_feedback' }",
+    "embedding": [
+      252125
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 61,
+    "text": "    );     resultText = res;      // Parse and validate output     let parsed: CriticAgentOutput;     try {       parsed = JSON.parse(resultText);     } catch (err) {       throw new Error(`CriticAgent JSON parse error: ${(err as Error).message}`);     }",
+    "embedding": [
+      912944
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/CriticAgent.ts",
+    "line": 71,
+    "text": "    return parsed;   } }",
+    "embedding": [
+      314708
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DebuggerAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import debuggerInputSchema from '../../../shared/schemas/debugger.input.schema.json' assert { type: 'json' }; import debuggerOutputSchema from '../../../shared/schemas/debugger.output.schema.json' assert { type: 'json' }; import type { DebuggerAgentInput } from '../../../shared/dist/types'; import type { DebuggerAgentResponse } from '../../../shared/dist/types/debugger.js'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { FixGenerator } from './FixGenerator.js';",
+    "embedding": [
+      388816
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DebuggerAgent.ts",
+    "line": 11,
+    "text": "import { createCircuitBreaker } from '@rocketship/core'; import crypto from 'crypto'; import type { JSONSchemaType } from 'ajv';  @injectable() export class DebuggerAgent extends BaseAgent<DebuggerAgentInput, DebuggerAgentResponse> {   name = 'DebuggerAgent';   inputSchema = debuggerInputSchema as unknown as JSONSchemaType<DebuggerAgentInput>;   outputSchema = debuggerOutputSchema as unknown as JSONSchemaType<DebuggerAgentResponse>; ",
+    "embedding": [
+      643002
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DebuggerAgent.ts",
+    "line": 21,
+    "text": "  constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(FixGenerator) protected fixGenerator: FixGenerator   ) {     super(telemetryService, metricsService);   }    async run(input: DebuggerAgentInput, context: { correlationId?: string } = {}): Promise<DebuggerAgentResponse> {",
+    "embedding": [
+      127105
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DebuggerAgent.ts",
+    "line": 31,
+    "text": "    // 1. Analyze errors     const diagnostics = input.error; // or input.errors if plural      // 2. Generate fix suggestion     const fixResult = await this.fixGenerator.generateFix(diagnostics);      // 3. Return output     const output: DebuggerAgentResponse = {       diagnosis: diagnostics,       fix: fixResult.fixes?.[0],",
+    "embedding": [
+      322829
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DebuggerAgent.ts",
+    "line": 41,
+    "text": "      metadata: { appliedAutomatically: false, ...fixResult.metadata }     };     return output;   } }",
+    "embedding": [
+      388747
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DeployerAgent.d.ts",
+    "line": 1,
+    "text": "/**  * DeployerAgent  * Creates Dockerfiles, CI manifests, and IaC snippets.  * See docs/Agent & API Documentation.md for interface details.  */ export declare class DeployerAgent {     execute(params: any, token: import('vscode').CancellationToken): Promise<any>; } //# sourceMappingURL=DeployerAgent.d.ts.map",
+    "embedding": [
+      176342
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DeployerAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import deployerInputSchema from '../../../shared/schemas/deployer.input.schema.json' assert { type: 'json' }; import deployerOutputSchema from '../../../shared/schemas/deployer.output.schema.json' assert { type: 'json' }; import type { DeployerAgentInput } from '../../../shared/dist/types/deployer.input.d.ts'; import type { DeployerAgentResponse } from '../../../shared/dist/types/deployer.output.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import type { PromptRenderer } from '../prompts/PromptRenderer.js';",
+    "embedding": [
+      5972
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DeployerAgent.ts",
+    "line": 11,
+    "text": "import { createCircuitBreaker, type CircuitBreakerOptions } from '@rocketship/core'; import { LLMService } from '../services/LLMService.js'; import crypto from 'node:crypto';  // TODO: Replace with actual token or symbol if needed const PROMPT_RENDERER = Symbol.for('PromptRenderer');  @injectable() export class DeployerAgent extends BaseAgent<DeployerAgentInput, DeployerAgentResponse> {   name = 'DeployerAgent';",
+    "embedding": [
+      121321
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DeployerAgent.ts",
+    "line": 21,
+    "text": "  inputSchema = deployerInputSchema as unknown as import('ajv').JSONSchemaType<DeployerAgentInput>;   outputSchema = deployerOutputSchema as unknown as import('ajv').JSONSchemaType<DeployerAgentResponse>;    constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(PROMPT_RENDERER) protected promptRenderer: PromptRenderer,     @inject(LLMService) protected llmService: LLMService   ) {",
+    "embedding": [
+      377936
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DeployerAgent.ts",
+    "line": 31,
+    "text": "    super(telemetryService, metricsService);   }    async run(input: DeployerAgentInput, context: { correlationId?: string } = {}): Promise<DeployerAgentResponse> {     // Simulate deployment logic     // ... deployment steps ...     const output: DeployerAgentResponse = {       status: 'success',       logs: ['Deployment started', 'Deployment finished'],       metadata: { target: input.target }",
+    "embedding": [
+      98131
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DeployerAgent.ts",
+    "line": 41,
+    "text": "    };     return output;   } }",
+    "embedding": [
+      333862
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 1,
+    "text": "import { BaseAgent } from './BaseAgent.js'; import docsInputSchema from '../../../shared/schemas/docs-agent.input.schema.json' assert { type: 'json' }; import docsOutputSchema from '../../../shared/schemas/docs.schema.json' assert { type: 'json' }; import { injectable } from 'tsyringe'; import { LLMService } from '../services/LLMService.js'; import { VectorDBService, ContextChunk } from '../services/VectorDBService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { PROMPT_RENDERER } from '../di/container.js'; import path from 'path';",
+    "embedding": [
+      94178
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 11,
+    "text": "import { createCircuitBreaker } from '@rocketship/core'; import { DocsAgentInput } from '../../../shared/dist/types/docs-agent.input.js'; import { DocsAgentResponse } from '../../../shared/dist/types/docs.js';  /**  * DocsAgent: Contract-first, RAG-enabled agent for documentation retrieval and synthesis.  * - Extends AgentBase for prompt rendering, LLM orchestration, and DI.  * - Uses Opossum for circuit breaker on all external calls.  * - Emits granular telemetry and metrics for each major phase using DI-injected services.  * - Strictly enforces error schema usage and partial_success emission for degraded/fallback results.",
+    "embedding": [
+      364652
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 21,
+    "text": " * - See docs/CONVENTIONS.md and docs/agents.md for canonical standards.  */ @injectable() export class DocsAgent extends BaseAgent<DocsAgentInput, DocsAgentResponse> {   name = 'DocsAgent';   inputSchema = docsInputSchema;   outputSchema = docsOutputSchema;    protected llmService: LLMService;   protected vectorDbService: VectorDBService;",
+    "embedding": [
+      632957
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 31,
+    "text": "  protected telemetryService: TelemetryService;   protected metricsService: MetricsService;   protected promptRenderer: (templatePath: string, data: any) => string;    constructor(     llmService: LLMService,     vectorDbService: VectorDBService,     telemetryService: TelemetryService,     metricsService: MetricsService,     promptRenderer: (templatePath: string, data: any) => string",
+    "embedding": [
+      548137
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 41,
+    "text": "  ) {     super(telemetryService, metricsService);     this.llmService = llmService;     this.vectorDbService = vectorDbService;     this.telemetryService = telemetryService;     this.metricsService = metricsService;     this.promptRenderer = promptRenderer;     this.name = 'DocsAgent';     this.inputSchema = docsInputSchema as any;     this.outputSchema = docsOutputSchema as any;",
+    "embedding": [
+      759714
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 51,
+    "text": "  }    /**    * Main agent logic: contract-first, RAG-enabled retrieval and synthesis.    * @param input - Validated input matching inputSchema    * @param context - Optional context (deprecated: context.telemetry)    * @returns output - Must match outputSchema    */   async run(input: DocsAgentInput, context: { correlationId?: string } = {}): Promise<DocsAgentResponse> {     let chunks: ContextChunk[] = [];",
+    "embedding": [
+      125551
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 61,
+    "text": "    let fallback = false;     let errorPayload: DocsAgentResponse['error'] | undefined = undefined;     let documentation = '';     let examples: string[] = [];     let metadata: DocsAgentResponse['metadata'] = {};     const agentName = this.name;     const correlationId = context.correlationId || '';      // 1. VectorDB lookup (Opossum-wrapped)     const vectorBreaker = createCircuitBreaker(async () => {",
+    "embedding": [
+      27510
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 71,
+    "text": "      this.telemetryService.emitEvent({         name: `${agentName}.vectordb.lookup.start`,         timestamp: Date.now(),         attributes: { agent: agentName, phase: 'vectordb.lookup', outcome: 'start', symbol: input.symbol },         correlationId,       });       return await this.vectorDbService.search(input.symbol);     });     vectorBreaker.on('open', () => this.telemetryService.emitEvent({       name: `${agentName}.breaker.state`,",
+    "embedding": [
+      566796
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 81,
+    "text": "      timestamp: Date.now(),       attributes: { agent: agentName, phase: 'vectordb', state: 'open' },       correlationId,     }));     vectorBreaker.on('halfOpen', () => this.telemetryService.emitEvent({       name: `${agentName}.breaker.state`,       timestamp: Date.now(),       attributes: { agent: agentName, phase: 'vectordb', state: 'halfOpen' },       correlationId,     }));",
+    "embedding": [
+      244572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 91,
+    "text": "    vectorBreaker.on('close', () => this.telemetryService.emitEvent({       name: `${agentName}.breaker.state`,       timestamp: Date.now(),       attributes: { agent: agentName, phase: 'vectordb', state: 'close' },       correlationId,     }));     const vectorStart = Date.now();     try {       chunks = await vectorBreaker.fire();       this.telemetryService.emitEvent({",
+    "embedding": [
+      95960
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 101,
+    "text": "        name: `${agentName}.vectordb.lookup.success`,         timestamp: Date.now(),         attributes: { agent: agentName, phase: 'vectordb.lookup', outcome: 'success', symbol: input.symbol, chunks: chunks.length },         correlationId,       });       this.metricsService.recordAgentDuration(agentName, 'vectordb.lookup', (Date.now() - vectorStart) / 1000);     } catch (err) {       this.telemetryService.emitEvent({         name: `${agentName}.vectordb.lookup.error`,         timestamp: Date.now(),",
+    "embedding": [
+      976092
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 111,
+    "text": "        attributes: { agent: agentName, phase: 'vectordb.lookup', outcome: 'error', symbol: input.symbol, error: (err as Error)?.message },         correlationId,       });       this.metricsService.recordAgentInvocation(agentName, 'vectordb.lookup_error');       fallback = true;     }      // 2. Fallback: DuckDuckGo/web search (stub for now)     if (fallback || !chunks || chunks.length === 0) {       this.telemetryService.emitEvent({",
+    "embedding": [
+      379863
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 121,
+    "text": "        name: `${agentName}.fallback.websearch.start`,         timestamp: Date.now(),         attributes: { agent: agentName, phase: 'fallback.websearch', outcome: 'start', symbol: input.symbol },         correlationId,       });       // TODO: Implement DuckDuckGo/web search fallback (see docs/agents.md)       fallback = true;       chunks = [];       this.telemetryService.emitEvent({         name: `${agentName}.fallback.websearch.error`,",
+    "embedding": [
+      351651
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 131,
+    "text": "        timestamp: Date.now(),         attributes: { agent: agentName, phase: 'fallback.websearch', outcome: 'error', symbol: input.symbol },         correlationId,       });       this.metricsService.recordAgentInvocation(agentName, 'fallback.websearch_error');       // Always set errorPayload on fallback       errorPayload = { code: 'DOCS_NOT_FOUND', message: 'Could not fetch documentation' };     }      // 3. Render prompt",
+    "embedding": [
+      537179
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 141,
+    "text": "    const templatePath = path.resolve('extension/src/prompts/docs-agent/retrieve-docs.v1.tpl');     const prompt = this.promptRenderer(templatePath, {       symbol: input.symbol,       language: input.language,       contextChunks: chunks     });     this.telemetryService.emitEvent({       name: `${agentName}.prompt.rendered`,       timestamp: Date.now(),       attributes: { agent: agentName, phase: 'prompt.rendered', outcome: 'success', symbol: input.symbol },",
+    "embedding": [
+      472027
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 151,
+    "text": "      correlationId,     });      // 4. LLM call (Opossum-wrapped)     const llmBreaker = createCircuitBreaker(async () => {       this.telemetryService.emitEvent({         name: `${agentName}.llm.call.start`,         timestamp: Date.now(),         attributes: { agent: agentName, phase: 'llm.call', outcome: 'start', symbol: input.symbol },         correlationId,",
+    "embedding": [
+      781841
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 161,
+    "text": "      });       return await this.llmService.generate(prompt);     });     llmBreaker.on('open', () => this.telemetryService.emitEvent({       name: `${agentName}.breaker.state`,       timestamp: Date.now(),       attributes: { agent: agentName, phase: 'llm', state: 'open' },       correlationId,     }));     llmBreaker.on('halfOpen', () => this.telemetryService.emitEvent({",
+    "embedding": [
+      74459
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 171,
+    "text": "      name: `${agentName}.breaker.state`,       timestamp: Date.now(),       attributes: { agent: agentName, phase: 'llm', state: 'halfOpen' },       correlationId,     }));     llmBreaker.on('close', () => this.telemetryService.emitEvent({       name: `${agentName}.breaker.state`,       timestamp: Date.now(),       attributes: { agent: agentName, phase: 'llm', state: 'close' },       correlationId,",
+    "embedding": [
+      589411
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 181,
+    "text": "    }));     const llmStart = Date.now();     try {       documentation = await llmBreaker.fire();       this.telemetryService.emitEvent({         name: `${agentName}.llm.call.success`,         timestamp: Date.now(),         attributes: { agent: agentName, phase: 'llm.call', outcome: 'success', symbol: input.symbol },         correlationId,       });",
+    "embedding": [
+      413502
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 191,
+    "text": "      this.metricsService.recordAgentDuration(agentName, 'llm.call', (Date.now() - llmStart) / 1000);     } catch (err) {       this.telemetryService.emitEvent({         name: `${agentName}.llm.call.error`,         timestamp: Date.now(),         attributes: { agent: agentName, phase: 'llm.call', outcome: 'error', symbol: input.symbol, error: (err as Error)?.message },         correlationId,       });       this.metricsService.recordAgentInvocation(agentName, 'llm.call_error');       fallback = true;",
+    "embedding": [
+      744823
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 201,
+    "text": "      documentation = '<cached>';       // Strictly enforce error schema usage       errorPayload = { code: 'DOCS_NOT_FOUND', message: 'Could not fetch documentation' };     }      // 5. Validate output (schema validation handled by AgentBase/ServiceBase)     // 6. Log fallback events and emit partial_success if degraded     if (fallback) {       this.emitPartialSuccess('fallback', correlationId);       return {",
+    "embedding": [
+      438749
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 211,
+    "text": "        documentation,         examples,         metadata: { fallback: 'VectorDB and web search failed' },         error: errorPayload       };     }     return {       documentation,       examples,       metadata",
+    "embedding": [
+      306593
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/DocsAgent.ts",
+    "line": 221,
+    "text": "    };   } }  // See docs/CONVENTIONS.md and docs/agents.md for all standards and patterns.",
+    "embedding": [
+      407436
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { createCircuitBreaker } from '@rocketship/core';  @injectable() export class FixGenerator {   constructor(     @inject(ConfigService) protected configService: ConfigService,",
+    "embedding": [
+      825513
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 11,
+    "text": "    @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService   ) {}    async suggestFix(errorReport: any): Promise<string[]> {     const phase = 'suggest_fix';     const start = Date.now();     const span = this.telemetryService.startSpan(phase);     try {       const breaker = createCircuitBreaker(",
+    "embedding": [
+      496624
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 21,
+    "text": "        async () => {           // Example heuristic: map error types to npm commands           const fixes = [];           if (errorReport.missingModule) {             fixes.push(`npm install ${errorReport.missingModule}`);           }           if (errorReport.testFailure) {             fixes.push('npm test');           }           // more classification logic...",
+    "embedding": [
+      284952
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 31,
+    "text": "          return fixes;         },         { name: phase }       );       const fixes = await breaker.fire();       return fixes;     } finally {       span.end();       this.metricsService.recordMetric(`${phase}_duration_ms`, Date.now() - start, { service: 'FixGenerator' });     }",
+    "embedding": [
+      646204
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 41,
+    "text": "  }    async executeFix(fixScript: string): Promise<{ success: boolean; output: string }> {     const phase = 'execute_fix';     const start = Date.now();     const span = this.telemetryService.startSpan(phase);     try {       if (!this.configService.get<boolean>('fixGenerator.autoExecuteFixes')) {         return { success: false, output: 'Auto-execution disabled' };       }",
+    "embedding": [
+      868631
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 51,
+    "text": "      // Execute shell command (stubbed)       const { exec } = await import('child_process');       return new Promise((resolve) => {         exec(fixScript, (err, stdout, stderr) => {           const output = stdout + stderr;           resolve({ success: !err, output });         });       });     } finally {       span.end();",
+    "embedding": [
+      338450
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 61,
+    "text": "      this.metricsService.recordMetric(`${phase}_duration_ms`, Date.now() - start, { service: 'FixGenerator' });     }   }    async generateFix(errorReport: any): Promise<{ fixes: string[]; metadata: any }> {     const fixes = await this.suggestFix(errorReport);     return { fixes, metadata: { count: fixes.length } };   }    async applyFix(fixScript: string): Promise<{ applied: boolean; result: string }> {",
+    "embedding": [
+      217165
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/FixGenerator.ts",
+    "line": 71,
+    "text": "    const { success, output } = await this.executeFix(fixScript);     return { applied: success, result: output };   } }",
+    "embedding": [
+      970027
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import monitorInputSchema from '../../../shared/schemas/monitor.input.schema.json' assert { type: 'json' }; import monitorOutputSchema from '../../../shared/schemas/monitor.output.schema.json' assert { type: 'json' }; import type { MonitorAgentInput, MonitorAgentResponse } from '../../../shared/dist/types/index.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { MonitoringService } from '../services/MonitoringService.js'; import crypto from 'crypto';",
+    "embedding": [
+      985207
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 11,
+    "text": " @injectable() export class MonitorAgent extends BaseAgent<MonitorAgentInput, MonitorAgentResponse> {   name = 'MonitorAgent';   inputSchema = monitorInputSchema;   outputSchema = monitorOutputSchema;    constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,",
+    "embedding": [
+      43919
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 21,
+    "text": "    @inject(MetricsService) protected metricsService: MetricsService,     @inject(MonitoringService) protected monitoringService: MonitoringService   ) {     super(telemetryService, metricsService);   }    async run(input: MonitorAgentInput, context: { correlationId?: string } = {}): Promise<MonitorAgentResponse> {     const correlationId = context.correlationId || crypto.randomUUID();     this.validateInput(input, correlationId); ",
+    "embedding": [
+      498106
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 31,
+    "text": "    // 1. Gather telemetry     const spanGather = this.startSpan('gather_metrics', { correlationId });     const startGather = Date.now();     let metrics;     try {       metrics = await this.monitoringService.collectMetrics(input.targets);     } finally {       spanGather.end();       this.recordMetric('gather_metrics_duration_ms', Date.now() - startGather, { agent: this.name });     }",
+    "embedding": [
+      480945
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 41,
+    "text": "     // 2. Analyze for anomalies     const spanAnalyze = this.startSpan('anomaly_detection', { correlationId });     const startAnalyze = Date.now();     let anomalies;     try {       anomalies = await this.monitoringService.detectAnomalies(metrics, input.thresholds);     } finally {       spanAnalyze.end();       this.recordMetric('anomaly_detection_duration_ms', Date.now() - startAnalyze, { agent: this.name });",
+    "embedding": [
+      702313
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 51,
+    "text": "    }      // 3. Suggest optimizations     const suggestions = anomalies.length       ? await this.monitoringService.suggestOptimizations(anomalies)       : [];      const output: MonitorAgentResponse = {       metrics,       anomalies,",
+    "embedding": [
+      244745
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/MonitorAgent.ts",
+    "line": 61,
+    "text": "      suggestions,       metadata: { timestamp: new Date().toISOString() }     };     this.validateOutput(output, correlationId);     return output;   } }",
+    "embedding": [
+      667494
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.d.ts",
+    "line": 1,
+    "text": "import { CancellationToken } from 'vscode'; import { ContextChunk } from '@rocketship/shared'; import { InferenceService } from '../services/InferenceService.js'; /**  * PlannerAgentParams:  * - requirementText: user‐provided spec  * - contextChunks: retrieval results for enhanced context  * - sessionId: unique session identifier  */ export interface PlannerAgentParams {",
+    "embedding": [
+      700025
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.d.ts",
+    "line": 11,
+    "text": "    requirementText: string;     contextChunks?: ContextChunk[];     sessionId: string; } export interface PlannerAgentResponse {     tasks: Array<{         id: string;         description: string;         priority: 'low' | 'medium' | 'high';     }>;",
+    "embedding": [
+      460836
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.d.ts",
+    "line": 21,
+    "text": "    metadata?: Record<string, any>; } export declare class PlannerAgent {     private inference;     constructor(inference: InferenceService);     execute(params: PlannerAgentParams, token: CancellationToken): Promise<PlannerAgentResponse>; } //# sourceMappingURL=PlannerAgent.d.ts.map",
+    "embedding": [
+      732313
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import clarificationRequestedSchema from '../../../shared/schemas/events/clarification-requested.schema.json' assert { type: 'json' }; import plannerInputSchema from '../../../shared/schemas/planner.input.schema.json' assert { type: 'json' }; import plannerOutputSchema from '../../../shared/schemas/planner.output.schema.json' assert { type: 'json' }; import type { PlannerAgentInput, PlannerAgentResponse } from '../../../shared/dist/types/index.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import type { PromptRenderer } from '../prompts/PromptRenderer.js';",
+    "embedding": [
+      911185
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 11,
+    "text": "import { LLMService } from '../services/LLMService.js'; import { VectorDBService } from '../services/VectorDBService.js'; import { createCircuitBreaker } from '@rocketship/core'; import crypto from 'crypto'; import { PROMPT_RENDERER } from '../prompts/constants.js';  @injectable() export class PlannerAgent extends BaseAgent<PlannerAgentInput, PlannerAgentResponse> {   name = 'PlannerAgent';   inputSchema = plannerInputSchema;",
+    "embedding": [
+      731270
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 21,
+    "text": "  outputSchema = plannerOutputSchema;    constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(PROMPT_RENDERER) protected promptRenderer: PromptRenderer,     @inject(LLMService) protected llmService: LLMService,     @inject(VectorDBService) protected vectorDbService: VectorDBService   ) {",
+    "embedding": [
+      617729
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 31,
+    "text": "    super(telemetryService, metricsService);   }    async run(input: PlannerAgentInput, context: { correlationId?: string; sessionId?: string } = {}): Promise<PlannerAgentResponse> {     const correlationId = context.correlationId || crypto.randomUUID();     const sessionId = context.sessionId;     this.validateInput(input, correlationId);      // 1. Serialize context chunks     const contextText = (input.contextChunks || [])",
+    "embedding": [
+      898397
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 41,
+    "text": "      .map(c => `• ${c.sourceFile}:${c.lineRange.start}-${c.lineRange.end} → ${c.snippet}`)       .join('\\n');      // 2. Build prompt     const prompt = ` You are a software engineering planner. Given the requirement below and supporting context, decompose into a list of discrete tasks.  Requirement: ${input.requirementText} ",
+    "embedding": [
+      675809
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 51,
+    "text": "Context: ${contextText}  Output a JSON array of tasks, each with \"id\", \"description\", and \"priority\" (low/medium/high). Use concise, action-oriented descriptions. `;     // 3. Call LLM     const span = this.startSpan('plan_generation', { correlationId });     const start = Date.now();     let llmResultText: string;     try {",
+    "embedding": [
+      31769
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 61,
+    "text": "      const res = await this.withCircuitBreaker(         () => this.llmService.callModel({ prompt }),         { name: 'plan_generation' }       );       llmResultText = res.text;     } finally {       span.end();       this.recordMetric('plan_generation_duration_ms', Date.now() - start, { agent: this.name });     } ",
+    "embedding": [
+      793632
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 71,
+    "text": "    // 4. Parse output     let tasks;     try {       tasks = JSON.parse(llmResultText);     } catch (err) {       throw new Error(`PlannerAgent: Failed to parse JSON response: ${(err as Error).message}`);     }     const result: PlannerAgentResponse = { tasks, metadata: { model: (await this.llmService.currentModel) } };     this.validateOutput(result, correlationId);     return result;",
+    "embedding": [
+      771289
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/PlannerAgent.ts",
+    "line": 81,
+    "text": "  } }",
+    "embedding": [
+      627226
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ReflexionAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import reflexionInputSchema from '../../../shared/schemas/reflexion.input.schema.json' assert { type: 'json' }; import reflexionOutputSchema from '../../../shared/schemas/reflexion.output.schema.json' assert { type: 'json' }; import type { ReflexionAgentInput, ReflexionAgentResponse } from '../../../shared/dist/types/index.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { VectorDBService } from '../services/VectorDBService.js'; import crypto from 'crypto';",
+    "embedding": [
+      326601
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ReflexionAgent.ts",
+    "line": 11,
+    "text": " @injectable() export class ReflexionAgent extends BaseAgent<ReflexionAgentInput, ReflexionAgentResponse> {   name = 'ReflexionAgent';   inputSchema = reflexionInputSchema;   outputSchema = reflexionOutputSchema;    constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,",
+    "embedding": [
+      782995
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ReflexionAgent.ts",
+    "line": 21,
+    "text": "    @inject(MetricsService) protected metricsService: MetricsService,     @inject(VectorDBService) protected vectorDbService: VectorDBService   ) {     super(telemetryService, metricsService);   }    async run(input: ReflexionAgentInput, context: { correlationId?: string } = {}): Promise<ReflexionAgentResponse> {     const correlationId = context.correlationId || crypto.randomUUID();     this.validateInput(input, correlationId); ",
+    "embedding": [
+      121757
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ReflexionAgent.ts",
+    "line": 31,
+    "text": "    // 1. Retrieve past interactions from VectorDB     const spanRetrieve = this.startSpan('retrieve_history', { correlationId });     const startRetrieve = Date.now();     let history;     try {       history = await this.vectorDbService.search(input.sessionId);     } finally {       spanRetrieve.end();       this.recordMetric('retrieve_history_duration_ms', Date.now() - startRetrieve, { agent: this.name });     }",
+    "embedding": [
+      883498
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ReflexionAgent.ts",
+    "line": 41,
+    "text": "     // 2. Summarize lessons learned     const spanSummarize = this.startSpan('summarize_failures', { correlationId });     const startSumm = Date.now();     const summaries = history.map(entry => `${entry.agent}: ${entry.result}`); // simple mapping     spanSummarize.end();     this.recordMetric('summarize_failures_duration_ms', Date.now() - startSumm, { agent: this.name });      // 3. Propose prompt/template updates     const updates = summaries.map(s => `Review logic in ${s}`); // placeholder logic",
+    "embedding": [
+      264578
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ReflexionAgent.ts",
+    "line": 51,
+    "text": "     const output: ReflexionAgentResponse = { summaries, updates, metadata: { count: summaries.length } };     this.validateOutput(output, correlationId);     return output;   } }",
+    "embedding": [
+      291029
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ResearchAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import researchInputSchema from '../../../shared/schemas/research.input.schema.json' assert { type: 'json' }; import researchOutputSchema from '../../../shared/schemas/research.output.schema.json' assert { type: 'json' }; import type { ResearchAgentInput } from '../../../shared/dist/types/research.input.d.ts'; import type { ResearchAgentResponse } from '../../../shared/dist/types/research.output.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { DuckDuckGoTool } from '../tools/duck-duckgo-tool.js';",
+    "embedding": [
+      152792
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ResearchAgent.ts",
+    "line": 11,
+    "text": "import { VectorDBService } from '../services/VectorDBService.js'; import { createCircuitBreaker } from '@rocketship/core'; import crypto from 'crypto'; import type { JSONSchemaType } from 'ajv';  @injectable() export class ResearchAgent extends BaseAgent<ResearchAgentInput, ResearchAgentResponse> {   name = 'ResearchAgent';   inputSchema = researchInputSchema as unknown as JSONSchemaType<ResearchAgentInput>;   outputSchema = researchOutputSchema as unknown as JSONSchemaType<ResearchAgentResponse>;",
+    "embedding": [
+      58629
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ResearchAgent.ts",
+    "line": 21,
+    "text": "   constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(DuckDuckGoTool) protected searchService: DuckDuckGoTool,     @inject(VectorDBService) protected vectorDbService: VectorDBService   ) {     super(telemetryService, metricsService);   }",
+    "embedding": [
+      543522
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ResearchAgent.ts",
+    "line": 31,
+    "text": "   async run(input: ResearchAgentInput, context: { correlationId?: string } = {}): Promise<ResearchAgentResponse> {     // 1. Search web via DuckDuckGo     const results: ResearchAgentResponse['results'] = await this.withCircuitBreaker(       () => this.searchService.search(input.query, 'ResearchAgent'),       { name: 'web_search' }     );      // 2. Embed results into vector DB for RAG     const docs = results.map((r: { url: string; snippet: string }) => ({",
+    "embedding": [
+      231845
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ResearchAgent.ts",
+    "line": 41,
+    "text": "      id: crypto.randomUUID(),       source: r.url ?? '',       embedding: [],       text: r.snippet,       score: 1 // Default score for compatibility     })) as import('../../../shared/dist/types/research.output.d.ts').ContextChunk[];     await this.vectorDbService.upsertMany(docs);      // 3. Retrieve augmented context     const augmentedContext = await this.vectorDbService.search(input.query) as import('../../../shared/dist/types/research.output.d.ts').ContextChunk[];",
+    "embedding": [
+      659803
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ResearchAgent.ts",
+    "line": 51,
+    "text": "     const output: ResearchAgentResponse = {       results,       augmentedContext,       metadata: { count: results.length }     };     return output;   } }",
+    "embedding": [
+      815872
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.d.ts",
+    "line": 1,
+    "text": "/**  * ScaffolderAgent  * Generates project/file skeletons based on PlannerAgent output.  * See docs/Agent & API Documentation.md for interface details.  */ export declare class ScaffolderAgent {     execute(params: any, token: import('vscode').CancellationToken): Promise<any>; } //# sourceMappingURL=ScaffolderAgent.d.ts.map",
+    "embedding": [
+      405593
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 1,
+    "text": "// ScaffolderAgent: Bootstraps new projects, modules, or features. // See [CHANGELOG.md] for canonical structure and refactor principles. // TODO: Implement ScaffolderAgent logic.  import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import scaffolderInputSchema from '../../../shared/schemas/scaffolder.input.schema.json' assert { type: 'json' }; import scaffolderOutputSchema from '../../../shared/schemas/scaffolder.output.schema.json' assert { type: 'json' }; import type { ScaffolderAgentInput, ScaffolderAgentResponse } from '../../../shared/dist/types/index.d.ts'; import { ConfigService } from '../services/ConfigService.js';",
+    "embedding": [
+      567535
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 11,
+    "text": "import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import type { PromptRenderer } from '../prompts/PromptRenderer.js'; import { createCircuitBreaker } from '@rocketship/core'; import crypto from 'crypto'; import { LLMService } from '../services/LLMService.js'; import { PROMPT_RENDERER } from '../prompts/constants.js';  @injectable() export class ScaffolderAgent extends BaseAgent<ScaffolderAgentInput, ScaffolderAgentResponse> {",
+    "embedding": [
+      191454
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 21,
+    "text": "  name = 'ScaffolderAgent';   inputSchema = scaffolderInputSchema;   outputSchema = scaffolderOutputSchema;    constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(PROMPT_RENDERER) protected promptRenderer: PromptRenderer,     @inject(LLMService) protected llmService: LLMService",
+    "embedding": [
+      508134
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 31,
+    "text": "  ) {     super(telemetryService, metricsService);   }    async run(input: ScaffolderAgentInput, context: { correlationId?: string } = {}): Promise<ScaffolderAgentResponse> {     const correlationId = context.correlationId || crypto.randomUUID();     this.validateInput(input, correlationId);      // 1. Template selection     const spanTemplate = this.startSpan('template_selection', { correlationId });",
+    "embedding": [
+      619800
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 41,
+    "text": "    const startTemplate = Date.now();     let templateName = input.template || this.configService.get<string>('scaffolder.defaultTemplate');     spanTemplate.end();     this.recordMetric('template_selection_duration_ms', Date.now() - startTemplate, { agent: this.name, templateName });      // 2. Parameter handling     const spanParam = this.startSpan('parameter_validation', { correlationId });     const paramsUsed = input.params || {};     spanParam.end();     this.recordMetric('parameter_validation_duration_ms', 0, { agent: this.name });",
+    "embedding": [
+      517964
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 51,
+    "text": "     // 3. Prompt for scaffolding (optionally LLM-driven)     const prompt = this.promptRenderer('extension/src/prompts/scaffolder.tpl', { templateName, paramsUsed });     const spanLLM = this.startSpan('scaffold_generation', { correlationId });     const startLLM = Date.now();     let files;     try {       const result = await this.withCircuitBreaker(         () => this.llmService.generate(prompt),         { name: 'scaffold_generation' }",
+    "embedding": [
+      288436
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 61,
+    "text": "      );       files = JSON.parse(result.text) as ScaffolderAgentResponse['files'];     } catch {       // Fallback stub if LLM fails       files = [{ path: 'README.md', content: '# New Scaffold', diffPreview: '+ README.md' }];     } finally {       spanLLM.end();       this.recordMetric('scaffold_generation_duration_ms', Date.now() - startLLM, { agent: this.name, files: files.length });     } ",
+    "embedding": [
+      268690
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/ScaffolderAgent.ts",
+    "line": 71,
+    "text": "    const output: ScaffolderAgentResponse = { files, metadata: { templateName, paramsUsed } };     this.validateOutput(output, correlationId);     return output;   } }",
+    "embedding": [
+      846882
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.d.ts",
+    "line": 1,
+    "text": "import { CancellationToken } from 'vscode'; export interface TesterAgentParams {     code: string;     testFramework: 'jest' | 'mocha' | 'pytest';     sessionId: string; } export interface TesterAgentResponse {     testResults: Array<{         testName: string;         passed: boolean;",
+    "embedding": [
+      498522
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.d.ts",
+    "line": 11,
+    "text": "        error?: string;     }>;     coverage?: Record<string, number>; } export declare class TesterAgent {     constructor();     execute(params: TesterAgentParams, token: CancellationToken): Promise<TesterAgentResponse>; } //# sourceMappingURL=TesterAgent.d.ts.map",
+    "embedding": [
+      101540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import testerInputSchema from '../../../shared/schemas/tester.input.schema.json' assert { type: 'json' }; import testerOutputSchema from '../../../shared/schemas/tester.output.schema.json' assert { type: 'json' }; import type { TesterAgentInput, TesterAgentResponse } from '../../../shared/dist/types/index.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { TestRunnerService } from '../services/TestRunnerService.js'; import { createCircuitBreaker } from '@rocketship/core';",
+    "embedding": [
+      147632
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.ts",
+    "line": 11,
+    "text": "import crypto from 'crypto';  @injectable() export class TesterAgent extends BaseAgent<TesterAgentInput, TesterAgentResponse> {   name = 'TesterAgent';   inputSchema = testerInputSchema;   outputSchema = testerOutputSchema;    constructor(     @inject(ConfigService) protected configService: ConfigService,",
+    "embedding": [
+      174905
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.ts",
+    "line": 21,
+    "text": "    @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(TestRunnerService) protected testRunner: TestRunnerService   ) {     super(telemetryService, metricsService);   }    async run(input: TesterAgentInput, context: { correlationId?: string } = {}): Promise<TesterAgentResponse> {     const correlationId = context.correlationId || crypto.randomUUID();     this.validateInput(input, correlationId);",
+    "embedding": [
+      178011
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.ts",
+    "line": 31,
+    "text": "     // Execute tests via TestRunnerService     const span = this.startSpan('test_execution', { correlationId });     const start = Date.now();     let testResults;     try {       testResults = await this.withCircuitBreaker(         () => this.testRunner.runTests(input.testFiles, input.options),         { name: 'test_execution' }       );",
+    "embedding": [
+      892697
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TesterAgent.ts",
+    "line": 41,
+    "text": "    } finally {       span.end();       this.recordMetric('test_execution_duration_ms', Date.now() - start, { agent: this.name });     }      const output: TesterAgentResponse = { testResults, metadata: { runner: this.testRunner.name } };     this.validateOutput(output, correlationId);     return output;   } }",
+    "embedding": [
+      633129
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 1,
+    "text": "import { injectable, inject } from 'tsyringe'; import { BaseAgent } from './BaseAgent.js'; import trainerInputSchema from '../../../shared/schemas/trainer.input.schema.json' assert { type: 'json' }; import trainerOutputSchema from '../../../shared/schemas/trainer.output.schema.json' assert { type: 'json' }; import type { TrainerAgentInput } from '../../../shared/dist/types/trainer.input.d.ts'; import type { TrainerAgentResponse } from '../../../shared/dist/types/trainer.output.d.ts'; import { ConfigService } from '../services/ConfigService.js'; import { TelemetryService } from '../services/TelemetryService.js'; import { MetricsService } from '../services/MetricsService.js'; import { VectorDBService } from '../services/VectorDBService.js';",
+    "embedding": [
+      518955
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 11,
+    "text": "import fs from 'fs/promises'; import path from 'path'; import crypto from 'crypto';  @injectable() export class TrainerAgent extends BaseAgent<TrainerAgentInput, TrainerAgentResponse> {   name = 'TrainerAgent';   inputSchema = trainerInputSchema as unknown as import('ajv').JSONSchemaType<TrainerAgentInput>;   outputSchema = trainerOutputSchema as unknown as import('ajv').JSONSchemaType<TrainerAgentResponse>; ",
+    "embedding": [
+      560706
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 21,
+    "text": "  constructor(     @inject(ConfigService) protected configService: ConfigService,     @inject(TelemetryService) protected telemetryService: TelemetryService,     @inject(MetricsService) protected metricsService: MetricsService,     @inject(VectorDBService) protected vectorDbService: VectorDBService   ) {     super(telemetryService, metricsService);   }    async run(input: TrainerAgentInput, context: { correlationId?: string } = {}): Promise<TrainerAgentResponse> {",
+    "embedding": [
+      753893
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 31,
+    "text": "    // Load sources config     const cfg = input.sourcesFile || 'training.sources.json';     const content = await fs.readFile(path.resolve(cfg), 'utf-8');     const sources = JSON.parse(content) as string[];      // Crawl & fetch content     const documents = [];     for (const url of sources) {       try {         // simple HTTP fetch stub (to replace with real fetch)",
+    "embedding": [
+      425983
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 41,
+    "text": "        const res = await fetch(url);         const text = await res.text();         documents.push({ url, text });       } catch {         // skip on fetch error       }     }      // Embed and upsert into VectorDB     const docs = documents.map(doc => ({",
+    "embedding": [
+      816919
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 51,
+    "text": "      id: crypto.randomUUID(),       source: doc.url,       embedding: [],       text: doc.text,       score: 1     })) as import('../../../shared/dist/types/research.output.d.ts').ContextChunk[];     await this.vectorDbService.upsertMany(docs);      const output: TrainerAgentResponse = { processed: documents.length, metadata: { sourcesFile: cfg } };     return output;",
+    "embedding": [
+      331975
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/TrainerAgent.ts",
+    "line": 61,
+    "text": "  } }",
+    "embedding": [
+      627226
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/defensiveMiddleware.ts",
+    "line": 1,
+    "text": "// defensiveMiddleware: Wraps agent execute methods with retries, schema validation, and error handling // Configurable per agent via rocketship.yaml  export function defensiveMiddleware(agentName: string, config: any, executeFn: Function) {   return async function(...args: any[]) {     const defense = config.agents?.[agentName]?.defense || {};     let attempts = 0;     const maxRetries = defense.retries || 0;     while (attempts <= maxRetries) {       try {",
+    "embedding": [
+      535211
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/defensiveMiddleware.ts",
+    "line": 11,
+    "text": "        // TODO: Schema validation before/after if enabled         return await executeFn(...args);       } catch (err) {         attempts++;         if (attempts > maxRetries) {           // TODO: Log error, escalate to SupervisorService           throw err;         }       }     }",
+    "embedding": [
+      908584
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/defensiveMiddleware.ts",
+    "line": 21,
+    "text": "  }; }",
+    "embedding": [
+      467195
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/extension/src/agents/index.ts",
+    "line": 1,
+    "text": "export { PlannerAgent } from './PlannerAgent.js'; export { CoderAgent } from './CoderAgent.js'; export { CriticAgent } from './CriticAgent.js'; export { TesterAgent } from './TesterAgent.js'; export { ScaffolderAgent } from './ScaffolderAgent.js'; export { DeployerAgent } from './DeployerAgent.js'; export { DebugAgent } from './DebugAgent.js'; export { MonitorAgent } from './MonitorAgent.js'; ",
+    "embedding": [
+      766004
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 1,
+    "text": "{   \"completed\": [     {       \"feature\": \"Context Snapshot Engine\",       \"description\": \"Extracts and summarizes all agent contracts, schemas, test files, helpers, docs, telemetry events, semantic index, TODOs, health score, dependency graph, change hotspots, agent collaboration map, schema drift, memory budget, and more. Outputs context-snapshot.json for AI agent use.\",       \"usage\": \"Run via pnpm tsx nootropic/contextSnapshotHelper.ts or via the real-time server.\"     },     {       \"feature\": \"Mutation/Refactor Engine\",       \"description\": \"Scans for schema drift, TODOs, and test coverage gaps. Generates mutation/refactor suggestions, patch files, and a mutationPlan.json for agent-driven code improvement.\",",
+    "embedding": [
+      628213
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 11,
+    "text": "      \"usage\": \"Run via pnpm tsx nootropic/contextMutationEngine.ts or via the real-time server.\"     },     {       \"feature\": \"Real-Time Context/Mutation Server\",       \"description\": \"Watches codebase for changes and auto-refreshes context/mutation plans. Exposes HTTP and WebSocket APIs for agents to fetch context, mutation plans, patches, push messages, and trigger refreshes.\",       \"usage\": \"Run via pnpm tsx nootropic/contextRealtimeServer.ts. Agents connect to http://localhost:4000 or ws://localhost:4001.\"     },     {       \"feature\": \"Agent Message Board\",       \"description\": \"Persistent, append-only message board for agent-to-agent communication. Agents can leave/read structured messages (timestamp, agent, type, message).\",",
+    "embedding": [
+      708942
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 21,
+    "text": "      \"usage\": \"POST to /agent-message or use WebSocket 'addAgentMessage'.\"     },     {       \"feature\": \"Memory Budget Simulation & Compression\",       \"description\": \"Simulates context snapshots for 32k, 64k, 128k token tiers. Suggests which fields to trim/compress for each tier.\",       \"usage\": \"See compressedContexts in context-snapshot.json.\"     },     {       \"feature\": \"Self-Healing/Auto-Refactor Plan\",       \"description\": \"Detects contract violations and outputs a selfHealingPlan for future agent execution.\",",
+    "embedding": [
+      326332
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 31,
+    "text": "      \"usage\": \"See selfHealingPlan in context-snapshot.json and selfHealingPlan.json.\"     },     {       \"feature\": \"Semantic Search & Embedding Index\",       \"description\": \"Allows agents to find relevant code, docs, or prior messages by meaning, not just keywords. Uses embeddings and exposes a semantic search API via CLI, HTTP, and WebSocket.\",       \"usage\": \"See nootropic/docs/semanticSearchGuide.md. Build index with pnpm tsx nootropic/semanticIndexBuilder.ts, search with pnpm tsx nootropic/semanticSearchHelper.ts or via the real-time server.\"     }   ],   \"planned\": [     {",
+    "embedding": [
+      811727
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 41,
+    "text": "      \"feature\": \"Live Code Mutation & PR Suggestion\",       \"priority\": \"high\",       \"rationale\": \"Enable agents to auto-generate code mutations, patch files, and optionally create PRs for schema drift, TODOs, and refactor suggestions.\",       \"notes\": \"Integrate with git, create .patch files, and support auto-branch/commit if enabled.\"     },     {       \"feature\": \"Automated Documentation & Diagram Generation\",       \"priority\": \"medium\",       \"rationale\": \"Keep agent contracts, collaboration maps, and dependencies always up-to-date and visualized.\",       \"notes\": \"Generate Markdown docs and diagrams (Mermaid/PlantUML) in nootropic/docs/.\"",
+    "embedding": [
+      8561
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 51,
+    "text": "    },     {       \"feature\": \"Agent Intent/Plan Registry & Feedback Loop\",       \"priority\": \"medium\",       \"rationale\": \"Enable agents to register their current intent and plan steps, and rate context/mutation suggestions for self-tuning.\",       \"notes\": \"Persist registry and feedback in cache.\"     },     {       \"feature\": \"Security & Secret Scanning Integration\",       \"priority\": \"medium\",",
+    "embedding": [
+      756855
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 61,
+    "text": "      \"rationale\": \"Detect and flag secrets in the codebase for immediate remediation.\",       \"notes\": \"Integrate with trufflehog/gitleaks and surface in context snapshot.\"     },     {       \"feature\": \"Memory Lane & Timeline\",       \"priority\": \"low\",       \"rationale\": \"Persist a timeline of all major context snapshots, agent messages, and mutation plans for full traceability and replay.\",       \"notes\": \"Store in nootropic/memoryLane.json.\"     },     {",
+    "embedding": [
+      487131
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 71,
+    "text": "      \"feature\": \"Pluggable Extensions & Custom Extractors\",       \"priority\": \"low\",       \"rationale\": \"Allow agents to register custom extractors, analyzers, or output formats for new languages/frameworks.\",       \"notes\": \"Support plugin discovery and dynamic loading.\"     }   ],   \"dream\": [     {       \"feature\": \"Agent Personality/Capability Profiles\",       \"description\": \"Agents register their capabilities, specialties, and working style. The context engine recommends which agent should handle a given mutation or plan.\"",
+    "embedding": [
+      254783
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 81,
+    "text": "    },     {       \"feature\": \"Multi-Agent Orchestration & Negotiation\",       \"description\": \"Agents can negotiate, delegate, and coordinate complex refactors or feature builds, with context engine as the mediator.\"     },     {       \"feature\": \"Live Code Mutation & PR Creation (Fully Automated)\",       \"description\": \"Agents can auto-create PRs, run tests, and self-merge if all checks pass.\"     },     {",
+    "embedding": [
+      451874
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 91,
+    "text": "      \"feature\": \"Real-Time Semantic Embedding Search (Vector DB)\",       \"description\": \"Agents can search the entire codebase, docs, and message history by meaning, using embeddings and a local or remote vector DB.\"     },     {       \"feature\": \"Self-Tuning & Feedback-Driven Context Compression\",       \"description\": \"Agents rate the usefulness of context fields, and the engine tunes its prioritization and compression strategies automatically.\"     },     {       \"feature\": \"Agent-to-Agent Messaging/Negotiation Protocol\",       \"description\": \"Agents can send structured negotiation messages, propose plans, and reach consensus on code changes.\"",
+    "embedding": [
+      421485
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentBacklog.json",
+    "line": 101,
+    "text": "    }   ],   \"handoff\": {     \"instructions\": \"If you are a new agent or developer, start by reading context-snapshot.json and agentBacklog.json. Use the real-time server (contextRealtimeServer.ts) to fetch the latest context, mutation plan, and agent messages. To extend the system, add new features to the backlog and implement them in nootropic/. All outputs and APIs are AI-focused and extensible. If you lose context, reload the latest context-snapshot.json and agentBacklog.json to recover the current state and roadmap.\"   } } ",
+    "embedding": [
+      402237
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This is the control/cleanup utility for all future agents and users. // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.  import fs from 'fs'; import path from 'path';  const OUTPUT_DIR = path.resolve(__dirname); const PATCH_DIR = path.join(OUTPUT_DIR, 'patches'); const LOG_DIR = path.join(OUTPUT_DIR, 'logs'); const FILES = [",
+    "embedding": [
+      950338
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 11,
+    "text": "  'context-snapshot.json',   'mutationPlan.json',   'selfHealingPlan.json',   'agentBacklog.json',   'memoryLane.json' ];  // --- List all context, mutation, patch, and log files --- function listFiles(): any[] {   const files: any[] = FILES.map(f => {",
+    "embedding": [
+      394172
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 21,
+    "text": "    const filePath = path.join(OUTPUT_DIR, f);     if (fs.existsSync(filePath)) {       const stats = fs.statSync(filePath);       return { file: f, size: stats.size, mtime: stats.mtime.toISOString() };     }     return null;   }).filter((x): x is any => x !== null);   let patches: any[] = [];   if (fs.existsSync(PATCH_DIR)) {     patches = fs.readdirSync(PATCH_DIR).map(f => {",
+    "embedding": [
+      244114
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 31,
+    "text": "      const filePath = path.join(PATCH_DIR, f);       const stats = fs.statSync(filePath);       return { file: `patches/${f}`, size: stats.size, mtime: stats.mtime.toISOString() };     });   }   let logs: any[] = [];   if (fs.existsSync(LOG_DIR)) {     logs = fs.readdirSync(LOG_DIR).map(f => {       const filePath = path.join(LOG_DIR, f);       const stats = fs.statSync(filePath);",
+    "embedding": [
+      276618
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 41,
+    "text": "      return { file: `logs/${f}`, size: stats.size, mtime: stats.mtime.toISOString() };     });   }   return [...files, ...patches, ...logs]; }  // --- Delete or archive old files by age, size, or count --- function pruneFiles({ maxAgeDays = null, maxCount = null, maxTotalSize = null } = {}): any[] {   let files: any[] = listFiles().filter((f): f is any => f !== null);   files = files.sort((a, b) => new Date(a.mtime).getTime() - new Date(b.mtime).getTime());",
+    "embedding": [
+      147695
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 51,
+    "text": "  let toDelete: any[] = [];   if (maxAgeDays !== null) {     const cutoff = Date.now() - maxAgeDays * 24 * 60 * 60 * 1000;     toDelete = files.filter(f => new Date(f.mtime).getTime() < cutoff);   }   if (maxCount !== null && files.length > maxCount) {     toDelete = toDelete.concat(files.slice(0, files.length - maxCount));   }   if (maxTotalSize !== null) {     let total = files.reduce((sum, f) => sum + f.size, 0);",
+    "embedding": [
+      629573
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 61,
+    "text": "    for (const f of files) {       if (total <= maxTotalSize) break;       toDelete.push(f);       total -= f.size;     }   }   // Remove duplicates   toDelete = Array.from(new Set(toDelete.filter((f): f is any => f !== null)));   for (const f of toDelete) {     if (!f) continue;",
+    "embedding": [
+      215462
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 71,
+    "text": "    const filePath = path.join(OUTPUT_DIR, f.file);     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);   }   return toDelete; }  // --- Prune semantic index, message board, or memory lane --- function pruneJsonField(file, field, { maxItems = null, maxAgeDays = null } = {}) {   const filePath = path.join(OUTPUT_DIR, file);   if (!fs.existsSync(filePath)) return false;",
+    "embedding": [
+      156448
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 81,
+    "text": "  const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));   if (!Array.isArray(data[field])) return false;   let arr = data[field];   if (maxItems !== null && arr.length > maxItems) arr = arr.slice(-maxItems);   if (maxAgeDays !== null) {     const cutoff = Date.now() - maxAgeDays * 24 * 60 * 60 * 1000;     arr = arr.filter(item => new Date(item.timestamp || item.mtime).getTime() >= cutoff);   }   data[field] = arr;   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));",
+    "embedding": [
+      12107
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 91,
+    "text": "  return true; }  // --- CLI Entrypoint --- function runAgentControl({ list = false, prune = false, pruneOptions = {} } = {}) {   if (list) {     console.log(JSON.stringify(listFiles(), null, 2));   }   if (prune) {     const deleted = pruneFiles(pruneOptions);",
+    "embedding": [
+      702282
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 101,
+    "text": "    console.log(JSON.stringify({ deleted }, null, 2));   } }  if (require.main === module) {   const args = process.argv.slice(2);   if (args.includes('--list')) runAgentControl({ list: true });   if (args.includes('--prune')) runAgentControl({ prune: true }); } ",
+    "embedding": [
+      849526
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControl.ts",
+    "line": 111,
+    "text": "export {   listFiles,   pruneFiles,   pruneJsonField,   runAgentControl }; ",
+    "embedding": [
+      694060
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 1,
+    "text": "# Agent Control Utility Guide (nootropic/agentControl.ts)  ## What This Utility Does - Lists all context, mutation, patch, and log files in nootropic/ (with size and last modified time). - Prunes (deletes) old or large files by age, count, or total size. - Prunes specific fields (e.g., semantic index, agent messages, memory lane) in JSON files by item count or age. - Exports all utilities for agent or human use. - CLI and programmatic API for maximum flexibility.  ---",
+    "embedding": [
+      417197
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 11,
+    "text": " ## CLI Usage Examples  **List all files and their sizes:** ```sh pnpm tsx nootropic/agentControl.ts --list ```  **Prune old files by age (e.g., delete files older than 7 days):** ```sh",
+    "embedding": [
+      20307
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 21,
+    "text": "pnpm tsx nootropic/agentControl.ts --prune ```  *To customize pruning (by count, size, etc.), use the programmatic API below.*  ---  ## Programmatic API Usage  ```js",
+    "embedding": [
+      42855
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 31,
+    "text": "import { listFiles, pruneFiles, pruneJsonField } from './agentControl.js';  // List all files const files = listFiles();  // Prune files older than 14 days or keep only the 10 most recent pruneFiles({ maxAgeDays: 14, maxCount: 10 });  // Prune semantic index in context-snapshot.json to last 1000 items pruneJsonField('context-snapshot.json', 'semanticIndex', { maxItems: 1000 });",
+    "embedding": [
+      415828
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 41,
+    "text": " // Prune agentMessages in context-snapshot.json to last 30 days pruneJsonField('context-snapshot.json', 'agentMessages', { maxAgeDays: 30 }); ```  ---  ## Best Practices - Run this utility regularly if you have long-running agents or a large codebase. - Use prune options to keep only the most relevant context and avoid disk/memory bloat.",
+    "embedding": [
+      159885
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 51,
+    "text": "- Combine with the real-time server for automated, event-driven cleanup.  ---  ## Where to Find Everything - All context, mutation, and patch files: `nootropic/` - All logs (if any): `nootropic/logs/` - All utilities and APIs: `nootropic/agentControl.ts` (import and use as needed)  ---",
+    "embedding": [
+      573026
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/agentControlGuide.md",
+    "line": 61,
+    "text": " *All features are AI-focused and extensible. Add new cleanup, archiving, or compression features as needed!* ",
+    "embedding": [
+      653688
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This is the mutation/refactor engine for all future agents. // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.  import fs from 'fs'; import path from 'path'; import { extractTodos, detectSchemaDrift, getTestFiles } from './contextSnapshotHelper.js';  const OUTPUT_DIR = path.resolve(__dirname); const PATCH_DIR = path.join(OUTPUT_DIR, 'patches'); const PLAN_OUT = path.join(OUTPUT_DIR, 'mutationPlan.json');",
+    "embedding": [
+      781533
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 11,
+    "text": " if (!fs.existsSync(PATCH_DIR)) fs.mkdirSync(PATCH_DIR);  // --- Utility: Write file safely --- function writeFileSafe(filePath: string, data: string) {   fs.writeFileSync(filePath, data, { encoding: 'utf-8' }); }  // --- Generate mutation/refactor suggestions --- function getMutationSuggestions(): any[] {",
+    "embedding": [
+      851423
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 21,
+    "text": "  const todos = extractTodos();   const schemaDrift = detectSchemaDrift();   const testFiles = getTestFiles();   const suggestions: any[] = [];   for (const drift of schemaDrift) {     suggestions.push({ type: 'schemaDrift', agent: drift.agent, fix: `Add missing properties ${drift.missing.join(', ')} to ${drift.agent}` });   }   for (const todo of todos) {     suggestions.push({ type: 'todo', file: todo.file, line: todo.line, suggestion: `Resolve: ${todo.text}` });   }",
+    "embedding": [
+      400140
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 31,
+    "text": "  if (testFiles.length === 0) {     suggestions.push({ type: 'test', suggestion: 'Add tests for uncovered agents/services.' });   }   return suggestions; }  // --- Generate code mutation patches (best-effort string/regex for now) --- function generatePatches(suggestions: any[]): any[] {   const patches: any[] = [];   for (const s of suggestions) {",
+    "embedding": [
+      828290
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 41,
+    "text": "    if (s.type === 'todo') {       // For TODOs, suggest removing the TODO comment       const filePath = findFilePath(s.file);       if (!filePath) continue;       const lines = fs.readFileSync(filePath, 'utf-8').split('\\n');       const original = lines[s.line - 1];       if (!original) continue;       const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]');       if (original !== patched) {         const patch = `--- a/${s.file}\\n+++ b/${s.file}\\n@@ -${s.line},1 +${s.line},1 @@\\n-${original}\\n+${patched}\\n`;",
+    "embedding": [
+      397489
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 51,
+    "text": "        const patchFile = path.join(PATCH_DIR, `${s.file.replace(/\\W/g, '_')}_L${s.line}.patch`);         writeFileSafe(patchFile, patch);         patches.push({ file: s.file, line: s.line, patchFile, type: 'todo' } as any);       }     }     if (s.type === 'schemaDrift') {       // For schema drift, suggest adding missing properties (best-effort comment patch)       const filePath = findFilePath(s.agent);       if (!filePath) continue;       const patch = `// PATCH: Add missing properties to ${s.agent}: ${s.fix}\\n`;",
+    "embedding": [
+      933564
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 61,
+    "text": "      const patchFile = path.join(PATCH_DIR, `${s.agent.replace(/\\W/g, '_')}_schemaDrift.patch`);       writeFileSafe(patchFile, patch);       patches.push({ file: s.agent, patchFile, type: 'schemaDrift' } as any);     }   }   return patches; }  // --- Find file path in agents/helpers --- function findFilePath(filename) {",
+    "embedding": [
+      314002
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 71,
+    "text": "  const dirs = [     path.resolve(__dirname, '../extension/src/agents'),     path.resolve(__dirname),   ];   for (const dir of dirs) {     const filePath = path.join(dir, filename);     if (fs.existsSync(filePath)) return filePath;   }   return null; }",
+    "embedding": [
+      672059
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 81,
+    "text": " // --- Output mutation plan --- function writeMutationPlan(patches: any[], suggestions: any[]): void {   const plan = patches.map(p => ({ file: p.file, line: p.line, patchFile: p.patchFile, type: p.type }));   writeFileSafe(PLAN_OUT, JSON.stringify({ plan, suggestions }, null, 2)); }  // --- Main entrypoint --- function runMutationEngine() {   const suggestions = getMutationSuggestions();",
+    "embedding": [
+      155332
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 91,
+    "text": "  const patches = generatePatches(suggestions);   writeMutationPlan(patches, suggestions); }  if (require.main === module) {   runMutationEngine();   console.log('AI mutation/refactor plan and patches generated in nootropic/.'); }  export {",
+    "embedding": [
+      889359
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextMutationEngine.ts",
+    "line": 101,
+    "text": "  getMutationSuggestions,   generatePatches,   writeMutationPlan,   runMutationEngine }; ",
+    "embedding": [
+      530372
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This is the real-time context/mutation server for all future agents. // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.  import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url'; import http from 'http'; import WebSocket, { WebSocketServer } from 'ws'; import { createSnapshot } from './contextSnapshotHelper.js'; import { runMutationEngine } from './contextMutationEngine.js';",
+    "embedding": [
+      215612
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 11,
+    "text": "import { getAgentMessages, addAgentMessage } from './contextSnapshotHelper.js'; import { semanticSearch } from './semanticSearchHelper.js';  const __filename = fileURLToPath(import.meta.url); const __dirname = path.dirname(__filename);  const OUTPUT_DIR = path.resolve(__dirname); const CONTEXT_PATH = path.join(OUTPUT_DIR, 'context-snapshot.json'); const MUTATION_PLAN_PATH = path.join(OUTPUT_DIR, 'mutationPlan.json'); const PATCH_DIR = path.join(OUTPUT_DIR, 'patches');",
+    "embedding": [
+      216442
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 21,
+    "text": " const AGENT_DIR = path.resolve(__dirname, '../extension/src/agents'); const SCHEMA_DIR = path.resolve(__dirname, '../shared/schemas'); const TEST_DIR = path.resolve(__dirname, '../extension/src/agents/__tests__');  // --- File watcher: triggers context/mutation updates on change --- function watchAndRefresh() {   const dirs = [AGENT_DIR, SCHEMA_DIR, TEST_DIR];   for (const dir of dirs) {     if (fs.existsSync(dir)) {",
+    "embedding": [
+      848870
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 31,
+    "text": "      fs.watch(dir, { recursive: true }, (event, filename) => {         if (filename && (filename.endsWith('.ts') || filename.endsWith('.json'))) {           createSnapshot();           runMutationEngine();         }       });     }   } } ",
+    "embedding": [
+      232212
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 41,
+    "text": "// --- HTTP API --- function startHttpServer(port = 4000) {   const server = http.createServer((req, res) => {     if (!req.url) { res.writeHead(400); res.end('Bad request'); return; }     if (req.method === 'GET' && req.url === '/context') {       res.writeHead(200, { 'Content-Type': 'application/json' });       res.end(fs.readFileSync(CONTEXT_PATH, 'utf-8'));     } else if (req.method === 'GET' && req.url === '/mutation-plan') {       res.writeHead(200, { 'Content-Type': 'application/json' });       res.end(fs.readFileSync(MUTATION_PLAN_PATH, 'utf-8'));",
+    "embedding": [
+      726781
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 51,
+    "text": "    } else if (req.method === 'GET' && req.url.startsWith('/patches')) {       const patchFile = req.url.replace('/patches/', '');       const patchPath = path.join(PATCH_DIR, patchFile);       if (fs.existsSync(patchPath)) {         res.writeHead(200, { 'Content-Type': 'text/plain' });         res.end(fs.readFileSync(patchPath, 'utf-8'));       } else {         res.writeHead(404);         res.end('Not found');       }",
+    "embedding": [
+      340870
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 61,
+    "text": "    } else if (req.method === 'POST' && req.url === '/agent-message') {       let body = '';       req.on('data', chunk => { body += chunk; });       req.on('end', () => {         try {           const { agent, type, message } = JSON.parse(body);           addAgentMessage(agent, type, message);           res.writeHead(200);           res.end('OK');         } catch {",
+    "embedding": [
+      368005
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 71,
+    "text": "          res.writeHead(400);           res.end('Bad request');         }       });     } else if (req.method === 'POST' && req.url === '/refresh') {       createSnapshot();       runMutationEngine();       res.writeHead(200);       res.end('Refreshed');     } else if (req.method === 'POST' && req.url === '/semantic-search') {",
+    "embedding": [
+      659690
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 81,
+    "text": "      let body = '';       req.on('data', chunk => { body += chunk; });       req.on('end', () => {         try {           const { query, topN } = JSON.parse(body);           const results = semanticSearch(query, topN || 5);           res.writeHead(200, { 'Content-Type': 'application/json' });           res.end(JSON.stringify(results));         } catch {           res.writeHead(400);",
+    "embedding": [
+      555584
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 91,
+    "text": "          res.end('Bad request');         }       });     } else {       res.writeHead(404);       res.end('Not found');     }   });   server.listen(port, () => {     console.log(`AI context HTTP server running on http://localhost:${port}`);",
+    "embedding": [
+      253270
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 101,
+    "text": "  }); }  // --- WebSocket API --- function startWebSocketServer(port = 4001) {   const wss = new WebSocketServer({ port });   wss.on('connection', ws => {     ws.on('message', msg => {       try {         const { type, data } = JSON.parse(msg.toString());",
+    "embedding": [
+      423124
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 111,
+    "text": "        if (type === 'getContext') {           ws.send(JSON.stringify({ type: 'context', data: fs.readFileSync(CONTEXT_PATH, 'utf-8') }));         } else if (type === 'getMutationPlan') {           ws.send(JSON.stringify({ type: 'mutationPlan', data: fs.readFileSync(MUTATION_PLAN_PATH, 'utf-8') }));         } else if (type === 'getAgentMessages') {           ws.send(JSON.stringify({ type: 'agentMessages', data: getAgentMessages() }));         } else if (type === 'addAgentMessage') {           addAgentMessage(data.agent, data.type, data.message);           ws.send(JSON.stringify({ type: 'ok' }));         } else if (type === 'refresh') {",
+    "embedding": [
+      841323
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 121,
+    "text": "          createSnapshot();           runMutationEngine();           ws.send(JSON.stringify({ type: 'refreshed' }));         } else if (type === 'semanticSearch') {           const { query, topN } = data;           const results = semanticSearch(query, topN || 5);           ws.send(JSON.stringify({ type: 'semanticSearchResults', data: results }));         }       } catch {         ws.send(JSON.stringify({ type: 'error', message: 'Bad request' }));",
+    "embedding": [
+      853657
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 131,
+    "text": "      }     });   });   console.log(`AI context WebSocket server running on ws://localhost:${port}`); }  // --- Entrypoint --- function startRealtimeServer() {   watchAndRefresh();   startHttpServer();",
+    "embedding": [
+      718102
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 141,
+    "text": "  startWebSocketServer(); }  // --- ESM-compatible CLI entrypoint --- if (import.meta.url === `file://${process.argv[1]}`) {   startRealtimeServer(); }  export {   startRealtimeServer,",
+    "embedding": [
+      667272
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextRealtimeServer.ts",
+    "line": 151,
+    "text": "  watchAndRefresh,   startHttpServer,   startWebSocketServer }; ",
+    "embedding": [
+      818628
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This file is for AI agent context handoff and is not intended for human consumption. // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions. // ============================================================================ // Context & Contract Snapshot Helper (nootropic/contextSnapshotHelper.ts) // -------------------------------------------------------------------------- // Usage: //   pnpm tsx nootropic/contextSnapshotHelper.ts [--delta] //   node nootropic/contextSnapshotHelper.js [--full] // // Outputs:",
+    "embedding": [
+      617640
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 11,
+    "text": "//   - context-snapshot.json: Machine-readable context for AI agents //   - context-snapshot.md: Human-readable summary for devs/agents //   - context-snapshot.cache.json: Persistent cache for deltas, handoff notes // // This is the foundational context handoff tool for all Rocketship agents. // ============================================================================  import fs from 'fs'; import path from 'path'; import { execSync } from 'child_process';",
+    "embedding": [
+      98760
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 21,
+    "text": "let tsMorph: any = null; try { tsMorph = require('ts-morph'); } catch { tsMorph = null; }  // --- Config --- const OUTPUT_DIR = path.resolve(__dirname); const JSON_OUT = path.join(OUTPUT_DIR, 'context-snapshot.json'); const CACHE_OUT = path.join(OUTPUT_DIR, 'context-snapshot.cache.json'); const SELF_HEAL_OUT = path.join(OUTPUT_DIR, 'selfHealingPlan.json');  // --- Utility: Write file safely ---",
+    "embedding": [
+      830400
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 31,
+    "text": "function writeFileSafe(filePath: string, data: string) {   fs.writeFileSync(filePath, data, { encoding: 'utf-8' }); }  // --- 1. Agent Contract & Schema Extraction --- function extractAgentContracts(): any {   const agentsDir = path.resolve(__dirname, '../extension/src/agents');   const schemasDir = path.resolve(__dirname, '../shared/schemas');   const agentFiles = fs.readdirSync(agentsDir).filter(f => f.endsWith('Agent.ts'));   const schemaFiles = fs.readdirSync(schemasDir).filter(f => f.endsWith('.json'));",
+    "embedding": [
+      272427
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 41,
+    "text": "  const schemas = schemaFiles.map(f => {     try {       const schema = JSON.parse(fs.readFileSync(path.join(schemasDir, f), 'utf-8'));       return { file: f, title: schema.title, input: schema.properties?.input, output: schema.properties?.output };     } catch {       return { file: f, error: 'Failed to parse' };     }   });   return {     agentFiles,",
+    "embedding": [
+      324300
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 51,
+    "text": "    schemas   }; }  // --- 2. Recent Change Digest --- function getRecentChanges(): any {   try {     const log = execSync('git log --pretty=format:\"%h|%an|%ad|%s\" --date=iso -n 10', { encoding: 'utf-8' });     return log.split('\\n').filter(Boolean).map(line => {       const [hash, author, date, msg] = line.split('|');",
+    "embedding": [
+      816588
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 61,
+    "text": "      return { hash, author, date, msg };     });   } catch {     return [];   } }  // --- 3. Test File Index & Status --- function getTestFiles(): any {   const testDirs = [",
+    "embedding": [
+      946463
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 71,
+    "text": "    path.resolve(__dirname, '../extension/src/agents/__tests__'),     path.resolve(__dirname, '../extension/src/services/__tests__'),     path.resolve(__dirname, '../extension/src/helpers'),   ];   let testFiles: any[] = [];   for (const dir of testDirs) {     if (fs.existsSync(dir)) {       testFiles = testFiles.concat(         fs.readdirSync(dir).filter(f => f.endsWith('.test.ts') || f.endsWith('.contract.test.ts') || f.endsWith('.spec.ts')).map(f => {           const filePath = path.join(dir, f);",
+    "embedding": [
+      55628
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 81,
+    "text": "          const stats = fs.statSync(filePath);           return {             file: f,             dir,             size: stats.size,             mtime: stats.mtime.toISOString(),           };         })       );     }",
+    "embedding": [
+      358371
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 91,
+    "text": "  }   return testFiles; }  // --- 4. Helper/Utility Index --- function getHelperIndex(): any {   const helpersDir = path.resolve(__dirname);   return fs.readdirSync(helpersDir)     .filter(f => f.endsWith('.ts') && f !== 'contextSnapshotHelper.ts')     .map(f => {",
+    "embedding": [
+      175343
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 101,
+    "text": "      const stats = fs.statSync(path.join(helpersDir, f));       return { file: f, size: stats.size, mtime: stats.mtime.toISOString() };     }); }  // --- 5. Docs/Conventions Index --- function getDocsIndex(): any {   const docsDir = path.resolve(__dirname, '../docs');   const guides = fs.existsSync(path.join(docsDir, 'guides')) ? fs.readdirSync(path.join(docsDir, 'guides')) : [];   const reference = fs.existsSync(path.join(docsDir, 'reference')) ? fs.readdirSync(path.join(docsDir, 'reference')) : [];",
+    "embedding": [
+      665921
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 111,
+    "text": "  return { guides, reference }; }  // --- 6. Next Steps & Handoff Notes --- function getHandoffNotes(): any {   if (fs.existsSync(CACHE_OUT)) {     try {       return JSON.parse(fs.readFileSync(CACHE_OUT, 'utf-8')).handoffNotes || '';     } catch {       return '';",
+    "embedding": [
+      920865
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 121,
+    "text": "    }   }   return ''; } function setHandoffNotes(notes: string) {   let cache = {};   if (fs.existsSync(CACHE_OUT)) {     try { cache = JSON.parse(fs.readFileSync(CACHE_OUT, 'utf-8')); } catch { cache = {}; }   }   cache['handoffNotes'] = notes;",
+    "embedding": [
+      840490
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 131,
+    "text": "  writeFileSafe(CACHE_OUT, JSON.stringify(cache, null, 2)); }  // --- 7. Memory Budget Estimator --- function estimateMemoryBudget(obj: any): number {   return Buffer.byteLength(JSON.stringify(obj), 'utf-8'); }  // --- 8. Telemetry Event Extraction from Contract Tests --- function extractTelemetryEventsFromTests(): any {",
+    "embedding": [
+      803125
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 141,
+    "text": "  const testDir = path.resolve(__dirname, '../extension/src/agents/__tests__');   const eventMap: Record<string, Set<string>> = {};   if (fs.existsSync(testDir)) {     for (const file of fs.readdirSync(testDir)) {       if (file.endsWith('.contract.test.ts')) {         const content = fs.readFileSync(path.join(testDir, file), 'utf-8');         const matches = [...content.matchAll(/emitEvent\\((?:[^)]*['\"]([\\w.]+)['\"]|{\\s*name:\\s*['\"]([\\w.]+)['\"])/g)];         const events = matches.map(m => m[1] || m[2]).filter(Boolean);         eventMap[file] = new Set(events);       }",
+    "embedding": [
+      320478
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 151,
+    "text": "    }   }   // Convert sets to arrays for JSON   return Object.fromEntries(Object.entries(eventMap).map(([k, v]) => [k, Array.from(v)])); }  // --- 9. Semantic Index (keyword-to-file map) --- function buildSemanticIndex(): any {   const dirs = [     path.resolve(__dirname, '../extension/src/agents'),",
+    "embedding": [
+      569304
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 161,
+    "text": "    path.resolve(__dirname, '../shared/schemas'),     path.resolve(__dirname),   ];   const index: Record<string, Set<string>> = {};   for (const dir of dirs) {     if (fs.existsSync(dir)) {       for (const file of fs.readdirSync(dir)) {         if (file.endsWith('.ts') || file.endsWith('.json')) {           const content = fs.readFileSync(path.join(dir, file), 'utf-8');           const words = content.match(/\\b\\w{4,}\\b/g) || [];",
+    "embedding": [
+      230127
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 171,
+    "text": "          for (const word of words) {             if (!index[word]) index[word] = new Set();             index[word].add(file);           }         }       }     }   }   // Convert sets to arrays for JSON   return Object.fromEntries(Object.entries(index).map(([k, v]) => [k, Array.from(v)]));",
+    "embedding": [
+      274742
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 181,
+    "text": "}  // --- 10. TODO/FIXME Extraction --- function extractTodos(): any {   const dirs = [     path.resolve(__dirname, '../extension/src/agents'),     path.resolve(__dirname),   ];   const todos: { file: string; line: number; text: string }[] = [];   for (const dir of dirs) {",
+    "embedding": [
+      402780
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 191,
+    "text": "    if (fs.existsSync(dir)) {       for (const file of fs.readdirSync(dir)) {         if (file.endsWith('.ts') || file.endsWith('.js')) {           const lines = fs.readFileSync(path.join(dir, file), 'utf-8').split('\\n');           lines.forEach((line, idx) => {             if (/TODO|FIXME/.test(line)) {               todos.push({ file, line: idx + 1, text: line.trim() });             }           });         }",
+    "embedding": [
+      166548
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 201,
+    "text": "      }     }   }   return todos; }  // --- 11. Largest Files --- function getLargestFiles(): any {   const dirs = [     path.resolve(__dirname, '../extension/src/agents'),",
+    "embedding": [
+      354473
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 211,
+    "text": "    path.resolve(__dirname, '../shared/schemas'),     path.resolve(__dirname),   ];   const files: { file: string; size: number; dir: string }[] = [];   for (const dir of dirs) {     if (fs.existsSync(dir)) {       for (const file of fs.readdirSync(dir)) {         const filePath = path.join(dir, file);         if (fs.statSync(filePath).isFile()) {           files.push({ file, size: fs.statSync(filePath).size, dir });",
+    "embedding": [
+      376000
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 221,
+    "text": "        }       }     }   }   return files.sort((a, b) => b.size - a.size).slice(0, 5); }  // --- 12. Delta Mode --- function computeDelta(current: any, previous: any): any {   if (!previous) return current;",
+    "embedding": [
+      634128
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 231,
+    "text": "  const delta: any = {};   for (const key of Object.keys(current)) {     if (Object.prototype.hasOwnProperty.call(current, key) && Object.prototype.hasOwnProperty.call(previous, key)) {       if (JSON.stringify(current[key]) !== JSON.stringify(previous[key])) {         delta[key] = current[key];       }     } else if (Object.prototype.hasOwnProperty.call(current, key)) {       delta[key] = current[key];     }   }",
+    "embedding": [
+      200730
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 241,
+    "text": "  return delta; }  // --- 13. Main Snapshot Function --- function createSnapshot({ delta = false } = {}) {   const contracts = extractAgentContracts();   const changes = getRecentChanges();   const testFiles = getTestFiles();   const docs = getDocsIndex();   const helpers = getHelperIndex();",
+    "embedding": [
+      888264
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 251,
+    "text": "  const handoffNotes = getHandoffNotes();   const telemetryEvents = extractTelemetryEventsFromTests();   const semanticIndex = buildSemanticIndex();   const todos = extractTodos();   const largestFiles = getLargestFiles();   const healthScore = computeHealthScore({ testFiles, todos, largestFiles });   const dependencyGraph = getDependencyGraph();   const changeHotspots = getChangeHotspots();   const agentCollabMap = getAgentCollaborationMap();   const schemaDrift = detectSchemaDrift();",
+    "embedding": [
+      541486
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 261,
+    "text": "  const astDrift = astContractValidation();   const mutationSuggestions = getMutationSuggestions({ schemaDrift, todos, testFiles });   const agentMessages = getAgentMessages();   const selfHealingPlan = getSelfHealingPlan({ schemaDrift, mutationSuggestions });    let snapshot: any = {     timestamp: new Date().toISOString(),     contracts,     changes,     testFiles,",
+    "embedding": [
+      803487
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 271,
+    "text": "    docs,     helpers,     handoffNotes,     telemetryEvents,     semanticIndex,     todos,     largestFiles,     healthScore,     dependencyGraph,     changeHotspots,",
+    "embedding": [
+      133076
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 281,
+    "text": "    agentCollabMap,     schemaDrift,     astDrift,     mutationSuggestions,     agentMessages,     selfHealingPlan,     memoryBudgetBytes: 0,     contextCompressionSuggestion: []   };   snapshot.memoryBudgetBytes = estimateMemoryBudget(snapshot);",
+    "embedding": [
+      67725
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 291,
+    "text": "  snapshot.contextCompressionSuggestion = getContextCompressionSuggestion(snapshot);    // Memory budget simulation   snapshot.compressedContexts = {     '32k': getCompressedContext(snapshot, 32000),     '64k': getCompressedContext(snapshot, 64000),     '128k': getCompressedContext(snapshot, 128000)   };    let output = snapshot;",
+    "embedding": [
+      165445
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 301,
+    "text": "  let previous = null;   if (delta && fs.existsSync(CACHE_OUT)) {     try { previous = JSON.parse(fs.readFileSync(CACHE_OUT, 'utf-8')).lastSnapshot; } catch { previous = null; }     output = computeDelta(snapshot, previous);   }    writeFileSafe(JSON_OUT, JSON.stringify(output, null, 2));   let cache = {};   if (fs.existsSync(CACHE_OUT)) {     try { cache = JSON.parse(fs.readFileSync(CACHE_OUT, 'utf-8')); } catch { cache = {}; }",
+    "embedding": [
+      66969
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 311,
+    "text": "  }   cache['lastSnapshot'] = snapshot;   cache['agentMessages'] = agentMessages;   cache['selfHealingPlan'] = selfHealingPlan;   writeFileSafe(CACHE_OUT, JSON.stringify(cache, null, 2));   writeFileSafe(SELF_HEAL_OUT, JSON.stringify(selfHealingPlan, null, 2)); }  // --- CLI Entrypoint --- if (require.main === module) {",
+    "embedding": [
+      953420
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 321,
+    "text": "  const delta = process.argv.includes('--delta');   createSnapshot({ delta });   console.log('AI context snapshot generated. See context-snapshot.json in nootropic/.'); }  // --- Export for agent use --- export {   createSnapshot,   setHandoffNotes,   getHandoffNotes,",
+    "embedding": [
+      220397
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 331,
+    "text": "  extractAgentContracts,   getRecentChanges,   getTestFiles,   getHelperIndex,   getDocsIndex,   estimateMemoryBudget,   extractTelemetryEventsFromTests,   buildSemanticIndex,   extractTodos,   getLargestFiles,",
+    "embedding": [
+      453236
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 341,
+    "text": "  computeDelta,   computeHealthScore,   getDependencyGraph,   getChangeHotspots,   getAgentCollaborationMap,   detectSchemaDrift,   getContextCompressionSuggestion,   astContractValidation,   getMutationSuggestions,   getCompressedContext,",
+    "embedding": [
+      565802
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 351,
+    "text": "  getAgentMessages,   addAgentMessage,   getSelfHealingPlan };  // --- TODOs for future agents --- // - Implement delta mode for memory efficiency // - Add semantic search index for fast context lookup // - Integrate with test/lint runners for live status // - Add memory budget estimator and context trimmer",
+    "embedding": [
+      337944
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 361,
+    "text": "// - Support YAML/HTML output if needed   // --- Advanced: Codebase Health Score --- function computeHealthScore({ testFiles, todos, largestFiles }) {   let score = 100;   if (testFiles.length === 0) score -= 30;   if (todos.length > 10) score -= 20;   if (largestFiles.some(f => f.size > 100000)) score -= 10;   // Heuristic: penalize for more TODOs, large files, and missing tests   score = Math.max(0, Math.min(100, score));",
+    "embedding": [
+      117190
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 371,
+    "text": "  return score; }  // --- Advanced: Dependency Graph Summary --- function getDependencyGraph() {   const pkgPath = path.resolve(__dirname, '../package.json');   let dependencies = {};   let outdated = {};   if (fs.existsSync(pkgPath)) {     try {",
+    "embedding": [
+      555481
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 381,
+    "text": "      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));       dependencies = pkg.dependencies || {};       try {         const out = execSync('pnpm outdated --json', { encoding: 'utf-8' });         outdated = JSON.parse(out);       } catch { outdated = {}; }     } catch { dependencies = {}; }   }   return { dependencies, outdated }; }",
+    "embedding": [
+      730464
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 391,
+    "text": " // --- Advanced: Change Hotspots --- function getChangeHotspots() {   try {     const log = execSync('git log --name-only --pretty=format: --no-merges -n 100', { encoding: 'utf-8' });     const files = log.split('\\n').filter(Boolean);     const freq = {};     for (const f of files) freq[f] = (freq[f] || 0) + 1;     return Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([file, count]) => ({ file, count }));   } catch { return []; }",
+    "embedding": [
+      866363
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 401,
+    "text": "}  // --- Advanced: Agent Collaboration Map --- function getAgentCollaborationMap() {   const agentsDir = path.resolve(__dirname, '../extension/src/agents');   const map = {};   if (fs.existsSync(agentsDir)) {     for (const file of fs.readdirSync(agentsDir)) {       if (file.endsWith('Agent.ts')) {         const content = fs.readFileSync(path.join(agentsDir, file), 'utf-8');",
+    "embedding": [
+      505675
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 411,
+    "text": "        const imports = [...content.matchAll(/import\\s+\\{?\\s*(\\w+Agent)\\s*\\}?\\s+from/g)].map(m => m[1]);         map[file] = imports;       }     }   }   return map; }  // --- Advanced: Schema Drift Detector --- function detectSchemaDrift(): any[] {",
+    "embedding": [
+      138008
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 421,
+    "text": "  const agentsDir = path.resolve(__dirname, '../extension/src/agents');   const schemasDir = path.resolve(__dirname, '../shared/schemas');   const drift: any[] = [];   if (fs.existsSync(agentsDir) && fs.existsSync(schemasDir)) {     for (const file of fs.readdirSync(agentsDir)) {       if (file.endsWith('Agent.ts')) {         const content = fs.readFileSync(path.join(agentsDir, file), 'utf-8');         const inputMatch = content.match(/inputSchema\\s*=\\s*([\\w.]+)/);         const outputMatch = content.match(/outputSchema\\s*=\\s*([\\w.]+)/);         if (inputMatch || outputMatch) {",
+    "embedding": [
+      745392
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 431,
+    "text": "          const schemaName = (inputMatch ? inputMatch[1] : (outputMatch ? outputMatch[1] : null))?.replace(/Schema$/, '.schema.json');           if (!schemaName) continue;           const schemaPath = path.join(schemasDir, schemaName);           if (fs.existsSync(schemaPath)) {             try {               const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));               const schemaProps = Object.keys(schema.properties?.input || schema.properties?.output || {});               const agentProps = [...content.matchAll(/\\b(\\w+)\\s*:/g)].map(m => m[1]);               const missing = schemaProps.filter(p => !agentProps.includes(p));               if (missing.length) {",
+    "embedding": [
+      500190
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 441,
+    "text": "                drift.push({ agent: file, schema: schemaName, missing });               }             } catch {}           }         }       }     }   }   return drift; }",
+    "embedding": [
+      555068
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 451,
+    "text": " // --- Advanced: Context Compression Suggestion --- function getContextCompressionSuggestion(snapshot: any): string[] {   if (snapshot.memoryBudgetBytes > 100000) {     const suggestions: string[] = [];     if (snapshot.semanticIndex && Object.keys(snapshot.semanticIndex).length > 1000) suggestions.push('Trim semanticIndex to most frequent 100 keywords.');     if (snapshot.todos && snapshot.todos.length > 20) suggestions.push('Summarize or remove todos.');     if (snapshot.largestFiles && snapshot.largestFiles.length > 3) suggestions.push('Only keep top 3 largest files.');     return suggestions;   }",
+    "embedding": [
+      399935
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 461,
+    "text": "  return []; }  // --- Agent Message Board --- function getAgentMessages(): any[] {   if (fs.existsSync(CACHE_OUT)) {     try {       return JSON.parse(fs.readFileSync(CACHE_OUT, 'utf-8')).agentMessages || [];     } catch { return []; }   }",
+    "embedding": [
+      754908
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 471,
+    "text": "  return []; } function addAgentMessage(agent: string, type: string, message: string) {   const messages = getAgentMessages();   messages.push({ timestamp: new Date().toISOString(), agent, type, message });   let cache = {};   if (fs.existsSync(CACHE_OUT)) {     try { cache = JSON.parse(fs.readFileSync(CACHE_OUT, 'utf-8')); } catch { cache = {}; }   }   cache['agentMessages'] = messages;",
+    "embedding": [
+      416312
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 481,
+    "text": "  writeFileSafe(CACHE_OUT, JSON.stringify(cache, null, 2)); }  // --- AST-based Contract Validation (ts-morph if available) --- function astContractValidation(): any[] {   if (!tsMorph) return [{ error: 'ts-morph not available' }];   const agentsDir = path.resolve(__dirname, '../extension/src/agents');   const schemasDir = path.resolve(__dirname, '../shared/schemas');   const project = new tsMorph.Project({ tsConfigFilePath: path.resolve(__dirname, '../tsconfig.json') });   const drift: any[] = [];",
+    "embedding": [
+      100527
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 491,
+    "text": "  for (const file of fs.readdirSync(agentsDir)) {     if (file.endsWith('Agent.ts')) {       const filePath = path.join(agentsDir, file);       const source = project.addSourceFileAtPathIfExists(filePath);       if (!source) continue;       const inputSchemaMatch = source.getText().match(/inputSchema\\s*=\\s*([\\w.]+)/);       const outputSchemaMatch = source.getText().match(/outputSchema\\s*=\\s*([\\w.]+)/);       const inputType = source.getClass(() => true)?.getType().getProperties().map((p: any) => p.getName()) || [];       const outputType = source.getClass(() => true)?.getType().getProperties().map((p: any) => p.getName()) || [];       const schemaName = (inputSchemaMatch ? inputSchemaMatch[1] : (outputSchemaMatch ? outputSchemaMatch[1] : null))?.replace(/Schema$/, '.schema.json');",
+    "embedding": [
+      412724
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 501,
+    "text": "      if (!schemaName) continue;       const schemaPath = path.join(schemasDir, schemaName);       if (fs.existsSync(schemaPath)) {         try {           const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));           const schemaProps = Object.keys(schema.properties?.input || schema.properties?.output || {});           const missing = schemaProps.filter(p => !inputType.includes(p) && !outputType.includes(p));           if (missing.length) {             drift.push({ agent: file, schema: schemaName, missing });           }",
+    "embedding": [
+      728745
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 511,
+    "text": "        } catch {}       }     }   }   return drift; }  // --- Mutation/Refactor Suggestions --- function getMutationSuggestions({ schemaDrift, todos, testFiles }: any): any[] {   const suggestions: any[] = [];",
+    "embedding": [
+      661701
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 521,
+    "text": "  for (const drift of schemaDrift) {     suggestions.push({ type: 'schemaDrift', agent: drift.agent, fix: `Add missing properties ${drift.missing.join(', ')} to ${drift.agent}` });   }   for (const todo of todos) {     suggestions.push({ type: 'todo', file: todo.file, line: todo.line, suggestion: `Resolve: ${todo.text}` });   }   if (testFiles.length === 0) {     suggestions.push({ type: 'test', suggestion: 'Add tests for uncovered agents/services.' });   }   return suggestions;",
+    "embedding": [
+      868870
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 531,
+    "text": "}  // --- Memory Budget Simulation --- function getCompressedContext(snapshot: any, tier: number): any {   // tier: number of bytes (e.g., 32000, 64000, 128000)   const prioritizedFields = [     'contracts', 'testFiles', 'telemetryEvents', 'semanticIndex', 'todos', 'largestFiles', 'healthScore', 'dependencyGraph', 'agentCollabMap', 'schemaDrift', 'mutationSuggestions', 'agentMessages', 'handoffNotes'   ];   const compressed: any = { timestamp: snapshot.timestamp };   let used = 0;",
+    "embedding": [
+      791489
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 541,
+    "text": "  for (const field of prioritizedFields) {     if (snapshot[field]) {       const fieldSize = Buffer.byteLength(JSON.stringify(snapshot[field]), 'utf-8');       if (used + fieldSize > tier) break;       compressed[field] = snapshot[field];       used += fieldSize;     }   }   compressed.memoryBudgetBytes = used;   return compressed;",
+    "embedding": [
+      162441
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 551,
+    "text": "}  // --- Self-Healing/Auto-Refactor Plan --- function getSelfHealingPlan({ schemaDrift, mutationSuggestions }: any): any[] {   const plan: any[] = [];   for (const drift of schemaDrift) {     plan.push({ action: 'addProperties', agent: drift.agent, properties: drift.missing });   }   for (const mut of mutationSuggestions) {     if (mut.type === 'todo') {",
+    "embedding": [
+      392621
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/contextSnapshotHelper.ts",
+    "line": 561,
+    "text": "      plan.push({ action: 'resolveTodo', file: mut.file, line: mut.line, text: mut.suggestion });     }   }   return plan; } ",
+    "embedding": [
+      301857
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions. import fs from 'fs'; import path from 'path'; import { execSync } from 'child_process'; import { runMutationEngine } from './contextMutationEngine.js';  const PATCH_DIR = path.resolve(__dirname, 'patches');  // --- Utility: Run shell command and capture output --- function runCmd(cmd: string) {",
+    "embedding": [
+      129031
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 11,
+    "text": "  try {     return execSync(cmd, { stdio: 'pipe' }).toString().trim();   } catch (e) {     throw new Error(`Command failed: ${cmd}\\n${e}`);   } }  // --- Create a new branch for mutation/refactor --- function createBranch(branchName: string) {   runCmd(`git checkout -b ${branchName}`);",
+    "embedding": [
+      328538
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 21,
+    "text": "}  // --- Apply all patches in PATCH_DIR --- function applyPatches() {   const patches = fs.readdirSync(PATCH_DIR).filter(f => f.endsWith('.patch'));   for (const patch of patches) {     const patchPath = path.join(PATCH_DIR, patch);     try {       runCmd(`git apply \"${patchPath}\"`);     } catch (e) {",
+    "embedding": [
+      862015
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 31,
+    "text": "      console.warn(`Failed to apply patch: ${patchPath}`);     }   } }  // --- Commit changes --- function commitAll(message: string) {   runCmd('git add .');   runCmd(`git commit -m \"${message}\"`); }",
+    "embedding": [
+      560685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 41,
+    "text": " // --- Suggest PR (prints instructions, or integrates with GitHub CLI if available) --- function suggestPR(branchName: string, base: string = 'main') {   try {     runCmd(`gh pr create --fill --base ${base} --head ${branchName}`);     console.log('PR created via GitHub CLI.');   } catch {     console.log(`PR not auto-created. Please push and open a PR for branch: ${branchName}`);   } }",
+    "embedding": [
+      309259
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 51,
+    "text": " // --- Main entrypoint: run mutation, branch, patch, commit, suggest PR --- function runLiveMutationPR() {   runMutationEngine();   const branch = `ai-mutation-${Date.now()}`;   createBranch(branch);   applyPatches();   commitAll('AI mutation/refactor plan applied');   suggestPR(branch); }",
+    "embedding": [
+      260232
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 61,
+    "text": " if (require.main === module) {   runLiveMutationPR();   console.log('Live code mutation, branch, and PR suggestion complete.'); }  export {   runLiveMutationPR,   createBranch,   applyPatches,",
+    "embedding": [
+      829323
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/liveMutationPRHelper.ts",
+    "line": 71,
+    "text": "  commitAll,   suggestPR }; ",
+    "embedding": [
+      189834
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticIndexBuilder.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions. import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url';  const __filename = fileURLToPath(import.meta.url); const __dirname = path.dirname(__filename);  const OUTPUT = path.resolve(__dirname, 'semanticIndex.json'); ",
+    "embedding": [
+      725031
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticIndexBuilder.ts",
+    "line": 11,
+    "text": "// --- Extract text chunks from code, docs, and agent messages --- function extractChunks() {   // For now, just scan extension/src/agents, nootropic/, and docs/   const dirs = [     path.resolve(__dirname, '../extension/src/agents'),     path.resolve(__dirname),     path.resolve(__dirname, '../docs'),   ];   const chunks: { file: string; line: number; text: string }[] = [];   for (const dir of dirs) {",
+    "embedding": [
+      383390
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticIndexBuilder.ts",
+    "line": 21,
+    "text": "    if (!fs.existsSync(dir)) continue;     for (const file of fs.readdirSync(dir)) {       if (!file.endsWith('.ts') && !file.endsWith('.md') && !file.endsWith('.json')) continue;       const filePath = path.join(dir, file);       const lines = fs.readFileSync(filePath, 'utf-8').split('\\n');       for (let i = 0; i < lines.length; i += 10) {         const text = lines.slice(i, i + 10).join(' ');         chunks.push({ file: filePath, line: i + 1, text });       }     }",
+    "embedding": [
+      246361
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticIndexBuilder.ts",
+    "line": 31,
+    "text": "  }   return chunks; }  // --- Stub: Generate embedding for a text chunk (replace with real model/OpenAI API) --- function embed(text: string): number[] {   // For now, return a fake embedding (hash of text)   let hash = 0;   for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) % 1e6;   return [hash];",
+    "embedding": [
+      361729
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticIndexBuilder.ts",
+    "line": 41,
+    "text": "}  // --- Build semantic index --- function buildSemanticIndex() {   const chunks = extractChunks();   const index = chunks.map(chunk => ({ ...chunk, embedding: embed(chunk.text) }));   fs.writeFileSync(OUTPUT, JSON.stringify(index, null, 2));   console.log(`Semantic index written to ${OUTPUT}`); } ",
+    "embedding": [
+      668795
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticIndexBuilder.ts",
+    "line": 51,
+    "text": "// --- ESM-compatible CLI entrypoint --- if (import.meta.url === `file://${process.argv[1]}`) {   buildSemanticIndex(); }  export { buildSemanticIndex, extractChunks, embed }; ",
+    "embedding": [
+      299257
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticSearchHelper.ts",
+    "line": 1,
+    "text": "// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions. import fs from 'fs'; import path from 'path'; import { fileURLToPath } from 'url'; import { embed } from './semanticIndexBuilder.js';  const __filename = fileURLToPath(import.meta.url); const __dirname = path.dirname(__filename);  const INDEX_PATH = path.resolve(__dirname, 'semanticIndex.json');",
+    "embedding": [
+      548880
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticSearchHelper.ts",
+    "line": 11,
+    "text": " // --- Compute L2 distance between two vectors --- function l2(a: number[], b: number[]): number {   let sum = 0;   for (let i = 0; i < a.length; i++) sum += (a[i] - b[i]) ** 2;   return Math.sqrt(sum); }  // --- Search the semantic index --- function semanticSearch(query: string, topN = 5) {",
+    "embedding": [
+      433222
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticSearchHelper.ts",
+    "line": 21,
+    "text": "  if (!fs.existsSync(INDEX_PATH)) throw new Error('semanticIndex.json not found. Run semanticIndexBuilder first.');   const index = JSON.parse(fs.readFileSync(INDEX_PATH, 'utf-8'));   const qEmbed = embed(query);   const scored = index.map((chunk: any) => ({ ...chunk, score: l2(chunk.embedding, qEmbed) }));   scored.sort((a: any, b: any) => a.score - b.score);   return scored.slice(0, topN); }  // --- ESM-compatible CLI entrypoint --- if (import.meta.url === `file://${process.argv[1]}`) {",
+    "embedding": [
+      253416
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticSearchHelper.ts",
+    "line": 31,
+    "text": "  const query = process.argv.slice(2).join(' ');   if (!query) {     console.log('Usage: pnpm tsx nootropic/semanticSearchHelper.ts <query>');     process.exit(1);   }   const results = semanticSearch(query, 5);   for (const r of results) {     console.log(`File: ${r.file} (line ${r.line})\\nScore: ${r.score}\\nText: ${r.text}\\n---`);   } }",
+    "embedding": [
+      433840
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/semanticSearchHelper.ts",
+    "line": 41,
+    "text": " export { semanticSearch }; ",
+    "embedding": [
+      737281
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/docs/SUMMARY.md",
+    "line": 1,
+    "text": "# Documentation Summary  ## Tutorials - [Onboarding](./tutorials/onboarding.md) - [Help](./tutorials/help/)  ## Guides - [CI/CD](./guides/ci-cd.md) - [Testing](./guides/testing.md) - [Configuration](./guides/configuration.md)",
+    "embedding": [
+      973857
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/docs/SUMMARY.md",
+    "line": 11,
+    "text": "- [Plugins](./guides/plugins.md) - [Services](./guides/services.md) - [Developer Guide](./guides/developer.md) - [Troubleshooting](./guides/troubleshooting.md)  ## Explanations - [Architecture](./explanations/architecture.md) - [Design Principles](./explanations/design-principles.md) - [Resilience](./explanations/resilience.md) - [Roadmap](./explanations/roadmap.md)",
+    "embedding": [
+      602865
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/docs/SUMMARY.md",
+    "line": 21,
+    "text": "- [Observability](./explanations/observability.md) - [Prompts](./explanations/prompts.md) - [Data Model](./explanations/data-model.md) - [Agent Logic](./explanations/agent-logic.md)  ## Reference - [CONVENTIONS](./reference/CONVENTIONS.md) - [README](./reference/README.md) - [Feature Enhancements](./reference/Feature_Enhancements.md) - [Requirements](./reference/requirements.md)",
+    "embedding": [
+      449544
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/docs/SUMMARY.md",
+    "line": 31,
+    "text": "- [Tech Stack](./reference/tech-stack.md) - [Disaster Recovery](./reference/disaster-recovery.md) - [Security](./reference/security.md) - [Glossary](./reference/glossary.md) - [ADR Index](./reference/adr/README.md) - [Assets](./reference/assets/) - [Data Retrieval](./reference/data-retrieval.md)  --- ",
+    "embedding": [
+      713929
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/docs/SUMMARY.md",
+    "line": 41,
+    "text": "## Next Steps - Review [Agent Logic](./explanations/agent-logic.md) for implementation details. - See [CONVENTIONS](./reference/CONVENTIONS.md) for style and contribution guidelines. - For onboarding, start with [Onboarding](./tutorials/onboarding.md). ",
+    "embedding": [
+      183130
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/Rocketship/docs/agents.md",
+    "line": 1,
+    "text": "# Rocketship Agents  This document has been collapsed for DRY compliance.  For the canonical, up-to-date agent roles, responsibilities, schema mappings, and implementation details, see:  - [Agent Logic (canonical)](./agent-logic.md)  All contributors and reviewers should reference `agent-logic.md` for all agent-related standards and implementation details. ",
+    "embedding": [
+      979621
+    ]
+  }
+]

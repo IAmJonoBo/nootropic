@@ -1,0 +1,270 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI-Helpers Agent Event Schema",
+  "description": "Defines the structure of all events used in the agent event bus for orchestration, state, error, and telemetry.",
+  "type": "object",
+  "oneOf": [
+    {
+      "title": "v1.TaskAssigned",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.TaskAssigned" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string", "description": "Target agent for the task." },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "task": { "type": "object", "description": "Task details (input, description, plan, etc.)." },
+            "context": { "type": "object", "description": "Optional context for the task." }
+          },
+          "required": ["task"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.TaskCompleted",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.TaskCompleted" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "result": { "type": "object", "description": "Result of the completed task." },
+            "success": { "type": "boolean" },
+            "logs": { "type": "array", "items": { "type": "string" } }
+          },
+          "required": ["result", "success"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.Error",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.Error" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "error": { "type": "string" },
+            "details": { "type": "object" }
+          },
+          "required": ["error"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.ContextUpdated",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.ContextUpdated" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "context": { "type": "object", "description": "Updated context data." }
+          },
+          "required": ["context"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.CircuitOpen",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.CircuitOpen" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "reason": { "type": "string" },
+            "target": { "type": "string" }
+          },
+          "required": ["reason", "target"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.CircuitClosed",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.CircuitClosed" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "target": { "type": "string" }
+          },
+          "required": ["target"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.Retry",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.Retry" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "attempt": { "type": "integer" },
+            "reason": { "type": "string" }
+          },
+          "required": ["attempt"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.Fallback",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.Fallback" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "reason": { "type": "string" },
+            "fallbackAction": { "type": "string" }
+          },
+          "required": ["reason"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.Escalation",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.Escalation" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "to": { "type": "string" },
+            "reason": { "type": "string" }
+          },
+          "required": ["to", "reason"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.Log",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.Log" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": {
+          "type": "object",
+          "properties": {
+            "level": { "type": "string", "enum": ["info", "warn", "error", "debug"] },
+            "message": { "type": "string" },
+            "details": { "type": "object" }
+          },
+          "required": ["level", "message"]
+        },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.Custom",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.Custom" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": { "type": "object" },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    },
+    {
+      "title": "v1.mutationSuggested",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Unique event identifier (UUID)." },
+        "type": { "const": "v1.mutationSuggested" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$", "description": "Semantic version of the event schema (e.g., v1.0)." },
+        "source": { "type": "string", "description": "Originating agent/module/service." },
+        "agentId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": { "type": "object" },
+        "correlationId": { "type": "string", "description": "Correlation ID for tracing related events." },
+        "topic": { "type": "string", "description": "Logical topic/queue for advanced patterns." }
+      },
+      "required": ["eventId", "type", "version", "source", "agentId", "timestamp", "payload"]
+    }
+  ]
+} 

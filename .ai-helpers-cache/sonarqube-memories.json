@@ -1,0 +1,36 @@
+{
+  "finding1": [
+    {
+      "id": "finding1",
+      "tool": "sonarqube",
+      "file": "dummy.js",
+      "line": 1,
+      "memoryType": "triage",
+      "rationale": "test",
+      "timestamp": "2025-05-16T02:11:20.925Z",
+      "version": "2025.1"
+    },
+    {
+      "id": "finding1",
+      "tool": "sonarqube",
+      "file": "dummy.js",
+      "line": 1,
+      "memoryType": "triage",
+      "rationale": "test",
+      "timestamp": "2025-05-16T02:11:20.932Z",
+      "version": "2025.1"
+    }
+  ],
+  "finding2": [
+    {
+      "id": "finding2",
+      "tool": "sonarqube",
+      "file": "dummy2.js",
+      "line": 2,
+      "memoryType": "triage",
+      "rationale": "another",
+      "timestamp": "2025-05-16T02:11:20.934Z",
+      "version": "2025.1"
+    }
+  ]
+}

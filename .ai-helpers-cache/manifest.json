@@ -1,0 +1,64 @@
+{
+  "backlog": [
+    {
+      "priority": 1,
+      "title": "Event Bus Integration and Event Schema Finalization",
+      "description": "Implement a robust, extensible event bus for agent orchestration. Finalize event schemas (JSON) for all agent interactions, state changes, errors, and telemetry. Ensure all agents and utilities can subscribe/publish events.",
+      "bestPractices": [
+        "Use a shared, versioned event schema for all agent communication.",
+        "Persist all events to an append-only log for replay and debugging.",
+        "Document all event types and payloads for agent/LLM discoverability."
+      ]
+    },
+    {
+      "priority": 2,
+      "title": "Refactor Core Agents to Event-Driven Modules",
+      "description": "Refactor planner, executor, communicator, evaluator, and critic agents to operate as event-driven modules. Each agent should react to relevant events, emit new events, and maintain loose coupling.",
+      "bestPractices": [
+        "Each agent subscribes to only the events it cares about.",
+        "Emit events for all state changes, errors, and task completions.",
+        "Support parallel and hierarchical agent execution."
+      ]
+    },
+    {
+      "priority": 3,
+      "title": "Update State, Context, and Memory Logic for Event-Driven Operation",
+      "description": "All state/context/memory updates and handoffs should be event-driven. Use the event bus and cache for all context handoff, memory updates, and agent collaboration.",
+      "bestPractices": [
+        "Emit ContextUpdated and MemoryUpdated events for all changes.",
+        "Support both sliding window and vector/semantic memory.",
+        "Log all handoff and context events for observability."
+      ]
+    },
+    {
+      "priority": 4,
+      "title": "Integrate Circuitbreaker, Retry, and Telemetry Logic",
+      "description": "Wrap all external/tool/LLM calls in circuitbreaker logic. Emit events for circuit state changes, retries, and fallbacks. Log all telemetry for observability and debugging.",
+      "bestPractices": [
+        "Emit CircuitOpen, CircuitClosed, Retry, and Fallback events.",
+        "Use exponential backoff for retries and dead letter queues for persistent failures.",
+        "Log all telemetry events to the event log and analytics."
+      ]
+    },
+    {
+      "priority": 5,
+      "title": "CLI/API for Event Log and Agent Management",
+      "description": "Expose event-driven orchestration and agent management via CLI and programmatic API. Add commands for event log replay, dead letter queue inspection, and agent status.",
+      "bestPractices": [
+        "CLI/API should allow agents and users to inspect, replay, and debug event logs.",
+        "Support agent lifecycle management (start, stop, status) via events.",
+        "Document all CLI/API commands for agent/LLM use."
+      ]
+    },
+    {
+      "priority": 6,
+      "title": "Documentation and Manifest Updates",
+      "description": "Update all documentation and the cache manifest to describe the event-driven architecture, event schemas, and agent roles. Ensure all changes are discoverable and usable by agents/LLMs.",
+      "bestPractices": [
+        "Document all event types, agent roles, and orchestration patterns.",
+        "Keep manifest and docs in sync with codebase and event schemas.",
+        "Provide usage examples for agents and LLMs."
+      ]
+    }
+  ]
+} 

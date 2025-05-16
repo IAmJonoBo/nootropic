@@ -1,0 +1,3181 @@
+[
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CLI usage (planned).md",
+    "line": 2,
+    "text": "Planned: CLI usage documentation and onboarding.",
+    "source": "capability-doc",
+    "capability": "CLI usage (planned)",
+    "section": "CLI usage (planned)",
+    "embedding": [
+      140187
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/Capability.md",
+    "line": 2,
+    "text": "- All capability event payloads and task inputs **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "Capability",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      372042
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 2,
+    "text": "**Description:** Modular chunking utility supporting LLM-driven chunk filtering, semantic/agentic chunking, and redundancy filtering. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "ChunkingUtility",
+    "embedding": [
+      690661
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 4,
+    "text": "- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "ChunkingUtility",
+    "embedding": [
+      636182
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 8,
+    "text": "```ts import { ChunkingUtility, SemanticChunkingStrategy, LLMChunkRelevanceScorer } from 'ai-helpers/utils/context/ChunkingUtility'; import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter'; const hf = new HuggingFaceLLMAdapter(); const chunker = new ChunkingUtility(   new SemanticChunkingStrategy(hf),   new LLMChunkRelevanceScorer(hf) ); await chunker.chunkAndFilter('text', 'query'); ```",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Usage Example",
+    "embedding": [
+      158930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 21,
+    "text": "| Method           | Signature                                              | Description                                 | |------------------|-------------------------------------------------------|---------------------------------------------| | chunkAndFilter   | (text: string, query: string) => Promise<Chunk[]>      | Chunk and filter text using LLM scoring     |",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Methods",
+    "embedding": [
+      934873
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 26,
+    "text": "- Fixed-size - Sentence - Paragraph - Semantic (embedding-based) - Recursive - Agentic (task-driven)",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Supported Strategies",
+    "embedding": [
+      481273
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 34,
+    "text": "- HuggingFaceLLMAdapter - OpenRouterLLMAdapter - OllamaLLMAdapter",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Integration Points",
+    "embedding": [
+      817908
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 39,
+    "text": "- https://arxiv.org/abs/2310.02600 - https://zilliz.com/learn/guide-to-chunking-strategies-for-rag",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "References",
+    "embedding": [
+      377566
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 43,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 49,
+    "text": "- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters. - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      987540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ChunkingUtility.md",
+    "line": 55,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/CollectionAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "CollectionAgent",
+    "embedding": [
+      316415
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 6,
+    "text": "The `CollectionAgent` collects data in response to events, supporting: - **Tool Aggregation:** Dynamically discovers and invokes available tools/plugins to collect data for a given query. - **Event-driven:** Subscribes to `DataCollectionRequested` and `TaskAssigned` events; emits `DataCollected`, `TaskCompleted`, and `Log` events. - **Extensible:** Designed for easy integration of new tools and event types. (TODO: Add/expand tool/plugin registry integration)",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Overview",
+    "embedding": [
+      249504
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 13,
+    "text": "```ts import { CollectionAgent } from 'ai-helpers/agents'; const agent = new CollectionAgent({ profile: { name: 'CollectionAgent' } }); const result = await agent.runTask({ id: 't1', description: 'Collect data', query: 'example' }); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Usage",
+    "embedding": [
+      666346
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 20,
+    "text": "- To run as a service: `agent.startEventLoop()`",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Usage",
+    "embedding": [
+      205871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 23,
+    "text": "- **Tool/Plugin Aggregation:** Integrate additional tools/plugins for richer data collection. (TODO: Expand tool/plugin registry integration) - **Event Types:** Add support for new event types and workflows. (TODO: Add/expand event subscriptions) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Extension Points",
+    "embedding": [
+      646545
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 28,
+    "text": "- Use dynamic tool discovery for extensibility - Emit structured events for observability and debugging - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Best Practices",
+    "embedding": [
+      202247
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 34,
+    "text": "- [AI-Helpers Project](https://github.com/AI-Helpers/AI-Helpers)",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Research References",
+    "embedding": [
+      393016
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 37,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 41,
+    "text": "- If data is not collected as expected, check tool/plugin integration or extend with additional tools. - For custom event handling, override `startEventLoop()`.",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      913718
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 44,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/CollectionAgent.md",
+    "line": 46,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/ContentAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "ContentAgent",
+    "embedding": [
+      894030
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 6,
+    "text": "The `ContentAgent` generates content drafts and responds to feedback, supporting: - **RAG-Driven Planning:** Ingests domain docs and generates a content outline before drafting. (TODO: Integrate RAG pipeline for outline generation) - **Map-Reduce Summarisation:** Chunks drafts, summarises pieces, then synthesises for coherence on limited-context LLMs. (TODO: Integrate map-reduce summarisation logic) - **Adaptive Tone Tuning:** Adjusts tone and style on-the-fly based on feedback using instruction-tuned embedding models. (TODO: Integrate instruction-tuned embedding model) - **Event-driven:** Subscribes to `TaskAssigned` and `DraftFeedback` events; emits `Log` and `TaskCompleted` events.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Overview",
+    "embedding": [
+      417890
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 14,
+    "text": "```ts import { ContentAgent } from 'ai-helpers/agents'; const agent = new ContentAgent({ profile: { name: 'ContentAgent' } }); const result = await agent.runTask({ contentPlan: { ... } }); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Usage",
+    "embedding": [
+      313549
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 21,
+    "text": "- To run as a service: `agent.startEventLoop()`",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Usage",
+    "embedding": [
+      205871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 24,
+    "text": "- **RAG Pipeline:** Integrate a RAG pipeline for domain doc ingestion and outline generation. (TODO: Integrate RAG pipeline) - **Map-Reduce Summarisation:** Integrate map-reduce summarisation for long outputs. (TODO: Integrate summarisation logic) - **Tone Tuning:** Integrate instruction-tuned embedding model for adaptive tone and style. (TODO: Integrate tone tuning backend) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Extension Points",
+    "embedding": [
+      954878
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 30,
+    "text": "- Integrate RAG pipeline for robust planning - Use map-reduce summarisation for long content - Tune tone/style using feedback and embedding models - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Best Practices",
+    "embedding": [
+      117351
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 37,
+    "text": "- [LangChain](https://github.com/hwchase17/langchain) - [RAG for Content Generation (arXiv:2304.05128)](https://arxiv.org/abs/2304.05128) - [Instructor Embedding](https://github.com/instructor-large/instructor-embedding)",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Research References",
+    "embedding": [
+      871669
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 42,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 46,
+    "text": "- If content is not generated as expected, check RAG and summarisation logic or extend with advanced backends. - For custom tone tuning, override `adaptiveToneTuning()`.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      705784
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 49,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContentAgent.md",
+    "line": 51,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ContextManager.md",
+    "line": 2,
+    "text": "Planned: ContextManager documentation.",
+    "source": "capability-doc",
+    "capability": "ContextManager",
+    "section": "ContextManager",
+    "embedding": [
+      325676
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 2,
+    "text": "Orchestrates multi-LLM code generation, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing integration. Emits rationale/explanation and votingRationale events for each step. Implements Capability interface. Reference: arXiv:2503.15838v1, AutoGen, LangGraph.",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "EnsembleAgent",
+    "embedding": [
+      288934
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "EnsembleAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 6,
+    "text": "`import { EnsembleAgent, MajorityVotingStrategy } from 'ai-helpers/agents/EnsembleAgent'; const agent = new EnsembleAgent({ profile: { name: 'EnsembleAgent' }, votingStrategy: new MajorityVotingStrategy() }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "EnsembleAgent",
+    "embedding": [
+      798675
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task: unknown) => Promise<AgentResult> - Run a task using ensemble modeling, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing. Emits rationale/explanation and votingRationale events. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **health**: () => Promise<HealthStatus> - Health check for EnsembleAgent.",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      632000
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 18,
+    "text": "```json {   \"runTask\": {     \"input\": {       \"type\": \"any\",       \"description\": \"Task input (problem, code, or prompt)\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"result\": {           \"type\": \"string\"         }       },       \"required\": [         \"result\"       ]     }   },   \"init\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: initialization)\"     }   },   \"shutdown\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: shutdown)\"     }   },   \"reload\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: reload)\"     }   },   \"health\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"status\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"status\",         \"timestamp\"       ]     }   } } ```",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "Schema",
+    "embedding": [
+      557021
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 92,
+    "text": "- Use modular voting strategies (majority, weighted, semantic, meta-LLM) - Emit rationale and voting events for every decision - Support event-driven explainability and agent/LLM introspection - Document event schemas and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "Best Practices",
+    "embedding": [
+      548298
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/EnsembleAgent.md",
+    "line": 99,
+    "text": "- arXiv:2503.15838v1 - https://github.com/microsoft/AutoGen - https://github.com/langchain-ai/langgraph - README.md#ensemble-llm-code-generation--voting-strategies - docs/ROADMAP.md#ensemble-agent",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "References",
+    "embedding": [
+      849864
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/ExplainabilityAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "ExplainabilityAgent",
+    "embedding": [
+      607540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 6,
+    "text": "The `ExplainabilityAgent` provides detailed, LLM-friendly rationales and traces for any action or decision, supporting transparency and compliance: - **Hybrid LIME/SHAP Pipelines:** Run LIME and SHAP interpretability passes to attribute decision influences at token and AST-node levels. (TODO: Integrate LIME/SHAP libraries or LLM-based interpretability) - **Attention-Based Rationale Highlighting:** Extract and surface cross-attention weights from the LLM during code edits. (TODO: Integrate with LLM APIs for attention extraction) - **Interactive Traceback Views:** Integrate with VS Code inline annotation APIs to display rationales alongside code changes. (TODO: Implement VS Code API integration)",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Overview",
+    "embedding": [
+      213457
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 13,
+    "text": "```ts import { ExplainabilityAgent } from 'ai-helpers/agents'; const agent = new ExplainabilityAgent({ profile: { name: 'ExplainabilityAgent' } }); const result = await agent.runTask('Explain this code change'); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Usage",
+    "embedding": [
+      780069
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 21,
+    "text": "- **LIME/SHAP Integration:** Integrate LIME/SHAP libraries or LLM-based interpretability for robust explanations. (TODO: Integrate LIME/SHAP) - **Attention Extraction:** Integrate with LLM APIs for attention-based rationale highlighting. (TODO: Integrate attention extraction backend) - **VS Code Integration:** Implement VS Code API integration for interactive tracebacks. (TODO: Implement VS Code API integration) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Extension Points",
+    "embedding": [
+      175108
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 27,
+    "text": "- Integrate LIME/SHAP for interpretability - Extract and visualize LLM attention for transparency - Support interactive tracebacks in developer tools - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Best Practices",
+    "embedding": [
+      490473
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 34,
+    "text": "- [LIME](https://github.com/marcotcr/lime) - [SHAP](https://github.com/slundberg/shap) - [VS Code API](https://code.visualstudio.com/api) - [Attention Is All You Need (arXiv:1706.03762)](https://arxiv.org/abs/1706.03762)",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Research References",
+    "embedding": [
+      369265
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 40,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 44,
+    "text": "- If explanations are not generated as expected, check LIME/SHAP and attention extraction logic or extend with advanced backends. - For custom tracebacks, override `showTracebackInVSCode()`.",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      765019
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 47,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ExplainabilityAgent.md",
+    "line": 49,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/FeedbackAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "FeedbackAgent",
+    "embedding": [
+      446502
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 6,
+    "text": "The `FeedbackAgent` aggregates, summarizes, and routes feedback from LLMs/humans, supporting: - **Automated Self-Critique (CRITIC Framework):** Re-evaluates feedback against summary metrics, filters low-confidence suggestions, and supports LLM/CRITIC extension points. - **Noise Filtering & Multi-Agent Aggregation:** Deduplicates, filters, and aggregates feedback using multi-agent voting/aggregation (majority, semantic, etc.). - **OpenTelemetry Observability:** Emits metrics for feedback latency, volume, and sentiment drift (stubbed, extensible). - **Event-driven:** Subscribes to `rationale`, `mutationSuggested`, `repair`, and `explanation` events; emits `rationaleAggregated`, `feedbackSuggested`, and `Log` events.",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Overview",
+    "embedding": [
+      155106
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 14,
+    "text": "```ts import { FeedbackAgent } from 'ai-helpers/agents'; const agent = new FeedbackAgent({ profile: { name: 'FeedbackAgent' } }); const result = await agent.runTask('This feedback is unclear.'); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Usage",
+    "embedding": [
+      489684
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 21,
+    "text": "- To run as a service: `agent.startEventLoop()` - To select a backend: `new FeedbackAgent({ backendName: 'nv-embed' })`",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Usage",
+    "embedding": [
+      226992
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 25,
+    "text": "- **Self-Critique:** Integrate LLM/CRITIC backend for richer critique. (TODO: Accept backendName for dynamic backend selection) - **Aggregation:** Use advanced voting/aggregation strategies (majority, semantic, LLM-based, etc.). (TODO: Integrate semantic similarity or LLM voting) - **Observability:** Integrate OpenTelemetry API for distributed tracing/metrics. (TODO: Integrate OTel API for real-time metrics) - **Moderation:** Integrate LLM/human moderation for feedback approval. (TODO: Integrate LLM/human moderation backend) - **SHIMI Memory:** Distributed rationale aggregation and feedback memory. - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Extension Points",
+    "embedding": [
+      749179
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 33,
+    "text": "- Integrate LLM/CRITIC backend for self-critique - Use advanced aggregation/voting for robust feedback - Emit OpenTelemetry metrics for observability - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Best Practices",
+    "embedding": [
+      449798
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 40,
+    "text": "- [CRITIC: LLM Self-Critique](https://arxiv.org/abs/2309.00864) - [Akira AI Multi-Agent Aggregation](https://github.com/akira-ai/akira) - [OpenTelemetry](https://opentelemetry.io/) - [SHIMI Memory](https://arxiv.org/abs/2504.06135)",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Research References",
+    "embedding": [
+      448708
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 46,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 50,
+    "text": "- If feedback is not aggregated as expected, check aggregation logic or extend with advanced voting. - For custom moderation, override `moderateFeedback()`.",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      41389
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 53,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FeedbackAgent.md",
+    "line": 55,
+    "text": "_Last updated: 2024-06_",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      659746
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 2,
+    "text": "Integrates LLM-driven spec generation, formal verification (TLA+, Coq, Lean), and event-driven repair. Emits rationale/explanation for each step. References TLA+, Coq, Lean, tenspiler, arXiv:2505.02500v1.",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "FormalVerifierAgent",
+    "embedding": [
+      873508
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "FormalVerifierAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 6,
+    "text": "`import { FormalVerifierAgent } from 'ai-helpers/agents/FormalVerifierAgent'; const agent = new FormalVerifierAgent({ profile: { name: 'FormalVerifierAgent' } }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "FormalVerifierAgent",
+    "embedding": [
+      949892
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task: unknown) => Promise<AgentResult> - Run a task with LLM-driven spec generation, formal verification, event-driven repair, and rationale/explanation. - **generateSpec**: (code: string) => Promise<string> - Generates a formal spec (TLA+, Coq, Lean) from code. - **runVerification**: (spec: string) => Promise<boolean> - Runs formal verification on a spec. - **health**: () => Promise<HealthStatus> - Health check for FormalVerifierAgent.",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      6694
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 17,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 41,
+    "text": "- Use LLMs to generate formal specs from code/comments - Integrate TLA+, Coq, Lean, or stubs for verification - Emit events for all spec/verification/repair actions - Document event schemas and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "Best Practices",
+    "embedding": [
+      857900
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/FormalVerifierAgent.md",
+    "line": 48,
+    "text": "- https://lamport.azurewebsites.net/tla/tla.html - https://coq.inria.fr/ - https://leanprover.github.io/ - https://github.com/awslabs/tenspiler - https://arxiv.org/html/2505.02500v1 - README.md#formal-verification--genefication-workflows-augmented - docs/ROADMAP.md#formal-verifier-agent",
+    "source": "capability-doc",
+    "capability": "FormalVerifierAgent",
+    "section": "References",
+    "embedding": [
+      301386
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 2,
+    "text": "**Description:** Adapter for HuggingFace Inference API. Supports text generation, embeddings, and model info. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "HuggingFaceLLMAdapter",
+    "embedding": [
+      71205
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 4,
+    "text": "- **License:** Apache-2.0 - **Provenance:** https://huggingface.co/docs/api-inference/index - **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "HuggingFaceLLMAdapter",
+    "embedding": [
+      309170
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 10,
+    "text": "```ts import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter'; const adapter = new HuggingFaceLLMAdapter(); await adapter.generateText('Hello!'); await adapter.embedText('Text to embed'); await adapter.getModelInfo('bigscience/bloom-560m'); ```",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Usage Example",
+    "embedding": [
+      409015
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 20,
+    "text": "| Method         | Signature                                                                 | Description                                 | |----------------|--------------------------------------------------------------------------|---------------------------------------------| | generateText   | (prompt: string, model?: string, options?: object) => Promise<string>     | Generate text using a HuggingFace model     | | embedText      | (text: string, model?: string, options?: object) => Promise<number[]>     | Get embeddings for text                     | | getModelInfo   | (model: string) => Promise<object>                                       | Get model metadata from HuggingFace         | | health         | () => Promise<HealthStatus>                                              | Health check                                | | describe       | () => CapabilityDescribe                                                 | Describe this adapter                       |",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Methods",
+    "embedding": [
+      457297
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 29,
+    "text": "- ChunkingUtility - HybridRetrievalUtility - RerankUtility - ShimiMemory",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Integration Points",
+    "embedding": [
+      293787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 35,
+    "text": "- https://huggingface.co/docs/api-inference/index",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "References",
+    "embedding": [
+      315706
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 38,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 44,
+    "text": "- **Repeatability/Alignment**: Adapter is tested for consistent output across multiple runs (Continuous Alignment Testing). - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      24762
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 50,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 2,
+    "text": "> **Status:** Planned/Advanced (2024-06). See `agents/HumanInTheLoopAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "HumanInTheLoopAgent",
+    "embedding": [
+      801059
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 6,
+    "text": "The `HumanInTheLoopAgent` embeds human review and feedback into agentic workflows, supporting governance, active learning, and reciprocal learning.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Overview",
+    "embedding": [
+      650261
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 9,
+    "text": "- **Governance-Driven HITL:** Embed checkpoints where the model flags low-confidence cases (< τ threshold) for human review, following best practices from enterprise HITL frameworks. - **Active Learning Loops:** Implement feedback loops where human corrections are stored and used for periodic fine-tuning, reducing annotation costs over time. - **Reciprocal Learning (RHML):** Leverage Reciprocal Human-Machine Learning, where both agent and human learn from each other's corrections, improving model and human performance. - **Event-Driven Checkpoints:** Emit events for all HITL checkpoints, reviews, and corrections for auditability and compliance.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Advanced Features",
+    "embedding": [
+      515949
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 16,
+    "text": "```ts import { HumanInTheLoopAgent } from 'ai-helpers/agents/HumanInTheLoopAgent'; const agent = new HumanInTheLoopAgent({ profile: { name: 'HumanInTheLoopAgent' } }); await agent.runTask({ ... }); ```",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Usage",
+    "embedding": [
+      548531
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 23,
+    "text": "- Integrate advanced governance and review frameworks - Add support for active and reciprocal learning workflows - Expand event schemas for richer auditability and compliance - Integrate with annotation and feedback UIs",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Extension Points",
+    "embedding": [
+      133773
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 29,
+    "text": "- Use confidence thresholds to trigger human review - Store and leverage human corrections for model improvement - Emit events for all checkpoints and reviews - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Best Practices",
+    "embedding": [
+      611541
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 35,
+    "text": "- [Reciprocal Human-Machine Learning (RHML)](https://arxiv.org/abs/2309.00864) - [Enterprise HITL Frameworks](https://arxiv.org/abs/2309.00864)",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Research References",
+    "embedding": [
+      427634
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 39,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 43,
+    "text": "- If HITL checkpoints or learning loops are not working as expected, check event emission and review logic. - For custom workflows, override governance and learning logic.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      654016
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 46,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 48,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 2,
+    "text": "**Description:** Hybrid retrieval utility combining dense (DPR/embeddings) and sparse (BM25) retrieval. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "HybridRetrievalUtility",
+    "embedding": [
+      496210
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 4,
+    "text": "- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "HybridRetrievalUtility",
+    "embedding": [
+      636182
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 8,
+    "text": "```ts import { HybridRetrievalUtility, DenseRetriever } from 'ai-helpers/utils/context/HybridRetrievalUtility'; import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter'; const hf = new HuggingFaceLLMAdapter(); const dense = new DenseRetriever(hf); const hybrid = new HybridRetrievalUtility(dense); await hybrid.retrieve('query'); ```",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Usage Example",
+    "embedding": [
+      861334
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 19,
+    "text": "| Method     | Signature                                 | Description                                 | |------------|--------------------------------------------|---------------------------------------------| | retrieve   | (query: string, topK?: number) => Promise<string[]> | Retrieve results using hybrid strategy      |",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Methods",
+    "embedding": [
+      673022
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 24,
+    "text": "- Dense (DPR/embeddings) - Sparse (BM25) - Hybrid (fusion)",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Supported Strategies",
+    "embedding": [
+      858686
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 29,
+    "text": "- HuggingFaceLLMAdapter - OpenRouterLLMAdapter - OllamaLLMAdapter - BM25/Vector backends",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Integration Points",
+    "embedding": [
+      644986
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 35,
+    "text": "- https://github.com/facebookresearch/DPR - https://github.com/dorianbrown/rank_bm25",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "References",
+    "embedding": [
+      581683
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 39,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 45,
+    "text": "- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters. - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      987540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 51,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 55,
+    "text": "- All hybrid retrieval utility event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      972341
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/MemoryAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "MemoryAgent",
+    "embedding": [
+      540322
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 6,
+    "text": "The `MemoryAgent` manages persistent memory, context pruning, and retrieval for agents and plugins, supporting: - **Persistent Memory:** Stores and retrieves long-term context for agent workflows. (TODO: Implement persistent memory storage and retrieval) - **Context Pruning:** Prunes context based on recency, relevance, and size for efficient LLM/agent operation. (TODO: Implement context pruning logic) - **Event-driven:** Emits events for memory updates, pruning, and retrieval for observability and auditability. (TODO: Emit events for all memory management actions)",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Overview",
+    "embedding": [
+      879046
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 13,
+    "text": "```ts import { MemoryAgent } from 'ai-helpers/agents'; const agent = new MemoryAgent({ profile: { name: 'MemoryAgent' } }); const result = await agent.runTask({ ... }); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Usage",
+    "embedding": [
+      688345
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 20,
+    "text": "- To run as a service: `agent.startEventLoop()`",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Usage",
+    "embedding": [
+      205871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 23,
+    "text": "- **Persistent Storage:** Integrate advanced storage backends for scalable memory (vector DBs, semantic memory, etc.). (TODO: Integrate advanced storage backends) - **Context Pruning:** Add advanced pruning strategies (semantic, tiered, hybrid). (TODO: Add advanced pruning strategies) - **Event Types:** Expand event schemas for richer memory operations and observability. (TODO: Expand event schemas) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Extension Points",
+    "embedding": [
+      504623
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 29,
+    "text": "- Use persistent storage for long-term memory - Prune context for efficient LLM/agent operation - Emit events for all memory management actions - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Best Practices",
+    "embedding": [
+      336842
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 36,
+    "text": "- [AI-Helpers Project](https://github.com/AI-Helpers/AI-Helpers) - [LangGraph](https://github.com/langchain-ai/langgraph) - [R3Mem: Reversible Compression](https://arxiv.org/abs/2402.00000) - [HEMA: Hippocampus-Inspired Memory](https://arxiv.org/abs/2402.00000)",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Research References",
+    "embedding": [
+      245312
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 42,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 46,
+    "text": "- If memory is not managed as expected, check storage/pruning logic or extend with advanced backends. - For custom event handling, override event emission methods.",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      801493
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 49,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MemoryAgent.md",
+    "line": 51,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MultimodalAgent.md",
+    "line": 2,
+    "text": "Agent for multimodal (image, audio, text) input/output. Supports Pix2Code, Whisper, and code-to-UI translation.",
+    "source": "capability-doc",
+    "capability": "MultimodalAgent",
+    "section": "MultimodalAgent",
+    "embedding": [
+      699043
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MultimodalAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "MultimodalAgent",
+    "section": "MultimodalAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MultimodalAgent.md",
+    "line": 6,
+    "text": "`import { MultimodalAgent } from 'ai-helpers/agents/MultimodalAgent'; const agent = new MultimodalAgent({ profile: { name: 'MultimodalAgent' } }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "MultimodalAgent",
+    "section": "MultimodalAgent",
+    "embedding": [
+      367496
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MultimodalAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task: { type: \"image\" | \"audio\" | \"text\", data: string }) => Promise<{ result: string }> - Run a multimodal task (image, audio, or text) and return the result. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **health**: () => Promise<HealthStatus> - Health check for MultimodalAgent.",
+    "source": "capability-doc",
+    "capability": "MultimodalAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      787997
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MultimodalAgent.md",
+    "line": 18,
+    "text": "```json {   \"runTask\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"type\": {           \"type\": \"string\",           \"enum\": [             \"image\",             \"audio\",             \"text\"           ]         },         \"data\": {           \"type\": \"string\"         }       },       \"required\": [         \"type\",         \"data\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"result\": {           \"type\": \"string\"         }       },       \"required\": [         \"result\"       ]     }   },   \"init\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: initialization)\"     }   },   \"shutdown\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: shutdown)\"     }   },   \"reload\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: reload)\"     }   },   \"health\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"status\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"status\",         \"timestamp\"       ]     }   } } ```",
+    "source": "capability-doc",
+    "capability": "MultimodalAgent",
+    "section": "Schema",
+    "embedding": [
+      671326
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MultimodalAgent.md",
+    "line": 108,
+    "text": "- https://github.com/Flame-Code-VLM/Flame-Code-VLM - README.md#multimodal-llms--uicode-understanding - docs/ROADMAP.md#multimodal-agent",
+    "source": "capability-doc",
+    "capability": "MultimodalAgent",
+    "section": "References",
+    "embedding": [
+      339189
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/MutationAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "MutationAgent",
+    "embedding": [
+      739338
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 6,
+    "text": "The `MutationAgent` handles live patching, mutation testing, and rollback for agents/plugins, supporting: - **LLM-Augmented Mutant Generation:** Uses LLMs to propose semantically relevant code mutants, guided by real-bug corpora (e.g., Defects4J). (TODO: Integrate LLM and real-bug corpora) - **Property-Based Fuzzing:** Feeds mutants into a Hypothesis-style fuzzer for boundary/edge-case validation. (TODO: Integrate property-based fuzzing) - **Patch Ensemble & Voting:** Generates multiple candidate fixes via LLMs, then applies majority-vote or semantic-equivalence checks. (TODO: Integrate LLM ensemble and semantic voting) - **Event-driven:** Emits events for each mutation, repair, fuzzing, and rollback for auditability.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Overview",
+    "embedding": [
+      335722
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 14,
+    "text": "```ts import { MutationAgent } from 'ai-helpers/agents'; const agent = new MutationAgent({ profile: { name: 'MutationAgent' }, backendName: 'nv-embed' }); const result = await agent.runTask({ file: 'example.ts', code: 'var x = 1;' }); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Usage",
+    "embedding": [
+      561786
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 22,
+    "text": "- **LLM/Ensemble Integration:** Integrate advanced LLMs and ensemble strategies for mutant generation and repair. (TODO: Integrate LLM/ensemble) - **Fuzzing:** Integrate property-based fuzzing for robust validation. (TODO: Integrate property-based fuzzing) - **Semantic Voting:** Integrate semantic voting for patch selection. (TODO: Integrate semantic voting) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Extension Points",
+    "embedding": [
+      897529
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 28,
+    "text": "- Integrate StrykerJS for mutation testing - Use LLM-driven repair for surviving mutants - Integrate property-based fuzzing for robust validation - Emit events for all mutation/repair/fuzzing/rollback actions - Support rollback and auditability - Automate benchmarking and test coverage for all enhancements - Document event schemas and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Best Practices",
+    "embedding": [
+      660494
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 37,
+    "text": "- [StrykerJS](https://stryker-mutator.io/) - [LiveCodeBench](https://github.com/ise-uiuc/LiveCodeBench) - [Defects4J](https://github.com/rjust/defects4j/) - [Hypothesis](https://hypothesis.readthedocs.io/en/latest/) - [Mutation Testing (arXiv:2302.03494)](https://arxiv.org/abs/2302.03494)",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Research References",
+    "embedding": [
+      212756
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 44,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 48,
+    "text": "- If mutants or repairs are not generated as expected, check LLM/ensemble and fuzzing logic or extend with advanced backends. - For custom rollback, override `rollback()`.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      346394
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 51,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/MutationAgent.md",
+    "line": 53,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 2,
+    "text": "**Description:** Adapter for Ollama local LLM server. Supports text generation, embeddings (if available), and model info. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "OllamaLLMAdapter",
+    "embedding": [
+      132482
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 4,
+    "text": "- **License:** MIT - **Provenance:** https://github.com/jmorganca/ollama - **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "OllamaLLMAdapter",
+    "embedding": [
+      657491
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 10,
+    "text": "```ts import { OllamaLLMAdapter } from 'ai-helpers/adapters/OllamaLLMAdapter'; const adapter = new OllamaLLMAdapter(); await adapter.generateText('Hello!'); await adapter.embedText('Text to embed'); await adapter.getModelInfo('llama2'); ```",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Usage Example",
+    "embedding": [
+      563559
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 20,
+    "text": "| Method         | Signature                                                                 | Description                                 | |----------------|--------------------------------------------------------------------------|---------------------------------------------| | generateText   | (prompt: string, model?: string, options?: object) => Promise<string>     | Generate text using an Ollama model         | | embedText      | (text: string, model?: string, options?: object) => Promise<number[]>     | Get embeddings for text (if supported)      | | getModelInfo   | (model: string) => Promise<object>                                       | Get model metadata from Ollama              | | health         | () => Promise<HealthStatus>                                              | Health check                                | | describe       | () => CapabilityDescribe                                                 | Describe this adapter                       |",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Methods",
+    "embedding": [
+      493981
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 29,
+    "text": "- ChunkingUtility - HybridRetrievalUtility - RerankUtility - ShimiMemory",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Integration Points",
+    "embedding": [
+      293787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 35,
+    "text": "- https://github.com/jmorganca/ollama",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "References",
+    "embedding": [
+      701280
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 38,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 44,
+    "text": "- **Repeatability/Alignment**: Adapter is tested for consistent output across multiple runs (Continuous Alignment Testing). - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      24762
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 50,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 54,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 2,
+    "text": "**Description:** Adapter for OpenRouter API. Supports text generation, embeddings, and model info. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "OpenRouterLLMAdapter",
+    "embedding": [
+      646985
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 4,
+    "text": "- **License:** MIT - **Provenance:** https://openrouter.ai/docs - **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "OpenRouterLLMAdapter",
+    "embedding": [
+      586850
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 10,
+    "text": "```ts import { OpenRouterLLMAdapter } from 'ai-helpers/adapters/OpenRouterLLMAdapter'; const adapter = new OpenRouterLLMAdapter(); await adapter.generateText('Hello!'); await adapter.embedText('Text to embed'); await adapter.getModelInfo('openai/gpt-3.5-turbo'); ```",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Usage Example",
+    "embedding": [
+      362315
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 20,
+    "text": "| Method         | Signature                                                                 | Description                                 | |----------------|--------------------------------------------------------------------------|---------------------------------------------| | generateText   | (prompt: string, model?: string, options?: object) => Promise<string>     | Generate text using an OpenRouter model     | | embedText      | (text: string, model?: string, options?: object) => Promise<number[]>     | Get embeddings for text                     | | getModelInfo   | (model: string) => Promise<object>                                       | Get model metadata from OpenRouter          | | health         | () => Promise<HealthStatus>                                              | Health check                                | | describe       | () => CapabilityDescribe                                                 | Describe this adapter                       |",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Methods",
+    "embedding": [
+      826105
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 29,
+    "text": "- ChunkingUtility - HybridRetrievalUtility - RerankUtility - ShimiMemory",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Integration Points",
+    "embedding": [
+      293787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 35,
+    "text": "- https://openrouter.ai/docs",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "References",
+    "embedding": [
+      551049
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 38,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 44,
+    "text": "- **Repeatability/Alignment**: Adapter is tested for consistent output across multiple runs (Continuous Alignment Testing). - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      24762
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 50,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 54,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/OrchestrationEngine (planned).md",
+    "line": 2,
+    "text": "Planned: OrchestrationEngine documentation.",
+    "source": "capability-doc",
+    "capability": "OrchestrationEngine (planned)",
+    "section": "OrchestrationEngine (planned)",
+    "embedding": [
+      392315
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 2,
+    "text": "Iterative code generation, explanation, and repair (chain-of-thought, self-debugging, SCoT).",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "ReasoningLoopUtility",
+    "embedding": [
+      212541
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "ReasoningLoopUtility",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 6,
+    "text": "`import { ReasoningLoopUtility } from 'ai-helpers/agents/ReasoningLoopUtility'; const util = new ReasoningLoopUtility(); await util.runReasoningLoop(input);`",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "ReasoningLoopUtility",
+    "embedding": [
+      226881
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 10,
+    "text": "- **runReasoningLoop**: (input: unknown) => Promise<{ output: unknown; logs: string[] }> - Run a reasoning loop: generate, explain, test, and repair code iteratively.",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "Methods/Functions",
+    "embedding": [
+      35135
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 14,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 38,
+    "text": "- README.md#chain-of-thought-prompting--self-debugging-augmented-with-scot - arXiv:2304.05128 - dl.acm.org/doi/10.1145/3690635",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "References",
+    "embedding": [
+      253833
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 2,
+    "text": "**Description:** Bi-encoder and cross-encoder reranking utility. Supports LLM-based, embedding-based, and diversity (MMR) reranking. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "RerankUtility",
+    "embedding": [
+      940488
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 4,
+    "text": "- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "RerankUtility",
+    "embedding": [
+      636182
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 8,
+    "text": "```ts import { RerankUtility, BiEncoderReranker, CrossEncoderReranker } from 'ai-helpers/utils/context/RerankUtility'; import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter'; const hf = new HuggingFaceLLMAdapter(); const bi = new BiEncoderReranker(hf); const cross = new CrossEncoderReranker(hf); const rerank = new RerankUtility(bi, cross); await rerank.rerank('query', ['a', 'b']); ```",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Usage Example",
+    "embedding": [
+      600225
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 20,
+    "text": "| Method     | Signature                                         | Description                                 | |------------|---------------------------------------------------|---------------------------------------------| | rerank     | (query: string, candidates: string[]) => Promise<string[]> | Rerank candidates using bi/cross-encoder   |",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Methods",
+    "embedding": [
+      714090
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 25,
+    "text": "- Bi-encoder - Cross-encoder - LLM-based - MMR (diversity)",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Supported Strategies",
+    "embedding": [
+      818268
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 31,
+    "text": "- HuggingFaceLLMAdapter - OpenRouterLLMAdapter - OllamaLLMAdapter",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Integration Points",
+    "embedding": [
+      817908
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 36,
+    "text": "- https://www.sbert.net/",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "References",
+    "embedding": [
+      891009
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 39,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 45,
+    "text": "- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters. - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      987540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/RerankUtility.md",
+    "line": 51,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SecretsManager.md",
+    "line": 2,
+    "text": "Planned: SecretsManager documentation.",
+    "source": "capability-doc",
+    "capability": "SecretsManager",
+    "section": "SecretsManager",
+    "embedding": [
+      109504
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 2,
+    "text": "**Description:** SHIMI-style semantic hierarchical memory for distributed agent reasoning and feedback aggregation. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "ShimiMemory",
+    "embedding": [
+      158878
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 4,
+    "text": "- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "ShimiMemory",
+    "embedding": [
+      636182
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 8,
+    "text": "```ts import { ShimiMemory } from 'ai-helpers/utils/context/shimiMemory'; const shimi = new ShimiMemory(); await shimi.insertEntity({ concept: 'foo', explanation: 'bar' }); const results = await shimi.retrieveEntities('query'); ```",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Usage Example",
+    "embedding": [
+      832254
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 17,
+    "text": "| Method           | Signature                                              | Description                                 | |------------------|-------------------------------------------------------|---------------------------------------------| | insertEntity     | (entity: { concept: string, explanation: string, ... }) => Promise<void> | Insert entity into semantic tree           | | retrieveEntities | (query: string, topK?: number) => Promise<any[]>      | Retrieve entities by semantic query         | | health           | () => Promise<HealthStatus>                           | Health check                                | | describe         | () => CapabilityDescribe                              | Describe this memory utility                |",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Methods",
+    "embedding": [
+      334026
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 25,
+    "text": "- Semantic similarity - Hierarchical memory (tree structure) - Distributed/CRDT merge (planned) - LLM/embedding backend integration",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Supported Features",
+    "embedding": [
+      515340
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 31,
+    "text": "- HuggingFaceLLMAdapter - OpenRouterLLMAdapter - OllamaLLMAdapter - FeedbackAgent - contextManager",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Integration Points",
+    "embedding": [
+      768656
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 38,
+    "text": "- https://arxiv.org/abs/2504.06135",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "References",
+    "embedding": [
+      517098
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 41,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 47,
+    "text": "- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters. - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      987540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ShimiMemory.md",
+    "line": 53,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 2,
+    "text": "> **Status:** Implemented (2024-06). See `agents/SupervisorAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "SupervisorAgent",
+    "embedding": [
+      487689
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 6,
+    "text": "The `SupervisorAgent` monitors other agents for health, compliance, and performance, and can trigger self-healing or escalation. It supports: - **Hierarchical Supervision:** Aggregates health/status reports from sub-agents and delegates tasks. (TODO: Integrate sub-agent registry and delegation logic) - **Event-Driven Anomaly Detection:** Streams agent metrics into an anomaly detector (e.g., streaming Z-score). (TODO: Integrate streaming anomaly detection) - **Self-Healing Workflows:** Automatically restarts or reconfigures misbehaving agents using remediation playbooks. (TODO: Integrate remediation logic and playbook storage) - **Event-driven:** Emits events for supervision, anomaly detection, and self-healing actions for observability and auditability. (TODO: Emit events for all actions)",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Overview",
+    "embedding": [
+      519067
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 14,
+    "text": "```ts import { SupervisorAgent } from 'ai-helpers/agents/SupervisorAgent'; const agent = new SupervisorAgent({ profile: { name: 'SupervisorAgent' } }); const result = await agent.runTask({ subAgents: ['AgentA', 'AgentB'], metrics: [0.1, 0.2, 0.3] }); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Usage",
+    "embedding": [
+      862660
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 21,
+    "text": "- To run as a service: `agent.startEventLoop()`",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Usage",
+    "embedding": [
+      205871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 24,
+    "text": "- **Sub-Agent Registry:** Integrate a registry for dynamic sub-agent discovery and delegation. (TODO: Integrate sub-agent registry) - **Anomaly Detection:** Add advanced streaming anomaly detection and observability. (TODO: Integrate advanced anomaly detection) - **Remediation Playbooks:** Expand remediation playbook storage and escalation logic. (TODO: Expand playbook logic) - **Event Types:** Expand event schemas for richer supervision and compliance reporting. (TODO: Expand event schemas) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Extension Points",
+    "embedding": [
+      116698
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 31,
+    "text": "- Implement hierarchical supervision and health aggregation - Integrate streaming anomaly detection for real-time monitoring - Automate self-healing and escalation for robust agent workflows - Emit events for all supervision, anomaly detection, and self-healing actions - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Best Practices",
+    "embedding": [
+      286523
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 39,
+    "text": "- [LangChain](https://github.com/hwchase17/langchain) - [Anomaly Detection (Wikipedia)](https://en.wikipedia.org/wiki/Anomaly_detection) - [Self-Healing Systems](https://arxiv.org/abs/2304.05128)",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Research References",
+    "embedding": [
+      110343
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 44,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 48,
+    "text": "- If supervision or self-healing is not working as expected, check sub-agent registry and playbook logic or extend with advanced backends. - For custom event handling, override event emission methods.",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      868425
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 51,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/SupervisorAgent.md",
+    "line": 53,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/TypeScript type-casting note (planned).md",
+    "line": 2,
+    "text": "Planned: TypeScript type-casting note documentation.",
+    "source": "capability-doc",
+    "capability": "TypeScript type-casting note (planned)",
+    "section": "TypeScript type-casting note (planned)",
+    "embedding": [
+      370595
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/VibeCodingAgent.md",
+    "line": 2,
+    "text": "Agent for real-time voice-to-code using Whisper and LLMs. Converts audio input to code.",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "VibeCodingAgent",
+    "embedding": [
+      942415
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/VibeCodingAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "VibeCodingAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/VibeCodingAgent.md",
+    "line": 6,
+    "text": "`import { VibeCodingAgent } from 'ai-helpers/agents/VibeCodingAgent'; const agent = new VibeCodingAgent({ profile: { name: 'VibeCodingAgent' } }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "VibeCodingAgent",
+    "embedding": [
+      393368
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/VibeCodingAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task: { audio: string }) => Promise<{ result: string }> - Run a voice-to-code task and return the result. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **health**: () => Promise<HealthStatus> - Health check for VibeCodingAgent.",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      779243
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/VibeCodingAgent.md",
+    "line": 18,
+    "text": "```json {   \"runTask\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"audio\": {           \"type\": \"string\"         }       },       \"required\": [         \"audio\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"result\": {           \"type\": \"string\"         }       },       \"required\": [         \"result\"       ]     }   },   \"init\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: initialization)\"     }   },   \"shutdown\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: shutdown)\"     }   },   \"reload\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: reload)\"     }   },   \"health\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"status\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"status\",         \"timestamp\"       ]     }   } } ```",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "Schema",
+    "embedding": [
+      537704
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/VibeCodingAgent.md",
+    "line": 99,
+    "text": "- https://medium.com/@niall.mcnulty/vibe-coding-b79a6d3f0caa - https://www.ibm.com/think/topics/vibe-coding - README.md#vibe-coding - docs/ROADMAP.md#vibe-coding-agent",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "References",
+    "embedding": [
+      717083
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/adapterUtils.md",
+    "line": 2,
+    "text": "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading.",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "adapterUtils",
+    "embedding": [
+      593480
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/adapterUtils.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "adapterUtils",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/adapterUtils.md",
+    "line": 6,
+    "text": "`import adapterUtilsCapability from 'ai-helpers/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');`",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "adapterUtils",
+    "embedding": [
+      931910
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/adapterUtils.md",
+    "line": 10,
+    "text": "- **tryDynamicImport**: (moduleName: string) => Promise<unknown | null> - Attempts to dynamically import a module, returns null on failure.",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "Methods/Functions",
+    "embedding": [
+      906628
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/adapterUtils.md",
+    "line": 14,
+    "text": "```json {   \"tryDynamicImport\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"moduleName\": {           \"type\": \"string\"         }       },       \"required\": [         \"moduleName\"       ]     },     \"output\": {       \"type\": [         \"object\",         \"null\"       ],       \"description\": \"Imported module or null on failure\"     }   } } ```",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "Schema",
+    "embedding": [
+      389967
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/adapterUtils.md",
+    "line": 40,
+    "text": "- https://nodejs.org/api/esm.html#esm_dynamic_imports",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "References",
+    "embedding": [
+      621478
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agent discovery (planned).md",
+    "line": 2,
+    "text": "Planned: Agent discovery documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "agent discovery (planned)",
+    "section": "agent discovery (planned)",
+    "embedding": [
+      466968
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agent event interface (planned).md",
+    "line": 2,
+    "text": "Planned: Agent event interface documentation.",
+    "source": "capability-doc",
+    "capability": "agent event interface (planned)",
+    "section": "agent event interface (planned)",
+    "embedding": [
+      154726
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agentIntentRegistry (planned).md",
+    "line": 2,
+    "text": "Planned: agentIntentRegistry documentation.",
+    "source": "capability-doc",
+    "capability": "agentIntentRegistry (planned)",
+    "section": "agentIntentRegistry (planned)",
+    "embedding": [
+      184256
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agentProfileRegistry (planned).md",
+    "line": 2,
+    "text": "Planned: agentProfileRegistry documentation.",
+    "source": "capability-doc",
+    "capability": "agentProfileRegistry (planned)",
+    "section": "agentProfileRegistry (planned)",
+    "embedding": [
+      781481
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agents.md",
+    "line": 2,
+    "text": "Exports all core AI-Helpers agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "agents",
+    "embedding": [
+      699700
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agents.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "agents",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agents.md",
+    "line": 6,
+    "text": "`import { BaseAgent, ContentAgent, CollectionAgent, ReviewAgent } from 'ai-helpers/agents';`",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "agents",
+    "embedding": [
+      135081
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agents.md",
+    "line": 10,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agents.md",
+    "line": 15,
+    "text": "- Strict TypeScript - Type-safe event-driven patterns - Automated documentation (TSDoc, TypeDoc, describe()) - Docs-first engineering - CI enforcement of docs/code sync",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "Best Practices",
+    "embedding": [
+      613391
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/agents.md",
+    "line": 23,
+    "text": "- https://benhouston3d.com/blog/crafting-readmes-for-ai - https://www.octopipe.com/blog/docs-first-engineering-workflow - https://medium.com/@nikhithsomasani/best-practices-for-using-typescript-in-2025-a-guide-for-experienced-developers-4fca1cfdf052 - https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "References",
+    "embedding": [
+      760522
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/ajv-cli validation in ci (planned).md",
+    "line": 2,
+    "text": "Planned: ajv-cli validation in CI documentation.",
+    "source": "capability-doc",
+    "capability": "ajv-cli validation in ci (planned)",
+    "section": "ajv-cli validation in ci (planned)",
+    "embedding": [
+      110672
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/api doc best practices (planned).md",
+    "line": 2,
+    "text": "Planned: API doc best practices documentation.",
+    "source": "capability-doc",
+    "capability": "api doc best practices (planned)",
+    "section": "api doc best practices (planned)",
+    "embedding": [
+      870368
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/api doc workflow (planned).md",
+    "line": 2,
+    "text": "Planned: API doc workflow documentation.",
+    "source": "capability-doc",
+    "capability": "api doc workflow (planned)",
+    "section": "api doc workflow (planned)",
+    "embedding": [
+      70109
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/api documentation generation (planned).md",
+    "line": 2,
+    "text": "Planned: API documentation generation.",
+    "source": "capability-doc",
+    "capability": "api documentation generation (planned)",
+    "section": "api documentation generation (planned)",
+    "embedding": [
+      939584
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/cache management (planned).md",
+    "line": 2,
+    "text": "Planned: Cache management documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "cache management (planned)",
+    "section": "cache management (planned)",
+    "embedding": [
+      76920
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/coding standards (planned).md",
+    "line": 2,
+    "text": "Planned: Coding standards documentation.",
+    "source": "capability-doc",
+    "capability": "coding standards (planned)",
+    "section": "coding standards (planned)",
+    "embedding": [
+      625418
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/context handover (planned).md",
+    "line": 2,
+    "text": "Planned: Context handover documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "context handover (planned)",
+    "section": "context handover (planned)",
+    "embedding": [
+      917675
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/contextMutationEngine event emission (planned).md",
+    "line": 2,
+    "text": "Planned: contextMutationEngine event emission documentation.",
+    "source": "capability-doc",
+    "capability": "contextMutationEngine event emission (planned)",
+    "section": "contextMutationEngine event emission (planned)",
+    "embedding": [
+      788887
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/contextMutationEngine.md",
+    "line": 2,
+    "text": "Event-driven mutation suggestion traceability and context mutation engine.",
+    "source": "capability-doc",
+    "capability": "contextMutationEngine",
+    "section": "contextMutationEngine",
+    "embedding": [
+      749532
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/contextMutationEngine.md",
+    "line": 6,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "contextMutationEngine",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/contextSnapshotHelper (planned).md",
+    "line": 2,
+    "text": "Planned: contextSnapshotHelper documentation.",
+    "source": "capability-doc",
+    "capability": "contextSnapshotHelper (planned)",
+    "section": "contextSnapshotHelper (planned)",
+    "embedding": [
+      631005
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/contributing.md (planned).md",
+    "line": 2,
+    "text": "Planned: Contributing.md documentation.",
+    "source": "capability-doc",
+    "capability": "contributing.md (planned)",
+    "section": "contributing.md (planned)",
+    "embedding": [
+      529603
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/crewAIAdapter.md",
+    "line": 2,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "crewAIAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/describe registry (in progress).md",
+    "line": 2,
+    "text": "In progress: Central describe registry for all capabilities.",
+    "source": "capability-doc",
+    "capability": "describe registry (in progress)",
+    "section": "describe registry (in progress)",
+    "embedding": [
+      814939
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/docDiagramGenerator (planned).md",
+    "line": 2,
+    "text": "Planned: docDiagramGenerator documentation.",
+    "source": "capability-doc",
+    "capability": "docDiagramGenerator (planned)",
+    "section": "docDiagramGenerator (planned)",
+    "embedding": [
+      106694
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/editor config recommendations (planned).md",
+    "line": 2,
+    "text": "Planned: Editor config recommendations documentation.",
+    "source": "capability-doc",
+    "capability": "editor config recommendations (planned)",
+    "section": "editor config recommendations (planned)",
+    "embedding": [
+      761423
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/embeddingRegistry.md",
+    "line": 2,
+    "text": "- All embedding provider event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "embeddingRegistry",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      414387
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event bus abstraction (planned).md",
+    "line": 2,
+    "text": "Planned: Event bus abstraction documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "event bus abstraction (planned)",
+    "section": "event bus abstraction (planned)",
+    "embedding": [
+      598403
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event payload convention (planned).md",
+    "line": 2,
+    "text": "Planned: Event payload convention documentation.",
+    "source": "capability-doc",
+    "capability": "event payload convention (planned)",
+    "section": "event payload convention (planned)",
+    "embedding": [
+      254081
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event schema references (planned).md",
+    "line": 2,
+    "text": "Planned: Event schema references documentation.",
+    "source": "capability-doc",
+    "capability": "event schema references (planned)",
+    "section": "event schema references (planned)",
+    "embedding": [
+      80317
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event-driven MAS patterns (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven MAS patterns documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven MAS patterns (planned)",
+    "section": "event-driven MAS patterns (planned)",
+    "embedding": [
+      12593
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event-driven agent example (WriterAgent) (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven agent example (WriterAgent) documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven agent example (WriterAgent) (planned)",
+    "section": "event-driven agent example (WriterAgent) (planned)",
+    "embedding": [
+      748517
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event-driven agent pattern (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven agent pattern documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven agent pattern (planned)",
+    "section": "event-driven agent pattern (planned)",
+    "embedding": [
+      877470
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event-driven mutation suggestion traceability.md",
+    "line": 2,
+    "text": "Implements full traceability for all mutation/refactor suggestions via structured event emission. Every suggestion (schema drift, TODO, test gap) emits a v1.mutationSuggested event, which is logged, replayable, and observable via the event bus. Events are schema-validated, versioned, and compatible with distributed backends (NATS, Kafka, Dapr, JSONL).",
+    "source": "capability-doc",
+    "capability": "event-driven mutation suggestion traceability",
+    "section": "event-driven mutation suggestion traceability",
+    "embedding": [
+      260853
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/event-driven traceability (liveMutationPRHelper) (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven traceability (liveMutationPRHelper) documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven traceability (liveMutationPRHelper) (planned)",
+    "section": "event-driven traceability (liveMutationPRHelper) (planned)",
+    "embedding": [
+      88316
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/examplePlugin.md",
+    "line": 2,
+    "text": "A sample plugin for AI-Helpers. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety.",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "examplePlugin",
+    "embedding": [
+      890433
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/examplePlugin.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "examplePlugin",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/examplePlugin.md",
+    "line": 6,
+    "text": "`ai-helpers plugins run examplePlugin`",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "examplePlugin",
+    "embedding": [
+      804312
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/examplePlugin.md",
+    "line": 10,
+    "text": "```json {   \"input\": {     \"_def\": {       \"items\": [],       \"typeName\": \"ZodTuple\",       \"rest\": null     },     \"~standard\": {       \"version\": 1,       \"vendor\": \"zod\"     }   },   \"output\": {     \"_def\": {       \"unknownKeys\": \"strip\",       \"catchall\": {         \"_def\": {           \"typeName\": \"ZodNever\"         },         \"~standard\": {           \"version\": 1,           \"vendor\": \"zod\"         }       },       \"typeName\": \"ZodObject\"     },     \"~standard\": {       \"version\": 1,       \"vendor\": \"zod\"     },     \"_cached\": null   } } ```",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "Schema",
+    "embedding": [
+      885882
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/examplePlugin.md",
+    "line": 47,
+    "text": "- Validate all plugin inputs/outputs using Zod schemas - Return structured errors for invalid input - Reference schemas in describe() for discoverability - Use appContext.subscribeToEvent with plugin name for dynamic subscription tracking - Clean up all event subscriptions in shutdown() (handled by PluginManager)",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "Best Practices",
+    "embedding": [
+      914657
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/examplePlugin.md",
+    "line": 55,
+    "text": "- https://github.com/AI-Helpers/AI-Helpers - https://github.com/AI-Helpers/AI-Helpers/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "References",
+    "embedding": [
+      26756
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/github actions workflow (planned).md",
+    "line": 2,
+    "text": "Planned: GitHub Actions workflow documentation.",
+    "source": "capability-doc",
+    "capability": "github actions workflow (planned)",
+    "section": "github actions workflow (planned)",
+    "embedding": [
+      137791
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/langchainAdapter.md",
+    "line": 2,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "langchainAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/liveMutationPRHelper (planned).md",
+    "line": 2,
+    "text": "Planned: liveMutationPRHelper documentation.",
+    "source": "capability-doc",
+    "capability": "liveMutationPRHelper (planned)",
+    "section": "liveMutationPRHelper (planned)",
+    "embedding": [
+      255717
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/matrix validation strategy (planned).md",
+    "line": 2,
+    "text": "Planned: Matrix validation strategy documentation.",
+    "source": "capability-doc",
+    "capability": "matrix validation strategy (planned)",
+    "section": "matrix validation strategy (planned)",
+    "embedding": [
+      179439
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/monorepo typescript config (planned).md",
+    "line": 2,
+    "text": "Planned: Monorepo TypeScript config documentation.",
+    "source": "capability-doc",
+    "capability": "monorepo typescript config (planned)",
+    "section": "monorepo typescript config (planned)",
+    "embedding": [
+      515704
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/multi-agent orchestration (planned).md",
+    "line": 2,
+    "text": "Planned: Multi-agent orchestration documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "multi-agent orchestration (planned)",
+    "section": "multi-agent orchestration (planned)",
+    "embedding": [
+      283797
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/mutationSuggested event schema (planned).md",
+    "line": 2,
+    "text": "Planned: mutationSuggested event schema documentation.",
+    "source": "capability-doc",
+    "capability": "mutationSuggested event schema (planned)",
+    "section": "mutationSuggested event schema (planned)",
+    "embedding": [
+      495581
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/onboarding guide (planned).md",
+    "line": 2,
+    "text": "Planned: Onboarding guide documentation.",
+    "source": "capability-doc",
+    "capability": "onboarding guide (planned)",
+    "section": "onboarding guide (planned)",
+    "embedding": [
+      413331
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/onboarding instructions (planned).md",
+    "line": 2,
+    "text": "Planned: Onboarding instructions documentation.",
+    "source": "capability-doc",
+    "capability": "onboarding instructions (planned)",
+    "section": "onboarding instructions (planned)",
+    "embedding": [
+      263668
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/onboarding troubleshooting (planned).md",
+    "line": 2,
+    "text": "Planned: Onboarding troubleshooting documentation.",
+    "source": "capability-doc",
+    "capability": "onboarding troubleshooting (planned)",
+    "section": "onboarding troubleshooting (planned)",
+    "embedding": [
+      162485
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/plugin architecture (planned).md",
+    "line": 2,
+    "text": "Planned: Plugin architecture documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "plugin architecture (planned)",
+    "section": "plugin architecture (planned)",
+    "embedding": [
+      434915
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/pluginFeedback.md",
+    "line": 2,
+    "text": "Submit, list, and aggregate plugin feedback (rating, review, social memory).",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "pluginFeedback",
+    "embedding": [
+      530698
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/pluginFeedback.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "pluginFeedback",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/pluginFeedback.md",
+    "line": 6,
+    "text": "`import { submitPluginFeedback, listFeedbackForPlugin, aggregatePluginFeedback } from 'ai-helpers/utils/feedback/pluginFeedback';`",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "pluginFeedback",
+    "embedding": [
+      945841
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/pluginFeedback.md",
+    "line": 10,
+    "text": "- **submitPluginFeedback**: (feedback: PluginFeedback) => Promise<void> - Submit feedback for a plugin. - **listFeedbackForPlugin**: (pluginName: string) => Promise<PluginFeedback[]> - List all feedback for a plugin. - **aggregatePluginFeedback**: (pluginName: string) => Promise<PluginFeedbackAggregate> - Aggregate feedback for a plugin.",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "Methods/Functions",
+    "embedding": [
+      778415
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/pluginFeedback.md",
+    "line": 16,
+    "text": "```json {   \"submitPluginFeedback\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"pluginName\": {           \"type\": \"string\"         },         \"user\": {           \"type\": \"string\"         },         \"rating\": {           \"type\": \"number\",           \"minimum\": 1,           \"maximum\": 5         },         \"review\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"pluginName\",         \"user\",         \"rating\",         \"timestamp\"       ]     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: feedback stored)\"     }   },   \"listFeedbackForPlugin\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"pluginName\": {           \"type\": \"string\"         }       },       \"required\": [         \"pluginName\"       ]     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of PluginFeedback\"     }   },   \"aggregatePluginFeedback\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"pluginName\": {           \"type\": \"string\"         }       },       \"required\": [         \"pluginName\"       ]     },     \"output\": {       \"type\": \"object\",       \"description\": \"PluginFeedbackAggregate\"     }   } } ```",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "Schema",
+    "embedding": [
+      411067
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/quality system (planned).md",
+    "line": 2,
+    "text": "Planned: Quality system documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "quality system (planned)",
+    "section": "quality system (planned)",
+    "embedding": [
+      921991
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sample config files (planned).md",
+    "line": 2,
+    "text": "Planned: Sample config files documentation.",
+    "source": "capability-doc",
+    "capability": "sample config files (planned)",
+    "section": "sample config files (planned)",
+    "embedding": [
+      33871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sastMemories.md",
+    "line": 2,
+    "text": "Deduplicates, lists, and syncs SAST feedback memories across tools. Canonical, registry-compliant.",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "sastMemories",
+    "embedding": [
+      762881
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sastMemories.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "sastMemories",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sastMemories.md",
+    "line": 6,
+    "text": "`import sastMemoriesCapability from 'ai-helpers/utils/feedback/sastMemories'; await sastMemoriesCapability.listAllSastMemories();`",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "sastMemories",
+    "embedding": [
+      779850
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sastMemories.md",
+    "line": 10,
+    "text": "- **loadAllMemories**: () => Promise<SastFeedbackMemory[]> - Load all SAST feedback memories. - **deduplicateMemories**: (memories: SastFeedbackMemory[]) => SastFeedbackMemory[] - Deduplicate memories by id, tool, and context. - **listAllSastMemories**: () => Promise<SastFeedbackMemory[]> - List all deduplicated SAST memories. - **getMemoriesForFile**: (file: string) => Promise<SastFeedbackMemory[]> - Get all memories for a given file. - **getMemoriesForRule**: (ruleId: string) => Promise<SastFeedbackMemory[]> - Get all memories for a given ruleId. - **syncWithRemote**: (localMemories: SastFeedbackMemory[], remoteAdapter: unknown) => Promise<SastFeedbackMemory[]> - Sync local SAST memories with remote storage. - **mergeWithRemote**: (local: SastFeedbackMemory[], remote: SastFeedbackMemory[]) => SastFeedbackMemory[] - Merge local and remote SAST memories.",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "Methods/Functions",
+    "embedding": [
+      932175
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sastMemories.md",
+    "line": 20,
+    "text": "```json {   \"loadAllMemories\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   },   \"deduplicateMemories\": {     \"input\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   },   \"listAllSastMemories\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   },   \"getMemoriesForFile\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"file\": {           \"type\": \"string\"         }       },       \"required\": [         \"file\"       ]     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   },   \"getMemoriesForRule\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"ruleId\": {           \"type\": \"string\"         }       },       \"required\": [         \"ruleId\"       ]     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   },   \"syncWithRemote\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"localMemories\": {           \"type\": \"array\",           \"items\": {             \"type\": \"object\"           }         },         \"remoteAdapter\": {           \"type\": \"object\"         }       },       \"required\": [         \"localMemories\",         \"remoteAdapter\"       ]     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   },   \"mergeWithRemote\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"local\": {           \"type\": \"array\",           \"items\": {             \"type\": \"object\"           }         },         \"remote\": {           \"type\": \"array\",           \"items\": {             \"type\": \"object\"           }         }       },       \"required\": [         \"local\",         \"remote\"       ]     },     \"output\": {       \"type\": \"array\",       \"items\": {         \"type\": \"object\"       },       \"description\": \"Array of SastFeedbackMemory\"     }   } } ```",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "Schema",
+    "embedding": [
+      240775
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/sastMemories.md",
+    "line": 165,
+    "text": "- types/SastFeedbackMemory.js",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "References",
+    "embedding": [
+      440633
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/schema validation onboarding (planned).md",
+    "line": 2,
+    "text": "Planned: Schema validation onboarding documentation.",
+    "source": "capability-doc",
+    "capability": "schema validation onboarding (planned)",
+    "section": "schema validation onboarding (planned)",
+    "embedding": [
+      879079
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 2,
+    "text": "The `semanticIndexBuilder` builds a comprehensive semantic search index for the AI-Helpers project. It now indexes: - All code, Markdown, and JSON files (chunked by lines/sections) - All outputs from the describe registry (`.ai-helpers-cache/describe-registry.json`) - All per-capability docs in `docs/capabilities/` - All LLM/AI docs in `.ai-helpers-cache/llm-docs.json`",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "semanticIndexBuilder",
+    "embedding": [
+      337347
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 8,
+    "text": "Each chunk is tagged with metadata: `source` (e.g., `code`, `describe-registry`, `llm-docs`, `capability-doc`), `capability` (if available), and `section` (if available).",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "semanticIndexBuilder",
+    "embedding": [
+      260007
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 12,
+    "text": "To build the semantic index:",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Usage",
+    "embedding": [
+      965788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 14,
+    "text": "```sh pnpm tsx AI-Helpers/semanticIndexBuilder.ts ```",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Usage",
+    "embedding": [
+      530864
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 18,
+    "text": "This creates `.ai-helpers-cache/semantic-index.json`.",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Usage",
+    "embedding": [
+      490104
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 22,
+    "text": "The semantic search API (HTTP and WebSocket) now robustly supports filtering by `source` and `capability` fields. Use these for targeted LLM/agent workflows: - `source`: Filter by chunk source (e.g., `capability-doc`, `describe-registry`) - `capability`: Filter by capability name (if available)",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "API Filtering Support",
+    "embedding": [
+      241250
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 26,
+    "text": "See [docs/semanticSearchGuide.md](../semanticSearchGuide.md) for API usage and examples.",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "API Filtering Support",
+    "embedding": [
+      141675
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticIndexBuilder.md",
+    "line": 29,
+    "text": "- Keep describe outputs and per-capability docs up to date for maximal LLM/agent discoverability. - Use the `source` and `capability` metadata for targeted semantic search and agent workflows. - Prefer batch embedding for large document sets. ",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Best Practices",
+    "embedding": [
+      61052
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/semanticKernelAdapter.md",
+    "line": 2,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "semanticKernelAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/setup and environment requirements (planned).md",
+    "line": 2,
+    "text": "Planned: Setup and environment requirements documentation.",
+    "source": "capability-doc",
+    "capability": "setup and environment requirements (planned)",
+    "section": "setup and environment requirements (planned)",
+    "embedding": [
+      758369
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/streaming backend integration (planned).md",
+    "line": 2,
+    "text": "Planned: Streaming backend integration documentation.",
+    "source": "capability-doc",
+    "capability": "streaming backend integration (planned)",
+    "section": "streaming backend integration (planned)",
+    "embedding": [
+      813748
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/supervisor agent pattern (planned).md",
+    "line": 2,
+    "text": "Planned: Supervisor agent pattern documentation.",
+    "source": "capability-doc",
+    "capability": "supervisor agent pattern (planned)",
+    "section": "supervisor agent pattern (planned)",
+    "embedding": [
+      230093
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/tsdoc style enforcement (planned).md",
+    "line": 2,
+    "text": "Planned: TSDoc style enforcement documentation.",
+    "source": "capability-doc",
+    "capability": "tsdoc style enforcement (planned)",
+    "section": "tsdoc style enforcement (planned)",
+    "embedding": [
+      135220
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/typedoc integration (planned).md",
+    "line": 2,
+    "text": "Planned: TypeDoc integration documentation.",
+    "source": "capability-doc",
+    "capability": "typedoc integration (planned)",
+    "section": "typedoc integration (planned)",
+    "embedding": [
+      269612
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/typedoc.json config (planned).md",
+    "line": 2,
+    "text": "Planned: typedoc.json config documentation.",
+    "source": "capability-doc",
+    "capability": "typedoc.json config (planned)",
+    "section": "typedoc.json config (planned)",
+    "embedding": [
+      706836
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updateNotifier.md",
+    "line": 2,
+    "text": "Notifies users of available package updates via CLI. Useful for keeping AI-Helpers up to date.",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "updateNotifier",
+    "embedding": [
+      734787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updateNotifier.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "updateNotifier",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updateNotifier.md",
+    "line": 6,
+    "text": "`import updateNotifierCapability from 'ai-helpers/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();`",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "updateNotifier",
+    "embedding": [
+      732991
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updateNotifier.md",
+    "line": 10,
+    "text": "- **checkForUpdates**: () => void - Checks for updates and notifies the user via CLI.",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "Methods/Functions",
+    "embedding": [
+      89173
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updateNotifier.md",
+    "line": 14,
+    "text": "```json {   \"checkForUpdates\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: CLI notification)\"     }   } } ```",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "Schema",
+    "embedding": [
+      875986
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updateNotifier.md",
+    "line": 30,
+    "text": "- https://www.npmjs.com/package/update-notifier",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "References",
+    "embedding": [
+      599584
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/updated agent event interface (planned).md",
+    "line": 2,
+    "text": "Planned: Updated agent event interface documentation.",
+    "source": "capability-doc",
+    "capability": "updated agent event interface (planned)",
+    "section": "updated agent event interface (planned)",
+    "embedding": [
+      180331
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/AI-Helpers/docs/capabilities/utils (planned).md",
+    "line": 2,
+    "text": "Planned: utils documentation.",
+    "source": "capability-doc",
+    "capability": "utils (planned)",
+    "section": "utils (planned)",
+    "embedding": [
+      353677
+    ]
+  }
+]

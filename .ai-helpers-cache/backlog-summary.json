@@ -1,0 +1,3031 @@
+{
+  "generatedAt": "2025-05-16T01:36:13.410Z",
+  "actionable": [
+    {
+      "id": "epic-cli-script-standardization-discoverability",
+      "description": "EPIC: CLI/Script Standardization & Discoverability. Standardize all automation scripts for CLI/flag support (--help, --json), error handling, output, and documentation. Extract reusable CLI helpers/utilities. Ensure all scripts are discoverable, documented, and referenced in CI/CD and onboarding docs. Add LLM/AI usage hints to script docs.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "expand-describe-registry-docs",
+          "description": "Expand describe registry documentation to explain its purpose, usage, and how to add new capabilities. Ensure all new/planned features are discoverable via the registry and onboarding.",
+          "status": "not started",
+          "note": "Planned: Add onboarding and docs for describe registry, including experimental/planned utilities."
+        },
+        {
+          "id": "draft-missing-capability-docs",
+          "description": "Draft or auto-generate missing documentation for planned features in docs/capabilities/. Ensure at least a placeholder doc exists for each planned feature, and update as code is implemented.",
+          "status": "not started",
+          "note": "Planned: Use docManifest and backlog to track and generate missing docs."
+        },
+        {
+          "id": "update-onboarding-for-cli-and-registry",
+          "description": "Update onboarding documentation to reference all scripts, CLI usage, and registry-driven discoverability. Add LLM/AI usage hints and examples to all relevant docs and script outputs.",
+          "status": "not started",
+          "note": "Planned: Ensure onboarding is always up to date with CLI and registry changes."
+        },
+        {
+          "id": "cross-check-backlog-doc-code-drift",
+          "description": "Cross-check the backlog, doc manifest, and code for any drift or missing references. Backlog any new gaps or technical debt discovered during this process.",
+          "status": "not started",
+          "note": "Planned: Regularly review for drift and backlog new issues as needed."
+        },
+        {
+          "id": "implement-self-auditing-and-self-healing-hooks",
+          "description": "Implement self-auditing and self-healing hooks in scripts: emit events/logs if non-standard usage, missing flags, or output drift is detected; attempt auto-fix for minor issues and emit rationale.",
+          "status": "not started",
+          "note": "Scripts should proactively suggest or auto-fix issues and backlog improvement opportunities."
+        },
+        {
+          "id": "llm-ai-usage-hints-and-schema-output",
+          "description": "Ensure all scripts output LLM/AI-usable hints, JSON schemas, usage examples, and rationale in output when --json is specified.",
+          "status": "not started",
+          "note": "Enhance LLM/AI discoverability and self-documentation for all automation scripts."
+        }
+      ]
+    },
+    {
+      "id": "epic-codebase-refactor-dry-yagni",
+      "description": "EPIC: Codebase Refactor for DRY/YAGNI-Aligned Backlog. Refactor the codebase to match the new unified backlog structure, modularize utilities, enforce compliance, and update documentation. This is the next top priority for maintainability and clarity.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "plugin-ecosystem-marketplace",
+          "description": "Expand plugin/adapter ecosystem with CLI scaffolding, test harness, rating/review/social memory, and marketplace/discovery UI.",
+          "status": "in progress",
+          "note": "Backend selection and feedback loop support in CLI/agents. UI/CLI integration pending."
+        },
+        {
+          "id": "implement-plugin-rating-review-social-memory",
+          "description": "Implement rating, review, and social memory features for plugins/adapters in the registry and planned marketplace UI. Reference: pluginRegistry.ts, event bus, docs/pluginRegistryGuide.md.",
+          "status": "in progress",
+          "note": "Backend selection and feedback loop support in CLI/agents. UI/CLI integration pending."
+        },
+        {
+          "id": "scaffold-marketplace-discovery-ui",
+          "description": "Scaffold marketplace/discovery UI (CLI/web) for plugin/adapter discovery, rating, and review. Reference: pluginRegistry.ts, registry APIs, docs/pluginRegistryGuide.md.",
+          "status": "not started",
+          "note": "Integrate with pluginFeedback API for rating, review, and social memory. Backend and docs are complete; only UI/CLI integration is pending."
+        },
+        {
+          "id": "cicd-security-compliance",
+          "description": "Keep all compliance, secret scanning, and CI/CD logic in .github/workflows/, utils/security/, and scripts/. Ensure all sensitive data is managed via new secrets managers and compliance reporting is automated. Reference: .github/workflows/, utils/security/, scripts/"
+        },
+        {
+          "id": "documentation-onboarding",
+          "description": "Update onboarding, automation, and feature table docs in README.md, CONTRIBUTING.md, and docs/. Ensure all new/changed features are reflected in the canonical feature table and describe registry. Reference: README.md, CONTRIBUTING.md, docs/"
+        }
+      ]
+    },
+    {
+      "id": "epic-context-rag-semantic",
+      "description": "Implement advanced context/memory management, semantic search, and RAG pipelines with hybrid retrieval, chunking, and feedback. Integrate with embedding providers and event logs.",
+      "status": "in progress",
+      "priority": "high",
+      "note": "All three LLM adapters (HuggingFace, OpenRouter, Ollama) now have real API implementations, error handling, and registry/describe/health compliance. Next: expand integration tests and advanced enhancements.",
+      "references": [
+        "https://www.llamaindex.ai/",
+        "https://weaviate.io/",
+        "https://github.com/explodinggradients/ragas",
+        "https://github.com/allenai/ralle",
+        "https://github.com/allenai/ares",
+        "https://www.trulens.org/",
+        "https://arxiv.org/abs/2402.00000"
+      ],
+      "subtasks": [
+        {
+          "id": "epic-advanced-context-and-memory-management",
+          "description": "Automated, event-driven context/memory pruning, archiving, tiering, restoration."
+        },
+        {
+          "id": "epic-semantic-search-and-analytics",
+          "description": "Pluggable embedding models, event replay, analytics dashboards."
+        },
+        {
+          "id": "rag-pipeline-utility",
+          "description": "Scaffold RAGPipeline utility for hybrid retrieval, chunking, reranking, feedback.",
+          "references": [
+            "https://www.llamaindex.ai/",
+            "https://weaviate.io/"
+          ]
+        },
+        {
+          "id": "rag-evaluation-integration",
+          "description": "Integrate RAG evaluation frameworks (RAGAS, RaLLe, ARES, TruLens).",
+          "references": [
+            "https://github.com/explodinggradients/ragas",
+            "https://github.com/allenai/ralle",
+            "https://github.com/allenai/ares",
+            "https://www.trulens.org/"
+          ]
+        },
+        {
+          "id": "context-handoff-memory-optimization",
+          "description": "Advanced chunking, summarization, vector retrieval for context handoff."
+        },
+        {
+          "id": "subtask-context-cache-rag-feedback-mutation",
+          "description": "Expand utilities for RAG, feedback, mutation/self-healing."
+        },
+        {
+          "id": "rag-evaluation-ragas-ares-trulens",
+          "description": "Implement RAG evaluation using RAGAS, ARES, TruLens for retrieval and grounding quality.",
+          "status": "not started",
+          "references": [
+            "https://github.com/explodinggradients/ragas",
+            "https://github.com/allenai/ares",
+            "https://www.trulens.org/"
+          ]
+        },
+        {
+          "id": "integrate-huggingface-llm-adapter",
+          "description": "Integrate HuggingFaceLLMAdapter for text generation and embeddings. Plug into ChunkingUtility, HybridRetrievalUtility, RerankUtility, and shimiMemory. Reference: https://huggingface.co/docs/api-inference/index",
+          "status": "in progress",
+          "note": "Runtime selection and stubs in all agents/utilities. Integration points in place."
+        },
+        {
+          "id": "integrate-openrouter-llm-adapter",
+          "description": "Integrate OpenRouterLLMAdapter for multi-provider LLM routing. Plug into context utilities and memory. Reference: https://openrouter.ai/docs",
+          "status": "in progress",
+          "note": "Runtime selection and stubs in all agents/utilities. Integration points in place."
+        },
+        {
+          "id": "integrate-ollama-llm-adapter",
+          "description": "Integrate OllamaLLMAdapter for local LLM inference. Plug into context utilities and memory. Reference: https://github.com/jmorganca/ollama",
+          "status": "in progress",
+          "note": "Runtime selection and stubs in all agents/utilities. Integration points in place."
+        },
+        {
+          "id": "test-coverage-llm-adapters",
+          "description": "Add/expand test coverage for all LLM adapters and their integration with context utilities.",
+          "status": "in progress",
+          "note": "Stubs and integration points in place. Full coverage and docs pending."
+        },
+        {
+          "id": "docs-llm-adapter-integration",
+          "description": "Document usage, configuration, and registry/describe/health compliance for all LLM adapters in README.md, docs/, and onboarding materials.",
+          "status": "in progress",
+          "note": "Stubs and integration points in place. Full coverage and docs pending."
+        },
+        {
+          "id": "llm-adapter-integration-tests",
+          "description": "Add real-world integration tests for HuggingFaceLLMAdapter, OpenRouterLLMAdapter, and OllamaLLMAdapter with all context utilities (ChunkingUtility, HybridRetrievalUtility, RerankUtility, ShimiMemory). Cover edge cases and error handling.",
+          "status": "in progress",
+          "note": "Stubs and integration points in place. Full coverage and docs pending."
+        },
+        {
+          "id": "llm-adapter-usage-docs",
+          "description": "Document usage, configuration, and registry/describe/health compliance for all LLM adapters in README.md, docs/, and onboarding materials. Include code samples and best practices.",
+          "status": "in progress",
+          "note": "Stubs and integration points in place. Full coverage and docs pending."
+        },
+        {
+          "id": "llm-chunk-scoring-enhancement",
+          "description": "Enhance ChunkingUtility with LLM-based chunk scoring and filtering. Integrate with all LLM adapters and allow threshold configuration.",
+          "status": "not started"
+        },
+        {
+          "id": "hybrid-retrieval-enhancement",
+          "description": "Enhance HybridRetrievalUtility with advanced fusion logic, fallback strategies, and explainability. Integrate with all LLM adapters and vector/BM25 backends.",
+          "status": "not started"
+        },
+        {
+          "id": "feedback-moderation-enhancement",
+          "description": "Enhance feedback and review moderation with LLM-powered summarization, abuse detection, and explainability dashboards. Integrate with FeedbackAgent and SHIMI memory.",
+          "status": "in progress",
+          "note": "Stubs and integration points in place. Full coverage and docs pending."
+        },
+        {
+          "id": "llm-adapter-advanced-integration-tests",
+          "description": "Expand integration tests for LLM adapters and context utilities: repeatability/alignment, responsibility (bias/toxicity/fairness), performance/cost, edge cases, and CI/CD robustness. Reference 2024 best practices.",
+          "status": "in progress"
+        },
+        {
+          "id": "llm-adapter-repeatability-alignment",
+          "description": "Implement repeatability/alignment tests: run same input multiple times, aggregate results, and check for consistency. Use seed/multi-choice where supported.",
+          "status": "todo"
+        },
+        {
+          "id": "llm-adapter-responsibility-testing",
+          "description": "Add responsibility tests for bias, toxicity, and fairness. Integrate open-source tools or stubs. Document results and remediation.",
+          "status": "todo"
+        },
+        {
+          "id": "llm-adapter-performance-monitoring",
+          "description": "Log and monitor latency, token usage, and cost for each adapter. Add performance assertions and CI/CD reporting.",
+          "status": "todo"
+        },
+        {
+          "id": "llm-adapter-feedback-observability",
+          "description": "Integrate feedback loop and observability: capture user/system feedback, log errors, and expose metrics for monitoring and improvement.",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "epic-quality-tools-feedback",
+      "description": "Unify quality tools (Semgrep, SonarQube), add LLM-powered auto-fix, cross-tool deduplication, and feedback/memories APIs. Expand test coverage.",
+      "status": "partial",
+      "priority": "high",
+      "subtasks": [
+        {
+          "id": "quality-tools-semgrep-sonarqube",
+          "description": "Enhance SonarQube APIs, unify feedback/memories, add LLM-powered triage."
+        },
+        {
+          "id": "quality-sonarqube-autofix",
+          "description": "Implement LLM-powered auto-fix for SonarQube findings."
+        },
+        {
+          "id": "quality-cross-tool-dedup",
+          "description": "Integrate cross-tool deduplication and feedback/memories."
+        },
+        {
+          "id": "test-quality-integration",
+          "description": "Add tests for quality tool integration and feedback/memories APIs."
+        },
+        {
+          "id": "expand-quality-feedback-test-coverage",
+          "description": "Expand test coverage for LLM-powered auto-fix and feedback/memories APIs (e.g., explainSemgrepFinding, suggestSemgrepFix, autoFixSemgrepFinding, listAllSastMemories, etc.).",
+          "status": "not started"
+        },
+        {
+          "id": "nightly-fine-tuning-telemetry-adaptation",
+          "description": "Implement nightly fine-tuning and telemetry-driven adaptation workflows for continuous learning.",
+          "status": "not started"
+        },
+        {
+          "id": "continuous-supervised-correction-ingestion",
+          "description": "Ingest developer corrections and feedback as supervised signals for continual model improvement.",
+          "status": "not started"
+        }
+      ]
+    },
+    {
+      "id": "epic-cicd-security-compliance",
+      "description": "Automate security, compliance, and CI/CD workflows. Enforce secret scanning, provenance, and doc/code sync with badges and reporting.",
+      "status": "partial",
+      "priority": "high",
+      "subtasks": [
+        {
+          "id": "epic-security-compliance-audit",
+          "description": "Automated compliance/audit reporting, secret scanning, provenance tracking."
+        },
+        {
+          "id": "security-secrets-management-cicd",
+          "description": "Integrate Vault/ArgoCD/Kaniko for secure CI/CD and secrets management."
+        },
+        {
+          "id": "ci-cd-workflow-optimization-monorepo",
+          "description": "Optimize CI/CD for monorepo with path filters, matrix builds, caching."
+        },
+        {
+          "id": "doc-code-sync-api-schema-badges",
+          "description": "Add badges for doc/code sync, API docs, schema validation."
+        }
+      ]
+    },
+    {
+      "id": "epic-documentation-onboarding",
+      "description": "Automate and update documentation, onboarding, and feature tables. Ensure all automation and workflows are documented and discoverable.",
+      "status": "not started",
+      "priority": "high",
+      "subtasks": [
+        {
+          "id": "docs-automation-onboarding-updates",
+          "description": "Update CONTRIBUTING.md and README.md for automation, scripts, onboarding."
+        },
+        {
+          "id": "subtask-update-readme-and-docs",
+          "description": "Update README/docs to include canonical feature table and describe registry."
+        }
+      ]
+    },
+    {
+      "id": "epic-utilities-refactor",
+      "description": "Refactor and modularize all utilities and helpers by domain (context, event, security, testing, describe, plugin, feedback). Ensure Capability/describe compliance and registry discoverability.",
+      "status": "not started",
+      "priority": "high",
+      "subtasks": [
+        {
+          "id": "utils-context",
+          "description": "Context helpers: chunking, summarization, tiering, token-budget negotiation."
+        },
+        {
+          "id": "utils-event",
+          "description": "Event helpers: schema validation, replay, analytics, tracing."
+        },
+        {
+          "id": "utils-security",
+          "description": "Security helpers: secret scanning, guardrails, audit logging."
+        },
+        {
+          "id": "utils-testing",
+          "description": "Testing helpers: mutation, contract/integration, coverage."
+        },
+        {
+          "id": "utils-describe",
+          "description": "Describe/registry aggregation, validation, doc/spec generation."
+        },
+        {
+          "id": "utils-plugin",
+          "description": "Plugin/adapter scaffolding, CLI, templates."
+        },
+        {
+          "id": "utils-feedback",
+          "description": "Feedback/memory helpers: submission, retrieval, suggestion routing."
+        },
+        {
+          "id": "utility-capability-refactor",
+          "description": "Refactor utility classes for Capability/describe compliance."
+        },
+        {
+          "id": "epic-local-inference-stack-integration",
+          "status": "in progress",
+          "note": "llama.cpp, NV-Embed-v2, vector store, quantization, and cloud fallback integration in progress. See README.md for stack summary."
+        },
+        {
+          "id": "benchmark-evaluate-upgraded-utilities",
+          "description": "Benchmark and evaluate upgraded utilities (ChunkingUtility, HybridRetrievalUtility, RerankUtility, ShimiMemory) for accuracy, speed, and extensibility. Reference best practices and extensibility.",
+          "status": "planned",
+          "note": "Next: Add automated tests and benchmarks for all advanced utilities."
+        },
+        {
+          "id": "adapterutils-nodejs-dynamic-import",
+          "description": "Standardise dynamic import() logic with Node.js's package resolution rules. Implementation: Use Node.js's import() and package resolution rules. Fallback to CommonJS if ESM fails.",
+          "status": "not started",
+          "references": [
+            "https://nodejs.org/api/esm.html#esm_import_expressions"
+          ]
+        },
+        {
+          "id": "updatenotifier-npm-integration",
+          "description": "Integrate the update-notifier npm module for unobtrusive CLI updates. Implementation: Use update-notifier for CLI.",
+          "status": "not started",
+          "references": [
+            "https://www.npmjs.com/package/update-notifier"
+          ]
+        },
+        {
+          "id": "sastmemories-vectorstore-dedup",
+          "description": "Store static-analysis results in a vector store for similarity-based deduplication. Implementation: Encode findings as embeddings. Deduplicate via nearest-neighbor search, cluster recurring issues.",
+          "status": "not started",
+          "references": [
+            "https://github.com/pgvector/pgvector",
+            "https://github.com/openai/openai-cookbook/blob/main/examples/Vector_databases_pgvector.ipynb"
+          ]
+        },
+        {
+          "id": "pluginfeedback-critic-llm-review",
+          "description": "Utilise the CRITIC framework for automated plugin review. Implementation: Route plugin outputs through a CRITIC LLM for scoring/summarization. Store results in feedback memory.",
+          "status": "not started",
+          "references": [
+            "https://arxiv.org/abs/2309.00864"
+          ]
+        },
+        {
+          "id": "secretsmanager-vault-leasing",
+          "description": "Standardise on HashiCorp Vault for secure, dynamic secret leasing. Implementation: Use HashiCorp Vault for encrypted storage, dynamic credentials, and audit logging.",
+          "status": "not started",
+          "references": [
+            "https://www.vaultproject.io/"
+          ]
+        },
+        {
+          "id": "integrate-bm25s-python-adapter",
+          "description": "Integrate the open-source Python BM25S library (https://github.com/xhluca/bm25s) via a Node.js child_process adapter for the SparseRetriever in HybridRetrievalUtility. Ensure robust error handling, streaming, and test coverage.",
+          "status": "not started"
+        },
+        {
+          "id": "evaluate-js-bm25-implementation",
+          "description": "Evaluate and optionally integrate a pure JS BM25 implementation for the SparseRetriever. Compare performance and maintainability with the Python BM25S adapter.",
+          "status": "not started"
+        },
+        {
+          "id": "integrate-vectorstore-js",
+          "description": "Integrate vectorstore (https://github.com/kyr0/vectorstore) for local, cost-free vector search in the DenseRetriever. Ensure compatibility with existing embedding models and registry-driven configuration.",
+          "status": "not started"
+        },
+        {
+          "id": "test-coverage-hybrid-retrieval-adapters",
+          "description": "Implement robust test coverage for all hybrid retrieval adapters (BM25S, vectorstore, etc.), including error cases and performance benchmarks.",
+          "status": "not started"
+        },
+        {
+          "id": "document-hybrid-retrieval-adapters",
+          "description": "Document usage, configuration, and registry/describe/health compliance for all hybrid retrieval adapters in docs and feature tables. Ensure LLM/AI-friendly discoverability.",
+          "status": "not started"
+        }
+      ]
+    },
+    {
+      "id": "epic-advanced-agents",
+      "description": "EPIC: Consolidated advanced agent enhancements (Toolformer, Swarm, MoE, CRITIC, Stryker, LIME/SHAP, Pix2Code, Whisper, etc.). Groups orchestration, ensemble, feedback/self-critique, mutation/fuzzing, explainability, multimodal, and voice coding into sub-epics for efficient implementation.",
+      "status": "not started",
+      "priority": "high",
+      "note": "Consolidated from individual advanced agent enhancement tasks for clarity and batch implementation. See references in original subtasks.",
+      "subtasks": [
+        {
+          "id": "agent-orchestration-advanced",
+          "description": "OrchestratorAgent, Swarm, multi-agent orchestration, failure/retry/escalation."
+        },
+        {
+          "id": "agent-ensemble-moe",
+          "description": "EnsembleAgent, MoE, DeepSeek-V3, voting/gating, registry-driven ensemble."
+        },
+        {
+          "id": "agent-feedback-critic",
+          "description": "FeedbackAgent, CRITIC self-critique, static analysis feedback, SAST/SHIMI integration."
+        },
+        {
+          "id": "agent-mutation-fuzzing",
+          "description": "MutationAgent, Stryker mutation testing, property-based fuzzing, rollback."
+        },
+        {
+          "id": "agent-explainability",
+          "description": "ExplainabilityAgent, LIME/SHAP, code rationale/explanation."
+        },
+        {
+          "id": "agent-multimodal",
+          "description": "MultimodalAgent, Pix2Code, Flame-Code-VLM, UI-to-code translation."
+        },
+        {
+          "id": "agent-voice-coding",
+          "description": "VibeCodingAgent, Whisper, real-time voice-to-code."
+        },
+        {
+          "id": "agent-ensemble-advanced",
+          "description": "EnsembleAgent: Advanced Multi-LM Ensemble (EnsLLM) with candidate generation from diverse LLMs, structured voting (syntactic similarity via CodeBLEU, behavioral tests via CrossHair), meta-LLM adjudication for borderline cases, self-debugging loop (LEDEX), and efficiency-aware gating (SPIO) for local/cloud routing. References: arXiv:2503.15838v1, LEDEX, SPIO, CodeBLEU, CrossHair.",
+          "status": "planned"
+        },
+        {
+          "id": "agent-multimodal-advanced",
+          "description": "MultimodalAgent: Integrate Flame-Waterfall Vision-Code Model (Flame-Waterfall-7B) for UI mockup-to-React, structured data synthesis with waterfall pipeline, diagram parsing via CLIP+DSL, and multimodal fusion with GPT-4V/Qwen-VL fallback. References: Flame-Waterfall-7B, DeepSeek-Coder-7B, SigLIP, CLIP, GPT-4V, Qwen-VL.",
+          "status": "planned"
+        },
+        {
+          "id": "agent-vibecoding-advanced",
+          "description": "VibeCodingAgent: Whisper-driven transcription (whisper.cpp, Metal), voice-to-code with Serenade, error-log ingestion and LLM-driven repair, conversational debugging UI for inline chat and patching. References: Whisper, Serenade, error-analysis LLMs.",
+          "status": "planned"
+        },
+        {
+          "id": "agent-hitl-advanced",
+          "description": "HumanInTheLoopAgent: Governance-driven HITL with low-confidence flagging, active learning loops for feedback-driven fine-tuning, and reciprocal human-machine learning (RHML) for adaptive agent/human collaboration. References: HITL best practices, RHML.",
+          "status": "planned"
+        },
+        {
+          "id": "agent-memory-advanced",
+          "description": "MemoryAgent: R3Mem reversible compression for long-context retention, HEMA hippocampus-inspired memory, LangGraph retrieval backends, and HIRO branch-pruning queries for efficient, lossless context management. References: R3Mem, HEMA, LangGraph, HIRO.",
+          "status": "planned"
+        },
+        {
+          "id": "agent-supervisor-advanced",
+          "description": "SupervisorAgent: Agentic AI self-healing with streaming metrics and anomaly detection (isolation forest), multi-agent fault recovery (MAS+AI), enforcement agents for audit/intervention, and pattern-based anomaly escalation. References: MAS, enforcement agents, anomaly detection, self-healing systems.",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "epic-advanced-utilities",
+      "description": "EPIC: Consolidated advanced utility upgrades (ChunkRAG, bi-encoder/cross-encoder, hybrid retrieval, MemTree, dynamic import, update-notifier, vectorstore dedup, plugin feedback, Vault). Groups context/RAG, retrieval/rerank, memory, infra/tooling, and security into sub-epics for efficient implementation.",
+      "status": "not started",
+      "priority": "high",
+      "note": "Consolidated from individual advanced utility upgrade tasks for clarity and batch implementation. See references in original subtasks.",
+      "subtasks": [
+        {
+          "id": "utility-context-rag",
+          "description": "ChunkingUtility (ChunkRAG), LLM-driven chunk filtering, semantic passage evaluation."
+        },
+        {
+          "id": "utility-retrieval-rerank",
+          "description": "HybridRetrievalUtility (BM25+DPR), RerankUtility (bi-encoder/cross-encoder), fallback and fusion strategies."
+        },
+        {
+          "id": "utility-memory-advanced",
+          "description": "ShimiMemory (MemTree), dynamic tree memory, summarization/compression, CRDT merge."
+        },
+        {
+          "id": "utility-infra-tooling",
+          "description": "adapterUtils (dynamic import), updateNotifier (CLI updates), pluginFeedback (CRITIC review)."
+        },
+        {
+          "id": "utility-security",
+          "description": "secretsManager (Vault), sastMemories (vectorstore deduplication)."
+        }
+      ]
+    },
+    {
+      "id": "shimi-llm-backend",
+      "description": "Integrate LLM/embedding backend for semantic similarity and merging in SHIMI memory.",
+      "status": "not started"
+    },
+    {
+      "id": "shimi-eval-vector-baseline",
+      "description": "Evaluate SHIMI memory retrieval and sync against vector-based baseline (accuracy, speed, explainability).",
+      "status": "ready",
+      "note": "SHIMI is integrated, tested, and ready for benchmarking against vector-based baselines."
+    },
+    {
+      "id": "shimi-real-world-benchmarking",
+      "description": "Benchmark SHIMI memory in real-world agent workflows and compare with vector-based and RAG baselines.",
+      "status": "not started",
+      "priority": "low",
+      "references": [
+        "https://arxiv.org/abs/2201.11903",
+        "https://arxiv.org/abs/2302.03494"
+      ]
+    },
+    {
+      "id": "advanced-event-replay-debugging",
+      "description": "Implement advanced event replay and debugging for rationale/mutation/self-healing events. Support distributed event sourcing and time-travel debugging.",
+      "status": "not started",
+      "priority": "low",
+      "references": [
+        "https://cloudevents.io/",
+        "https://opentelemetry.io/"
+      ]
+    },
+    {
+      "id": "reasoning-loop-utility-integration-tests-docs",
+      "description": "Add/expand integration tests and update documentation for advanced ReasoningLoopUtility features (SCoT, LLM-driven explanation/repair, robust backtracking, feedback integration). Reference: capabilities/ReasoningLoopUtility.ts, tests/.",
+      "status": "not started"
+    },
+    {
+      "id": "ragpipelineutility-advanced-implementation",
+      "description": "Implement real hybrid retrieval (vector + keyword), adaptive semantic chunking, LLM-based reranking, and feedback-driven improvement in RAGPipelineUtility. Integrate with embedding providers and semantic index. Emit events for all major actions.",
+      "status": "not started"
+    },
+    {
+      "id": "orchestrated-agent-e2e-tests",
+      "description": "Add end-to-end tests for orchestrated agent workflows (OrchestratorAgent/EnsembleAgent using RAGPipelineUtility, ReasoningLoopUtility, and FeedbackAgent). Ensure all events are emitted and aggregated correctly.",
+      "status": "not started"
+    },
+    {
+      "id": "describe-health-registry-docs-update",
+      "description": "Ensure all describe(), health(), registry, and documentation are up to date after major changes to RAGPipelineUtility, ReasoningLoopUtility, FeedbackAgent, and OrchestratorAgent.",
+      "status": "not started"
+    },
+    {
+      "id": "chunkingutility-semantic-implementation",
+      "description": "Implement real semantic chunking (embedding-based) in ChunkingUtility. Integrate with embedding providers and allow threshold configuration.",
+      "status": "not started"
+    },
+    {
+      "id": "chunkingutility-agentic-implementation",
+      "description": "Implement real agentic chunking (task-driven, LLM/embedding-based) in ChunkingUtility. Support task-specific segmentation and metadata.",
+      "status": "not started"
+    },
+    {
+      "id": "chunkingutility-test-coverage",
+      "description": "Add/expand tests for all chunking strategies in ChunkingUtility. Ensure robust coverage and edge cases.",
+      "status": "not started"
+    },
+    {
+      "id": "ragpipelineutility-chunking-integration",
+      "description": "Integrate ChunkingUtility into RAGPipelineUtility. Allow dynamic selection of chunking strategy and update docs/describe registry.",
+      "status": "not started"
+    },
+    {
+      "id": "rerankutility-embedding-implementation",
+      "description": "Implement real embedding-based reranker in RerankUtility. Integrate with embedding providers and scoring.",
+      "status": "not started"
+    },
+    {
+      "id": "rerankutility-llm-implementation",
+      "description": "Implement real LLM-based reranker in RerankUtility. Integrate with LLM providers for scoring.",
+      "status": "not started"
+    },
+    {
+      "id": "rerankutility-crossencoder-implementation",
+      "description": "Implement real cross-encoder reranker in RerankUtility. Integrate with cross-encoder models for scoring.",
+      "status": "not started"
+    },
+    {
+      "id": "rerankutility-mmr-implementation",
+      "description": "Implement real MMR/diversity reranker in RerankUtility. Integrate with diversity scoring and deduplication.",
+      "status": "not started"
+    },
+    {
+      "id": "rerankutility-test-coverage",
+      "description": "Add/expand tests for all rerank strategies in RerankUtility. Ensure robust coverage and edge cases.",
+      "status": "not started"
+    },
+    {
+      "id": "ragpipelineutility-rerank-integration",
+      "description": "Integrate RerankUtility into RAGPipelineUtility. Allow dynamic selection of rerank strategy and update docs/describe registry.",
+      "status": "not started"
+    },
+    {
+      "id": "registry-compliance-test-coverage",
+      "description": "Add/expand contract and integration tests for registry/describe/health compliance across all utilities, agents, and plugins.",
+      "status": "not started"
+    },
+    {
+      "id": "describe-registry-automation-ci",
+      "description": "Automate describe registry generation and CI enforcement for registry/describe/health compliance.",
+      "status": "not started"
+    },
+    {
+      "id": "agent-plugin-describe-review",
+      "description": "Review and update all agent and plugin describe() outputs for completeness and LLM/AI-friendliness.",
+      "status": "not started"
+    },
+    {
+      "id": "onboarding-docs-registry-architecture",
+      "description": "Add/expand onboarding documentation for registry-driven, modular architecture and barrel file usage.",
+      "status": "not started"
+    },
+    {
+      "id": "integrate-open-source-llm-apis",
+      "description": "Integrate open-source LLM APIs for chunk scoring, semantic search, and memory summarization (e.g., HuggingFace, OpenRouter, local models).",
+      "status": "not started"
+    },
+    {
+      "id": "implement-bm25-dpr-adapters",
+      "description": "Implement BM25 and DPR adapters for HybridRetrievalUtility (prefer Node.js or Python bridge, open source only).",
+      "status": "not started"
+    },
+    {
+      "id": "test-coverage-context-utilities",
+      "description": "Add/expand test coverage for ChunkingUtility, HybridRetrievalUtility, RerankUtility, and MemTree/SHIMI memory. Include edge cases and integration tests.",
+      "status": "not started"
+    },
+    {
+      "id": "docs-feature-table-context-utilities",
+      "description": "Document usage, configuration, and feature table entries for new context utilities in README.md, docs/, and onboarding materials.",
+      "status": "not started"
+    },
+    {
+      "id": "todo:nootropic/adapters/KafkaEventBus.ts:18",
+      "description": "[TODO] // TODO: Integrate OTel metrics via telemetry.ts or a shared metrics module (nootropic/adapters/KafkaEventBus.ts:18)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/adapters/KafkaEventBus.ts:48",
+      "description": "[TODO] * - OTel traces/metrics/logs are emitted for all operations (TODO) (nootropic/adapters/KafkaEventBus.ts:48)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/EnsembleAgent.ts:33",
+      "description": "[TODO] // TODO: Add WeightedVotingStrategy, SyntacticVotingStrategy, SemanticVotingStrategy, BehavioralVotingStrategy, MetaLLMVotingStrategy (nootropic/agents/EnsembleAgent.ts:33)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/FormalVerifierAgent.ts:21",
+      "description": "[TODO] * Emits events for each step. TODO: Integrate real TLA+/Coq/Lean and LLM logic. (nootropic/agents/FormalVerifierAgent.ts:21)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/FormalVerifierAgent.ts:35",
+      "description": "[TODO] // TODO: Generate formal spec (stub) (nootropic/agents/FormalVerifierAgent.ts:35)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/FormalVerifierAgent.ts:38",
+      "description": "[TODO] // TODO: Run verification (stub) (nootropic/agents/FormalVerifierAgent.ts:38)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/FormalVerifierAgent.ts:45",
+      "description": "[TODO] // TODO: Attempt repair (LLM-driven, stub) (nootropic/agents/FormalVerifierAgent.ts:45)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/MutationAgent.ts:20",
+      "description": "[TODO] * TODO: Integrate real StrykerJS and LLM repair logic. (nootropic/agents/MutationAgent.ts:20)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/MutationAgent.ts:35",
+      "description": "[TODO] // TODO: Run StrykerJS mutation testing (stub) (nootropic/agents/MutationAgent.ts:35)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/MutationAgent.ts:39",
+      "description": "[TODO] // TODO: Call LLM for repair (stub) (nootropic/agents/MutationAgent.ts:39)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/agents/MutationAgent.ts:47",
+      "description": "[TODO] // TODO: Rollback (stub) (nootropic/agents/MutationAgent.ts:47)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/capabilities/RAGPipelineUtility.ts:31",
+      "description": "[TODO] // 2. Hybrid retrieval (TODO: delegate to modular utility) (nootropic/capabilities/RAGPipelineUtility.ts:31)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/capabilities/RAGPipelineUtility.ts:33",
+      "description": "[TODO] const hybridResults = [rewrittenQuery]; // TODO: Replace with real hybrid retrieval (nootropic/capabilities/RAGPipelineUtility.ts:33)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/capabilities/RAGPipelineUtility.ts:36",
+      "description": "[TODO] // 3. Chunking (TODO: delegate to modular utility) (nootropic/capabilities/RAGPipelineUtility.ts:36)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/capabilities/RAGPipelineUtility.ts:38",
+      "description": "[TODO] const chunks = [hybridResults.join(' ')]; // TODO: Replace with real chunking (nootropic/capabilities/RAGPipelineUtility.ts:38)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/capabilities/RAGPipelineUtility.ts:59",
+      "description": "[TODO] // TODO: Integrate feedback aggregation and continuous improvement (nootropic/capabilities/RAGPipelineUtility.ts:59)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextMutationEngine.ts:4",
+      "description": "[TODO] // TODO/FIXME Policy (2025): All TODO/FIXME comments must be actionable, attributed, and resolved promptly. Use TODO(owner): or FIXME(owner): for traceability. Generic or stale TODOs are not allowed. (nootropic/contextMutationEngine.ts:4)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextMutationEngine.ts:76",
+      "description": "[TODO] // For TODO/FIXME, replace with [RESOLVED] or require actionable, attributed comments per 2025 best practices (nootropic/contextMutationEngine.ts:76)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextMutationEngine.ts:88",
+      "description": "[TODO] const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]'); (nootropic/contextMutationEngine.ts:88)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:238",
+      "description": "[TODO] // --- 10. TODO/FIXME Extraction --- (nootropic/contextSnapshotHelper.ts:238)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:239",
+      "description": "[TODO] // NOTE: Extraction logic is for migration/cleanup. All future TODO/FIXME must follow the 2025 policy (actionable, attributed, resolved promptly). (nootropic/contextSnapshotHelper.ts:239)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:273",
+      "description": "[TODO] if (/TODO|FIXME/.test(line)) { (nootropic/contextSnapshotHelper.ts:273)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:466",
+      "description": "[TODO] * @param todos TODO entries (nootropic/contextSnapshotHelper.ts:466)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:578",
+      "description": "[TODO] // --- TODOs for future agents (2025 policy: must be actionable, attributed, and resolved promptly) --- (nootropic/contextSnapshotHelper.ts:578)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:579",
+      "description": "[TODO] // - Implement delta mode for memory efficiency (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:579)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:580",
+      "description": "[TODO] // - Add semantic search index for fast context lookup (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:580)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:581",
+      "description": "[TODO] // - Integrate with test/lint runners for live status (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:581)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:582",
+      "description": "[TODO] // - Add memory budget estimator and context trimmer (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:582)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:583",
+      "description": "[TODO] // - Support YAML/HTML output if needed (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:583)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:591",
+      "description": "[TODO] // Heuristic: penalize for more TODOs (per policy, only actionable/attributed allowed), large files, and missing tests (nootropic/contextSnapshotHelper.ts:591)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:890",
+      "description": "[TODO] { name: 'extractTodos', signature: '() => TodoEntry[]', description: 'Extracts TODO/FIXME comments from code.' }, (nootropic/contextSnapshotHelper.ts:890)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/quality/selfcheck.ts:157",
+      "description": "[TODO] // TODO: Implement real code block extraction and testing (nootropic/quality/selfcheck.ts:157)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/quality/selfcheck.ts:417",
+      "description": "[TODO] suggestion: '// TODO: Review and fix this finding as per rule and best practices.', (nootropic/quality/selfcheck.ts:417)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/quality/sonarqubeApi.ts:48",
+      "description": "[TODO] suggestion: '// TODO: Review and fix this finding as per SonarQube rule and best practices.', (nootropic/quality/sonarqubeApi.ts:48)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateAsyncApiSpec.ts:27",
+      "description": "[TODO] payload: { type: 'object' } // TODO: Map describe() schema (nootropic/scripts/generateAsyncApiSpec.ts:27)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateAsyncApiSpec.ts:35",
+      "description": "[TODO] payload: { type: 'object' } // TODO: Map describe() schema (nootropic/scripts/generateAsyncApiSpec.ts:35)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateAsyncApiSpec.ts:61",
+      "description": "[TODO] # TODO: Add components/schemas for each capability\\n`; (nootropic/scripts/generateAsyncApiSpec.ts:61)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:14",
+      "description": "[TODO] // Extract all TODOs (nootropic/scripts/generateBacklogTodos.ts:14)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:17",
+      "description": "[TODO] // Build a set of existing TODOs for deduplication (nootropic/scripts/generateBacklogTodos.ts:17)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:24",
+      "description": "[TODO] // Prepare new TODO backlog items (nootropic/scripts/generateBacklogTodos.ts:24)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:30",
+      "description": "[TODO] description: `[TODO] ${todo.text} (${todo.file}:${todo.line})`, (nootropic/scripts/generateBacklogTodos.ts:30)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:38",
+      "description": "[TODO] // Append new TODOs to backlog (nootropic/scripts/generateBacklogTodos.ts:38)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:42",
+      "description": "[TODO] console.log(`Added ${newTodos.length} new TODOs to the backlog.`); (nootropic/scripts/generateBacklogTodos.ts:42)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:44",
+      "description": "[TODO] console.log('No new TODOs found. Backlog is up to date.'); (nootropic/scripts/generateBacklogTodos.ts:44)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateOpenApiSpec.ts:30",
+      "description": "[TODO] schema: { type: 'object' } // TODO: Map describe() schema (nootropic/scripts/generateOpenApiSpec.ts:30)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateOpenApiSpec.ts:55",
+      "description": "[TODO] # TODO: Add components/schemas for each capability\\n`; (nootropic/scripts/generateOpenApiSpec.ts:55)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/issueOpsStateMachine.ts:7",
+      "description": "[TODO] * TODO: Implement full state-machine logic for IssueOps-driven project management. (nootropic/scripts/issueOpsStateMachine.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/issueOpsStateMachine.ts:83",
+      "description": "[TODO] // TODO: Add more commands as needed (nootropic/scripts/issueOpsStateMachine.ts:83)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/issueOpsStateMachine.ts:96",
+      "description": "[TODO] // TODO: Add edge case handling (e.g., multiple labels, permission checks, onboarding checklist) (nootropic/scripts/issueOpsStateMachine.ts:96)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/issueOpsStateMachine.ts:97",
+      "description": "[TODO] // TODO: Add onboarding doc generation and link in onboarding comment (nootropic/scripts/issueOpsStateMachine.ts:97)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/issueOpsStateMachine.ts:98",
+      "description": "[TODO] // TODO: Add audit log output for all actions (nootropic/scripts/issueOpsStateMachine.ts:98)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/pruneAndCompressCache.ts:8",
+      "description": "[TODO] * TODO: Implement LLM/agent API, advanced policies, and extension hooks (nootropic/scripts/pruneAndCompressCache.ts:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/pruneAndCompressCache.ts:16",
+      "description": "[TODO] * TODO: Integrate with pruning/compression logic, add LLM/agent API, and advanced policies. (nootropic/scripts/pruneAndCompressCache.ts:16)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/tests/adapter.dapr.context-propagation.test.ts:96",
+      "description": "[TODO] // TODO: Add tests for W3C/B3 interop and custom propagator config (nootropic/tests/adapter.dapr.context-propagation.test.ts:96)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/tests/adapter.kafka.context-propagation.test.ts:74",
+      "description": "[TODO] // TODO: Add tests for W3C/B3 interop and custom metadata propagation (nootropic/tests/adapter.kafka.context-propagation.test.ts:74)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/tests/adapter.nats.context-propagation.test.ts:97",
+      "description": "[TODO] // TODO: Add tests for W3C/B3 interop and custom propagator config (nootropic/tests/adapter.nats.context-propagation.test.ts:97)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/tests/context/llmAdapterIntegration.test.ts:47",
+      "description": "[TODO] // TODO: Add real API tests for HuggingFaceLLMAdapter, OpenRouterLLMAdapter, OllamaLLMAdapter (nootropic/tests/context/llmAdapterIntegration.test.ts:47)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/RerankUtility.ts:38",
+      "description": "[TODO] // TODO: Use bi-encoder for initial ranking, cross-encoder for top-N reranking (nootropic/utils/context/RerankUtility.ts:38)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/contextManager.ts:85",
+      "description": "[TODO] // TODO: Implement tiered/compressed archiving if needed (nootropic/utils/context/contextManager.ts:85)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/contextManager.ts:281",
+      "description": "[TODO] { name: 'generateTodoPatch', signature: '(original: string, patched: string, file: string, line: number) => string', description: 'Generates a patch for TODO/FIXME resolution.' }, (nootropic/utils/context/contextManager.ts:281)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/contextManager.ts:371",
+      "description": "[TODO] * Generates a patch for TODO/FIXME resolution. (nootropic/utils/context/contextManager.ts:371)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/experimental/ChunkingUtility.ts:24",
+      "description": "[TODO] // TODO: Implement sentence tokenization, get embeddings, cluster by similarity (nootropic/utils/context/experimental/ChunkingUtility.ts:24)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/experimental/ChunkingUtility.ts:40",
+      "description": "[TODO] // TODO: Remove redundant chunks (cosine similarity > 0.9) (nootropic/utils/context/experimental/ChunkingUtility.ts:40)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/experimental/HybridRetrievalUtility.ts:26",
+      "description": "[TODO] // TODO: Integrate with BM25 (use JS port or call Python if needed) (nootropic/utils/context/experimental/HybridRetrievalUtility.ts:26)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/experimental/HybridRetrievalUtility.ts:43",
+      "description": "[TODO] // TODO: Retrieve from both, fuse results, fallback to sparse if dense is low confidence (nootropic/utils/context/experimental/HybridRetrievalUtility.ts:43)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/experimental/HybridRetrievalUtility.ts:46",
+      "description": "[TODO] // TODO: Implement fusion logic (nootropic/utils/context/experimental/HybridRetrievalUtility.ts:46)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/shimiMemory.ts:49",
+      "description": "[TODO] // TODO: Plug in real LLM/embedding backend (nootropic/utils/context/shimiMemory.ts:49)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/shimiMemory.ts:53",
+      "description": "[TODO] // TODO: Plug in real LLM/embedding backend for concept merging (nootropic/utils/context/shimiMemory.ts:53)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/shimiMemory.ts:407",
+      "description": "[TODO] // TODO: Summarize/compress node data (LLM or heuristic) (nootropic/utils/context/shimiMemory.ts:407)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/context/shimiMemory.ts:412",
+      "description": "[TODO] // TODO: Efficient retrieval based on query (embedding, metadata, etc.) (nootropic/utils/context/shimiMemory.ts:412)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:191",
+      "description": "[TODO] // TODO: Init GCP, Azure, Vault clients as needed (nootropic/utils/security/secretsManager.ts:191)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:196",
+      "description": "[TODO] // TODO: Call provider-specific API to decrypt/envelope unwrap (nootropic/utils/security/secretsManager.ts:196)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:203",
+      "description": "[TODO] // TODO: Call provider-specific API to encrypt/envelope wrap (nootropic/utils/security/secretsManager.ts:203)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:209",
+      "description": "[TODO] // TODO: Call provider-specific API to rotate key (nootropic/utils/security/secretsManager.ts:209)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:213",
+      "description": "[TODO] // TODO: Implement audit logging (nootropic/utils/security/secretsManager.ts:213)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:216",
+      "description": "[TODO] // TODO: Use provider SDK to encrypt DEK (nootropic/utils/security/secretsManager.ts:216)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:220",
+      "description": "[TODO] // TODO: Use provider SDK to decrypt DEK (nootropic/utils/security/secretsManager.ts:220)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:224",
+      "description": "[TODO] // TODO: Use provider SDK to rotate key (nootropic/utils/security/secretsManager.ts:224)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:344",
+      "description": "[TODO] // TODO: Store Kaniko build config if needed (nootropic/utils/security/secretsManager.ts:344)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:348",
+      "description": "[TODO] // TODO: Invoke Kaniko build (e.g., via CLI, GitHub Action, or API) (nootropic/utils/security/secretsManager.ts:348)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:353",
+      "description": "[TODO] // TODO: Inject secrets into Kaniko build context (from Vault, etc.) (nootropic/utils/security/secretsManager.ts:353)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:357",
+      "description": "[TODO] // TODO: Initialize Kaniko build environment if needed (nootropic/utils/security/secretsManager.ts:357)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:360",
+      "description": "[TODO] // TODO: Reload Kaniko config if needed (nootropic/utils/security/secretsManager.ts:360)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:363",
+      "description": "[TODO] // TODO: Implement Kaniko health check (nootropic/utils/security/secretsManager.ts:363)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:397",
+      "description": "[TODO] // TODO: Store ArgoCD deployment config if needed (nootropic/utils/security/secretsManager.ts:397)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:401",
+      "description": "[TODO] // TODO: Trigger ArgoCD deployment (e.g., via CLI, API, or manifest update) (nootropic/utils/security/secretsManager.ts:401)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:406",
+      "description": "[TODO] // TODO: Inject secrets into ArgoCD deployment context (from Vault, etc.) (nootropic/utils/security/secretsManager.ts:406)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:410",
+      "description": "[TODO] // TODO: Initialize ArgoCD deployment environment if needed (nootropic/utils/security/secretsManager.ts:410)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:413",
+      "description": "[TODO] // TODO: Reload ArgoCD config if needed (nootropic/utils/security/secretsManager.ts:413)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/security/secretsManager.ts:416",
+      "description": "[TODO] // TODO: Implement ArgoCD health check (nootropic/utils/security/secretsManager.ts:416)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils.ts:179",
+      "description": "[TODO] { name: 'generateTodoPatch', signature: '(original, patched, file, line) => string', description: 'Generates a patch for TODO/FIXME resolution.' }, (nootropic/utils.ts:179)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:10",
+      "description": "[TODO] // TODO: Integrate OTel metrics via telemetry.ts or a shared metrics module (nootropic copy/adapters/KafkaEventBus.ts:10)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:53",
+      "description": "[TODO] * - OTel traces/metrics/logs are emitted for all operations (TODO) (nootropic copy/adapters/KafkaEventBus.ts:53)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:239",
+      "description": "[TODO] // TODO: Implement with Kafka Streams or external storage if needed (nootropic copy/adapters/KafkaEventBus.ts:239)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:244",
+      "description": "[TODO] // TODO: Implement with Kafka Streams, or by consuming all messages from the topic (nootropic copy/adapters/KafkaEventBus.ts:244)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:263",
+      "description": "[TODO] //   // TODO: Track and report offset lag per topic/partition/group (nootropic copy/adapters/KafkaEventBus.ts:263)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:266",
+      "description": "[TODO] //   // TODO: Track and report time lag per topic/partition/group (nootropic copy/adapters/KafkaEventBus.ts:266)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextMutationEngine.ts:85",
+      "description": "[TODO] // For TODOs, suggest removing the TODO comment (nootropic copy/contextMutationEngine.ts:85)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextMutationEngine.ts:97",
+      "description": "[TODO] const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]'); (nootropic copy/contextMutationEngine.ts:97)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextSnapshotHelper.ts:231",
+      "description": "[TODO] // --- 10. TODO/FIXME Extraction --- (nootropic copy/contextSnapshotHelper.ts:231)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextSnapshotHelper.ts:249",
+      "description": "[TODO] if (/TODO|FIXME/.test(line)) { (nootropic copy/contextSnapshotHelper.ts:249)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextSnapshotHelper.ts:492",
+      "description": "[TODO] // --- TODOs for future agents --- (nootropic copy/contextSnapshotHelper.ts:492)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextSnapshotHelper.ts:505",
+      "description": "[TODO] // Heuristic: penalize for more TODOs, large files, and missing tests (nootropic copy/contextSnapshotHelper.ts:505)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/contextSnapshotHelper.ts:793",
+      "description": "[TODO] { name: 'extractTodos', signature: '() => TodoEntry[]', description: 'Extracts TODO/FIXME comments from code.' }, (nootropic copy/contextSnapshotHelper.ts:793)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/quality/selfcheck.ts:152",
+      "description": "[TODO] // TODO: Implement real code block extraction and testing (nootropic copy/quality/selfcheck.ts:152)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic copy/tests/adapter.kafka.context-propagation.test.ts:75",
+      "description": "[TODO] // TODO: Add tests for W3C/B3 interop and custom metadata propagation (nootropic copy/tests/adapter.kafka.context-propagation.test.ts:75)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:74",
+      "description": "[TODO] // TODO: Maybe check that compressed_size === file_size. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:74)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:81",
+      "description": "[TODO] // TODO: Better formatting.  Right-align this. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:81)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:121",
+      "description": "[TODO] // TODO: Maybe show simple lists and tuples on one line. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:121)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:125",
+      "description": "[TODO] // TODO: Maybe show simple lists and tuples on one line. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:125)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:129",
+      "description": "[TODO] // TODO: Maybe show simple (empty?) dicts on one line. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:129)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:217",
+      "description": "[TODO] // TODO: Check stride and indicate if the tensor is channels-last or non-contiguous (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:217)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:218",
+      "description": "[TODO] // TODO: Check size, stride, offset, and numel and indicate if (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:218)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:220",
+      "description": "[TODO] // TODO: Maybe show key? (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:220)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:268",
+      "description": "[TODO] // TODO: Less copy/paste between this and normal dicts. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:268)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:308",
+      "description": "[TODO] // TODO: Add human-readable sizes? (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:308)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:309",
+      "description": "[TODO] // TODO: Add sorting options? (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:309)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:310",
+      "description": "[TODO] // TODO: Add hierarchical collapsible tree? (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:310)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:481",
+      "description": "[TODO] // TODO: Maybe track by dtype as well. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:481)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:482",
+      "description": "[TODO] // TODO: Maybe distinguish between visible size and storage size. (Flight Control/.venv/lib/python3.13/site-packages/torch/utils/model_dump/code.js:482)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/nootropic/contextMutationEngine.ts:47",
+      "description": "[TODO] // For TODOs, suggest removing the TODO comment (Rocketship/nootropic/contextMutationEngine.ts:47)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/nootropic/contextMutationEngine.ts:53",
+      "description": "[TODO] const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]'); (Rocketship/nootropic/contextMutationEngine.ts:53)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/nootropic/contextSnapshotHelper.ts:190",
+      "description": "[TODO] // --- 10. TODO/FIXME Extraction --- (Rocketship/nootropic/contextSnapshotHelper.ts:190)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/nootropic/contextSnapshotHelper.ts:203",
+      "description": "[TODO] if (/TODO|FIXME/.test(line)) { (Rocketship/nootropic/contextSnapshotHelper.ts:203)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/nootropic/contextSnapshotHelper.ts:365",
+      "description": "[TODO] // --- TODOs for future agents --- (Rocketship/nootropic/contextSnapshotHelper.ts:365)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/nootropic/contextSnapshotHelper.ts:378",
+      "description": "[TODO] // Heuristic: penalize for more TODOs, large files, and missing tests (Rocketship/nootropic/contextSnapshotHelper.ts:378)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/CoderAgent.ts:3",
+      "description": "[TODO] // TODO: Implement CoderAgent logic. (Rocketship/extension/src/agents/CoderAgent.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/DeployerAgent.ts:15",
+      "description": "[TODO] // TODO: Replace with actual token or symbol if needed (Rocketship/extension/src/agents/DeployerAgent.ts:15)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/DocsAgent.ts:126",
+      "description": "[TODO] // TODO: Implement DuckDuckGo/web search fallback (see docs/agents.md) (Rocketship/extension/src/agents/DocsAgent.ts:126)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/ScaffolderAgent.ts:3",
+      "description": "[TODO] // TODO: Implement ScaffolderAgent logic. (Rocketship/extension/src/agents/ScaffolderAgent.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/__tests__/CriticAgent.contract.test.ts:2",
+      "description": "[TODO] // TODO: re-enable after refactor (#EPIC-123) (Rocketship/extension/src/agents/__tests__/CriticAgent.contract.test.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/__tests__/DebuggerAgent.contract.test.ts:2",
+      "description": "[TODO] // TODO: re-enable after refactor (#EPIC-123) (Rocketship/extension/src/agents/__tests__/DebuggerAgent.contract.test.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/__tests__/MonitorAgent.contract.test.ts:2",
+      "description": "[TODO] // TODO: re-enable after refactor (#EPIC-123) (Rocketship/extension/src/agents/__tests__/MonitorAgent.contract.test.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/__tests__/ReflexionAgent.contract.test.ts:2",
+      "description": "[TODO] // TODO: re-enable after refactor (#EPIC-123) (Rocketship/extension/src/agents/__tests__/ReflexionAgent.contract.test.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/__tests__/TesterAgent.contract.test.ts:2",
+      "description": "[TODO] // TODO: re-enable after refactor (#EPIC-123) (Rocketship/extension/src/agents/__tests__/TesterAgent.contract.test.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/defensiveMiddleware.ts:11",
+      "description": "[TODO] // TODO: Schema validation before/after if enabled (Rocketship/extension/src/agents/defensiveMiddleware.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/agents/defensiveMiddleware.ts:16",
+      "description": "[TODO] // TODO: Log error, escalate to SupervisorService (Rocketship/extension/src/agents/defensiveMiddleware.ts:16)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/data/StateStore.ts:7",
+      "description": "[TODO] // TODO: Initialize SQLite connection (Rocketship/extension/src/data/StateStore.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/data/StateStore.ts:11",
+      "description": "[TODO] // TODO: Serialize and persist state to SQLite (Rocketship/extension/src/data/StateStore.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/data/StateStore.ts:15",
+      "description": "[TODO] // TODO: Load and deserialize last good state from SQLite (Rocketship/extension/src/data/StateStore.ts:15)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/data/StateStore.ts:20",
+      "description": "[TODO] // TODO: Store error report in error_reports table (Rocketship/extension/src/data/StateStore.ts:20)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/data/StateStore.ts:24",
+      "description": "[TODO] // TODO: Retrieve recent error reports (Rocketship/extension/src/data/StateStore.ts:24)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:29",
+      "description": "[TODO] const scaffolder = new ScaffolderAgent(/* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:29)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:30",
+      "description": "[TODO] const planner = new PlannerAgent(inference /* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:30)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:31",
+      "description": "[TODO] const coder = new CoderAgent(inference /* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:31)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:32",
+      "description": "[TODO] const critic = new CriticAgent(inference /* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:32)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:33",
+      "description": "[TODO] const tester = new TesterAgent(/* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:33)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:34",
+      "description": "[TODO] const deployer = new DeployerAgent(/* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:34)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:36",
+      "description": "[TODO] const debug = new DebugAgent(inference, tester, telemetry /* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:36)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/extension.ts:37",
+      "description": "[TODO] const monitor = new MonitorAgent(inference, telemetry, memory /* TODO: pass configService if needed */); (Rocketship/extension/src/extension.ts:37)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/helpers/chunking.ts:3",
+      "description": "[TODO] // TODO: Implement token-based chunking for better embedding alignment (Rocketship/extension/src/helpers/chunking.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/helpers/chunking.ts:6",
+      "description": "[TODO] // TODO: Implement real chunking logic (Rocketship/extension/src/helpers/chunking.ts:6)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/helpers/embedding.ts:3",
+      "description": "[TODO] // TODO: Integrate a real embedding model (OpenAI, HuggingFace, or local model) (Rocketship/extension/src/helpers/embedding.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/helpers/embedding.ts:6",
+      "description": "[TODO] // TODO: Implement real embedding logic (Rocketship/extension/src/helpers/embedding.ts:6)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ApiServer.ts:11",
+      "description": "[TODO] // TODO: Start HTTP server, route requests (Rocketship/extension/src/services/ApiServer.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ApiServer.ts:16",
+      "description": "[TODO] // TODO: Auth check, parse model name, call supervisor.modelManager.loadModel (Rocketship/extension/src/services/ApiServer.ts:16)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ApiServer.ts:20",
+      "description": "[TODO] // TODO: Auth check, parse model name, call supervisor.modelManager.unloadModel (Rocketship/extension/src/services/ApiServer.ts:20)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ApiServer.ts:24",
+      "description": "[TODO] // TODO: Auth check, return model status from supervisor.modelManager (Rocketship/extension/src/services/ApiServer.ts:24)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ApiServer.ts:29",
+      "description": "[TODO] // TODO: Check X-Rocketship-Token header against config or env (Rocketship/extension/src/services/ApiServer.ts:29)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/CacheBackend.ts:25",
+      "description": "[TODO] // TODO: Implement LRU/LFU logic, TTL expiry (Rocketship/extension/src/services/CacheBackend.ts:25)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/CacheBackend.ts:37",
+      "description": "[TODO] async get(key: string) { /* TODO: Redis GET */ return null; } (Rocketship/extension/src/services/CacheBackend.ts:37)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/CacheBackend.ts:38",
+      "description": "[TODO] async set(key: string, value: any, ttl?: number) { /* TODO: Redis SETEX */ } (Rocketship/extension/src/services/CacheBackend.ts:38)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/CacheBackend.ts:39",
+      "description": "[TODO] async del(key: string) { /* TODO: Redis DEL */ } (Rocketship/extension/src/services/CacheBackend.ts:39)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/CacheBackend.ts:40",
+      "description": "[TODO] async has(key: string) { /* TODO: Redis EXISTS */ return false; } (Rocketship/extension/src/services/CacheBackend.ts:40)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/CacheBackend.ts:41",
+      "description": "[TODO] async size() { /* TODO: Redis DBSIZE or SCAN */ return 0; } (Rocketship/extension/src/services/CacheBackend.ts:41)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/HybridActivationCache.ts:7",
+      "description": "[TODO] // TODO: Initialize cache, PagedAttention logic (Rocketship/extension/src/services/HybridActivationCache.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/HybridActivationCache.ts:11",
+      "description": "[TODO] // TODO: Retrieve cached activation (Rocketship/extension/src/services/HybridActivationCache.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/HybridActivationCache.ts:16",
+      "description": "[TODO] // TODO: Store activation in cache (Rocketship/extension/src/services/HybridActivationCache.ts:16)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/HybridActivationCache.ts:20",
+      "description": "[TODO] // TODO: Remove activation from cache (Rocketship/extension/src/services/HybridActivationCache.ts:20)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/HybridRetrievalService.ts:29",
+      "description": "[TODO] // TODO: Pass K to VectorDBService if supported (Rocketship/extension/src/services/HybridRetrievalService.ts:29)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/HybridRetrievalService.ts:46",
+      "description": "[TODO] // TODO: Use upsertMany for batch upsert if supported (Rocketship/extension/src/services/HybridRetrievalService.ts:46)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/InferenceService.ts:3",
+      "description": "[TODO] // TODO: Implement InferenceService logic. (Rocketship/extension/src/services/InferenceService.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/InferenceService.ts:17",
+      "description": "[TODO] // TODO: Initialize model adapters/providers (Rocketship/extension/src/services/InferenceService.ts:17)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/InferenceService.ts:21",
+      "description": "[TODO] // TODO: Implement simple inference (Rocketship/extension/src/services/InferenceService.ts:21)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/InferenceService.ts:26",
+      "description": "[TODO] // TODO: Implement model call with cancellation support (Rocketship/extension/src/services/InferenceService.ts:26)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/InferenceService.ts:31",
+      "description": "[TODO] // TODO: Implement adapter prewarming (Rocketship/extension/src/services/InferenceService.ts:31)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/LLMService.ts:21",
+      "description": "[TODO] this.model = options.model || 'gpt-3.5-turbo'; // TODO: Make configurable (Rocketship/extension/src/services/LLMService.ts:21)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/LLMService.ts:30",
+      "description": "[TODO] // TODO: Integrate with real LLM API (OpenAI, Ollama, etc.) (Rocketship/extension/src/services/LLMService.ts:30)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/LLMService.ts:35",
+      "description": "[TODO] // TODO: Add model selection, streaming, advanced error handling (Rocketship/extension/src/services/LLMService.ts:35)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/MetricsService.ts:42",
+      "description": "[TODO] // TODO: Register additional metrics (cache hits, model load/unload, etc.) (Rocketship/extension/src/services/MetricsService.ts:42)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/MetricsService.ts:68",
+      "description": "[TODO] // TODO: Load from monitoring/alerts.yaml or config (Rocketship/extension/src/services/MetricsService.ts:68)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ModelRouter.ts:14",
+      "description": "[TODO] // TODO: Check supervisor.modelManager cache (Rocketship/extension/src/services/ModelRouter.ts:14)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ModelRouter.ts:22",
+      "description": "[TODO] // TODO: Unload model via supervisor.modelManager (Rocketship/extension/src/services/ModelRouter.ts:22)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ModelRouter.ts:27",
+      "description": "[TODO] // TODO: Return current status from supervisor.modelManager (Rocketship/extension/src/services/ModelRouter.ts:27)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ModelRouter.ts:33",
+      "description": "[TODO] // TODO: Read from config.agents[agentName].whileLoading (Rocketship/extension/src/services/ModelRouter.ts:33)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ModelRouter.ts:39",
+      "description": "[TODO] // TODO: Auto-detect or use config.devices (Rocketship/extension/src/services/ModelRouter.ts:39)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ServiceBase.ts:155",
+      "description": "[TODO] // TODO: Implement Express or native HTTP handler for /healthz and /readyz (Rocketship/extension/src/services/ServiceBase.ts:155)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/ServiceBase.ts:180",
+      "description": "[TODO] // TODO: Add plugin registration, advanced health checks, and more as needed. (Rocketship/extension/src/services/ServiceBase.ts:180)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/SupervisorService.ts:28",
+      "description": "[TODO] // TODO: Implement eviction of idle models (Rocketship/extension/src/services/SupervisorService.ts:28)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/SupervisorService.ts:34",
+      "description": "[TODO] // TODO: Implement eviction of idle adapters (Rocketship/extension/src/services/SupervisorService.ts:34)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/TelemetryService.ts:3",
+      "description": "[TODO] // TODO: Implement TelemetryService logic. (Rocketship/extension/src/services/TelemetryService.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/TelemetryService.ts:41",
+      "description": "[TODO] // TODO: Forward to OpenTelemetry, log, or event sink as needed (Rocketship/extension/src/services/TelemetryService.ts:41)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/TelemetryService.ts:61",
+      "description": "[TODO] // TODO: Implement flush logic for async exporters if needed (Rocketship/extension/src/services/TelemetryService.ts:61)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/VectorDBService.ts:36",
+      "description": "[TODO] // TODO: Use options.connectionString or options.indexPath (Rocketship/extension/src/services/VectorDBService.ts:36)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/VectorDBService.ts:69",
+      "description": "[TODO] // TODO: Implement LanceDB vector search logic (Rocketship/extension/src/services/VectorDBService.ts:69)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/services/VectorDBService.ts:75",
+      "description": "[TODO] // TODO: Add batch upsert/search, advanced config, metrics, and error handling (Rocketship/extension/src/services/VectorDBService.ts:75)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/shared/stateTypes.ts:6",
+      "description": "[TODO] state: any; // TODO: Replace 'any' with a more specific type as needed (Rocketship/extension/src/shared/stateTypes.ts:6)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/tools/duck-duckgo-tool.ts:8",
+      "description": "[TODO] // TODO: Check allowed agents from config (Rocketship/extension/src/tools/duck-duckgo-tool.ts:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/tools/duck-duckgo-tool.ts:9",
+      "description": "[TODO] // TODO: Check Redis cache first (Rocketship/extension/src/tools/duck-duckgo-tool.ts:9)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/tools/duck-duckgo-tool.ts:10",
+      "description": "[TODO] // TODO: If not cached, perform DuckDuckGo search (duck-duck-scrape or similar) (Rocketship/extension/src/tools/duck-duckgo-tool.ts:10)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/tools/duck-duckgo-tool.ts:11",
+      "description": "[TODO] // TODO: Store results in Redis with TTL (Rocketship/extension/src/tools/duck-duckgo-tool.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/tools/duck-duckgo-tool.ts:12",
+      "description": "[TODO] // TODO: Enforce rate limits (token bucket) (Rocketship/extension/src/tools/duck-duckgo-tool.ts:12)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/tools/duck-duckgo-tool.ts:13",
+      "description": "[TODO] // TODO: Fallback to next provider if needed (Rocketship/extension/src/tools/duck-duckgo-tool.ts:13)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/extension/src/utils/promptRenderer.ts:18",
+      "description": "[TODO] // TODO: Add support for helpers, partials, and template caching. (Rocketship/extension/src/utils/promptRenderer.ts:18)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/scripts/finetune-lora.js:7",
+      "description": "[TODO] // TODO: Implement LoRA fine-tuning logic using logs/reflections.json as input (Rocketship/packages/core/scripts/finetune-lora.js:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/InferenceService.d.ts:2",
+      "description": "[TODO] // TODO: implement inference logic (Rocketship/packages/core/src/InferenceService.d.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/InferenceService.ts:2",
+      "description": "[TODO] // TODO: implement inference logic (Rocketship/packages/core/src/InferenceService.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/SecretStore.d.ts:2",
+      "description": "[TODO] // TODO: implement secret storage logic (Rocketship/packages/core/src/SecretStore.d.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/SecretStore.ts:2",
+      "description": "[TODO] // TODO: implement secret storage logic (Rocketship/packages/core/src/SecretStore.ts:2)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/Validator.d.ts:3",
+      "description": "[TODO] // TODO: implement validation logic (Rocketship/packages/core/src/Validator.d.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/helpers/Validator.ts:3",
+      "description": "[TODO] // TODO: Implement Ajv-based validation logic and schema registration (Rocketship/packages/core/src/helpers/Validator.ts:3)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/helpers/Validator.ts:7",
+      "description": "[TODO] // TODO: Implement schema compilation using Ajv (Rocketship/packages/core/src/helpers/Validator.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship/packages/core/src/helpers/Validator.ts:15",
+      "description": "[TODO] // TODO: Implement schema validation using Ajv (Rocketship/packages/core/src/helpers/Validator.ts:15)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/cli/src/index.ts:97",
+      "description": "[TODO] // TODO: hook into DiagnosticService to validate config, connectivity, thresholds (Rocketship copy/cli/src/index.ts:97)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/agents/DeployerAgent.js:8",
+      "description": "[TODO] // TODO: implement deployment logic (Rocketship copy/extension/src/agents/DeployerAgent.js:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/agents/DeployerAgent.ts:8",
+      "description": "[TODO] // TODO: implement deployment logic (Rocketship copy/extension/src/agents/DeployerAgent.ts:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/agents/ScaffolderAgent.js:8",
+      "description": "[TODO] // TODO: implement scaffolding logic (Rocketship copy/extension/src/agents/ScaffolderAgent.js:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/agents/ScaffolderAgent.ts:8",
+      "description": "[TODO] // TODO: implement scaffolding logic (Rocketship copy/extension/src/agents/ScaffolderAgent.ts:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/agents/TesterAgent.js:8",
+      "description": "[TODO] // TODO: integrate test execution runner and return results (Rocketship copy/extension/src/agents/TesterAgent.js:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/agents/TesterAgent.ts:22",
+      "description": "[TODO] // TODO: integrate test execution runner and return results (Rocketship copy/extension/src/agents/TesterAgent.ts:22)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/HybridRetrievalService.js:16",
+      "description": "[TODO] // TODO: vectorize query, call vector_search, map to ContextChunk (Rocketship copy/extension/src/services/HybridRetrievalService.js:16)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/HybridRetrievalService.ts:20",
+      "description": "[TODO] // TODO: vectorize query, call vector_search, map to ContextChunk (Rocketship copy/extension/src/services/HybridRetrievalService.ts:20)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/InferenceService.js:8",
+      "description": "[TODO] // TODO: Implement inference logic (Rocketship copy/extension/src/services/InferenceService.js:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/InferenceService.js:19",
+      "description": "[TODO] // TODO: dispatch to OpenAI, Ollama, or HF provider per config (Rocketship copy/extension/src/services/InferenceService.js:19)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/InferenceService.js:26",
+      "description": "[TODO] // TODO: implement adapter prewarming if using LoRA or similar (Rocketship copy/extension/src/services/InferenceService.js:26)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/InferenceService.ts:29",
+      "description": "[TODO] // TODO: Implement inference logic (Rocketship copy/extension/src/services/InferenceService.ts:29)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/InferenceService.ts:41",
+      "description": "[TODO] // TODO: dispatch to OpenAI, Ollama, or HF provider per config (Rocketship copy/extension/src/services/InferenceService.ts:41)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/InferenceService.ts:49",
+      "description": "[TODO] // TODO: implement adapter prewarming if using LoRA or similar (Rocketship copy/extension/src/services/InferenceService.ts:49)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MemoryService.js:11",
+      "description": "[TODO] // TODO: implement storage logic (Rocketship copy/extension/src/services/MemoryService.js:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MemoryService.ts:18",
+      "description": "[TODO] // TODO: implement storage logic (Rocketship copy/extension/src/services/MemoryService.ts:18)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MemoryService.ts:21",
+      "description": "[TODO] // TODO: implement getSessionMemory and getPersistentMemory (Rocketship copy/extension/src/services/MemoryService.ts:21)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MetaLearningController.js:11",
+      "description": "[TODO] // TODO: implement feedback capture (Rocketship copy/extension/src/services/MetaLearningController.js:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MetaLearningController.js:17",
+      "description": "[TODO] // TODO: implement self-reflection logic (Rocketship copy/extension/src/services/MetaLearningController.js:17)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MetaLearningController.ts:15",
+      "description": "[TODO] // TODO: implement feedback capture (Rocketship copy/extension/src/services/MetaLearningController.ts:15)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/MetaLearningController.ts:22",
+      "description": "[TODO] // TODO: implement self-reflection logic (Rocketship copy/extension/src/services/MetaLearningController.ts:22)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/TelemetryService.js:14",
+      "description": "[TODO] // TODO: implement event dispatch (Rocketship copy/extension/src/services/TelemetryService.js:14)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/TelemetryService.js:20",
+      "description": "[TODO] // TODO: implement flush logic (Rocketship copy/extension/src/services/TelemetryService.js:20)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/TelemetryService.ts:17",
+      "description": "[TODO] // TODO: implement event dispatch (Rocketship copy/extension/src/services/TelemetryService.ts:17)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/extension/src/services/TelemetryService.ts:24",
+      "description": "[TODO] // TODO: implement flush logic (Rocketship copy/extension/src/services/TelemetryService.ts:24)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/scripts/finetune-lora.js:7",
+      "description": "[TODO] // TODO: Implement LoRA fine-tuning logic using logs/reflections.json as input (Rocketship copy/packages/core/scripts/finetune-lora.js:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/scripts/gen-mocks.ts:13",
+      "description": "[TODO] // TODO: Validate generated mock against schema and fail if invalid (Rocketship copy/packages/core/scripts/gen-mocks.ts:13)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/DeployerAgent.ts:7",
+      "description": "[TODO] * TODO: Use Handlebars templates from /patterns/deploy. (Rocketship copy/packages/core/src/DeployerAgent.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/DeployerAgent.ts:12",
+      "description": "[TODO] // TODO: scaffold Dockerfile and CI YAML using templates in /patterns/deploy (Rocketship copy/packages/core/src/DeployerAgent.ts:12)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/InferenceService.ts:7",
+      "description": "[TODO] // TODO: Implement inference logic and sandboxing (Rocketship copy/packages/core/src/InferenceService.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/OrchestratorService.ts:42",
+      "description": "[TODO] // TODO: Implement the full workflow orchestration logic (Rocketship copy/packages/core/src/OrchestratorService.ts:42)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/ScaffolderAgent.ts:11",
+      "description": "[TODO] * TODO: Integrate Yeoman generator invocation (yo rocketship-scaffold). (Rocketship copy/packages/core/src/ScaffolderAgent.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/ScaffolderAgent.ts:16",
+      "description": "[TODO] // TODO: invoke Yeoman generator for each task: (Rocketship copy/packages/core/src/ScaffolderAgent.ts:16)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/SecretStore.ts:9",
+      "description": "[TODO] // TODO: Add telemetry for secret access (Rocketship copy/packages/core/src/SecretStore.ts:9)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/helpers.ts:11",
+      "description": "[TODO] // TODO: Add fallback, telemetry, and lazy-load localLoRAModel (Rocketship copy/packages/core/src/helpers.ts:11)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:Rocketship copy/packages/core/src/helpers.ts:29",
+      "description": "[TODO] // TODO: Implement adaptive concurrency logic (Rocketship copy/packages/core/src/helpers.ts:29)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:40",
+      "description": "[TODO] // Append new TODOs to backlog (nootropic/scripts/generateBacklogTodos.ts:40)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/generateBacklogTodos.ts:46",
+      "description": "[TODO] console.log('No new TODOs found. Backlog is up to date.'); (nootropic/scripts/generateBacklogTodos.ts:46)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/pruneBacklogTodos.ts:5",
+      "description": "[TODO] * Scans agentBacklog.json for TODOs with triage: 'resolved' or 'ignored', (nootropic/scripts/pruneBacklogTodos.ts:5)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/pruneBacklogTodos.ts:30",
+      "description": "[TODO] // Partition TODOs (nootropic/scripts/pruneBacklogTodos.ts:30)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/pruneBacklogTodos.ts:54",
+      "description": "[TODO] console.log(`Archived ${toArchive.length} TODOs to backlog-archive.json.`); (nootropic/scripts/pruneBacklogTodos.ts:54)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/pruneBacklogTodos.ts:56",
+      "description": "[TODO] console.log('No TODOs to archive.'); (nootropic/scripts/pruneBacklogTodos.ts:56)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:278",
+      "description": "[TODO] if (/TODO|FIXME/.test(line)) { (nootropic/contextSnapshotHelper.ts:278)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:471",
+      "description": "[TODO] * @param todos TODO entries (nootropic/contextSnapshotHelper.ts:471)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:584",
+      "description": "[TODO] // - Implement delta mode for memory efficiency (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:584)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:585",
+      "description": "[TODO] // - Add semantic search index for fast context lookup (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:585)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:586",
+      "description": "[TODO] // - Integrate with test/lint runners for live status (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:586)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:587",
+      "description": "[TODO] // - Add memory budget estimator and context trimmer (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:587)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:588",
+      "description": "[TODO] // - Support YAML/HTML output if needed (TODO:future-agent) (nootropic/contextSnapshotHelper.ts:588)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:596",
+      "description": "[TODO] // Heuristic: penalize for more TODOs (per policy, only actionable/attributed allowed), large files, and missing tests (nootropic/contextSnapshotHelper.ts:596)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/contextSnapshotHelper.ts:895",
+      "description": "[TODO] { name: 'extractTodos', signature: '() => TodoEntry[]', description: 'Extracts TODO/FIXME comments from code.' }, (nootropic/contextSnapshotHelper.ts:895)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "epic-nv-embed-integration",
+      "description": "EPIC: Integrate NVIDIA NV-Embed-v2 as the canonical embedding model for all semantic search, retrieval, and agentic context workflows.",
+      "status": "in progress",
+      "priority": "top",
+      "note": "NV-Embed-v2 is now the default embedding model for all semantic/agentic workflows. See README for setup and rationale.",
+      "subtasks": [
+        {
+          "id": "nv-embed-pipeline-ci-test",
+          "description": "Add CI/test coverage for embedding pipeline and integration with agentic workflows.",
+          "status": "not started"
+        },
+        {
+          "id": "nv-embed-quantization-support",
+          "description": "Add support for 4-bit GGUF/AutoGPTQ quantization for CPU/low-VRAM setups.",
+          "status": "planned"
+        },
+        {
+          "id": "nv-embed-docs-onboarding",
+          "description": "Document NV-Embed-v2 setup, usage, quantization, and rationale in README and BACKLOG_POLICY.",
+          "status": "in progress"
+        }
+      ]
+    },
+    {
+      "id": "epic-doc-code-parity",
+      "description": "EPIC: Ensure total parity between documentation, codebase, and backlog. Backlog all missing/planned docManifest sections and references. Update docs to reflect planned/in-progress status for all features.",
+      "status": "in progress",
+      "priority": "top",
+      "note": "This epic ensures that all planned and missing features from docManifest and code/doc sync checks are tracked, discoverable, and documented.",
+      "subtasks": [
+        {
+          "id": "backlog-missing-docmanifest-sections",
+          "description": "Backlog all missing/planned docManifest sections and references as backlog items or subtasks, with status 'planned' or 'in progress'. Reference docManifest and code/doc sync check for each.",
+          "status": "in progress"
+        },
+        {
+          "id": "update-docmanifest-status",
+          "description": "Update docManifest.json to mark missing sections as 'planned' or 'in progress' if not yet implemented. Ensure all planned features are discoverable in docs and backlog.",
+          "status": "in progress"
+        },
+        {
+          "id": "update-readme-and-docs-for-parity",
+          "description": "Update README.md, BACKLOG_POLICY.md, and CONTRIBUTING.md to reference all major features, planned implementations, and agentic/embedding upgrades. Ensure onboarding, coding standards, and CI/CD integration are up to date.",
+          "status": "in progress"
+        }
+      ]
+    },
+    {
+      "id": "todo:nootropic/scripts/aiTriageBacklogTodos.ts:5",
+      "description": "[TODO] * Analyzes all TODOs in agentBacklog.json, suggests triage and priority using AI/LLM heuristics, (nootropic/scripts/aiTriageBacklogTodos.ts:5)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/aiTriageBacklogTodos.ts:6",
+      "description": "[TODO] * and adds 'aiSuggestedTriage' and 'aiSuggestedPriority' fields. Marks TODOs as 'ignored' if they are just code comments or docstring reminders, (nootropic/scripts/aiTriageBacklogTodos.ts:6)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/aiTriageBacklogTodos.ts:7",
+      "description": "[TODO] * 'resolved' if the referenced code no longer exists, and 'top' priority for TODOs in core/critical files. (nootropic/scripts/aiTriageBacklogTodos.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/aiTriageBacklogTodos.ts:74",
+      "description": "[TODO] console.log(`  ${file}: ${count} TODOs`); (nootropic/scripts/aiTriageBacklogTodos.ts:74)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/backlogInsights.ts:6",
+      "description": "[TODO] * For each TODO, computes a staleness score (days since added or last modified), and outputs a summary JSON with: (nootropic/scripts/backlogInsights.ts:6)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/backlogInsights.ts:7",
+      "description": "[TODO] *   - top 5 files by TODO count (nootropic/scripts/backlogInsights.ts:7)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/backlogInsights.ts:8",
+      "description": "[TODO] *   - top 5 oldest TODOs (nootropic/scripts/backlogInsights.ts:8)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/backlogInsights.ts:39",
+      "description": "[TODO] // Top 5 files by TODO count (nootropic/scripts/backlogInsights.ts:39)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/backlogInsights.ts:41",
+      "description": "[TODO] // Top 5 oldest TODOs (nootropic/scripts/backlogInsights.ts:41)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/scripts/simulateImpact.ts:51",
+      "description": "[TODO] // TODO: Add semantic similarity search using embeddings (nootropic/scripts/simulateImpact.ts:51)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/feedback/semgrepMemories.ts:85",
+      "description": "[TODO] * TODO: Implement full context/impact analysis using .nootropic-cache/context-graph.json and semantic-embeddings.json (nootropic/utils/feedback/semgrepMemories.ts:85)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "todo:nootropic/utils/feedback/semgrepMemories.ts:102",
+      "description": "[TODO] // TODO: Use context graph and embeddings to populate impact (nootropic/utils/feedback/semgrepMemories.ts:102)",
+      "status": "not started",
+      "priority": "low",
+      "note": "Auto-extracted from codebase. Please triage and update as needed."
+    },
+    {
+      "id": "automation-prune-archive-backlog",
+      "description": "Automate pruning and archiving of completed or obsolete backlog items. The system should automatically move completed/obsolete items to .nootropic-cache/backlog-archive.json, keeping the main backlog actionable and up to date. Reference scripts/pruneBacklogTodos.ts, scripts/backlogSync.ts, and scripts/generateBacklogSummary.ts.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-technical-debt-hotspot-detection",
+      "description": "Automate technical debt hotspot detection and prioritization. The system should automatically surface and prioritize files/modules with the highest TODO density and staleness, using LLM/AI heuristics and dependency analysis. Reference scripts/aiTriageBacklogTodos.ts and backlogInsights.ts.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-stale-todo-detection-escalation",
+      "description": "Automate stale TODO detection and escalation. The system should automatically flag TODOs that have not been updated or resolved within a configurable threshold (e.g., 30 days), escalate them in the backlog, and notify maintainers. Reference scripts/backlogInsights.ts.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-technical-debt-hotspot-ci-integration",
+      "description": "Integrate technical debt hotspot detection and stale TODO escalation into CI/CD: scheduled runs, PR checks, and notifications. Reference scripts/aiTriageBacklogTodos.ts, scripts/backlogInsights.ts, and docs. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-stale-todo-issueops-integration",
+      "description": "Integrate stale TODO escalation with GitHub IssueOps/notification: auto-create or update issues for stale TODOs, notify maintainers, and escalate as needed. Reference scripts/backlogInsights.ts and IssueOps workflow. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-onboarding-checklist-generation",
+      "description": "Automate onboarding checklist generation and enforcement: auto-generate onboarding/troubleshooting checklists from the describe registry and docs, enforce in CI/onboarding. Reference CONTRIBUTING.md and planned onboarding script. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-context-graph-refresh",
+      "description": "Automate context/semantic graph refresh: schedule or trigger scripts/generateContextGraph.ts and scripts/generateSemanticEmbeddings.ts to keep context graphs and embeddings up to date. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-cache-health-reporting",
+      "description": "Automate cache health reporting and manifest refresh: schedule or trigger scripts/pruneAndCompressCache.ts --refresh-manifest and report cache health in CI. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-compliance-health-lifecycle-checks",
+      "description": "Automate compliance, health, and lifecycle checks for all capabilities: run scripts/validateDescribeRegistry.ts and tests/lifecycleCompliance.test.ts in CI, report results, and enforce compliance. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-issueops-state-machine-triggers",
+      "description": "Automate IssueOps state-machine triggers for backlog/roadmap items: auto-update GitHub Issues and project boards based on backlog/roadmap changes, using scripts/backlogSync.ts and .github/workflows/issueops-state-machine.yml. Mark as 'planned'.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-script-llm-friendly-flags",
+      "description": "Add --json and --help flags to all automation scripts for LLM/agent-friendly and human usage. Reference: aiTriageBacklogTodos.ts, backlogInsights.ts, pruneBacklogTodos.ts, generateDocsFromDescribe.ts, docs-check-sync.ts, backlogSync.ts, etc.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-script-error-handling-standardization",
+      "description": "Standardize error handling and exit codes across all automation scripts for consistency and easier troubleshooting. Reference: all scripts in scripts/ directory.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-script-shared-helpers",
+      "description": "Extract common file reading/writing, JSON parsing, and error handling into a shared utility (e.g., utils/automationHelpers.ts) and use it across all automation scripts for DRYness and maintainability.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-script-ci-scheduling",
+      "description": "Ensure all scripts that generate outputs (e.g., insights, context graphs, compliance reports) are scheduled in CI/CD, not just manual. Reference: .github/workflows/ and scripts/ directory.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-script-docs-update",
+      "description": "Update documentation for each automation script to include usage, flags, outputs, and troubleshooting/extension tips. Reference: README.md, CONTRIBUTING.md, scripts/ directory.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-multi-agent-orchestration-patterns",
+      "description": "Implement and document multi-agent collaboration/orchestration patterns (manager, peer, critic, feedback loops) for agentic workflows. Reference: 2025 best practices, Orq.ai, n8n, CrewAI, LangGraph, and latest research.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-feedback-loops-continuous-improvement",
+      "description": "Automate feedback loops for performance metrics, user/agent feedback, and continuous improvement. Integrate with backlog, IssueOps, and agent memory. Reference: 2025 best practices, Orq.ai, n8n, and latest research.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-dynamic-prioritization-sprint-planning",
+      "description": "Automate dynamic prioritization and sprint planning using AI/LLM insights, dependency graphs, and backlog insights. Reference: 2025 best practices, n8n, and latest research.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-security-compliance-guardrails",
+      "description": "Automate security, compliance, and guardrail checks (escalation triggers, audit logs, privacy checks) for all agentic workflows. Reference: 2025 best practices, EU AI Act, Anthropic's constitutional AI, and latest research.",
+      "status": "planned",
+      "priority": "high"
+    },
+    {
+      "id": "automation-human-in-the-loop-escalation",
+      "description": "Automate human-in-the-loop escalation and review for ambiguous or high-risk actions. Integrate with IssueOps, notifications, and agent workflows. Reference: 2025 best practices, Orq.ai, n8n, and latest research.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-memory-augmented-agent-patterns",
+      "description": "Implement modular, memory-augmented agent patterns (short/long-term memory, context graphs) for context-aware, adaptive workflows. Reference: CrewAI, LangGraph, Orq.ai, and latest research.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-tool-integration-orchestration",
+      "description": "Automate tool integration and orchestration (function calling, API/tool registry, dynamic tool selection) for agentic workflows. Reference: n8n, Orq.ai, and latest research.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "automation-automated-documentation-discoverability",
+      "description": "Automate documentation and discoverability for all tools, workflows, and agents (docs-as-code, LLM/AI-friendly, introspectable). Reference: 2025 best practices, n8n, Orq.ai, and latest research.",
+      "status": "planned",
+      "priority": "medium"
+    },
+    {
+      "id": "epic-docs-code-e2e-automation-plan-surfacing",
+      "description": "EPIC: Docs-as-Code & E2E Automation Plan Surfacing. Surface the persistent E2E automation plan in onboarding, docs, and backlog. Ensure all automation scripts and capabilities are documented in docs/ and referenced in the feature table. Add troubleshooting and LLM/AI usage hints to all docs.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "automate-onboarding-checklist-generation-enforcement",
+          "description": "Automate onboarding checklist generation and enforcement.",
+          "status": "not started"
+        },
+        {
+          "id": "add-refresh-onboarding-troubleshooting-automation-scripts-docs",
+          "description": "Add/refresh onboarding/troubleshooting automation scripts and documentation.",
+          "status": "not started"
+        }
+      ]
+    },
+    {
+      "id": "epic-advanced-automation-compliance",
+      "description": "EPIC: Advanced Automation & Compliance. Implement and document multi-agent orchestration patterns, automate feedback loops, dynamic prioritization, security/compliance guardrails, human-in-the-loop escalation, memory-augmented agent patterns, tool integration, and automated documentation/discoverability.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "implement-document-multi-agent-orchestration-patterns",
+          "description": "Implement and document multi-agent orchestration patterns (manager, peer, critic, feedback loops) for agentic workflows.",
+          "status": "not started"
+        },
+        {
+          "id": "automate-feedback-loops-dynamic-prioritization-sprint-planning",
+          "description": "Automate feedback loops, dynamic prioritization, and sprint planning using AI/LLM insights, dependency graphs, and backlog insights.",
+          "status": "not started"
+        },
+        {
+          "id": "automate-security-compliance-guardrails",
+          "description": "Automate security, compliance, and guardrail checks for all agentic workflows.",
+          "status": "not started"
+        },
+        {
+          "id": "automate-human-in-the-loop-escalation-review",
+          "description": "Automate human-in-the-loop escalation and review for ambiguous or high-risk actions. Integrate with IssueOps, notifications, and agent workflows.",
+          "status": "not started"
+        },
+        {
+          "id": "implement-memory-augmented-agent-patterns",
+          "description": "Implement modular, memory-augmented agent patterns (short/long-term memory, context graphs) for context-aware, adaptive workflows.",
+          "status": "not started"
+        },
+        {
+          "id": "automate-tool-integration-orchestration",
+          "description": "Automate tool integration and orchestration (function calling, API/tool registry, dynamic tool selection) for agentic workflows.",
+          "status": "not started"
+        },
+        {
+          "id": "automate-documentation-discoverability-tools-workflows-agents",
+          "description": "Automate documentation and discoverability for all tools, workflows, and agents (docs-as-code, LLM/AI-friendly, introspectable).",
+          "status": "not started"
+        }
+      ]
+    },
+    {
+      "id": "epic-automation-metadata-and-onboarding",
+      "description": "EPIC: Automation Metadata, Onboarding, and LLM/Agent Discoverability. Scaffold and automate all metadata and onboarding files for robust, LLM/agent-friendly workflows. Ensure all are referenced in docs, onboarding, and CI. Web UI and structured docs/outputs are discoverable and up to date.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "automation-llm-friendly-schema-output",
+          "description": "Extend all doc/spec generation scripts to output JSON Schema and LLM/AI-usable structured outputs for all capabilities/plugins. Reference: generateDocsFromDescribe.ts, generateOpenApiSpec.ts, generateAsyncApiSpec.ts, feature table scripts.",
+          "status": "in progress",
+          "note": "generateDocsFromDescribe.ts now outputs .nootropic-cache/llm-docs.json with structured, LLM/AI-usable docs for all capabilities. Next: extend OpenAPI/AsyncAPI/feature table scripts."
+        },
+        {
+          "id": "automation-feature-registration-policy-enforcement",
+          "description": "Enforce explicit feature registration policy in CI and onboarding. Reference: describe registry, planned script, README.md, CONTRIBUTING.md.",
+          "status": "not started"
+        }
+      ]
+    },
+    {
+      "id": "advanced-event-bus-telemetry-integration",
+      "description": "Implement advanced event bus and distributed telemetry integration for all automation scripts (Kafka/NATS/Dapr/JSONL, distributed tracing, and feedback loops).",
+      "status": "not started",
+      "note": "Backlogged: extend event emission to distributed event bus and advanced telemetry for all scripts."
+    },
+    {
+      "id": "epic-local-inference-stack-integration",
+      "status": "in progress",
+      "note": "llama.cpp, NV-Embed-v2, vector store, quantization, and cloud fallback integration in progress. See README.md for stack summary."
+    },
+    {
+      "id": "benchmark-evaluate-upgraded-utilities",
+      "description": "Benchmark and evaluate upgraded utilities (ChunkingUtility, HybridRetrievalUtility, RerankUtility, ShimiMemory) for accuracy, speed, and extensibility. Reference best practices and extensibility.",
+      "status": "planned",
+      "note": "Next: Add automated tests and benchmarks for all advanced utilities."
+    },
+    {
+      "id": "agent-enhancements-2025",
+      "status": "planned",
+      "note": "Integrate state-of-the-art, efficient techniques for each agent. See detailed enhancement list for each agent below.",
+      "subtasks": [
+        {
+          "id": "reviewagent-sentiment-cot-ensemble",
+          "description": "Sentiment-aware chain-of-thought critique, multi-pass review, ensemble scoring (quantized LLMs)",
+          "status": "in progress",
+          "note": "Sentiment-and-aspect analysis, multi-pass chain-of-thought, and ensemble scoring stubs/extension points implemented. See agents/ReviewAgent.ts."
+        },
+        {
+          "id": "mutationagent-llm-mutants-fuzzing-ensemble",
+          "description": "LLM-augmented mutant generation, property-based fuzzing, patch ensemble/voting",
+          "status": "in progress"
+        },
+        {
+          "id": "explainabilityagent-lime-shap-attention-traceback",
+          "description": "Hybrid LIME/SHAP, attention-based rationale, VS Code tracebacks",
+          "status": "planned"
+        },
+        {
+          "id": "supervisoragent-hierarchical-anomaly-selfhealing",
+          "description": "Hierarchical supervision, event-driven anomaly detection, self-healing workflows",
+          "status": "planned"
+        },
+        {
+          "id": "contentagent-rag-mapreduce-tone",
+          "description": "RAG-driven planning, map-reduce summarisation, adaptive tone tuning",
+          "status": "planned"
+        },
+        {
+          "id": "humanintheloopagent-approval-ui-governance-escalation",
+          "description": "Embedded approval UI, governance/ethics hooks, dynamic escalation paths",
+          "status": "planned"
+        },
+        {
+          "id": "orchestratoragent-swarm-pluggable-scheduling",
+          "description": "Event-driven swarm orchestration, pluggable workflow patterns, adaptive resource scheduling",
+          "status": "planned"
+        },
+        {
+          "id": "memoryagent-polyhierarchy-summarisation-merkle",
+          "description": "Polyhierarchical graph memory, dynamic summarisation, Merkle-DAG/CRDT sync",
+          "status": "planned"
+        },
+        {
+          "id": "collectionagent-adaptive-scraping-enrichment-schema",
+          "description": "Adaptive scraping, event-driven enrichment, schema-validated outputs",
+          "status": "planned"
+        },
+        {
+          "id": "securityagent-semgrep-sast-sca-llm-triage",
+          "description": "SecurityAgent: Semgrep SAST/SCA, LLM-driven triage, autofix, IRIS neuro-symbolic detection",
+          "status": "planned"
+        },
+        {
+          "id": "securityagent-scaffold-implementation",
+          "description": "Scaffold and implement SecurityAgent, integrating Semgrep/SonarQube APIs and LLM-driven triage/autofix. Ensure event-driven, registry-compliant, and LLM/AI-friendly design. Reference quality/selfcheck.ts, docs/quality.md, and planned agent docs.",
+          "status": "not started",
+          "note": "SecurityAgent not yet implemented. Needs scaffolding and integration with quality tools."
+        },
+        {
+          "id": "describe-registry-compliance-review",
+          "description": "Review and update all agent and plugin describe() outputs for registry/LLM/AI-friendliness and CI compliance. Automate describe/registry generation and enforcement.",
+          "status": "not started",
+          "note": "Planned: Ensure all agents/plugins are registry-compliant and describe() outputs are up to date. Automate describe/registry generation and CI enforcement."
+        },
+        {
+          "id": "agent-benchmarking-test-coverage",
+          "description": "Add/expand test coverage and benchmarking for all upgraded agents/utilities. Reference best practices and extensibility.",
+          "status": "not started",
+          "note": "Planned: Add automated tests and benchmarks for all advanced agents and utilities."
+        }
+      ]
+    },
+    {
+      "id": "epic-agent-upgrade-llm-compliance",
+      "description": "EPIC: Upgrade all agents for LLM/AI-friendliness, extensibility, and automation. Ensure registry/describe/event-schema compliance, advanced feature scaffolding, test/benchmark/observability coverage, onboarding/automation, and continuous improvement for all agents. Fold in advanced features and extension points from research and Scratch.md.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "agent-registry-describe-compliance",
+          "description": "Audit and upgrade all agents for registry/describe/event-schema compliance. Export LLM/AI-friendly describe() and event schemas. Update docs and registry.",
+          "status": "not started"
+        },
+        {
+          "id": "agent-advanced-feature-scaffolding",
+          "description": "Scaffold advanced features and extension points for all agents (EnsLLM, meta-LLM, self-debugging, multimodal fusion, HITL, etc.) as per Scratch.md and capability docs.",
+          "status": "not started"
+        },
+        {
+          "id": "agent-test-benchmark-observability",
+          "description": "Add/refresh tests, benchmarking stubs, and observability hooks for all agents. Integrate OpenTelemetry/event emission for all major actions.",
+          "status": "not started"
+        },
+        {
+          "id": "agent-onboarding-automation",
+          "description": "Update onboarding, automation, and feature table docs for all agents. Ensure all changes are reflected in README, CONTRIBUTING, and docs/capabilities. Add CI/CD jobs for automation.",
+          "status": "not started"
+        },
+        {
+          "id": "agent-continuous-improvement",
+          "description": "Schedule regular backlog and roadmap reviews. Integrate new research-driven features and best practices. Encourage LLM/AI-driven triage and review.",
+          "status": "not started"
+        }
+      ]
+    },
+    {
+      "id": "epic-agent-automation-recommendations",
+      "description": "EPIC: Implement full automation for code/doc/describe registry sync, test/benchmark coverage, backlog/TODO sync, event schema validation, onboarding/compliance checks, observability, context/cache management, plugin marketplace, dead code analysis, release/versioning, and meta-LLM/AI-driven triage/review. Integrate all automation into CI/CD, use scheduled workflows, and leverage LLMs for triage and review.",
+      "status": "not started",
+      "priority": "top",
+      "subtasks": [
+        {
+          "id": "automation-code-doc-describe-sync",
+          "description": "Automate code/doc/describe registry sync and CI enforcement.",
+          "status": "not started"
+        },
+        {
+          "id": "automation-test-benchmark-coverage",
+          "description": "Automate test/benchmark coverage reporting and enforcement for all agents and utilities.",
+          "status": "not started"
+        },
+        {
+          "id": "automation-backlog-todo-sync",
+          "description": "Automate backlog and TODO sync, event schema validation, and onboarding/compliance checks.",
+          "status": "not started"
+        },
+        {
+          "id": "automation-observability-context-cache",
+          "description": "Automate observability, context/cache management, and event schema validation.",
+          "status": "not started"
+        },
+        {
+          "id": "automation-plugin-marketplace-deadcode",
+          "description": "Automate plugin marketplace sync, dead code analysis, and release/versioning.",
+          "status": "not started"
+        },
+        {
+          "id": "automation-meta-llm-triage-review",
+          "description": "Leverage meta-LLM/AI-driven triage, review, and backlog prioritization for continuous improvement.",
+          "status": "not started"
+        }
+      ]
+    }
+  ],
+  "untriagedCount": 0
+}

@@ -1,0 +1,821 @@
+openapi: 3.1.0
+info:
+  title: AI-Helpers Capabilities API
+  version: 0.1.0
+  description: Auto-generated OpenAPI spec from describe registry.
+paths:
+  '/capability/EnsembleAgent':
+    get:
+      summary: "EnsembleAgent"
+      description: "Orchestrates multi-LLM code generation, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing integration. Emits rationale/explanation and votingRationale events for each step. Implements Capability interface. Reference: arXiv:2503.15838v1, AutoGen, LangGraph."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/FormalVerifierAgent':
+    get:
+      summary: "FormalVerifierAgent"
+      description: "Integrates LLM-driven spec generation, formal verification (TLA+, Coq, Lean), and event-driven repair. Emits rationale/explanation for each step. References TLA+, Coq, Lean, tenspiler, arXiv:2505.02500v1."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/MultimodalAgent':
+    get:
+      summary: "MultimodalAgent"
+      description: "Agent for multimodal (image, audio, text) input/output. Supports Pix2Code, Whisper, and code-to-UI translation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/ReasoningLoopUtility':
+    get:
+      summary: "ReasoningLoopUtility"
+      description: "Iterative code generation, explanation, and repair (chain-of-thought, self-debugging, SCoT)."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/VibeCodingAgent':
+    get:
+      summary: "VibeCodingAgent"
+      description: "Agent for real-time voice-to-code using Whisper and LLMs. Converts audio input to code."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/agents':
+    get:
+      summary: "agents"
+      description: "Exports all core AI-Helpers agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/examplePlugin':
+    get:
+      summary: "examplePlugin"
+      description: "A sample plugin for AI-Helpers. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/CLI%20usage%20(planned)':
+    get:
+      summary: "CLI usage (planned)"
+      description: "Planned: CLI usage documentation and onboarding."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/ContextManager':
+    get:
+      summary: "ContextManager"
+      description: "Planned: ContextManager documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/OrchestrationEngine%20(planned)':
+    get:
+      summary: "OrchestrationEngine (planned)"
+      description: "Planned: OrchestrationEngine documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/SecretsManager':
+    get:
+      summary: "SecretsManager"
+      description: "Planned: SecretsManager documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/TypeScript%20type-casting%20note%20(planned)':
+    get:
+      summary: "TypeScript type-casting note (planned)"
+      description: "Planned: TypeScript type-casting note documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/agentIntentRegistry%20(planned)':
+    get:
+      summary: "agentIntentRegistry (planned)"
+      description: "Planned: agentIntentRegistry documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/agentProfileRegistry%20(planned)':
+    get:
+      summary: "agentProfileRegistry (planned)"
+      description: "Planned: agentProfileRegistry documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/agent%20discovery%20(planned)':
+    get:
+      summary: "agent discovery (planned)"
+      description: "Planned: Agent discovery documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/agent%20event%20interface%20(planned)':
+    get:
+      summary: "agent event interface (planned)"
+      description: "Planned: Agent event interface documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/.%2Fagents%2FBaseAgent.js%20(planned)':
+    get:
+      summary: "./agents/BaseAgent.js (planned)"
+      description: "Planned: ./agents/BaseAgent.js documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/.%2Fagents%2FDataCollectorAgent.js%20(planned)':
+    get:
+      summary: "./agents/DataCollectorAgent.js (planned)"
+      description: "Planned: ./agents/DataCollectorAgent.js documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/.%2Fagents%2FReviewerAgent.js%20(planned)':
+    get:
+      summary: "./agents/ReviewerAgent.js (planned)"
+      description: "Planned: ./agents/ReviewerAgent.js documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/.%2Fagents%2FWriterAgent.js%20(planned)':
+    get:
+      summary: "./agents/WriterAgent.js (planned)"
+      description: "Planned: ./agents/WriterAgent.js documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/ajv-cli%20validation%20in%20ci%20(planned)':
+    get:
+      summary: "ajv-cli validation in ci (planned)"
+      description: "Planned: ajv-cli validation in CI documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/api%20doc%20best%20practices%20(planned)':
+    get:
+      summary: "api doc best practices (planned)"
+      description: "Planned: API doc best practices documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/api%20doc%20workflow%20(planned)':
+    get:
+      summary: "api doc workflow (planned)"
+      description: "Planned: API doc workflow documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/api%20documentation%20generation%20(planned)':
+    get:
+      summary: "api documentation generation (planned)"
+      description: "Planned: API documentation generation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/cache%20management%20(planned)':
+    get:
+      summary: "cache management (planned)"
+      description: "Planned: Cache management documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/ci%2Fcd%20integration%20(planned)':
+    get:
+      summary: "ci/cd integration (planned)"
+      description: "Planned: CI/CD integration documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/ci%2Fcd%20troubleshooting%20(planned)':
+    get:
+      summary: "ci/cd troubleshooting (planned)"
+      description: "Planned: CI/CD troubleshooting documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/coding%20standards%20(planned)':
+    get:
+      summary: "coding standards (planned)"
+      description: "Planned: Coding standards documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/contextMutationEngine%20event%20emission%20(planned)':
+    get:
+      summary: "contextMutationEngine event emission (planned)"
+      description: "Planned: contextMutationEngine event emission documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/contextSnapshotHelper%20(planned)':
+    get:
+      summary: "contextSnapshotHelper (planned)"
+      description: "Planned: contextSnapshotHelper documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/context%20handover%20(planned)':
+    get:
+      summary: "context handover (planned)"
+      description: "Planned: Context handover documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/contributing.md%20(planned)':
+    get:
+      summary: "contributing.md (planned)"
+      description: "Planned: Contributing.md documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/describe%20registry%20(in%20progress)':
+    get:
+      summary: "describe registry (in progress)"
+      description: "In progress: Central describe registry for all capabilities."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/docDiagramGenerator%20(planned)':
+    get:
+      summary: "docDiagramGenerator (planned)"
+      description: "Planned: docDiagramGenerator documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/editor%20config%20recommendations%20(planned)':
+    get:
+      summary: "editor config recommendations (planned)"
+      description: "Planned: Editor config recommendations documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event%20bus%20abstraction%20(planned)':
+    get:
+      summary: "event bus abstraction (planned)"
+      description: "Planned: Event bus abstraction documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event-driven%20MAS%20patterns%20(planned)':
+    get:
+      summary: "event-driven MAS patterns (planned)"
+      description: "Planned: Event-driven MAS patterns documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event-driven%20agent%20example%20(WriterAgent)%20(planned)':
+    get:
+      summary: "event-driven agent example (WriterAgent) (planned)"
+      description: "Planned: Event-driven agent example (WriterAgent) documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event-driven%20agent%20pattern%20(planned)':
+    get:
+      summary: "event-driven agent pattern (planned)"
+      description: "Planned: Event-driven agent pattern documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event-driven%20mutation%20suggestion%20traceability':
+    get:
+      summary: "event-driven mutation suggestion traceability"
+      description: "Implements full traceability for all mutation/refactor suggestions via structured event emission. Every suggestion (schema drift, TODO, test gap) emits a v1.mutationSuggested event, which is logged, replayable, and observable via the event bus. Events are schema-validated, versioned, and compatible with distributed backends (NATS, Kafka, Dapr, JSONL)."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event-driven%20traceability%20(liveMutationPRHelper)%20(planned)':
+    get:
+      summary: "event-driven traceability (liveMutationPRHelper) (planned)"
+      description: "Planned: Event-driven traceability (liveMutationPRHelper) documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event%20payload%20convention%20(planned)':
+    get:
+      summary: "event payload convention (planned)"
+      description: "Planned: Event payload convention documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/event%20schema%20references%20(planned)':
+    get:
+      summary: "event schema references (planned)"
+      description: "Planned: Event schema references documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/github%20actions%20workflow%20(planned)':
+    get:
+      summary: "github actions workflow (planned)"
+      description: "Planned: GitHub Actions workflow documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/liveMutationPRHelper%20(planned)':
+    get:
+      summary: "liveMutationPRHelper (planned)"
+      description: "Planned: liveMutationPRHelper documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/matrix%20validation%20strategy%20(planned)':
+    get:
+      summary: "matrix validation strategy (planned)"
+      description: "Planned: Matrix validation strategy documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/monorepo%20typescript%20config%20(planned)':
+    get:
+      summary: "monorepo typescript config (planned)"
+      description: "Planned: Monorepo TypeScript config documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/multi-agent%20orchestration%20(planned)':
+    get:
+      summary: "multi-agent orchestration (planned)"
+      description: "Planned: Multi-agent orchestration documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/mutationSuggested%20event%20schema%20(planned)':
+    get:
+      summary: "mutationSuggested event schema (planned)"
+      description: "Planned: mutationSuggested event schema documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/onboarding%20guide%20(planned)':
+    get:
+      summary: "onboarding guide (planned)"
+      description: "Planned: Onboarding guide documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/onboarding%20instructions%20(planned)':
+    get:
+      summary: "onboarding instructions (planned)"
+      description: "Planned: Onboarding instructions documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/onboarding%20troubleshooting%20(planned)':
+    get:
+      summary: "onboarding troubleshooting (planned)"
+      description: "Planned: Onboarding troubleshooting documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/plugin%20architecture%20(planned)':
+    get:
+      summary: "plugin architecture (planned)"
+      description: "Planned: Plugin architecture documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/pre-commit%2FHusky%20hooks%20(planned)':
+    get:
+      summary: "pre-commit/Husky hooks (planned)"
+      description: "Planned: Pre-commit/Husky hooks documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/quality%2Fselfcheck%20(planned)':
+    get:
+      summary: "quality/selfcheck (planned)"
+      description: "Planned: quality/selfcheck documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/quality%20system%20(planned)':
+    get:
+      summary: "quality system (planned)"
+      description: "Planned: Quality system documentation and implementation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/sample%20config%20files%20(planned)':
+    get:
+      summary: "sample config files (planned)"
+      description: "Planned: Sample config files documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/schema%20validation%20onboarding%20(planned)':
+    get:
+      summary: "schema validation onboarding (planned)"
+      description: "Planned: Schema validation onboarding documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/semanticIndexBuilder%20(planned)':
+    get:
+      summary: "semanticIndexBuilder (planned)"
+      description: "Planned: semanticIndexBuilder documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/setup%20and%20environment%20requirements%20(planned)':
+    get:
+      summary: "setup and environment requirements (planned)"
+      description: "Planned: Setup and environment requirements documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/streaming%20backend%20integration%20(planned)':
+    get:
+      summary: "streaming backend integration (planned)"
+      description: "Planned: Streaming backend integration documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/supervisor%20agent%20pattern%20(planned)':
+    get:
+      summary: "supervisor agent pattern (planned)"
+      description: "Planned: Supervisor agent pattern documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/tsdoc%20style%20enforcement%20(planned)':
+    get:
+      summary: "tsdoc style enforcement (planned)"
+      description: "Planned: TSDoc style enforcement documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/tsdoc%2Ftypedoc%2Feslint%2Fci%20integration%20(planned)':
+    get:
+      summary: "tsdoc/typedoc/eslint/ci integration (planned)"
+      description: "Planned: TSDoc/TypeDoc/ESLint/CI integration documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/typedoc%20integration%20(planned)':
+    get:
+      summary: "typedoc integration (planned)"
+      description: "Planned: TypeDoc integration documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/typedoc.json%20config%20(planned)':
+    get:
+      summary: "typedoc.json config (planned)"
+      description: "Planned: typedoc.json config documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/updated%20agent%20event%20interface%20(planned)':
+    get:
+      summary: "updated agent event interface (planned)"
+      description: "Planned: Updated agent event interface documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/utils%20(planned)':
+    get:
+      summary: "utils (planned)"
+      description: "Planned: utils documentation."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/updateNotifier':
+    get:
+      summary: "updateNotifier"
+      description: "Notifies users of available package updates via CLI. Useful for keeping AI-Helpers up to date."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/adapterUtils':
+    get:
+      summary: "adapterUtils"
+      description: "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/pluginFeedback':
+    get:
+      summary: "pluginFeedback"
+      description: "Submit, list, and aggregate plugin feedback (rating, review, social memory)."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/sastMemories':
+    get:
+      summary: "sastMemories"
+      description: "Deduplicates, lists, and syncs SAST feedback memories across tools. Canonical, registry-compliant."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/utils%2Ffeedback%2FsemgrepMemories':
+    get:
+      summary: "utils/feedback/semgrepMemories"
+      description: "Modular Semgrep feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+  '/capability/utils%2Ffeedback%2FsonarQubeMemories':
+    get:
+      summary: "utils/feedback/sonarQubeMemories"
+      description: "Modular SonarQube feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant."
+      responses:
+        '200':
+          description: Capability description
+          content:
+            application/json:
+              schema:
+                type: object
+# TODO: Add components/schemas for each capability

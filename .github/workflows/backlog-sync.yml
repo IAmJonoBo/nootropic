@@ -1,0 +1,51 @@
+name: Backlog <-> GitHub Issues Sync (IssueOps 2025)
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'agentBacklog.json'
+      - 'scripts/backlogSync.ts'
+      - '.github/workflows/backlog-sync.yml'
+  pull_request:
+    paths:
+      - 'agentBacklog.json'
+      - 'scripts/backlogSync.ts'
+      - '.github/workflows/backlog-sync.yml'
+  schedule:
+    - cron: '0 3 * * *' # Daily at 3am UTC
+
+jobs:
+  backlog-sync:
+    name: Backlog <-> GitHub Issues Sync
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run backlogSync (dry-run for PRs)
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPO: ${{ github.event.repository.name }}
+        run: pnpm tsx scripts/backlogSync.ts --dry-run
+      - name: Run backlogSync (real for main/master)
+        if: github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPO: ${{ github.event.repository.name }}
+        run: pnpm tsx scripts/backlogSync.ts
+      - name: Print summary
+        run: echo 'Backlog <-> GitHub Issues sync complete. See logs above.'
+
+# This workflow implements IssueOps-driven automation for backlog/issue sync, following 2025 best practices for DRY, idempotency, and error handling. See README and CONTRIBUTING for details. 

@@ -1,0 +1,131 @@
+# Rebranding note: This workflow was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.
+
+name: Schema & AsyncAPI Validation
+
+on:
+  push:
+    paths:
+      - '.ai-helpers-cache/event-schema.json'
+      - 'docs/asyncapi.yaml'
+      - '.github/workflows/schema-validation.yml'
+  pull_request:
+    paths:
+      - '.ai-helpers-cache/event-schema.json'
+      - 'docs/asyncapi.yaml'
+      - '.github/workflows/schema-validation.yml'
+
+jobs:
+  validate-schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Validate event-schema.json with ajv-cli
+        run: |
+          npx ajv validate -s .ai-helpers-cache/event-schema.json -d .ai-helpers-cache/event-schema.json --strict=true --all-errors
+      - name: Lint event-schema.json with @sourcemeta/jsonschema
+        run: |
+          npx jsonschema lint .ai-helpers-cache/event-schema.json
+      - name: Validate AsyncAPI spec with @asyncapi/cli
+        run: |
+          npx asyncapi validate docs/asyncapi.yaml
+  context-propagation-test:
+    name: KafkaEventBus Context Propagation Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Run KafkaEventBus context propagation test
+        run: |
+          pnpm exec jest tests/adapter.kafka.context-propagation.test.ts --runInBand --detectOpenHandles
+        env:
+          KAFKA_BROKERS: ${{ secrets.KAFKA_BROKERS || 'localhost:9092' }}
+    # This job will fail if traceId/spanId continuity is not preserved or context is missing/corrupted.
+    # See tests/adapter.kafka.context-propagation.test.ts and docs/orchestration.md for details.
+    # References: OpenTelemetry and AI agent observability best practices (2025).
+
+  nats-context-propagation-test:
+    name: NatsEventBus Context Propagation Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up NATS JetStream (Docker Compose)
+        run: |
+          docker compose -f ./tests/docker/docker-compose.nats.yml up -d
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Run NatsEventBus context propagation test
+        run: |
+          pnpm exec jest tests/adapter.nats.context-propagation.test.ts --runInBand --detectOpenHandles
+        env:
+          NATS_URL: nats://localhost:4222
+          NATS_STREAM: AIHelpersEvents
+          NATS_SUBJECT: aihelpers.events
+      - name: Tear down NATS
+        run: |
+          docker compose -f ./tests/docker/docker-compose.nats.yml down
+    # This job will fail if traceId/spanId continuity is not preserved or context is missing/corrupted.
+    # See tests/adapter.nats.context-propagation.test.ts and docs/orchestration.md for details.
+    # References: OpenTelemetry and AI agent observability best practices (2025).
+
+  dapr-context-propagation-test:
+    name: DaprEventBus Context Propagation Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dapr CLI
+        run: |
+          wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+      - name: Initialize Dapr
+        run: |
+          dapr init
+      - name: Install dependencies
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+      - name: Run DaprEventBus context propagation test
+        run: |
+          pnpm exec jest tests/adapter.dapr.context-propagation.test.ts --runInBand --detectOpenHandles
+        env:
+          DAPR_HOST: 127.0.0.1
+          DAPR_HTTP_PORT: 3500
+          DAPR_PUBSUB_NAME: messagebus
+          DAPR_TOPIC: aihelpers.events
+      - name: Tear down Dapr
+        run: |
+          dapr uninstall --all
+    # This job will fail if traceId/spanId continuity is not preserved or context is missing/corrupted.
+    # See tests/adapter.dapr.context-propagation.test.ts and docs/orchestration.md for details.
+    # References: OpenTelemetry and AI agent observability best practices (2025).
+
+  dlq-replay-integration-test:
+    name: DLQ Replay CLI Integration Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if TEST_KAFKA_BROKERS is not set
+        run: |
+          if [ -z "$TEST_KAFKA_BROKERS" ]; then
+            echo "Skipping DLQ Replay CLI Integration Test: TEST_KAFKA_BROKERS not set."
+            exit 0
+          fi
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run DLQ replay integration test
+        run: pnpm exec jest tests/dlqReplay.integration.test.ts --runInBand
+    # Note: This job is optional and will be skipped unless TEST_KAFKA_BROKERS is set.
+    # To enable, set TEST_KAFKA_BROKERS in repository or organization secrets to a running Kafka cluster. 

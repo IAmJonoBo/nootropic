@@ -1,0 +1,37 @@
+name: IssueOps State-Machine Automation (2025)
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled, closed, reopened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  state-machine:
+    name: IssueOps State-Machine Handler
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      # TODO: Implement custom logic for state transitions and automated comments
+      # Example: If issue is opened, add 'triage' or 'validated' label and post onboarding comment
+      # Example: If label is added/removed, post status update comment
+      # Example: If comment body starts with .submit/.approve/.deny, update labels and post confirmation
+      # Use scripts/issueOpsStateMachine.ts or GitHub Actions Marketplace actions as needed
+      - name: State-Machine Handler (TODO)
+        run: |
+          echo 'TODO: Implement state-machine logic for IssueOps automation. See scripts/issueOpsStateMachine.ts.'
+
+# This workflow implements state-machine triggers and automated comments for IssueOps-driven project management, following 2025 best practices.
+# Reference: https://github.blog/engineering/issueops-automate-ci-cd-and-more-with-github-issues-and-actions/ 

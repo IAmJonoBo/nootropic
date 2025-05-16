@@ -1,0 +1,188 @@
+# Rebranding note: This workflow was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.
+
+name: Lint and Type Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  secret-scan:
+    name: Secret Scan (TruffleHog/Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run Secret Scan
+        run: pnpm tsx nootropic/secretScanHelper.ts
+      - name: Check for Secret Scan Findings
+        run: |
+          if [ -f nootropic/secret-scan-report.json ]; then
+            findings=$(jq '.findings | length' nootropic/secret-scan-report.json)
+            if [ "$findings" -gt 0 ]; then
+              echo "Secret scan found $findings findings. See nootropic/secret-scan-report.json."
+              exit 1
+            fi
+          fi
+      - name: Upload Secret Scan Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: secret-scan-report
+          path: nootropic/secret-scan-report.json
+    # See docs/secretScanGuide.md for details and troubleshooting.
+
+  lint-and-type:
+    name: Lint and Type Check
+    runs-on: ubuntu-latest
+    needs: secret-scan
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Aggregate and Validate describe() Registry
+        run: pnpm run validate-describe-registry
+
+      - name: Check Code/Doc Sync
+        run: pnpm run docs:check-sync
+        # This script should fail if docs or describe() outputs are out of sync
+        # See CONTRIBUTING.md and orchestration.md for rationale
+
+      - name: Run Tests
+        run: pnpm test
+        # Ensure all tests pass before merge
+
+      - name: Extract TODOs to Backlog
+        run: pnpm tsx scripts/generateBacklogTodos.ts
+        # Auto-extract actionable TODOs/FIXMEs to agentBacklog.json before summary generation
+
+      - name: Prune/Archive Resolved TODOs
+        run: pnpm tsx scripts/pruneBacklogTodos.ts
+        # Archive resolved/ignored TODOs to .ai-helpers-cache/backlog-archive.json
+
+      - name: AI Triage TODOs
+        run: pnpm tsx scripts/aiTriageBacklogTodos.ts
+        # AI/LLM-powered triage and priority suggestions
+
+      - name: Backlog Insights
+        run: pnpm tsx scripts/backlogInsights.ts
+        # Generate technical debt hotspots, staleness, and priorities
+
+      - name: Fail if stale TODOs remain
+        run: |
+          count=$(jq '[.oldestTodos[] | select(.days > 90)] | length' .ai-helpers-cache/backlog-insights.json)
+          if [ "$count" -gt 0 ]; then
+            echo "There are $count stale TODOs (older than 90 days). Please triage or resolve them." && exit 1
+          fi
+
+      - name: Check required secret SONARQUBE_ENABLED
+        run: |
+          if [ -z "${{ env.SONARQUBE_ENABLED }}" ]; then
+            echo "Required secret SONARQUBE_ENABLED is not set. Please add it in the repository or org secrets.";
+            exit 1;
+          fi
+      - name: Check required secret RESEARCH_ENABLED
+        run: |
+          if [ -z "${{ env.RESEARCH_ENABLED }}" ]; then
+            echo "Required secret RESEARCH_ENABLED is not set. Please add it in the repository or org secrets.";
+            exit 1;
+          fi
+      - name: Check required secret DOCTEST_ENABLED
+        run: |
+          if [ -z "${{ env.DOCTEST_ENABLED }}" ]; then
+            echo "Required secret DOCTEST_ENABLED is not set. Please add it in the repository or org secrets.";
+            exit 1;
+          fi
+      - name: Check required secret AIREVIEW_ENABLED
+        run: |
+          if [ -z "${{ env.AIREVIEW_ENABLED }}" ]; then
+            echo "Required secret AIREVIEW_ENABLED is not set. Please add it in the repository or org secrets.";
+            exit 1;
+          fi
+      - name: Run AI-Helpers Quality Checks (all plugins)
+        run: pnpm run quality
+        env:
+          NOOTROPIC_LINT: '1'
+          NOOTROPIC_MARKDOWNLINT: '1'
+          NOOTROPIC_SECURITY: '1'
+          NOOTROPIC_SONARQUBE: ${{ env.SONARQUBE_ENABLED || 'false' }}
+          NOOTROPIC_RESEARCH: ${{ env.RESEARCH_ENABLED || 'false' }}
+          NOOTROPIC_DOCTEST: ${{ env.DOCTEST_ENABLED || 'false' }}
+          NOOTROPIC_AIREVIEW: ${{ env.AIREVIEW_ENABLED || 'false' }}
+        # See CONTRIBUTING.md and docs/quality.md for secret requirements and enforcement rationale.
+
+      - name: Generate Backlog Summary
+        run: pnpm tsx scripts/generateBacklogSummary.ts
+
+      - name: Generate Onboarding Checklist
+        run: pnpm tsx scripts/generateOnboardingChecklist.ts
+      - name: Check onboarding-checklist.md
+        run: |
+          if [ ! -f onboarding-checklist.md ]; then
+            echo 'onboarding-checklist.md was not generated. Please check scripts/generateOnboardingChecklist.ts.' && exit 1
+          fi
+          if [ ! -f .ai-helpers-cache/onboarding-checklist.md ]; then
+            echo '.ai-helpers-cache/onboarding-checklist.md was not generated. Please check scripts/generateOnboardingChecklist.ts.' && exit 1
+          fi
+        # Ensures onboarding checklist is always up to date. See README and CONTRIBUTING.md.
+
+      - name: Generate Recent Messages
+        run: pnpm tsx scripts/generateRecentMessages.ts
+      - name: Check recent-messages.json
+        run: |
+          if [ ! -f .ai-helpers-cache/recent-messages.json ]; then
+            echo '.ai-helpers-cache/recent-messages.json was not generated. Please check scripts/generateRecentMessages.ts.' && exit 1
+          fi
+        # Ensures LLM/agent context window is always up to date. See README and CONTRIBUTING.md.
+
+      - name: Generate Health Status
+        run: pnpm tsx scripts/generateHealthStatus.ts
+      - name: Check health-status.json
+        run: |
+          if [ ! -f .ai-helpers-cache/health-status.json ]; then
+            echo '.ai-helpers-cache/health-status.json was not generated. Please check scripts/generateHealthStatus.ts.' && exit 1
+          fi
+        # Ensures health status is always up to date. See README and CONTRIBUTING.md.
+
+      - name: Fail if untriaged TODOs remain
+        run: |
+          count=$(jq '.untriagedCount' .ai-helpers-cache/backlog-summary.json)
+          if [ "$count" -gt 0 ]; then
+            echo "There are $count untriaged TODOs in the backlog. Please triage or resolve them." && exit 1
+          fi
+        shell: bash
+        # Enforce backlog hygiene: no untriaged TODOs
+
+  license-compliance:
+    name: License/OSS Compliance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Build describe registry (if needed)
+        run: npm run build:describe-registry || pnpm run build:describe-registry || true
+      - name: Run license/OSS compliance check
+        run: npx tsx scripts/licenseValidation.ts
+    # This job will fail the workflow if any capability is missing required license/provenance fields or is non-OSS without explicit opt-in. 

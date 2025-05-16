@@ -1,0 +1,4 @@
+# ContextManager
+
+Planned: ContextManager documentation.
+

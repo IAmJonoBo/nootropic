@@ -1,0 +1,23 @@
+[
+  {
+    "name": "getOrchestrationEngine",
+    "type": "function",
+    "signature": "(engine: string) => OrchestrationEngine",
+    "description": "Returns the orchestration engine adapter for the specified backend.",
+    "usage": "const engine = getOrchestrationEngine('langchain');"
+  },
+  {
+    "name": "runAgentTask",
+    "type": "method",
+    "signature": "(profile: AgentProfile, task: AgentTask, context?: AgentContext) => Promise<AgentResult>",
+    "description": "Runs a task using the specified agent profile and context.",
+    "usage": "const result = await engine.runAgentTask(profile, task, context);"
+  },
+  {
+    "name": "listCapabilities",
+    "type": "function",
+    "signature": "() => Promise<Capability[]>",
+    "description": "Lists all available helpers, adapters, and plugins.",
+    "usage": "const caps = await listCapabilities();"
+  }
+] 

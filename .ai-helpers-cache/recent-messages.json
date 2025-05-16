@@ -1,0 +1,9 @@
+{
+  "messages": [
+    {
+      "timestamp": "2025-05-16T04:19:59.940Z",
+      "type": "Stub",
+      "message": "This is a placeholder. Implement real event log parsing."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+# Pre-commit config for schema validation (JSON Schema & AsyncAPI)
+# Ensures all contributors validate schemas before commit.
+
+repos:
+  - repo: local
+    hooks:
+      - id: ajv-validate-event-schema
+        name: Validate event-schema.json with ajv-cli
+        entry: npx ajv validate -s .nootropic-cache/event-schema.json -d .nootropic-cache/event-schema.json --strict=true --all-errors
+        language: system
+        files: ^\.nootropic-cache/event-schema\.json$
+      - id: jsonschema-lint-event-schema
+        name: Lint event-schema.json with @sourcemeta/jsonschema
+        entry: npx jsonschema lint .nootropic-cache/event-schema.json
+        language: system
+        files: ^\.nootropic-cache/event-schema\.json$
+      - id: asyncapi-validate
+        name: Validate AsyncAPI spec with @asyncapi/cli
+        entry: npx asyncapi validate docs/asyncapi.yaml
+        language: system
+        files: ^docs/asyncapi\.yaml$
+      - id: update-backlog-todos
+        name: Extract and sync TODOs/FIXMEs to backlog
+        entry: pnpm tsx scripts/generateBacklogTodos.ts
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: knip-deadcode
+        name: knip dead code/dependency check
+        entry: pnpm exec knip --no-gitignore
+        language: system
+        pass_filenames: false
+      - id: lint
+        name: Lint staged files
+        entry: pnpm lint
+        language: system
+        pass_filenames: true
+      - id: type-check
+        name: TypeScript type check
+        entry: pnpm tsc --noEmit
+        language: system
+        pass_filenames: false
+      - id: test
+        name: Run tests
+        entry: pnpm test
+        language: system
+        pass_filenames: false 

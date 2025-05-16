@@ -1,0 +1,51 @@
+{
+    "name": "ai-helpers",
+    "version": "0.1.0",
+    "description": "AI-Helpers: Modular, ESM-only TypeScript toolkit for orchestrating, testing, and automating AI agent workflows. Optimized for LLM and agent integration.",
+    "gptdoc": "AI-Helpers/API/Usage: import { getOrchestrationEngine } from 'ai-helpers'; const engine = getOrchestrationEngine('langchain'); const result = await engine.runAgentTask({ name: 'TestAgent' }, { id: 't1', description: 'Say hello' }); console.log(result); // Use listCapabilities() to discover all helpers and plugins.",
+    "type": "module",
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "bin": {
+        "ai-helpers": "./agentOrchestrationCli.js"
+    },
+    "scripts": {
+        "build": "tsc && pnpm run copy-non-ts",
+        "copy-non-ts": "cpx \"adapters/**/*.{json,js,md}\" dist/adapters && cpx \"plugins/**/*.{json,js,md}\" dist/plugins && cpx \"quality/**/*.{json,js,md}\" dist/quality",
+        "test": "vitest run || jest",
+        "update": "pnpm up ai-helpers",
+        "quality": "tsx quality/index.ts"
+    },
+    "keywords": [
+        "ai",
+        "agent",
+        "orchestration",
+        "llm",
+        "typescript",
+        "esm",
+        "tool-use",
+        "automation",
+        "plugin",
+        "discovery"
+    ],
+    "author": "Rocketship Contributors",
+    "license": "MIT",
+    "devDependencies": {
+        "@eslint/js": "^9.26.0",
+        "@types/node": "^22.15.17",
+        "@types/node-cron": "^3.0.11",
+        "@typescript-eslint/eslint-plugin": "^8.32.0",
+        "@typescript-eslint/parser": "^8.32.0",
+        "@vitest/ui": "^3.1.3",
+        "chalk": "^5.3.0",
+        "commander": "^11.1.0",
+        "cpx": "^1.5.0",
+        "enquirer": "^2.4.1",
+        "eslint": "^9.26.0",
+        "node-cron": "^3.0.3",
+        "tsx": "^4.19.4",
+        "typescript-eslint": "^8.32.0",
+        "update-notifier": "^7.3.1",
+        "vitest": "^3.1.3"
+    }
+}

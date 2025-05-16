@@ -1,0 +1,821 @@
+{
+  "adapters/DaprEventBus.ts": [
+    "@dapr/dapr",
+    "@opentelemetry/api",
+    "@opentelemetry/propagator-b3",
+    "@opentelemetry/core",
+    "types/AgentOrchestrationEngine.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "nootropic/adapters/DaprEventBus"
+  ],
+  "adapters/HuggingFaceLLMAdapter.ts": [
+    "capabilities/Capability.js",
+    "node-fetch",
+    "nootropic/adapters/HuggingFaceLLMAdapter"
+  ],
+  "adapters/KafkaEventBus.ts": [
+    "kafkajs",
+    "@opentelemetry/api",
+    "@opentelemetry/propagator-b3",
+    "@opentelemetry/core",
+    "telemetry.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "@opentelemetry/api",
+    "@opentelemetry/api-metrics",
+    "nootropic/adapters/KafkaEventBus"
+  ],
+  "adapters/NatsEventBus.ts": [
+    "nats",
+    "@opentelemetry/api",
+    "@opentelemetry/propagator-b3",
+    "@opentelemetry/core",
+    "types/AgentOrchestrationEngine.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "nootropic/adapters/NatsEventBus"
+  ],
+  "adapters/OllamaLLMAdapter.ts": [
+    "capabilities/Capability.js",
+    "node-fetch",
+    "nootropic/adapters/OllamaLLMAdapter"
+  ],
+  "adapters/OpenRouterLLMAdapter.ts": [
+    "capabilities/Capability.js",
+    "node-fetch",
+    "nootropic/adapters/OpenRouterLLMAdapter"
+  ],
+  "adapters/crewAIAdapter.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "utils/plugin/adapterUtils.js",
+    "nootropic/adapters/crewAIAdapter"
+  ],
+  "adapters/index.ts": [
+    "capabilities/registry.js",
+    "adapters/KafkaEventBus.js",
+    "adapters/NatsEventBus.js",
+    "adapters/DaprEventBus.js",
+    "adapters/semanticKernelAdapter.js",
+    "adapters/crewAIAdapter.js",
+    "adapters/langchainAdapter.js"
+  ],
+  "adapters/langchainAdapter.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "utils/plugin/adapterUtils.js",
+    "nootropic/adapters/langchainAdapter"
+  ],
+  "adapters/semanticKernelAdapter.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "utils/plugin/adapterUtils.js",
+    "nootropic/adapters/semanticKernelAdapter"
+  ],
+  "agentControl.ts": [
+    "utils.js",
+    "utils/context/cacheDir.js",
+    "path",
+    "url",
+    "fs"
+  ],
+  "agentIntentRegistry.ts": [
+    "utils.js",
+    "memoryLaneHelper.js",
+    "path",
+    "url",
+    "cliHandler.js"
+  ],
+  "agentMessageProtocol.ts": [
+    "contextSnapshotHelper.js"
+  ],
+  "agentOrchestrationCli.ts": [
+    "commander",
+    "chalk",
+    "orchestrationEngineSelector.js",
+    "fs",
+    "path",
+    "url",
+    "pluginRegistry.js",
+    "index.js",
+    "utils.js",
+    "utils/context/cacheDir.js",
+    "contextSnapshotHelper.js",
+    "agentMessageProtocol.js",
+    "enquirer",
+    "telemetry.js",
+    "fs",
+    "utils/context/contextManager.js"
+  ],
+  "agentOrchestrationHelper.ts": [
+    "fs",
+    "path",
+    "url",
+    "agentMessageProtocol.js"
+  ],
+  "agentProfileRegistry.ts": [
+    "utils.js",
+    "path",
+    "url",
+    "cliHandler.js"
+  ],
+  "agents/BaseAgent.ts": [
+    "pluginRegistry.js",
+    "types/AgentOrchestrationEngine.js",
+    "memoryLaneHelper.js",
+    "zod",
+    "capabilities/Capability.js",
+    "nootropic/agents"
+  ],
+  "agents/CollectionAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "memoryLaneHelper.js",
+    "types/AgentOrchestrationEngine.js",
+    "zod",
+    "capabilities/Capability.js"
+  ],
+  "agents/ContentAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "memoryLaneHelper.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js"
+  ],
+  "agents/EnsembleAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "capabilities/ReasoningLoopUtility.js",
+    "memoryLaneHelper.js",
+    "nootropic/agents/EnsembleAgent"
+  ],
+  "agents/ExplainabilityAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "nootropic/agents"
+  ],
+  "agents/FeedbackAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "memoryLaneHelper.js",
+    "utils/context/shimiMemory.js",
+    "nootropic/agents"
+  ],
+  "agents/FormalVerifierAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "capabilities/Capability.js",
+    "memoryLaneHelper.js",
+    "zod",
+    "nootropic/agents/FormalVerifierAgent"
+  ],
+  "agents/HumanInTheLoopAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "nootropic/agents"
+  ],
+  "agents/MemoryAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "nootropic/agents"
+  ],
+  "agents/MultimodalAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "nootropic/agents/MultimodalAgent"
+  ],
+  "agents/MutationAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "memoryLaneHelper.js",
+    "nootropic/agents"
+  ],
+  "agents/OrchestratorAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/RAGPipelineUtility.js",
+    "capabilities/ReasoningLoopUtility.js",
+    "agents/FeedbackAgent.js",
+    "memoryLaneHelper.js",
+    "nootropic/agents"
+  ],
+  "agents/ReasoningLoopUtility.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "zod",
+    "nootropic/agents/ReasoningLoopUtility"
+  ],
+  "agents/ReviewAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "memoryLaneHelper.js",
+    "types/AgentOrchestrationEngine.js",
+    "zod",
+    "capabilities/Capability.js"
+  ],
+  "agents/SupervisorAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "nootropic/agents"
+  ],
+  "agents/VibeCodingAgent.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "agents/BaseAgent.js",
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    "nootropic/agents/VibeCodingAgent"
+  ],
+  "agents/index.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "nootropic/agents",
+    "capabilities/registry.js",
+    "agents/ContentAgent.js",
+    "agents/CollectionAgent.js",
+    "agents/ReviewAgent.js",
+    "agents/OrchestratorAgent.js",
+    "agents/SupervisorAgent.js",
+    "agents/FeedbackAgent.js",
+    "agents/MutationAgent.js",
+    "agents/ExplainabilityAgent.js",
+    "agents/HumanInTheLoopAgent.js",
+    "agents/MemoryAgent.js",
+    "agents/EnsembleAgent.js",
+    "agents/ReasoningLoopUtility.js",
+    "agents/FormalVerifierAgent.js",
+    "agents/MultimodalAgent.js",
+    "agents/VibeCodingAgent.js"
+  ],
+  "capabilities/Capability.ts": [],
+  "capabilities/EmbeddingProvider.ts": [
+    "capabilities/Capability.js"
+  ],
+  "capabilities/RAGPipelineUtility.ts": [
+    "capabilities/Capability.js",
+    "memoryLaneHelper.js",
+    "utils/context/chunking.js",
+    "utils/context/HybridRetrievalUtility.js",
+    "utils/context/rerank.js",
+    "nootropic/capabilities/RAGPipelineUtility"
+  ],
+  "capabilities/ReasoningLoopUtility.ts": [
+    "capabilities/Capability.js",
+    "memoryLaneHelper.js"
+  ],
+  "capabilities/embeddingRegistry.ts": [
+    "capabilities/EmbeddingProvider.js",
+    "capabilities/Capability.js",
+    "@xenova/transformers",
+    "ollama",
+    "node-fetch",
+    "nootropic/capabilities/embeddingRegistry"
+  ],
+  "capabilities/registry.ts": [
+    "capabilities/Capability.js",
+    "capabilities/RAGPipelineUtility.js",
+    "utils/context/index.js",
+    "utils/feedback/index.js"
+  ],
+  "cliHandler.ts": [
+    "utils.js"
+  ],
+  "contextMutationEngine.ts": [
+    "paths.js",
+    "utils/context/contextManager.js",
+    "utils.js",
+    "utils/context/contextManager.js",
+    "utils/context/cacheDir.js",
+    "contextSnapshotHelper.js",
+    "memoryLaneHelper.js"
+  ],
+  "contextRealtimeServer.ts": [
+    "fs",
+    "path",
+    "url",
+    "http",
+    "ws",
+    "contextSnapshotHelper.js",
+    "contextMutationEngine.js",
+    "contextSnapshotHelper.js",
+    "semanticSearchHelper.js",
+    "agentIntentRegistry.js",
+    "secretScanHelper.js",
+    "memoryLaneHelper.js",
+    "pluginRegistry.js",
+    "utils.js",
+    "utils/context/contextManager.js"
+  ],
+  "contextSnapshotHelper.ts": [
+    "utils/context/contextManager.js",
+    "path",
+    "child_process",
+    "url",
+    "secretScanHelper.js",
+    "memoryLaneHelper.js",
+    "utils/context/cacheDir.js",
+    "telemetry.js",
+    "fs",
+    "utils/context/contextManager.js",
+    "nootropic/contextSnapshotHelper"
+  ],
+  "docDiagramGenerator.ts": [
+    "path",
+    "url",
+    "utils/context/contextManager.js",
+    "utils.js",
+    "cliHandler.js",
+    "telemetry.js"
+  ],
+  "eslint.config.js": [
+    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint/parser",
+    "eslint-plugin-tsdoc"
+  ],
+  "index.ts": [
+    "utils/describe/updateNotifier.js",
+    "utils/describe/deprecationChecker.js",
+    "pluginRegistry.js",
+    "telemetry.js",
+    "agents/BaseAgent.js",
+    "agents/ContentAgent.js",
+    "agents/CollectionAgent.js",
+    "agents/ReviewAgent.js"
+  ],
+  "liveMutationPRHelper.ts": [
+    "paths.js",
+    "utils.js",
+    "utils/context/contextManager.js",
+    "cliHandler.js",
+    "child_process",
+    "memoryLaneHelper.js"
+  ],
+  "memoryLaneHelper.ts": [
+    "utils.js",
+    "utils/context/cacheDir.js",
+    "fs",
+    "adapters/index.js",
+    "types/AgentOrchestrationEngine.js",
+    "memoryLaneHelper.js",
+    ".nootropic-cache/event-schema.json",
+    ".nootropic-cache/event-schema.json"
+  ],
+  "orchestration/composeWorkflows.ts": [
+    "fs",
+    "path",
+    "js-yaml",
+    "orchestration/workflowSchema.js",
+    "utils.js"
+  ],
+  "orchestration/examples/pluginFeedbackApi.ts": [
+    "express",
+    "utils/feedback/pluginFeedback.js"
+  ],
+  "orchestration/workflowSchema.ts": [
+    "zod"
+  ],
+  "orchestrationEngineSelector.ts": [
+    "adapters/langchainAdapter.js",
+    "adapters/crewAIAdapter.js",
+    "adapters/semanticKernelAdapter.js",
+    "types/AgentOrchestrationEngine.js"
+  ],
+  "otel.config.ts": [
+    "otel.config.ts"
+  ],
+  "paths.ts": [
+    "path",
+    "url"
+  ],
+  "pluginRegistry.ts": [
+    "utils.js",
+    "paths.js",
+    "fs",
+    "path",
+    "types/AgentOrchestrationEngine.js",
+    "zod",
+    "types/AgentOrchestrationEngine.js",
+    "telemetry.js",
+    "memoryLaneHelper.js",
+    "utils/feedback/pluginFeedback.js"
+  ],
+  "plugins/examplePlugin.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "zod",
+    "capabilities/Capability.js",
+    "telemetry.js"
+  ],
+  "plugins/index.ts": [
+    "capabilities/registry.js",
+    "plugins/examplePlugin.js"
+  ],
+  "quality/index.ts": [
+    "quality/selfcheck.js"
+  ],
+  "quality/selfcheck.ts": [
+    "child_process",
+    "process",
+    "zod",
+    "@opentelemetry/api",
+    "fs",
+    "types/SastFeedbackMemory.js",
+    "utils/feedback/semgrepMemories.js"
+  ],
+  "quality/sonarqubeApi.ts": [
+    "@opentelemetry/api",
+    "utils/feedback/sonarQubeMemories.js"
+  ],
+  "scripts/aggregateDescribeRegistry.ts": [
+    "utils.js"
+  ],
+  "scripts/aiTriageBacklogTodos.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/backlogInsights.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/backlogSync.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/delete_completed_backlog_tasks.js": [
+    "fs",
+    "path"
+  ],
+  "scripts/dlqReplay.ts": [
+    "kafkajs",
+    "yargs",
+    "yargs/helpers",
+    "types/AgentOrchestrationEngine.js",
+    "@opentelemetry/api"
+  ],
+  "scripts/docs-check-sync.ts": [
+    "fs"
+  ],
+  "scripts/generateAsyncApiSpec.ts": [
+    "fs"
+  ],
+  "scripts/generateBacklogSummary.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/generateBacklogTodos.ts": [
+    "fs",
+    "path",
+    "contextSnapshotHelper.js"
+  ],
+  "scripts/generateCodeDependencyGraph.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/generateComplianceReport.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/generateDocsFromDescribe.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/generateFeatureTable.ts": [
+    "fs"
+  ],
+  "scripts/generateOpenApiSpec.ts": [
+    "fs"
+  ],
+  "scripts/generateRoadmap.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/issueOpsStateMachine.ts": [
+    "fs"
+  ],
+  "scripts/licenseValidation.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/pluginMarketplaceCli.ts": [
+    "pluginRegistry.js",
+    "utils/feedback/pluginFeedback.js"
+  ],
+  "scripts/pruneAndCompressCache.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/pruneAndSortBacklog.js": [
+    "fs",
+    "path"
+  ],
+  "scripts/pruneBacklogTodos.ts": [
+    "fs",
+    "path"
+  ],
+  "scripts/sortBacklogByPriority.js": [
+    "fs",
+    "path"
+  ],
+  "scripts/submitPluginFeedback.ts": [
+    "utils/feedback/pluginFeedback.js"
+  ],
+  "scripts/validateDescribeRegistry.ts": [
+    "capabilities/registry.js",
+    "capabilities/Capability.js"
+  ],
+  "secretScanHelper.ts": [
+    "path",
+    "url",
+    "utils.js",
+    "cliHandler.js",
+    "child_process"
+  ],
+  "semanticIndexBuilder.ts": [
+    "fs",
+    "path",
+    "utils.js",
+    "utils/context/contextManager.js",
+    "utils/context/cacheDir.js",
+    "url",
+    "paths.js",
+    "cliHandler.js",
+    "telemetry.js",
+    "capabilities/embeddingRegistry.js",
+    "nootropic/semanticIndexBuilder"
+  ],
+  "semanticKernelAdapter.ts": [
+    "types/AgentOrchestrationEngine.js"
+  ],
+  "semanticSearchHelper.ts": [
+    "path",
+    "url",
+    "utils.js",
+    "cliHandler.js",
+    "capabilities/embeddingRegistry.js"
+  ],
+  "telemetry.ts": [
+    "@opentelemetry/sdk-node",
+    "@opentelemetry/auto-instrumentations-node",
+    "@opentelemetry/exporter-trace-otlp-http",
+    "@opentelemetry/exporter-metrics-otlp-http",
+    "@opentelemetry/resources",
+    "@opentelemetry/semantic-conventions",
+    "@opentelemetry/sdk-metrics",
+    "@opentelemetry/api",
+    "telemetry.ts"
+  ],
+  "tests/adapter.dapr.context-propagation.test.ts": [
+    "adapters/DaprEventBus.js",
+    "crypto"
+  ],
+  "tests/adapter.kafka.context-propagation.test.ts": [
+    "adapters/KafkaEventBus.js",
+    "types/AgentOrchestrationEngine.js",
+    "crypto"
+  ],
+  "tests/adapter.nats.context-propagation.test.ts": [
+    "adapters/NatsEventBus.js",
+    "crypto",
+    "types/AgentOrchestrationEngine.js"
+  ],
+  "tests/adapter.unit.test.ts": [
+    "vitest",
+    "adapters/langchainAdapter.js",
+    "adapters/crewAIAdapter.js",
+    "adapters/semanticKernelAdapter.js",
+    "types/AgentOrchestrationEngine.js"
+  ],
+  "tests/adapterUtils.unit.test.ts": [
+    "vitest",
+    "utils/plugin/adapterUtils.js"
+  ],
+  "tests/agentControl.unit.test.ts": [
+    "vitest",
+    "agentControl.js",
+    "utils.js",
+    "fs"
+  ],
+  "tests/agentOrchestrationCli.analytics.test.ts": [
+    "vitest",
+    "fs",
+    "path"
+  ],
+  "tests/agentOrchestrationCli.config.test.ts": [
+    "vitest",
+    "utils.js",
+    "fs",
+    "path"
+  ],
+  "tests/agentOrchestrationCli.integration.test.ts": [
+    "vitest",
+    "child_process",
+    "path"
+  ],
+  "tests/cliHandler.smoke.test.ts": [
+    "vitest"
+  ],
+  "tests/context/llmAdapterIntegration.test.ts": [
+    "utils/context/ChunkingUtility.js",
+    "utils/context/HybridRetrievalUtility.js",
+    "utils/context/RerankUtility.js",
+    "utils/context/shimiMemory.js",
+    "adapters/HuggingFaceLLMAdapter.js",
+    "adapters/OpenRouterLLMAdapter.js",
+    "adapters/OllamaLLMAdapter.js",
+    "utils/testing/toxicityCheck.js"
+  ],
+  "tests/deprecationChecker.unit.test.ts": [
+    "vitest",
+    "utils/deprecationChecker.js"
+  ],
+  "tests/dlqReplay.integration.test.ts": [
+    "child_process",
+    "kafkajs",
+    "types/AgentOrchestrationEngine.js"
+  ],
+  "tests/ensureDirAndListFiles.unit.test.ts": [
+    "vitest",
+    "utils/context/contextManager.js",
+    "fs"
+  ],
+  "tests/lifecycleCompliance.test.ts": [
+    "fs",
+    "path"
+  ],
+  "tests/pluginRegistry.unit.test.ts": [
+    "vitest",
+    "pluginRegistry.js",
+    "utils.js"
+  ],
+  "tests/selector.integration.test.ts": [
+    "vitest",
+    "orchestrationEngineSelector.js",
+    "adapters/langchainAdapter.js",
+    "adapters/crewAIAdapter.js",
+    "adapters/semanticKernelAdapter.js"
+  ],
+  "tests/shimiMemory.test.ts": [
+    "utils/context/shimiMemory.ts"
+  ],
+  "tests/sonarQubeMemories.unit.test.ts": [
+    "utils/feedback/sonarQubeMemories.js",
+    "fs",
+    "path"
+  ],
+  "tests/types.AgentOrchestrationEngine.unit.test.ts": [
+    "vitest",
+    "types/AgentOrchestrationEngine.js"
+  ],
+  "tests/updateNotifier.unit.test.ts": [
+    "vitest",
+    "utils/describe/updateNotifier.js"
+  ],
+  "tests/utils.unit.test.ts": [
+    "vitest",
+    "utils.js",
+    "fs",
+    "path"
+  ],
+  "types/AgentOrchestrationEngine.ts": [
+    "zod"
+  ],
+  "types/SastFeedbackMemory.ts": [
+    "zod"
+  ],
+  "types/update-notifier.d.ts": [],
+  "utils/context/RerankUtility.ts": [],
+  "utils/context/cacheDir.ts": [
+    "path",
+    "utils/context/internal.js",
+    "capabilities/Capability.js",
+    "nootropic/utils/context/cacheDir"
+  ],
+  "utils/context/chunking.ts": [
+    "capabilities/Capability.js",
+    "zod",
+    "nootropic/utils/context/chunking"
+  ],
+  "utils/context/contextManager.ts": [
+    "capabilities/Capability.js",
+    "agentControl.js",
+    "contextSnapshotHelper.js",
+    "path",
+    "fs",
+    "utils.js",
+    "events",
+    "utils/context/shimiMemory.js",
+    "nootropic/utils/context/contextManager"
+  ],
+  "utils/context/experimental/ChunkingUtility.ts": [],
+  "utils/context/experimental/HybridRetrievalUtility.ts": [
+    "zod",
+    "nootropic/utils/context/HybridRetrievalUtility"
+  ],
+  "utils/context/hybridRetrieval.ts": [
+    "capabilities/Capability.js",
+    "nootropic/utils/context/hybridRetrieval"
+  ],
+  "utils/context/index.ts": [],
+  "utils/context/internal.ts": [],
+  "utils/context/rerank.ts": [
+    "capabilities/Capability.js",
+    "zod",
+    "nootropic/utils/context/rerank"
+  ],
+  "utils/context/shimiMemory.ts": [
+    "capabilities/Capability.js",
+    "crypto",
+    "node-fetch",
+    "nootropic/utils/context/shimiMemory"
+  ],
+  "utils/describe/index.ts": [],
+  "utils/describe/updateNotifier.ts": [
+    "utils/describe/utils/describe/updateNotifier",
+    "update-notifier",
+    "capabilities/Capability.js",
+    "nootropic/utils/describe/updateNotifier"
+  ],
+  "utils/feedback/index.ts": [],
+  "utils/feedback/pluginFeedback.ts": [
+    "fs",
+    "path",
+    "capabilities/Capability.js",
+    "nootropic/utils/feedback/pluginFeedback"
+  ],
+  "utils/feedback/sastMemories.ts": [
+    "fs",
+    "types/SastFeedbackMemory.js",
+    "@opentelemetry/api",
+    "capabilities/Capability.js",
+    "nootropic/utils/feedback/sastMemories"
+  ],
+  "utils/feedback/sastMemoriesRemote.ts": [
+    "zod",
+    "@opentelemetry/api",
+    "types/SastFeedbackMemory.js",
+    "utils/security/jwtValidation.js",
+    "utils/security/secretsManager.js",
+    "utils/security/secretsManager.js",
+    "crypto",
+    "capabilities/Capability.js"
+  ],
+  "utils/feedback/semgrepMemories.ts": [
+    "fs",
+    "types/SastFeedbackMemory.js"
+  ],
+  "utils/feedback/sonarQubeMemories.ts": [
+    "fs",
+    "types/SastFeedbackMemory.js"
+  ],
+  "utils/plugin/adapterUtils.ts": [
+    "types/AgentOrchestrationEngine.js",
+    "capabilities/Capability.js",
+    ",\n      methods: [\n        { name: ",
+    " }\n      ],\n      schema: {\n        tryDynamicImport: {\n          input: { type: ",
+    "nootropic/utils/plugin/adapterUtils"
+  ],
+  "utils/plugin/index.ts": [],
+  "utils/security/index.ts": [],
+  "utils/security/jwtValidation.ts": [
+    "jose",
+    "zod",
+    "@opentelemetry/api"
+  ],
+  "utils/security/secretsManager.ts": [
+    "zod",
+    "@opentelemetry/api",
+    "fs/promises",
+    "path",
+    "@aws-sdk/client-kms",
+    "capabilities/Capability.js",
+    "node-vault",
+    "nootropic/utils/security/secretsManager",
+    "@google-cloud/kms",
+    "@azure/keyvault-keys",
+    "node-vault",
+    "nootropic/utils/security/secretsManager",
+    "nootropic/utils/security/secretsManager",
+    "nootropic/utils/security/secretsManager",
+    "nootropic/utils/security/secretsManager",
+    "dotenv"
+  ],
+  "utils/testing/toxicityCheck.ts": [],
+  "utils.ts": [
+    "fs",
+    "path",
+    "rrdir",
+    "pluginRegistry.js",
+    "nootropic"
+  ]
+}

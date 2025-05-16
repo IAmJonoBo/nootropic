@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cleanup:remove-unused-dependencies-2024-06-11",
+    "description": "Removed unused dependencies (@dapr/dapr, @opentelemetry/core, @opentelemetry/propagator-b3, kafkajs, nats, node-fetch) from package.json as part of hygiene and LLM/agent-friendliness. Only zod remains as an active dependency. See pnpm-lock.yaml for lockfile update.",
+    "status": "done",
+    "date": "2024-06-11"
+  },
+  {
+    "id": "hygiene:archive-dry-yagni-review-2024-06-11",
+    "description": "Reviewed .ai-helpers-cache/archive for DRY/YAGNI compliance. No duplicative or obsolete files found; all archived files are unique or planned. Added pre-commit and CI knip checks for ongoing dead code/dependency hygiene.",
+    "status": "done",
+    "date": "2024-06-11"
+  },
+  {
+    "id": "periodic-archive-review-nootropic-rebrand",
+    "description": "Periodically review and prune .ai-helpers-cache/archive/ for legacy or obsolete files as part of the nootropic rebranding and ongoing maintenance.",
+    "status": "planned",
+    "note": "Add a scheduled review of the archive to ensure only necessary legacy files are retained. Remove obsolete or fully-migrated files."
+  }
+] 

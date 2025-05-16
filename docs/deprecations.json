@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "version": "0.1.0",
+      "deprecated": false,
+      "message": "No deprecations in this version.",
+      "migration": null
+    },
+    {
+      "version": "0.2.0",
+      "deprecated": true,
+      "message": "The CrewAIAdapter will be removed in 0.3.0. Use LangChainAdapter instead.",
+      "migration": "Replace CrewAIAdapter usage with LangChainAdapter. See docs for details."
+    }
+  ]
+} 

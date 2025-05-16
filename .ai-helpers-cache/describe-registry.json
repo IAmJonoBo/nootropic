@@ -1,0 +1,882 @@
+[
+  {
+    "name": "contextMutationEngine",
+    "description": "Event-driven mutation suggestion traceability and context mutation engine.",
+    "schema": {},
+    "status": "implemented",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true,
+    "eventSchema": {
+      "title": "v1.mutationSuggested",
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "description": "Unique event identifier (UUID)."
+        },
+        "type": {
+          "const": "v1.mutationSuggested"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^v[0-9]+\\.[0-9]+$",
+          "description": "Semantic version of the event schema (e.g., v1.0)."
+        },
+        "source": {
+          "type": "string",
+          "description": "Originating agent/module/service."
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "correlationId": {
+          "type": "string",
+          "description": "Correlation ID for tracing related events."
+        },
+        "topic": {
+          "type": "string",
+          "description": "Logical topic/queue for advanced patterns."
+        }
+      },
+      "required": [
+        "eventId",
+        "type",
+        "version",
+        "source",
+        "agentId",
+        "timestamp",
+        "payload"
+      ]
+    },
+    "traceability": "All mutation suggestions are logged to the event bus and memory lane, supporting full replay, audit, and distributed observability. See docs/orchestration.md and memoryLaneHelper.ts for details."
+  },
+  {
+    "name": "ContextManager",
+    "description": "Planned: ContextManager documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "SecretsManager",
+    "description": "Planned: SecretsManager documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "TypeScript type-casting note (planned)",
+    "description": "Planned: TypeScript type-casting note documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "agent discovery (planned)",
+    "description": "Planned: Agent discovery documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "ajv-cli validation in ci (planned)",
+    "description": "Planned: ajv-cli validation in CI documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "api doc best practices (planned)",
+    "description": "Planned: API doc best practices documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "api doc workflow (planned)",
+    "description": "Planned: API doc workflow documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "cache management (planned)",
+    "description": "Planned: Cache management documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "ci/cd integration (planned)",
+    "description": "Planned: CI/CD integration documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "contextSnapshotHelper (planned)",
+    "description": "Planned: contextSnapshotHelper documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "context handover (planned)",
+    "description": "Planned: Context handover documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "contributing.md (planned)",
+    "description": "Planned: Contributing.md documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "editor config recommendations (planned)",
+    "description": "Planned: Editor config recommendations documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "liveMutationPRHelper (planned)",
+    "description": "Planned: liveMutationPRHelper documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "monorepo typescript config (planned)",
+    "description": "Planned: Monorepo TypeScript config documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "multi-agent orchestration (planned)",
+    "description": "Planned: Multi-agent orchestration documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "onboarding guide (planned)",
+    "description": "Planned: Onboarding guide documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "onboarding instructions (planned)",
+    "description": "Planned: Onboarding instructions documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "sample config files (planned)",
+    "description": "Planned: Sample config files documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "schema validation onboarding (planned)",
+    "description": "Planned: Schema validation onboarding documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "streaming backend integration (planned)",
+    "description": "Planned: Streaming backend integration documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "tsdoc style enforcement (planned)",
+    "description": "Planned: TSDoc style enforcement documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "updated agent event interface (planned)",
+    "description": "Planned: Updated agent event interface documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "updateNotifier",
+    "description": "Notifies users of available package updates via CLI. Useful for keeping AI-Helpers up to date.",
+    "methods": [
+      {
+        "name": "checkForUpdates",
+        "signature": "() => void",
+        "description": "Checks for updates and notifies the user via CLI."
+      }
+    ],
+    "schema": {
+      "checkForUpdates": {
+        "input": {
+          "type": "null",
+          "description": "No input required"
+        },
+        "output": {
+          "type": "null",
+          "description": "No output (side effect: CLI notification)"
+        }
+      }
+    },
+    "license": "MIT",
+    "isOpenSource": true,
+    "usage": "import updateNotifierCapability from 'ai-helpers/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "https://www.npmjs.com/package/update-notifier"
+    ]
+  },
+  {
+    "name": "adapterUtils",
+    "description": "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading.",
+    "methods": [
+      {
+        "name": "tryDynamicImport",
+        "signature": "(moduleName: string) => Promise<unknown | null>",
+        "description": "Attempts to dynamically import a module, returns null on failure."
+      }
+    ],
+    "schema": {
+      "tryDynamicImport": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "moduleName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "moduleName"
+          ]
+        },
+        "output": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Imported module or null on failure"
+        }
+      }
+    },
+    "license": "MIT",
+    "isOpenSource": true,
+    "usage": "import adapterUtilsCapability from 'ai-helpers/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "https://nodejs.org/api/esm.html#esm_dynamic_imports"
+    ]
+  },
+  {
+    "name": "pluginFeedback",
+    "description": "Submit, list, and aggregate plugin feedback (rating, review, social memory).",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://github.com/AI-Helpers/AI-Helpers",
+    "methods": [
+      {
+        "name": "submitPluginFeedback",
+        "signature": "(feedback: PluginFeedback) => Promise<void>",
+        "description": "Submit feedback for a plugin."
+      },
+      {
+        "name": "listFeedbackForPlugin",
+        "signature": "(pluginName: string) => Promise<PluginFeedback[]>",
+        "description": "List all feedback for a plugin."
+      },
+      {
+        "name": "aggregatePluginFeedback",
+        "signature": "(pluginName: string) => Promise<PluginFeedbackAggregate>",
+        "description": "Aggregate feedback for a plugin."
+      }
+    ],
+    "schema": {
+      "submitPluginFeedback": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "pluginName": {
+              "type": "string"
+            },
+            "user": {
+              "type": "string"
+            },
+            "rating": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "review": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "pluginName",
+            "user",
+            "rating",
+            "timestamp"
+          ]
+        },
+        "output": {
+          "type": "null",
+          "description": "No output (side effect: feedback stored)"
+        }
+      },
+      "listFeedbackForPlugin": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "pluginName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "pluginName"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of PluginFeedback"
+        }
+      },
+      "aggregatePluginFeedback": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "pluginName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "pluginName"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "description": "PluginFeedbackAggregate"
+        }
+      }
+    },
+    "usage": "import { submitPluginFeedback, listFeedbackForPlugin, aggregatePluginFeedback } from 'ai-helpers/utils/feedback/pluginFeedback';",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": []
+  },
+  {
+    "name": "sastMemories",
+    "description": "Deduplicates, lists, and syncs SAST feedback memories across tools. Canonical, registry-compliant.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://github.com/AI-Helpers/AI-Helpers",
+    "methods": [
+      {
+        "name": "loadAllMemories",
+        "signature": "() => Promise<SastFeedbackMemory[]>",
+        "description": "Load all SAST feedback memories."
+      },
+      {
+        "name": "deduplicateMemories",
+        "signature": "(memories: SastFeedbackMemory[]) => SastFeedbackMemory[]",
+        "description": "Deduplicate memories by id, tool, and context."
+      },
+      {
+        "name": "listAllSastMemories",
+        "signature": "() => Promise<SastFeedbackMemory[]>",
+        "description": "List all deduplicated SAST memories."
+      },
+      {
+        "name": "getMemoriesForFile",
+        "signature": "(file: string) => Promise<SastFeedbackMemory[]>",
+        "description": "Get all memories for a given file."
+      },
+      {
+        "name": "getMemoriesForRule",
+        "signature": "(ruleId: string) => Promise<SastFeedbackMemory[]>",
+        "description": "Get all memories for a given ruleId."
+      },
+      {
+        "name": "syncWithRemote",
+        "signature": "(localMemories: SastFeedbackMemory[], remoteAdapter: unknown) => Promise<SastFeedbackMemory[]>",
+        "description": "Sync local SAST memories with remote storage."
+      },
+      {
+        "name": "mergeWithRemote",
+        "signature": "(local: SastFeedbackMemory[], remote: SastFeedbackMemory[]) => SastFeedbackMemory[]",
+        "description": "Merge local and remote SAST memories."
+      }
+    ],
+    "schema": {
+      "loadAllMemories": {
+        "input": {
+          "type": "null",
+          "description": "No input required"
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "deduplicateMemories": {
+        "input": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "listAllSastMemories": {
+        "input": {
+          "type": "null",
+          "description": "No input required"
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "getMemoriesForFile": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "getMemoriesForRule": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "ruleId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ruleId"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "syncWithRemote": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "localMemories": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "remoteAdapter": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "localMemories",
+            "remoteAdapter"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "mergeWithRemote": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "local": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "remote": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "local",
+            "remote"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      }
+    },
+    "usage": "import sastMemoriesCapability from 'ai-helpers/utils/feedback/sastMemories'; await sastMemoriesCapability.listAllSastMemories();",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "types/SastFeedbackMemory.js"
+    ]
+  },
+  {
+    "name": "utils/feedback/semgrepMemories",
+    "description": "Modular Semgrep feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant.",
+    "methods": [
+      {
+        "name": "addSemgrepMemory",
+        "signature": "(findingId: string, memory: Partial<SastFeedbackMemory>) => Promise<void>",
+        "description": "Add a feedback/memory entry for a Semgrep finding."
+      },
+      {
+        "name": "listSemgrepMemories",
+        "signature": "(findingId: string) => Promise<SastFeedbackMemory[]>",
+        "description": "List all feedback/memories for a Semgrep finding."
+      },
+      {
+        "name": "applySemgrepMemories",
+        "signature": "(findings: unknown[]) => Promise<unknown[]>",
+        "description": "Apply memories/feedback to a list of findings."
+      },
+      {
+        "name": "llmTriageSemgrepFinding",
+        "signature": "(finding: unknown, memories?: SastFeedbackMemory[]) => Promise<{ triage, rationale, memory }>",
+        "description": "LLM-powered triage for a Semgrep finding."
+      },
+      {
+        "name": "contextAwareTriageSemgrepFinding",
+        "signature": "(finding: unknown, memories?: SastFeedbackMemory[]) => Promise<{ triage, rationale, impact, memory }>",
+        "description": "Context-aware, proactive agentic triage for a Semgrep finding."
+      }
+    ],
+    "schema": {
+      "addSemgrepMemory": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "findingId": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "findingId",
+            "memory"
+          ]
+        },
+        "output": {
+          "type": "null",
+          "description": "No output (side effect: memory stored)"
+        }
+      },
+      "listSemgrepMemories": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "findingId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "findingId"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "applySemgrepMemories": {
+        "input": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of findings"
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of findings with memories"
+        }
+      },
+      "llmTriageSemgrepFinding": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "finding": {
+              "type": "object"
+            },
+            "memories": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "finding"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "description": "{ triage, rationale, memory }"
+        }
+      },
+      "contextAwareTriageSemgrepFinding": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "finding": {
+              "type": "object"
+            },
+            "memories": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "required": [
+            "finding"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "description": "{ triage, rationale, impact, memory }"
+        }
+      }
+    },
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "types/SastFeedbackMemory.js"
+    ]
+  },
+  {
+    "name": "utils/feedback/sonarQubeMemories",
+    "description": "Modular SonarQube feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant.",
+    "methods": [
+      {
+        "name": "addSonarQubeMemory",
+        "signature": "(findingId: string, memory: Partial<SastFeedbackMemory>) => Promise<void>",
+        "description": "Add a feedback/memory entry for a SonarQube finding."
+      },
+      {
+        "name": "listSonarQubeMemories",
+        "signature": "(findingId: string) => Promise<SastFeedbackMemory[]>",
+        "description": "List all feedback/memories for a SonarQube finding."
+      },
+      {
+        "name": "applySonarQubeMemories",
+        "signature": "(findings: unknown[]) => Promise<unknown[]>",
+        "description": "Apply memories/feedback to a list of findings."
+      }
+    ],
+    "schema": {
+      "addSonarQubeMemory": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "findingId": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "findingId",
+            "memory"
+          ]
+        },
+        "output": {
+          "type": "null",
+          "description": "No output (side effect: memory stored)"
+        }
+      },
+      "listSonarQubeMemories": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "findingId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "findingId"
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of SastFeedbackMemory"
+        }
+      },
+      "applySonarQubeMemories": {
+        "input": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of findings"
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Array of findings with memories"
+        }
+      }
+    },
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "types/SastFeedbackMemory.js"
+    ]
+  }
+]

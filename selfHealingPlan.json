@@ -1,0 +1,44 @@
+[
+  {
+    "action": "resolveTodo",
+    "file": "contextMutationEngine.ts",
+    "line": 70,
+    "text": "Resolve: // For TODOs, suggest removing the TODO comment"
+  },
+  {
+    "action": "resolveTodo",
+    "file": "contextMutationEngine.ts",
+    "line": 82,
+    "text": "Resolve: const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]');"
+  },
+  {
+    "action": "resolveTodo",
+    "file": "contextSnapshotHelper.ts",
+    "line": 229,
+    "text": "Resolve: // --- 10. TODO/FIXME Extraction ---"
+  },
+  {
+    "action": "resolveTodo",
+    "file": "contextSnapshotHelper.ts",
+    "line": 247,
+    "text": "Resolve: if (/TODO|FIXME/.test(line)) {"
+  },
+  {
+    "action": "resolveTodo",
+    "file": "contextSnapshotHelper.ts",
+    "line": 441,
+    "text": "Resolve: // --- TODOs for future agents ---"
+  },
+  {
+    "action": "resolveTodo",
+    "file": "contextSnapshotHelper.ts",
+    "line": 454,
+    "text": "Resolve: // Heuristic: penalize for more TODOs, large files, and missing tests"
+  },
+  {
+    "action": "resolveTodo",
+    "file": "contextSnapshotHelper.ts",
+    "line": 665,
+    "text": "Resolve: { name: 'extractTodos', signature: '() => TodoEntry[]', description: 'Extracts TODO/FIXME comments from code.' },"
+  }
+]

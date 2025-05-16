@@ -1,0 +1,1117 @@
+asyncapi: 3.0.0
+info:
+  title: nootropic Capabilities AsyncAPI
+  version: 0.1.0
+  description: Auto-generated AsyncAPI spec from describe registry.
+channels:
+  capability.ensembleagent:
+    subscribe:
+      summary: "EnsembleAgent"
+      description: "Orchestrates multi-LLM code generation, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing integration. Emits rationale/explanation and votingRationale events for each step. Implements Capability interface. Reference: arXiv:2503.15838v1, AutoGen, LangGraph."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "EnsembleAgent"
+      description: "Orchestrates multi-LLM code generation, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing integration. Emits rationale/explanation and votingRationale events for each step. Implements Capability interface. Reference: arXiv:2503.15838v1, AutoGen, LangGraph."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.formalverifieragent:
+    subscribe:
+      summary: "FormalVerifierAgent"
+      description: "Integrates LLM-driven spec generation, formal verification (TLA+, Coq, Lean), and event-driven repair. Emits rationale/explanation for each step. References TLA+, Coq, Lean, tenspiler, arXiv:2505.02500v1."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "FormalVerifierAgent"
+      description: "Integrates LLM-driven spec generation, formal verification (TLA+, Coq, Lean), and event-driven repair. Emits rationale/explanation for each step. References TLA+, Coq, Lean, tenspiler, arXiv:2505.02500v1."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.multimodalagent:
+    subscribe:
+      summary: "MultimodalAgent"
+      description: "Agent for multimodal (image, audio, text) input/output. Supports Pix2Code, Whisper, and code-to-UI translation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "MultimodalAgent"
+      description: "Agent for multimodal (image, audio, text) input/output. Supports Pix2Code, Whisper, and code-to-UI translation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.reasoninglooputility:
+    subscribe:
+      summary: "ReasoningLoopUtility"
+      description: "Iterative code generation, explanation, and repair (chain-of-thought, self-debugging, SCoT)."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "ReasoningLoopUtility"
+      description: "Iterative code generation, explanation, and repair (chain-of-thought, self-debugging, SCoT)."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.vibecodingagent:
+    subscribe:
+      summary: "VibeCodingAgent"
+      description: "Agent for real-time voice-to-code using Whisper and LLMs. Converts audio input to code."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "VibeCodingAgent"
+      description: "Agent for real-time voice-to-code using Whisper and LLMs. Converts audio input to code."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.agents:
+    subscribe:
+      summary: "agents"
+      description: "Exports all core nootropic agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "agents"
+      description: "Exports all core nootropic agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.exampleplugin:
+    subscribe:
+      summary: "examplePlugin"
+      description: "A sample plugin for nootropic. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "examplePlugin"
+      description: "A sample plugin for nootropic. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.cli_usage_(planned):
+    subscribe:
+      summary: "CLI usage (planned)"
+      description: "Planned: CLI usage documentation and onboarding."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "CLI usage (planned)"
+      description: "Planned: CLI usage documentation and onboarding."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.contextmanager:
+    subscribe:
+      summary: "ContextManager"
+      description: "Planned: ContextManager documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "ContextManager"
+      description: "Planned: ContextManager documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.orchestrationengine_(planned):
+    subscribe:
+      summary: "OrchestrationEngine (planned)"
+      description: "Planned: OrchestrationEngine documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "OrchestrationEngine (planned)"
+      description: "Planned: OrchestrationEngine documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.secretsmanager:
+    subscribe:
+      summary: "SecretsManager"
+      description: "Planned: SecretsManager documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "SecretsManager"
+      description: "Planned: SecretsManager documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.typescript_type-casting_note_(planned):
+    subscribe:
+      summary: "TypeScript type-casting note (planned)"
+      description: "Planned: TypeScript type-casting note documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "TypeScript type-casting note (planned)"
+      description: "Planned: TypeScript type-casting note documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.agentintentregistry_(planned):
+    subscribe:
+      summary: "agentIntentRegistry (planned)"
+      description: "Planned: agentIntentRegistry documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "agentIntentRegistry (planned)"
+      description: "Planned: agentIntentRegistry documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.agentprofileregistry_(planned):
+    subscribe:
+      summary: "agentProfileRegistry (planned)"
+      description: "Planned: agentProfileRegistry documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "agentProfileRegistry (planned)"
+      description: "Planned: agentProfileRegistry documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.agent_discovery_(planned):
+    subscribe:
+      summary: "agent discovery (planned)"
+      description: "Planned: Agent discovery documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "agent discovery (planned)"
+      description: "Planned: Agent discovery documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.agent_event_interface_(planned):
+    subscribe:
+      summary: "agent event interface (planned)"
+      description: "Planned: Agent event interface documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "agent event interface (planned)"
+      description: "Planned: Agent event interface documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability../agents/baseagent.js_(planned):
+    subscribe:
+      summary: "./agents/BaseAgent.js (planned)"
+      description: "Planned: ./agents/BaseAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "./agents/BaseAgent.js (planned)"
+      description: "Planned: ./agents/BaseAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability../agents/datacollectoragent.js_(planned):
+    subscribe:
+      summary: "./agents/DataCollectorAgent.js (planned)"
+      description: "Planned: ./agents/DataCollectorAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "./agents/DataCollectorAgent.js (planned)"
+      description: "Planned: ./agents/DataCollectorAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability../agents/revieweragent.js_(planned):
+    subscribe:
+      summary: "./agents/ReviewerAgent.js (planned)"
+      description: "Planned: ./agents/ReviewerAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "./agents/ReviewerAgent.js (planned)"
+      description: "Planned: ./agents/ReviewerAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability../agents/writeragent.js_(planned):
+    subscribe:
+      summary: "./agents/WriterAgent.js (planned)"
+      description: "Planned: ./agents/WriterAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "./agents/WriterAgent.js (planned)"
+      description: "Planned: ./agents/WriterAgent.js documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.ajv-cli_validation_in_ci_(planned):
+    subscribe:
+      summary: "ajv-cli validation in ci (planned)"
+      description: "Planned: ajv-cli validation in CI documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "ajv-cli validation in ci (planned)"
+      description: "Planned: ajv-cli validation in CI documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.api_doc_best_practices_(planned):
+    subscribe:
+      summary: "api doc best practices (planned)"
+      description: "Planned: API doc best practices documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "api doc best practices (planned)"
+      description: "Planned: API doc best practices documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.api_doc_workflow_(planned):
+    subscribe:
+      summary: "api doc workflow (planned)"
+      description: "Planned: API doc workflow documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "api doc workflow (planned)"
+      description: "Planned: API doc workflow documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.api_documentation_generation_(planned):
+    subscribe:
+      summary: "api documentation generation (planned)"
+      description: "Planned: API documentation generation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "api documentation generation (planned)"
+      description: "Planned: API documentation generation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.cache_management_(planned):
+    subscribe:
+      summary: "cache management (planned)"
+      description: "Planned: Cache management documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "cache management (planned)"
+      description: "Planned: Cache management documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.ci/cd_integration_(planned):
+    subscribe:
+      summary: "ci/cd integration (planned)"
+      description: "Planned: CI/CD integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "ci/cd integration (planned)"
+      description: "Planned: CI/CD integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.ci/cd_troubleshooting_(planned):
+    subscribe:
+      summary: "ci/cd troubleshooting (planned)"
+      description: "Planned: CI/CD troubleshooting documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "ci/cd troubleshooting (planned)"
+      description: "Planned: CI/CD troubleshooting documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.coding_standards_(planned):
+    subscribe:
+      summary: "coding standards (planned)"
+      description: "Planned: Coding standards documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "coding standards (planned)"
+      description: "Planned: Coding standards documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.contextmutationengine_event_emission_(planned):
+    subscribe:
+      summary: "contextMutationEngine event emission (planned)"
+      description: "Planned: contextMutationEngine event emission documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "contextMutationEngine event emission (planned)"
+      description: "Planned: contextMutationEngine event emission documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.contextsnapshothelper_(planned):
+    subscribe:
+      summary: "contextSnapshotHelper (planned)"
+      description: "Planned: contextSnapshotHelper documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "contextSnapshotHelper (planned)"
+      description: "Planned: contextSnapshotHelper documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.context_handover_(planned):
+    subscribe:
+      summary: "context handover (planned)"
+      description: "Planned: Context handover documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "context handover (planned)"
+      description: "Planned: Context handover documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.contributing.md_(planned):
+    subscribe:
+      summary: "contributing.md (planned)"
+      description: "Planned: Contributing.md documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "contributing.md (planned)"
+      description: "Planned: Contributing.md documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.describe_registry_(in_progress):
+    subscribe:
+      summary: "describe registry (in progress)"
+      description: "In progress: Central describe registry for all capabilities."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "describe registry (in progress)"
+      description: "In progress: Central describe registry for all capabilities."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.docdiagramgenerator_(planned):
+    subscribe:
+      summary: "docDiagramGenerator (planned)"
+      description: "Planned: docDiagramGenerator documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "docDiagramGenerator (planned)"
+      description: "Planned: docDiagramGenerator documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.editor_config_recommendations_(planned):
+    subscribe:
+      summary: "editor config recommendations (planned)"
+      description: "Planned: Editor config recommendations documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "editor config recommendations (planned)"
+      description: "Planned: Editor config recommendations documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event_bus_abstraction_(planned):
+    subscribe:
+      summary: "event bus abstraction (planned)"
+      description: "Planned: Event bus abstraction documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event bus abstraction (planned)"
+      description: "Planned: Event bus abstraction documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event-driven_mas_patterns_(planned):
+    subscribe:
+      summary: "event-driven MAS patterns (planned)"
+      description: "Planned: Event-driven MAS patterns documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event-driven MAS patterns (planned)"
+      description: "Planned: Event-driven MAS patterns documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event-driven_agent_example_(writeragent)_(planned):
+    subscribe:
+      summary: "event-driven agent example (WriterAgent) (planned)"
+      description: "Planned: Event-driven agent example (WriterAgent) documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event-driven agent example (WriterAgent) (planned)"
+      description: "Planned: Event-driven agent example (WriterAgent) documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event-driven_agent_pattern_(planned):
+    subscribe:
+      summary: "event-driven agent pattern (planned)"
+      description: "Planned: Event-driven agent pattern documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event-driven agent pattern (planned)"
+      description: "Planned: Event-driven agent pattern documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event-driven_mutation_suggestion_traceability:
+    subscribe:
+      summary: "event-driven mutation suggestion traceability"
+      description: "Implements full traceability for all mutation/refactor suggestions via structured event emission. Every suggestion (schema drift, TODO, test gap) emits a v1.mutationSuggested event, which is logged, replayable, and observable via the event bus. Events are schema-validated, versioned, and compatible with distributed backends (NATS, Kafka, Dapr, JSONL)."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event-driven mutation suggestion traceability"
+      description: "Implements full traceability for all mutation/refactor suggestions via structured event emission. Every suggestion (schema drift, TODO, test gap) emits a v1.mutationSuggested event, which is logged, replayable, and observable via the event bus. Events are schema-validated, versioned, and compatible with distributed backends (NATS, Kafka, Dapr, JSONL)."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event-driven_traceability_(livemutationprhelper)_(planned):
+    subscribe:
+      summary: "event-driven traceability (liveMutationPRHelper) (planned)"
+      description: "Planned: Event-driven traceability (liveMutationPRHelper) documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event-driven traceability (liveMutationPRHelper) (planned)"
+      description: "Planned: Event-driven traceability (liveMutationPRHelper) documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event_payload_convention_(planned):
+    subscribe:
+      summary: "event payload convention (planned)"
+      description: "Planned: Event payload convention documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event payload convention (planned)"
+      description: "Planned: Event payload convention documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.event_schema_references_(planned):
+    subscribe:
+      summary: "event schema references (planned)"
+      description: "Planned: Event schema references documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "event schema references (planned)"
+      description: "Planned: Event schema references documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.github_actions_workflow_(planned):
+    subscribe:
+      summary: "github actions workflow (planned)"
+      description: "Planned: GitHub Actions workflow documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "github actions workflow (planned)"
+      description: "Planned: GitHub Actions workflow documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.livemutationprhelper_(planned):
+    subscribe:
+      summary: "liveMutationPRHelper (planned)"
+      description: "Planned: liveMutationPRHelper documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "liveMutationPRHelper (planned)"
+      description: "Planned: liveMutationPRHelper documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.matrix_validation_strategy_(planned):
+    subscribe:
+      summary: "matrix validation strategy (planned)"
+      description: "Planned: Matrix validation strategy documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "matrix validation strategy (planned)"
+      description: "Planned: Matrix validation strategy documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.monorepo_typescript_config_(planned):
+    subscribe:
+      summary: "monorepo typescript config (planned)"
+      description: "Planned: Monorepo TypeScript config documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "monorepo typescript config (planned)"
+      description: "Planned: Monorepo TypeScript config documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.multi-agent_orchestration_(planned):
+    subscribe:
+      summary: "multi-agent orchestration (planned)"
+      description: "Planned: Multi-agent orchestration documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "multi-agent orchestration (planned)"
+      description: "Planned: Multi-agent orchestration documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.mutationsuggested_event_schema_(planned):
+    subscribe:
+      summary: "mutationSuggested event schema (planned)"
+      description: "Planned: mutationSuggested event schema documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "mutationSuggested event schema (planned)"
+      description: "Planned: mutationSuggested event schema documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.onboarding_guide_(planned):
+    subscribe:
+      summary: "onboarding guide (planned)"
+      description: "Planned: Onboarding guide documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "onboarding guide (planned)"
+      description: "Planned: Onboarding guide documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.onboarding_instructions_(planned):
+    subscribe:
+      summary: "onboarding instructions (planned)"
+      description: "Planned: Onboarding instructions documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "onboarding instructions (planned)"
+      description: "Planned: Onboarding instructions documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.onboarding_troubleshooting_(planned):
+    subscribe:
+      summary: "onboarding troubleshooting (planned)"
+      description: "Planned: Onboarding troubleshooting documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "onboarding troubleshooting (planned)"
+      description: "Planned: Onboarding troubleshooting documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.plugin_architecture_(planned):
+    subscribe:
+      summary: "plugin architecture (planned)"
+      description: "Planned: Plugin architecture documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "plugin architecture (planned)"
+      description: "Planned: Plugin architecture documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.pre-commit/husky_hooks_(planned):
+    subscribe:
+      summary: "pre-commit/Husky hooks (planned)"
+      description: "Planned: Pre-commit/Husky hooks documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "pre-commit/Husky hooks (planned)"
+      description: "Planned: Pre-commit/Husky hooks documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.quality/selfcheck_(planned):
+    subscribe:
+      summary: "quality/selfcheck (planned)"
+      description: "Planned: quality/selfcheck documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "quality/selfcheck (planned)"
+      description: "Planned: quality/selfcheck documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.quality_system_(planned):
+    subscribe:
+      summary: "quality system (planned)"
+      description: "Planned: Quality system documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "quality system (planned)"
+      description: "Planned: Quality system documentation and implementation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.sample_config_files_(planned):
+    subscribe:
+      summary: "sample config files (planned)"
+      description: "Planned: Sample config files documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "sample config files (planned)"
+      description: "Planned: Sample config files documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.schema_validation_onboarding_(planned):
+    subscribe:
+      summary: "schema validation onboarding (planned)"
+      description: "Planned: Schema validation onboarding documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "schema validation onboarding (planned)"
+      description: "Planned: Schema validation onboarding documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.semanticindexbuilder_(planned):
+    subscribe:
+      summary: "semanticIndexBuilder (planned)"
+      description: "Planned: semanticIndexBuilder documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "semanticIndexBuilder (planned)"
+      description: "Planned: semanticIndexBuilder documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.setup_and_environment_requirements_(planned):
+    subscribe:
+      summary: "setup and environment requirements (planned)"
+      description: "Planned: Setup and environment requirements documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "setup and environment requirements (planned)"
+      description: "Planned: Setup and environment requirements documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.streaming_backend_integration_(planned):
+    subscribe:
+      summary: "streaming backend integration (planned)"
+      description: "Planned: Streaming backend integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "streaming backend integration (planned)"
+      description: "Planned: Streaming backend integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.supervisor_agent_pattern_(planned):
+    subscribe:
+      summary: "supervisor agent pattern (planned)"
+      description: "Planned: Supervisor agent pattern documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "supervisor agent pattern (planned)"
+      description: "Planned: Supervisor agent pattern documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.tsdoc_style_enforcement_(planned):
+    subscribe:
+      summary: "tsdoc style enforcement (planned)"
+      description: "Planned: TSDoc style enforcement documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "tsdoc style enforcement (planned)"
+      description: "Planned: TSDoc style enforcement documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.tsdoc/typedoc/eslint/ci_integration_(planned):
+    subscribe:
+      summary: "tsdoc/typedoc/eslint/ci integration (planned)"
+      description: "Planned: TSDoc/TypeDoc/ESLint/CI integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "tsdoc/typedoc/eslint/ci integration (planned)"
+      description: "Planned: TSDoc/TypeDoc/ESLint/CI integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.typedoc_integration_(planned):
+    subscribe:
+      summary: "typedoc integration (planned)"
+      description: "Planned: TypeDoc integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "typedoc integration (planned)"
+      description: "Planned: TypeDoc integration documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.typedoc.json_config_(planned):
+    subscribe:
+      summary: "typedoc.json config (planned)"
+      description: "Planned: typedoc.json config documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "typedoc.json config (planned)"
+      description: "Planned: typedoc.json config documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.updated_agent_event_interface_(planned):
+    subscribe:
+      summary: "updated agent event interface (planned)"
+      description: "Planned: Updated agent event interface documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "updated agent event interface (planned)"
+      description: "Planned: Updated agent event interface documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.utils_(planned):
+    subscribe:
+      summary: "utils (planned)"
+      description: "Planned: utils documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "utils (planned)"
+      description: "Planned: utils documentation."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.updatenotifier:
+    subscribe:
+      summary: "updateNotifier"
+      description: "Notifies users of available package updates via CLI. Useful for keeping nootropic up to date."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "updateNotifier"
+      description: "Notifies users of available package updates via CLI. Useful for keeping nootropic up to date."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.adapterutils:
+    subscribe:
+      summary: "adapterUtils"
+      description: "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "adapterUtils"
+      description: "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.pluginfeedback:
+    subscribe:
+      summary: "pluginFeedback"
+      description: "Submit, list, and aggregate plugin feedback (rating, review, social memory)."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "pluginFeedback"
+      description: "Submit, list, and aggregate plugin feedback (rating, review, social memory)."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.sastmemories:
+    subscribe:
+      summary: "sastMemories"
+      description: "Deduplicates, lists, and syncs SAST feedback memories across tools. Canonical, registry-compliant."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "sastMemories"
+      description: "Deduplicates, lists, and syncs SAST feedback memories across tools. Canonical, registry-compliant."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.utils/feedback/semgrepmemories:
+    subscribe:
+      summary: "utils/feedback/semgrepMemories"
+      description: "Modular Semgrep feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "utils/feedback/semgrepMemories"
+      description: "Modular Semgrep feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+  capability.utils/feedback/sonarqubememories:
+    subscribe:
+      summary: "utils/feedback/sonarQubeMemories"
+      description: "Modular SonarQube feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+    publish:
+      summary: "utils/feedback/sonarQubeMemories"
+      description: "Modular SonarQube feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant."
+      message:
+        contentType: application/json
+        payload:
+          type: object
+# TODO: Add components/schemas for each capability

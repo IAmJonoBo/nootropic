@@ -1,0 +1,209 @@
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/adapters/crewAIAdapter.ts
+  18:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/adapters/langchainAdapter.ts
+  18:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/adapters/semanticKernelAdapter.ts
+  18:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agentMessageProtocol.ts
+  23:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agentOrchestrationCli.ts
+  204:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  206:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  239:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  245:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/BaseAgent.ts
+  53:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
+  55:62  warning  Unexpected any. Specify a different type                                         @typescript-eslint/no-explicit-any
+  61:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
+  69:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
+  84:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/DataCollectorAgent.ts
+  54:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  76:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  91:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  92:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/ReviewerAgent.ts
+  47:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  48:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  65:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  66:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  81:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  82:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  97:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  98:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/WriterAgent.ts
+  42:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  42:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  43:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  43:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  55:81  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  75:37  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  76:46  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/contextMutationEngine.ts
+   54:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
+   54:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+   54:21  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
+   54:42  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag        tsdoc/syntax
+   54:43  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+  163:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
+  163:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  163:14  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  163:67  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
+  163:83  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag        tsdoc/syntax
+  163:85  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+  163:86  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/contextSnapshotHelper.ts
+   34:7   error    'SEMANTIC_INDEX_JSON' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   35:7   error    'ANALYTICS_LOG' is assigned a value but never used        @typescript-eslint/no-unused-vars
+   36:7   error    'MANIFEST_JSON' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  299:49  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  328:37  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  328:62  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  652:22  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  653:71  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  655:40  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  690:22  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  691:71  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  693:35  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  717:33  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  724:41  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  738:15  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  741:15  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+  741:27  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/index.ts
+  20:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
+  20:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  20:21  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
+  20:31  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag        tsdoc/syntax
+  20:32  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+  59:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                                 tsdoc/syntax
+  59:4   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen                   tsdoc/syntax
+  59:11  warning  tsdoc-param-tag-with-invalid-type: The @param block should not include a JSDoc-style '{type}'                               tsdoc/syntax
+  60:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
+  60:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  60:30  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/liveMutationPRHelper.ts
+  161:4  warning  tsdoc-unsupported-tag: The TSDoc tag "@see" is not supported by this tool  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/memoryLaneHelper.ts
+   98:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+   99:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+   99:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  100:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
+  101:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  102:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  103:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  103:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  104:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
+  104:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
+  104:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
+  104:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
+  104:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
+  104:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  110:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+  111:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+  111:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  112:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
+  113:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  114:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  115:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  115:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  116:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
+  116:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
+  116:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
+  116:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
+  116:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
+  116:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  122:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+  123:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+  123:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  124:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
+  125:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  126:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  127:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  127:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  128:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
+  128:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
+  128:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
+  128:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
+  128:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
+  128:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  134:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+  135:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
+  135:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  136:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
+  137:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  138:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  139:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  139:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
+  140:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
+  140:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
+  140:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
+  140:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
+  140:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
+  140:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
+  206:32   warning  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/pluginRegistry.ts
+   95:47  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  123:20  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  135:44  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  142:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  142:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  143:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  143:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  163:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  163:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  183:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  183:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  184:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  184:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  185:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  185:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  200:18  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/types/AgentOrchestrationEngine.ts
+   98:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+   98:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+   99:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+   99:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  104:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  104:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  109:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  109:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  110:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  110:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  111:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  111:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils.ts
+  84:20  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+  84:26  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+  84:40  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils/adapterUtils.ts
+  22:71   warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  22:101  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils/deprecationChecker.ts
+  8:7  error  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils/updateNotifier.ts
+  9:7  error  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 166 problems (61 errors, 105 warnings)
+

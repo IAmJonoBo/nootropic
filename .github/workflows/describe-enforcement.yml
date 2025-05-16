@@ -1,0 +1,49 @@
+name: Describe Registry Enforcement (CI)
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'scripts/validateDescribeRegistry.ts'
+      - 'capabilities/**'
+      - 'plugins/**'
+      - 'agents/**'
+      - 'adapters/**'
+      - 'utils/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/describe-enforcement.yml'
+  pull_request:
+    paths:
+      - 'scripts/validateDescribeRegistry.ts'
+      - 'capabilities/**'
+      - 'plugins/**'
+      - 'agents/**'
+      - 'adapters/**'
+      - 'utils/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/describe-enforcement.yml'
+
+jobs:
+  describe-registry-enforcement:
+    name: Describe Registry Compliance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate describe registry compliance
+        run: pnpm exec tsx scripts/validateDescribeRegistry.ts
+      - name: Print summary
+        run: echo 'Describe registry compliance check complete. See logs above.'
+
+# This workflow enforces describe() and health() compliance for all plugins/capabilities, following 2025 best practices. See README and CONTRIBUTING for troubleshooting. 

@@ -1,0 +1,10 @@
+{
+  "generated": "2025-05-16T04:20:15.169Z",
+  "secretScan": null,
+  "auditLog": [],
+  "references": [
+    "scripts/vaultIntegrationGuide.md",
+    "scripts/kanikoBuildExample.md",
+    "scripts/argoCdIntegrationGuide.md"
+  ]
+}

@@ -1,0 +1,32 @@
+name: Lint TSDoc
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  lint-tsdoc:
+    name: Lint TSDoc Comments
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run TSDoc Linter
+        run: pnpm exec eslint . --ext .ts,.tsx --report-unused-disable-directives --plugin tsdoc
+        # This step will fail if any TSDoc violations are found
+        # See CONTRIBUTING.md and docs/orchestration.md for rationale and troubleshooting 

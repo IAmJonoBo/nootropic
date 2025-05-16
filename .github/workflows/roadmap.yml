@@ -1,0 +1,50 @@
+name: Automated Roadmap Generation (2025)
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'agentBacklog.json'
+      - 'scripts/generateRoadmap.ts'
+      - '.github/workflows/roadmap.yml'
+  pull_request:
+    paths:
+      - 'agentBacklog.json'
+      - 'scripts/generateRoadmap.ts'
+      - '.github/workflows/roadmap.yml'
+  schedule:
+    - cron: '0 4 * * *' # Daily at 4am UTC
+
+jobs:
+  generate-roadmap:
+    name: Generate and Validate Roadmap
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Generate ROADMAP.md
+        run: pnpm tsx scripts/generateRoadmap.ts
+      - name: Check for changes (PRs)
+        if: github.event_name == 'pull_request'
+        run: |
+          git diff --exit-code docs/ROADMAP.md || (echo 'docs/ROADMAP.md is out of date. Please run pnpm tsx scripts/generateRoadmap.ts and commit the result.' && exit 1)
+      - name: Commit and push ROADMAP.md (main/master)
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add docs/ROADMAP.md
+          git diff --cached --quiet || git commit -m 'chore: update ROADMAP.md [auto]' && git push
+      - name: Print summary
+        run: echo 'Roadmap generation complete. See docs/ROADMAP.md.'
+
+# This workflow automates roadmap generation and validation, following 2025 best practices for DRY, idempotency, and documentation automation. See README and CONTRIBUTING for details. 
