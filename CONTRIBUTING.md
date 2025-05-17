@@ -39,3 +39,13 @@ These checks are enforced in CI (`.github/workflows/ci.yml`, `.github/workflows/
 - The sync scripts will warn if a doc is missing a status field or is ambiguous. Please fix these warnings promptly.
 - Naming conventions for planned/in-progress/stub docs (e.g., `(planned)`, `(in progress)`, `planned-`, `stub`, `draft`) are supported but explicit status fields are preferred for automation and LLM-friendliness.
 - See the onboarding and CLI usage guides for more details on documentation and automation best practices.
+
+## Automated Security & Dependency Updates
+
+This repository uses [Renovate](https://docs.renovatebot.com/) for automated dependency and security updates. Renovate will automatically open pull requests to update dependencies and address known vulnerabilities. All contributors should:
+
+- Regularly review and merge Renovate PRs.
+- Monitor [GitHub security alerts](https://github.com/IAmJonoBo/nootropic/security/dependabot) for additional vulnerabilities.
+- Run `pnpm update --latest` and `pnpm install` locally if urgent security issues are flagged.
+
+For more details, see the `renovate.json` config and the [Renovate documentation](https://docs.renovatebot.com/).
