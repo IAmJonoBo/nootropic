@@ -49,3 +49,11 @@ This repository uses [Renovate](https://docs.renovatebot.com/) for automated dep
 - Run `pnpm update --latest` and `pnpm install` locally if urgent security issues are flagged.
 
 For more details, see the `renovate.json` config and the [Renovate documentation](https://docs.renovatebot.com/).
+
+## LLM/AI PR Summaries & Safe Update Workflow
+
+- All Renovate PRs include labels for update type (e.g., `auto-merge`, `safe-update`, `major`, `breaking-change`, `needs-review`).
+- Patch and minor updates are auto-merged if CI passes. Major updates require human review.
+- Use LLM/AI tools (e.g., OpenAI PR reviewer or custom GPT workflows) to auto-summarize PRs, highlight breaking changes, and suggest migration steps.
+- Regularly audit dependencies and dead code using Knip, npm-check, or custom scripts. Add a recurring backlog item for this.
+- See `renovate.json` for config details and update policy.
