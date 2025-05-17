@@ -1,4 +1,4 @@
-// AI-Helpers Quality/Self-Check Module (ESM, Strict TS)
+// nootropic Quality/Self-Check Module (ESM, Strict TS)
 // This module orchestrates all quality checks, research, and self-updating logic.
 // Plugins are loaded and run based on env vars/config. Only enabled plugins run.
 import { spawn } from 'child_process';
@@ -219,7 +219,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 // - Add CLI entrypoint
 // - Add tests for this module
 /**
- * Returns a description of the AI-Helpers quality system and its plugins.
+ * Returns a description of the nootropic quality system and its plugins.
  */
 export function describe() {
     return {

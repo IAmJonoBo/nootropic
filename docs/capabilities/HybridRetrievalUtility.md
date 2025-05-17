@@ -7,8 +7,8 @@
 ## Usage Example
 
 ```ts
-import { HybridRetrievalUtility, DenseRetriever } from 'ai-helpers/utils/context/HybridRetrievalUtility';
-import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter';
+import { HybridRetrievalUtility, DenseRetriever } from 'nootropic/utils/context/HybridRetrievalUtility';
+import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter';
 const hf = new HuggingFaceLLMAdapter();
 const dense = new DenseRetriever(hf);
 const hybrid = new HybridRetrievalUtility(dense);

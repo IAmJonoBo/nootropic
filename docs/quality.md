@@ -1,6 +1,6 @@
 # Quality Tools & LLM/Agent Integration
 
-AI-Helpers provides native, LLM/agent-friendly integration with modern quality tools, including Semgrep OSS and SonarQube. All tools are self-describing, configurable, and accessible via the quality/selfcheck.ts plugin system.
+nootropic provides native, LLM/agent-friendly integration with modern quality tools, including Semgrep OSS and SonarQube. All tools are self-describing, configurable, and accessible via the quality/selfcheck.ts plugin system.
 
 ## Semgrep OSS
 
@@ -40,7 +40,7 @@ AI-Helpers provides native, LLM/agent-friendly integration with modern quality t
   - `listSemgrepMemories(findingId)` — List all feedback/memories for a finding.
   - `applySemgrepMemories(findings)` — Attach memories to findings for noise filtering/context-aware remediation.
   - `llmTriageSemgrepFinding(finding, memories?)` — LLM-powered triage: classifies as true positive, false positive, or needs review using code context and memories. Triage results are persisted as memories.
-- **Storage:** Memories are persisted in `.ai-helpers-cache/semgrep-memories.json`.
+- **Storage:** Memories are persisted in `.nootropic-cache/semgrep-memories.json`.
 - **Best Practices:** Implements 2025 SAST/LLM best practices for feedback loops, noise filtering, and context-aware remediation. See Semgrep blog and arXiv:2504.13474.
 - **Example Workflow:**
   1. Agent scans codebase and lists findings.
@@ -117,7 +117,7 @@ In Semgrep and SonarQube sections, reference the shared schema and cross-tool co
   - `listAllSastMemories()` — List all deduplicated memories across tools.
   - `getMemoriesForFile(file)` — Get all memories for a file.
   - `getMemoriesForRule(ruleId)` — Get all memories for a rule.
-- **Canonical View:** All deduplicated memories are stored in `.ai-helpers-cache/sast-memories.json`.
+- **Canonical View:** All deduplicated memories are stored in `.nootropic-cache/sast-memories.json`.
 - **Best Practices:** Implements 2025 SAST/LLM best practices for noise filtering, deduplication, and org-wide knowledge sharing.
 - **Example Usage:**
   ```ts
@@ -128,7 +128,7 @@ In Semgrep and SonarQube sections, reference the shared schema and cross-tool co
 
 ## Remote/Org-Wide SAST Feedback Storage & Sync (2025+)
 
-AI-Helpers supports remote/org-wide storage and synchronization of SAST feedback/memories, enabling cross-tool, organization-wide triage, deduplication, and sharing. This is achieved via a pluggable remote adapter interface (`utils/feedback/sastMemoriesRemote.ts`) supporting S3, REST API, or custom backends.
+nootropic supports remote/org-wide storage and synchronization of SAST feedback/memories, enabling cross-tool, organization-wide triage, deduplication, and sharing. This is achieved via a pluggable remote adapter interface (`utils/feedback/sastMemoriesRemote.ts`) supporting S3, REST API, or custom backends.
 
 ### Key APIs
 - **syncWithRemote(localMemories, remoteAdapter):** Syncs local memories with remote, merging and deduplicating using canonical IDs.
@@ -281,7 +281,7 @@ See [KmsVaultSecretsManager](../utils/security/secretsManager.ts) and [SastMemor
 - All operations are audited and registry/describe/health compliant.
 - Usage example:
   ```ts
-  import { VaultSecretsManager } from 'ai-helpers/utils/security/secretsManager';
+  import { VaultSecretsManager } from 'nootropic/utils/security/secretsManager';
   const secrets = new VaultSecretsManager({ endpoint: 'http://localhost:8200', token: 's.xxxxx' });
   await secrets.getSecret('API_KEY');
   ```
@@ -322,11 +322,11 @@ If you see a CACHE_DIR warning, see the README troubleshooting section.
   - `addSonarQubeMemory(findingId, memory)` — Add feedback/memory to a SonarQube finding (e.g., triaged, rationale, tags).
   - `listSonarQubeMemories(findingId)` — List all feedback/memories for a finding.
   - `applySonarQubeMemories(findings)` — Attach memories to findings for context-aware remediation and deduplication.
-- **Storage:** Memories are persisted in `.ai-helpers-cache/sonarqube-memories.json`.
+- **Storage:** Memories are persisted in `.nootropic-cache/sonarqube-memories.json`.
 - **Schema:** All memories are validated against the shared SASTFeedbackMemory schema. See `types/SastFeedbackMemory.ts`.
 - **Example Usage:**
   ```ts
-  import { addSonarQubeMemory, listSonarQubeMemories, applySonarQubeMemories } from 'ai-helpers/utils/feedback/sonarQubeMemories';
+  import { addSonarQubeMemory, listSonarQubeMemories, applySonarQubeMemories } from 'nootropic/utils/feedback/sonarQubeMemories';
   await addSonarQubeMemory('sonarqube:rule:file:42', { memoryType: 'triage', rationale: 'False positive', triage: 'false_positive' });
   const memories = await listSonarQubeMemories('sonarqube:rule:file:42');
   const findingsWithMemories = await applySonarQubeMemories([{ id: 'sonarqube:rule:file:42', ... }]);
@@ -339,4 +339,30 @@ If you see a CACHE_DIR warning, see the README troubleshooting section.
   - Deduplicate and share feedback across tools and projects for better noise filtering and remediation.
   - Reference the describe registry for up-to-date API signatures and usage.
 
-For more, see `quality/selfcheck.ts` and the describe() output for each tool. 
+For more, see `quality/selfcheck.ts` and the describe() output for each tool.
+
+## Shared Feedback/Memory Utility Architecture (2025+)
+
+All SAST, Semgrep, SonarQube, and plugin feedback/memory utilities now share a robust, extensible BaseMemoryUtility. This base class provides:
+- Pluggable, event-driven deduplication
+- Generic aggregation (by key or custom logic)
+- Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility
+- Registry/describe/health compliance and LLM/AI-friendliness
+- Unified describe registry discoverability for all feedback/memory APIs
+
+See [pluginFeedback.md](capabilities/pluginFeedback.md) and the describe registry for up-to-date API signatures and usage.
+
+## LLM/AI-Friendly Context Utilities (2025+)
+
+All context utilities (RerankUtility, contextManager, cacheDir, shimiMemory) now export robust, LLM/AI-friendly describe() outputs with canonical promptTemplates and usage. This enables LLMs, agents, and automation to discover and use these utilities in a unified, future-proof way.
+
+- **RerankUtility**: Bi-encoder + cross-encoder reranking, instruction-following, pluggable adapters. See [utils/context/RerankUtility.ts](../../utils/context/RerankUtility.ts).
+- **contextManager**: Pruning, archiving, tiering, SHIMI memory integration. See [utils/context/contextManager.ts](../../utils/context/contextManager.ts).
+- **cacheDir**: Cache directory helpers, robust file management. See [utils/context/cacheDir.ts](../../utils/context/cacheDir.ts).
+- **shimiMemory**: Polyhierarchical semantic memory, CRDT merge, pluggable embedding/LLM backend. See [utils/context/shimiMemory.ts](../../utils/context/shimiMemory.ts).
+
+All are registry/describe/health compliant and LLM/AI-friendly.
+
+## Test & Validation Status (2025-05)
+
+All context and feedback/memory utilities are registry/describe/health compliant and LLM/AI-friendly. All tests pass except for known issues with unavailable external services (Kafka, etc.), which are backlogged and do not affect core functionality. See [README](../README.md) and [agentBacklog.json](../agentBacklog.json) for details. 

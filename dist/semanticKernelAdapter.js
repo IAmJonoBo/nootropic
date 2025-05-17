@@ -56,5 +56,5 @@ export class SemanticKernelAdapter {
         return [];
     }
 }
-// Note: To enable real integration, install @microsoft/semantic-kernel in your project or in AI-Helpers.
+// Note: To enable real integration, install @microsoft/semantic-kernel in your project or in nootropic.
 // pnpm add @microsoft/semantic-kernel 

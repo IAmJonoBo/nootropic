@@ -1,2 +1,2 @@
-// --- Type Definitions (local to AI-Helpers for modularity) ---
+// --- Type Definitions (local to nootropic for modularity) ---
 export {};

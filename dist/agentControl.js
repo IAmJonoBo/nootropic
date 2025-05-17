@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This is the control/cleanup utility for all future agents and users.
+// nootropic is for Cursor agents only. This is the control/cleanup utility for all future agents and users.
 // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { readJsonSafe, writeJsonSafe } from './utils.js';
 import path from 'path';

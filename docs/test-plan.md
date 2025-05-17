@@ -1,6 +1,6 @@
 # nootropic Orchestration Engine Test Plan
 
-[//]: # (Rebranding note: This file was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.)
+[//]: # (Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.)
 
 ## Overview
 This test plan covers the modular orchestration engine system in nootropic, ensuring correctness, extensibility, and DRY compliance.
@@ -54,7 +54,7 @@ This test plan covers the modular orchestration engine system in nootropic, ensu
 ## 5. Event Bus & Audit Log Tests
 - **Goal:** Ensure all agent actions emit structured events, audit logs are persisted, and the event log is replayable.
 - **Tests:**
-  - Emitting an event via `publishEvent` appends to `.ai-helpers-cache/event-log.jsonl`
+  - Emitting an event via `publishEvent` appends to `.nootropic-cache/event-log.jsonl`
   - `getEvents` returns all events, filtered by type/agentId
   - `logEvent` creates a Log event with correct level/message
   - CLI: `append`, `get`, and `tail` commands work as expected

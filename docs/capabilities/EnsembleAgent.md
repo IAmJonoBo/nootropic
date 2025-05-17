@@ -4,7 +4,7 @@ Orchestrates multi-LLM code generation, modular voting/selection (majority, weig
 
 **Usage:**
 
-`import { EnsembleAgent, MajorityVotingStrategy } from 'ai-helpers/agents/EnsembleAgent'; const agent = new EnsembleAgent({ profile: { name: 'EnsembleAgent' }, votingStrategy: new MajorityVotingStrategy() }); await agent.runTask({ ... });`
+`import { EnsembleAgent, MajorityVotingStrategy } from 'nootropic/agents/EnsembleAgent'; const agent = new EnsembleAgent({ profile: { name: 'EnsembleAgent' }, votingStrategy: new MajorityVotingStrategy() }); await agent.runTask({ ... });`
 
 ## Methods/Functions
 

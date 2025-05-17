@@ -1,7 +1,9 @@
 #!/usr/bin/env tsx
+// @ts-ignore
 import registry from '../capabilities/registry.js';
+// @ts-ignore
 // import type { Capability } from '../capabilities/Capability.js';
-// @ts-expect-error TS(2305): Module '"../utils/cliHelpers.js"' has no exported ... Remove this comment to see the full error message
+// @ts-ignore
 import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
 
 const usage = 'Usage: pnpm tsx scripts/validateDescribeRegistry.ts [--help] [--json]';
@@ -39,21 +41,15 @@ const options = {
  *   - "What does validateDescribeRegistry do?"
  */
 
-// @ts-expect-error TS(2304): Cannot find name 'async'.
 (async () => {
-  // @ts-expect-error TS(18004): No value exists in scope for the shorthand propert... Remove this comment to see the full error message
   const { args, showHelp } = parseCliArgs({ options });
-  // @ts-expect-error TS(6133): 'showHelp' is declared but its value is never read... Remove this comment to see the full error message
   if (showHelp) return printUsage(usage, options);
   try {
-    // @ts-expect-error TS(2304): Cannot find name 'capabilities'.
     const capabilities = registry.list();
-    // @ts-expect-error TS(18004): No value exists in scope for the shorthand propert... Remove this comment to see the full error message
     let allValid = true;
-    // @ts-expect-error TS(7006): Parameter '(Missing)' implicitly has an 'any' type... Remove this comment to see the full error message
     for (const cap of capabilities) {
       const errors: string[] = [];
-      if (!cap ?? typeof cap.name !== 'string') {
+      if (!cap || typeof cap.name !== 'string') {
         errors.push('Missing or invalid name');
       }
       if (typeof cap.describe !== 'function') {
@@ -72,24 +68,21 @@ const options = {
         errors.push('Missing health() method');
       }
       if (errors.length) {
-        // @ts-expect-error TS(2304): Cannot find name 'allValid'.
         allValid = false;
-        // @ts-expect-error TS(2581): Cannot find name '$'. Do you need to install type ... Remove this comment to see the full error message
         console.error(`[NONCOMPLIANT] ${cap?.name ?? '(unknown)'}: ${errors.join('; ')}`);
       } else {
-        // @ts-expect-error TS(2304): Cannot find name 'OK'.
         console.log(`[OK] ${cap.name}`);
       }
     }
     if (!allValid) {
-      printError('Some capabilities are noncompliant. See above.', args['json']);
+      printError('Some capabilities are noncompliant. See above.', typeof args['json'] === 'boolean' ? args['json'] : undefined);
       process.exit(1);
     } else {
-      printResult('All registered capabilities are compliant.', args['json']);
+      printResult('All registered capabilities are compliant.', typeof args['json'] === 'boolean' ? args['json'] : undefined);
       process.exit(0);
     }
   } catch (e) {
-    printError(e, args['json']);
+    printError(e, typeof args['json'] === 'boolean' ? args['json'] : undefined);
     process.exit(1);
   }
 })(); 

@@ -1,11 +1,11 @@
-// AI-Helpers is for Cursor agents only. This file is for AI agent context handoff and is not intended for human consumption.
+// nootropic is for Cursor agents only. This file is for AI agent context handoff and is not intended for human consumption.
 // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 // ============================================================================
-// Context & Contract Snapshot Helper (AI-Helpers/contextSnapshotHelper.ts)
+// Context & Contract Snapshot Helper (nootropic/contextSnapshotHelper.ts)
 // --------------------------------------------------------------------------
 // Usage:
-//   pnpm tsx AI-Helpers/contextSnapshotHelper.ts [--delta]
-//   node AI-Helpers/contextSnapshotHelper.js [--full]
+//   pnpm tsx nootropic/contextSnapshotHelper.ts [--delta]
+//   node nootropic/contextSnapshotHelper.js [--full]
 //
 // Outputs:
 //   - context-snapshot.json: Machine-readable context for AI agents
@@ -574,7 +574,7 @@ export function describe() {
             { name: 'getTestFiles', signature: '() => TestFileInfo[]', description: 'Lists all test files.' },
             { name: 'getContextChunk', signature: '(size: number) => Record<string, unknown>', description: 'Returns a context snapshot trimmed to fit the specified byte size.' }
         ],
-        usage: "import { createSnapshot, extractTodos } from 'ai-helpers/contextSnapshotHelper';",
+        usage: "import { createSnapshot, extractTodos } from 'nootropic/contextSnapshotHelper';",
         schema: {
             createSnapshot: {
                 input: {

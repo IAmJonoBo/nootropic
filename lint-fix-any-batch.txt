@@ -1,37 +1,37 @@
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/adapters/crewAIAdapter.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/adapters/crewAIAdapter.ts
   18:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/adapters/langchainAdapter.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/adapters/langchainAdapter.ts
   18:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/adapters/semanticKernelAdapter.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/adapters/semanticKernelAdapter.ts
   18:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agentMessageProtocol.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/agentMessageProtocol.ts
   23:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agentOrchestrationCli.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/agentOrchestrationCli.ts
   204:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   206:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   239:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   245:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/BaseAgent.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/agents/BaseAgent.ts
   53:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
   55:62  warning  Unexpected any. Specify a different type                                         @typescript-eslint/no-explicit-any
   61:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
   69:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
   84:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/DataCollectorAgent.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/agents/DataCollectorAgent.ts
   54:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   76:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   77:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   91:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   92:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/ReviewerAgent.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/agents/ReviewerAgent.ts
   47:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   48:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   65:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -41,7 +41,7 @@
   97:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   98:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/agents/WriterAgent.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/agents/WriterAgent.ts
   42:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
   42:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
   43:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
@@ -50,7 +50,7 @@
   75:37  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
   76:46  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/contextMutationEngine.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/contextMutationEngine.ts
    54:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
    54:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
    54:21  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
@@ -64,7 +64,7 @@
   163:85  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
   163:86  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/contextSnapshotHelper.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/contextSnapshotHelper.ts
   299:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   328:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   328:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -80,7 +80,7 @@
   741:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
   741:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/index.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/index.ts
   20:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
   20:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
   20:21  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
@@ -93,10 +93,10 @@
   60:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
   60:30  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/liveMutationPRHelper.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/liveMutationPRHelper.ts
   161:4  warning  tsdoc-unsupported-tag: The TSDoc tag "@see" is not supported by this tool  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/memoryLaneHelper.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/memoryLaneHelper.ts
    98:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
    99:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
    99:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
@@ -155,7 +155,7 @@
   140:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
   206:32   warning  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/pluginRegistry.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/pluginRegistry.ts
    95:47  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
   123:20  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
   135:44  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
@@ -173,7 +173,7 @@
   185:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
   200:18  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/types/AgentOrchestrationEngine.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/types/AgentOrchestrationEngine.ts
    98:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
    98:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
    99:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
@@ -187,16 +187,16 @@
   111:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
   111:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/utils.ts
   84:20  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
   84:26  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
   84:40  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils/adapterUtils.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/utils/adapterUtils.ts
   22:71   warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
   22:101  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/AI-Helpers/utils/updateNotifier.ts
+/Users/jonathanbotha/Projects/GitHub/nootropic/utils/updateNotifier.ts
   6:10  error  'createRequire' is defined but never used  @typescript-eslint/no-unused-vars
 
 ✖ 162 problems (57 errors, 105 warnings)

@@ -12,7 +12,7 @@ The `CollectionAgent` collects data in response to events, supporting:
 ## Usage
 
 ```ts
-import { CollectionAgent } from 'ai-helpers/agents';
+import { CollectionAgent } from 'nootropic/agents';
 const agent = new CollectionAgent({ profile: { name: 'CollectionAgent' } });
 const result = await agent.runTask({ id: 't1', description: 'Collect data', query: 'example' });
 console.log(result);
@@ -32,7 +32,7 @@ console.log(result);
 - Document extension points and rationale in describe()
 
 ## Research References
-- [AI-Helpers Project](https://github.com/AI-Helpers/AI-Helpers)
+- [nootropic Project](https://github.com/nootropic/nootropic)
 
 ## LLM/AI Usage Hints
 - Use `--json` flag for machine-readable output if running via CLI.

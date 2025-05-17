@@ -1,10 +1,10 @@
 # agents
 
-Exports all core AI-Helpers agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.
+Exports all core nootropic agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.
 
 **Usage:**
 
-`import { BaseAgent, ContentAgent, CollectionAgent, ReviewAgent } from 'ai-helpers/agents';`
+`import { BaseAgent, ContentAgent, CollectionAgent, ReviewAgent } from 'nootropic/agents';`
 
 ## Schema
 

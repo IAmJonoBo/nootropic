@@ -1,14 +1,14 @@
-// AI-Helpers shared utilities for all helpers. AI-native, ESM-compatible, robust.
+// nootropic shared utilities for all helpers. AI-native, ESM-compatible, robust.
 import { promises as fsp } from 'fs';
 import path from 'path';
 import { rrdir } from 'rrdir';
 // --- Error logger ---
 function errorLogger(context, error) {
     if (error instanceof Error) {
-        console.error(`[AI-Helpers ERROR] ${context}:`, error.stack ?? error.message);
+        console.error(`[nootropic ERROR] ${context}:`, error.stack ?? error.message);
     }
     else {
-        console.error(`[AI-Helpers ERROR] ${context}:`, error);
+        console.error(`[nootropic ERROR] ${context}:`, error);
     }
 }
 // --- ESM entrypoint check ---
@@ -77,13 +77,13 @@ async function listFilesRecursive(dirPath) {
     return entries.filter((e) => !e.directory).map((e) => e.path);
 }
 /**
- * Loads AI-Helpers config from .ai-helpersrc (JSON) or ai-helpers.config.ts, with fallback to defaults.
+ * Loads nootropic config from .nootropicrc (JSON) or nootropic.config.ts, with fallback to defaults.
  * Precedence: CLI > env > config file > defaults (config merging is handled by caller).
  */
 export async function loadAiHelpersConfig(defaults = {}) {
     const cwd = process.cwd();
-    const jsonPath = path.join(cwd, '.ai-helpersrc');
-    const tsPath = path.join(cwd, 'ai-helpers.config.ts');
+    const jsonPath = path.join(cwd, '.nootropicrc');
+    const tsPath = path.join(cwd, 'nootropic.config.ts');
     let config = { ...defaults };
     // Try JSON config
     try {
@@ -108,7 +108,7 @@ export async function loadAiHelpersConfig(defaults = {}) {
     return config;
 }
 /**
- * Returns a description of the AI-Helpers utilities and their usage.
+ * Returns a description of the nootropic utilities and their usage.
  */
 export function describe() {
     return {
@@ -123,9 +123,9 @@ export function describe() {
             { name: 'ensureDirExists', signature: 'async (dirPath) => Promise<void>', description: 'Ensures a directory exists.' },
             { name: 'listFilesInDir', signature: 'async (dirPath) => Promise<string[]>', description: 'Lists files in a directory.' },
             { name: 'listFilesRecursive', signature: 'async (dirPath) => Promise<string[]>', description: 'Recursively lists all files in a directory.' },
-            { name: 'loadAiHelpersConfig', signature: 'async (defaults) => Promise<T>', description: 'Loads AI-Helpers config from .ai-helpersrc (JSON) or ai-helpers.config.ts, with fallback to defaults.' }
+            { name: 'loadAiHelpersConfig', signature: 'async (defaults) => Promise<T>', description: 'Loads nootropic config from .nootropicrc (JSON) or nootropic.config.ts, with fallback to defaults.' }
         ],
-        usage: "import { readJsonSafe, writeJsonSafe, errorLogger } from 'ai-helpers';",
+        usage: "import { readJsonSafe, writeJsonSafe, errorLogger } from 'nootropic';",
         schema: {
             readJsonSafe: {
                 input: {

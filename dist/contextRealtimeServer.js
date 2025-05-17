@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This is the real-time context/mutation server for all future agents.
+// nootropic is for Cursor agents only. This is the real-time context/mutation server for all future agents.
 // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import fs from 'fs';
 import path from 'path';

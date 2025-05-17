@@ -13,7 +13,7 @@ The `MutationAgent` handles live patching, mutation testing, and rollback for ag
 ## Usage
 
 ```ts
-import { MutationAgent } from 'ai-helpers/agents';
+import { MutationAgent } from 'nootropic/agents';
 const agent = new MutationAgent({ profile: { name: 'MutationAgent' }, backendName: 'nv-embed' });
 const result = await agent.runTask({ file: 'example.ts', code: 'var x = 1;' });
 console.log(result);

@@ -1,10 +1,10 @@
 # examplePlugin
 
-A sample plugin for AI-Helpers. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety.
+A sample plugin for nootropic. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety.
 
 **Usage:**
 
-`ai-helpers plugins run examplePlugin`
+`nootropic plugins run examplePlugin`
 
 ## Schema
 
@@ -53,6 +53,6 @@ A sample plugin for AI-Helpers. Demonstrates plugin lifecycle, dynamic event sub
 
 ## References
 
-- https://github.com/AI-Helpers/AI-Helpers
-- https://github.com/AI-Helpers/AI-Helpers/blob/main/README.md
+- https://github.com/nootropic/nootropic
+- https://github.com/nootropic/nootropic/blob/main/README.md
 

@@ -7,8 +7,8 @@
 ## Usage Example
 
 ```ts
-import { ChunkingUtility, SemanticChunkingStrategy, LLMChunkRelevanceScorer } from 'ai-helpers/utils/context/ChunkingUtility';
-import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter';
+import { ChunkingUtility, SemanticChunkingStrategy, LLMChunkRelevanceScorer } from 'nootropic/utils/context/ChunkingUtility';
+import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter';
 const hf = new HuggingFaceLLMAdapter();
 const chunker = new ChunkingUtility(
   new SemanticChunkingStrategy(hf),

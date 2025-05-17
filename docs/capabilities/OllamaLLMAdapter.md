@@ -9,7 +9,7 @@
 ## Usage Example
 
 ```ts
-import { OllamaLLMAdapter } from 'ai-helpers/adapters/OllamaLLMAdapter';
+import { OllamaLLMAdapter } from 'nootropic/adapters/OllamaLLMAdapter';
 const adapter = new OllamaLLMAdapter();
 await adapter.generateText('Hello!');
 await adapter.embedText('Text to embed');

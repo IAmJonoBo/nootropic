@@ -1,4 +1,4 @@
-// Centralized paths for AI-Helpers
+// Centralized paths for nootropic
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);

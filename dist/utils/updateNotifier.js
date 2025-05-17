@@ -1,5 +1,5 @@
 // Utility: updateNotifier.ts
-// Checks for updates to the ai-helpers package and notifies the user via CLI.
+// Checks for updates to the nootropic package and notifies the user via CLI.
 // Usage: import { checkForUpdates } from './utils/updateNotifier'; checkForUpdates();
 import updateNotifier from 'update-notifier';
 import { createRequire } from 'module';

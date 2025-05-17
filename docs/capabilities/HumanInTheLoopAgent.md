@@ -15,7 +15,7 @@ The `HumanInTheLoopAgent` embeds human review and feedback into agentic workflow
 ## Usage
 
 ```ts
-import { HumanInTheLoopAgent } from 'ai-helpers/agents/HumanInTheLoopAgent';
+import { HumanInTheLoopAgent } from 'nootropic/agents/HumanInTheLoopAgent';
 const agent = new HumanInTheLoopAgent({ profile: { name: 'HumanInTheLoopAgent' } });
 await agent.runTask({ ... });
 ```

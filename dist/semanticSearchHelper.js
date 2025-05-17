@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { SEMANTIC_INDEX_PATH } from './paths.js';
 import { readJsonSafe } from './utils.js';
 import { embed } from './semanticIndexBuilder.js';
@@ -32,12 +32,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         const { args } = parseArgs(process.argv);
         const cmd = args[0];
         if (cmd === 'help' || args.includes('--help')) {
-            printHelp('pnpm tsx AI-Helpers/semanticSearchHelper.ts <query>', 'Semantic search for code, docs, and messages.');
+            printHelp('pnpm tsx nootropic/semanticSearchHelper.ts <query>', 'Semantic search for code, docs, and messages.');
             process.exit(0);
         }
         const query = args.join(' ');
         if (!query) {
-            printHelp('pnpm tsx AI-Helpers/semanticSearchHelper.ts <query>', 'Semantic search for code, docs, and messages.');
+            printHelp('pnpm tsx nootropic/semanticSearchHelper.ts <query>', 'Semantic search for code, docs, and messages.');
             process.exit(1);
         }
         try {

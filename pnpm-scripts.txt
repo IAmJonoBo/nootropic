@@ -8,7 +8,7 @@ Commands available via "pnpm run":
   copy-non-ts
     cpx "adapters/**/*.{json,js,md}" dist/adapters && cpx "plugins/**/*.{json,js,md}" dist/plugins && cpx "quality/**/*.{json,js,md}" dist/quality
   update
-    pnpm up ai-helpers
+    pnpm up nootropic
   quality
     tsx quality/index.ts
   validate-describe-registry

@@ -1,6 +1,6 @@
 # Security & Secret Scanning Integration Guide
 
-[//]: # (Rebranding note: This file was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.)
+[//]: # (Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.)
 
 This system allows agents to scan the codebase for secrets using trufflehog or gitleaks, and access results via CLI, HTTP, and WebSocket APIs.
 

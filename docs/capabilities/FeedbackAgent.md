@@ -13,7 +13,7 @@ The `FeedbackAgent` aggregates, summarizes, and routes feedback from LLMs/humans
 ## Usage
 
 ```ts
-import { FeedbackAgent } from 'ai-helpers/agents';
+import { FeedbackAgent } from 'nootropic/agents';
 const agent = new FeedbackAgent({ profile: { name: 'FeedbackAgent' } });
 const result = await agent.runTask('This feedback is unclear.');
 console.log(result);

@@ -4,7 +4,7 @@ Agent for multimodal (image, audio, text) input/output. Supports Pix2Code, Whisp
 
 **Usage:**
 
-`import { MultimodalAgent } from 'ai-helpers/agents/MultimodalAgent'; const agent = new MultimodalAgent({ profile: { name: 'MultimodalAgent' } }); await agent.runTask({ ... });`
+`import { MultimodalAgent } from 'nootropic/agents/MultimodalAgent'; const agent = new MultimodalAgent({ profile: { name: 'MultimodalAgent' } }); await agent.runTask({ ... });`
 
 ## Methods/Functions
 

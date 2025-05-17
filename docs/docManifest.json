@@ -1,8 +1,8 @@
 {
   "note": "Sections marked as (planned) or (in progress) are not yet fully implemented in the codebase, but are tracked in the backlog and will be documented as they are delivered. See agentBacklog.json for details.",
   "generated": [
-    "/Users/jonathanbotha/Projects/GitHub/Rocketship/AI-Helpers/docs/collaborationMap.mmd",
-    "/Users/jonathanbotha/Projects/GitHub/Rocketship/AI-Helpers/docs/dependencyGraph.mmd",
+    "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/docs/collaborationMap.mmd",
+    "/Users/jonathanbotha/Projects/GitHub/Rocketship/nootropic/docs/dependencyGraph.mmd",
     "docs/capabilities/agents.md",
     "docs/capabilities/examplePlugin.md",
     "docs/capabilities/updateNotifier.md",
@@ -77,17 +77,220 @@
     "docs/capabilities/sastMemories.md",
     "docs/capabilities/utils/feedback/semgrepMemories.md",
     "docs/capabilities/utils/feedback/sonarQubeMemories.md",
-    "docs/capabilities/contextMutationEngine.md"
+    "docs/capabilities/contextMutationEngine.md",
+    "docs/capabilities/semgrepMemories.md",
+    "docs/capabilities/sonarQubeMemories.md"
   ],
-  "timestamp": "2025-05-16T16:32:12.688Z",
+  "timestamp": "2025-05-17T16:27:37.461Z",
   "sections": [
     "adapterUtils",
-    "event-driven mutation suggestion traceability",
     "pluginFeedback",
     "sastMemories",
+    "semgrepMemories",
+    "sonarQubeMemories",
     "updateNotifier",
-    "utils/feedback/semgrepMemories",
-    "utils/feedback/sonarQubeMemories"
+    "advanced-event-replay-debugging",
+    "agent-plugin-describe-review",
+    "archive-review-and-removal",
+    "automation-automated-documentation-discoverability",
+    "automation-cache-health-reporting",
+    "automation-compliance-health-lifecycle-checks",
+    "automation-context-graph-refresh",
+    "automation-dynamic-prioritization-sprint-planning",
+    "automation-feedback-loops-continuous-improvement",
+    "automation-human-in-the-loop-escalation",
+    "automation-issueops-state-machine-triggers",
+    "automation-memory-augmented-agent-patterns",
+    "automation-multi-agent-orchestration-patterns",
+    "automation-onboarding-checklist-generation",
+    "automation-prune-archive-backlog",
+    "automation-script-ci-scheduling",
+    "automation-script-docs-update",
+    "automation-script-error-handling-standardization",
+    "automation-script-llm-friendly-flags",
+    "automation-script-shared-helpers",
+    "automation-security-compliance-guardrails",
+    "automation-stale-todo-detection-escalation",
+    "automation-stale-todo-issueops-integration",
+    "automation-technical-debt-hotspot-ci-integration",
+    "automation-technical-debt-hotspot-detection",
+    "automation-tool-integration-orchestration",
+    "chunkingutility-agentic-implementation",
+    "chunkingutility-semantic-implementation",
+    "chunkingutility-test-coverage",
+    "describe-health-registry-docs-update",
+    "describe-registry-automation-ci",
+    "doc-improvements-schema-validation",
+    "docs-feature-table-context-utilities",
+    "epic-advanced-agents",
+    "epic-advanced-automation-compliance",
+    "epic-advanced-utilities",
+    "epic-automation-metadata-and-onboarding",
+    "epic-cicd-security-compliance",
+    "epic-cli-script-standardization-discoverability",
+    "epic-codebase-refactor-dry-yagni",
+    "epic-context-rag-semantic",
+    "epic-doc-code-parity",
+    "epic-docs-code-e2e-automation-plan-surfacing",
+    "epic-documentation-onboarding",
+    "epic-intelligent-backlog-roadmap-automation",
+    "epic-nv-embed-integration",
+    "epic-quality-tools-feedback",
+    "epic-utilities-refactor",
+    "implement-bm25-dpr-adapters",
+    "integrate-open-source-llm-apis",
+    "onboarding-docs-registry-architecture",
+    "orchestrated-agent-e2e-tests",
+    "planned-orchestration-engine",
+    "planned-utils",
+    "ragpipelineutility-advanced-implementation",
+    "ragpipelineutility-chunking-integration",
+    "ragpipelineutility-rerank-integration",
+    "reasoning-loop-utility-integration-tests-docs",
+    "registry-compliance-test-coverage",
+    "rerankutility-crossencoder-implementation",
+    "rerankutility-embedding-implementation",
+    "rerankutility-llm-implementation",
+    "rerankutility-mmr-implementation",
+    "rerankutility-test-coverage",
+    "review-adapter-utils",
+    "review-agent-intent-registry",
+    "review-agent-message-protocol",
+    "review-agent-orchestration-helper",
+    "review-agent-profile-registry",
+    "review-aggregate-describe-registry",
+    "review-backlog-insights",
+    "review-backlog-sync",
+    "review-chunking-utility",
+    "review-chunking",
+    "review-hybrid-retrieval-utility",
+    "schema-validation-plugins-registry",
+    "shimi-eval-vector-baseline",
+    "shimi-llm-backend",
+    "shimi-real-world-benchmarking",
+    "task",
+    "test-coverage-context-utilities",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-121",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-125",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-129",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-217",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-218",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-220",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-268",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-308",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-309",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-310",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-481",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-482",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-74",
+    "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-81",
+    "todo-nootropic-adapters-kafka-event-bus-ts-18",
+    "todo-nootropic-adapters-kafka-event-bus-ts-48",
+    "todo-nootropic-agents-ensemble-agent-ts-33",
+    "todo-nootropic-agents-formal-verifier-agent-ts-21",
+    "todo-nootropic-agents-formal-verifier-agent-ts-35",
+    "todo-nootropic-agents-formal-verifier-agent-ts-38",
+    "todo-nootropic-agents-formal-verifier-agent-ts-45",
+    "todo-nootropic-agents-mutation-agent-ts-20",
+    "todo-nootropic-agents-mutation-agent-ts-35",
+    "todo-nootropic-agents-mutation-agent-ts-39",
+    "todo-nootropic-agents-mutation-agent-ts-47",
+    "todo-nootropic-capabilities-ragpipeline-utility-ts-31",
+    "todo-nootropic-capabilities-ragpipeline-utility-ts-33",
+    "todo-nootropic-capabilities-ragpipeline-utility-ts-36",
+    "todo-nootropic-capabilities-ragpipeline-utility-ts-38",
+    "todo-nootropic-capabilities-ragpipeline-utility-ts-59",
+    "todo-nootropic-context-mutation-engine-ts-4",
+    "todo-nootropic-context-mutation-engine-ts-76",
+    "todo-nootropic-context-mutation-engine-ts-88",
+    "todo-nootropic-context-snapshot-helper-ts-238",
+    "todo-nootropic-context-snapshot-helper-ts-239",
+    "todo-nootropic-context-snapshot-helper-ts-273",
+    "todo-nootropic-context-snapshot-helper-ts-278",
+    "todo-nootropic-context-snapshot-helper-ts-466",
+    "todo-nootropic-context-snapshot-helper-ts-471",
+    "todo-nootropic-context-snapshot-helper-ts-578",
+    "todo-nootropic-context-snapshot-helper-ts-579",
+    "todo-nootropic-context-snapshot-helper-ts-580",
+    "todo-nootropic-context-snapshot-helper-ts-581",
+    "todo-nootropic-context-snapshot-helper-ts-582",
+    "todo-nootropic-context-snapshot-helper-ts-583",
+    "todo-nootropic-context-snapshot-helper-ts-584",
+    "todo-nootropic-context-snapshot-helper-ts-585",
+    "todo-nootropic-context-snapshot-helper-ts-586",
+    "todo-nootropic-context-snapshot-helper-ts-587",
+    "todo-nootropic-context-snapshot-helper-ts-588",
+    "todo-nootropic-context-snapshot-helper-ts-591",
+    "todo-nootropic-context-snapshot-helper-ts-596",
+    "todo-nootropic-context-snapshot-helper-ts-890",
+    "todo-nootropic-context-snapshot-helper-ts-895",
+    "todo-nootropic-quality-selfcheck-ts-157",
+    "todo-nootropic-quality-selfcheck-ts-417",
+    "todo-nootropic-quality-sonarqube-api-ts-48",
+    "todo-nootropic-scripts-generate-async-api-spec-ts-27",
+    "todo-nootropic-scripts-generate-async-api-spec-ts-35",
+    "todo-nootropic-scripts-generate-async-api-spec-ts-61",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-14",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-17",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-24",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-30",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-38",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-40",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-42",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-44",
+    "todo-nootropic-scripts-generate-backlog-todos-ts-46",
+    "todo-nootropic-scripts-generate-open-api-spec-ts-30",
+    "todo-nootropic-scripts-generate-open-api-spec-ts-55",
+    "todo-nootropic-scripts-issue-ops-state-machine-ts-7",
+    "todo-nootropic-scripts-issue-ops-state-machine-ts-83",
+    "todo-nootropic-scripts-issue-ops-state-machine-ts-96",
+    "todo-nootropic-scripts-issue-ops-state-machine-ts-97",
+    "todo-nootropic-scripts-issue-ops-state-machine-ts-98",
+    "todo-nootropic-scripts-prune-and-compress-cache-ts-16",
+    "todo-nootropic-scripts-prune-and-compress-cache-ts-8",
+    "todo-nootropic-scripts-prune-backlog-todos-ts-30",
+    "todo-nootropic-scripts-prune-backlog-todos-ts-5",
+    "todo-nootropic-scripts-prune-backlog-todos-ts-54",
+    "todo-nootropic-scripts-prune-backlog-todos-ts-56",
+    "todo-nootropic-tests-adapter-dapr-context-propagation-test-ts-96",
+    "todo-nootropic-tests-adapter-kafka-context-propagation-test-ts-74",
+    "todo-nootropic-tests-adapter-nats-context-propagation-test-ts-97",
+    "todo-nootropic-tests-context-llm-adapter-integration-test-ts-47",
+    "todo-nootropic-utils-context-context-manager-ts-281",
+    "todo-nootropic-utils-context-context-manager-ts-371",
+    "todo-nootropic-utils-context-context-manager-ts-85",
+    "todo-nootropic-utils-context-experimental-chunking-utility-ts-24",
+    "todo-nootropic-utils-context-experimental-chunking-utility-ts-40",
+    "todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-26",
+    "todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-43",
+    "todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-46",
+    "todo-nootropic-utils-context-rerank-utility-ts-38",
+    "todo-nootropic-utils-context-shimi-memory-ts-407",
+    "todo-nootropic-utils-context-shimi-memory-ts-412",
+    "todo-nootropic-utils-context-shimi-memory-ts-49",
+    "todo-nootropic-utils-context-shimi-memory-ts-53",
+    "todo-nootropic-utils-security-secrets-manager-ts-191",
+    "todo-nootropic-utils-security-secrets-manager-ts-196",
+    "todo-nootropic-utils-security-secrets-manager-ts-203",
+    "todo-nootropic-utils-security-secrets-manager-ts-209",
+    "todo-nootropic-utils-security-secrets-manager-ts-213",
+    "todo-nootropic-utils-security-secrets-manager-ts-216",
+    "todo-nootropic-utils-security-secrets-manager-ts-220",
+    "todo-nootropic-utils-security-secrets-manager-ts-224",
+    "todo-nootropic-utils-security-secrets-manager-ts-344",
+    "todo-nootropic-utils-security-secrets-manager-ts-348",
+    "todo-nootropic-utils-security-secrets-manager-ts-353",
+    "todo-nootropic-utils-security-secrets-manager-ts-357",
+    "todo-nootropic-utils-security-secrets-manager-ts-360",
+    "todo-nootropic-utils-security-secrets-manager-ts-363",
+    "todo-nootropic-utils-security-secrets-manager-ts-397",
+    "todo-nootropic-utils-security-secrets-manager-ts-401",
+    "todo-nootropic-utils-security-secrets-manager-ts-406",
+    "todo-nootropic-utils-security-secrets-manager-ts-410",
+    "todo-nootropic-utils-security-secrets-manager-ts-413",
+    "todo-nootropic-utils-security-secrets-manager-ts-416",
+    "todo-nootropic-utils-ts-179",
+    "ts-migrate-integration"
   ],
   "references": {
     "event-driven MAS patterns": "orchestration.md",
@@ -136,60 +339,1284 @@
     "liveMutationPRHelper": "orchestration.md"
   },
   "planned": [
-    "./agents/BaseAgent.js (planned)",
-    "./agents/DataCollectorAgent.js (planned)",
-    "./agents/ReviewerAgent.js (planned)",
-    "./agents/WriterAgent.js (planned)",
-    "CLI usage (planned)",
     "ContextManager",
-    "OrchestrationEngine (planned)",
     "SecretsManager",
     "TypeScript type-casting note (planned)",
     "agent discovery (planned)",
-    "agent event interface (planned)",
-    "agentIntentRegistry (planned)",
-    "agentProfileRegistry (planned)",
     "ajv-cli validation in ci (planned)",
     "api doc best practices (planned)",
     "api doc workflow (planned)",
-    "api documentation generation (planned)",
     "cache management (planned)",
     "ci/cd integration (planned)",
-    "ci/cd troubleshooting (planned)",
-    "coding standards (planned)",
     "context handover (planned)",
     "contextSnapshotHelper (planned)",
     "contributing.md (planned)",
-    "describe registry (in progress)",
-    "docDiagramGenerator (planned)",
     "editor config recommendations (planned)",
-    "event bus abstraction (planned)",
-    "event-driven MAS patterns (planned)",
-    "event-driven agent example (WriterAgent) (planned)",
-    "event-driven agent pattern (planned)",
-    "github actions workflow (planned)",
     "liveMutationPRHelper (planned)",
-    "matrix validation strategy (planned)",
     "monorepo typescript config (planned)",
     "multi-agent orchestration (planned)",
     "onboarding guide (planned)",
     "onboarding instructions (planned)",
-    "onboarding troubleshooting (planned)",
-    "plugin architecture (planned)",
-    "pre-commit/Husky hooks (planned)",
-    "quality system (planned)",
-    "quality/selfcheck (planned)",
     "sample config files (planned)",
     "schema validation onboarding (planned)",
-    "semanticIndexBuilder (planned)",
-    "setup and environment requirements (planned)",
     "streaming backend integration (planned)",
-    "supervisor agent pattern (planned)",
     "tsdoc style enforcement (planned)",
-    "tsdoc/typedoc/eslint/ci integration (planned)",
-    "typedoc integration (planned)",
-    "typedoc.json config (planned)",
-    "updated agent event interface (planned)",
-    "utils (planned)"
+    "updated agent event interface (planned)"
+  ],
+  "epics": [
+    {
+      "slug": "advanced-event-replay-debugging",
+      "docPath": "docs/epics/advanced-event-replay-debugging.md"
+    },
+    {
+      "slug": "agent-plugin-describe-review",
+      "docPath": "docs/epics/agent-plugin-describe-review.md"
+    },
+    {
+      "slug": "archive-review-and-removal",
+      "docPath": "docs/epics/archive-review-and-removal.md"
+    },
+    {
+      "slug": "automation-automated-documentation-discoverability",
+      "docPath": "docs/epics/automation-automated-documentation-discoverability.md"
+    },
+    {
+      "slug": "automation-cache-health-reporting",
+      "docPath": "docs/epics/automation-cache-health-reporting.md"
+    },
+    {
+      "slug": "automation-compliance-health-lifecycle-checks",
+      "docPath": "docs/epics/automation-compliance-health-lifecycle-checks.md"
+    },
+    {
+      "slug": "automation-context-graph-refresh",
+      "docPath": "docs/epics/automation-context-graph-refresh.md"
+    },
+    {
+      "slug": "automation-dynamic-prioritization-sprint-planning",
+      "docPath": "docs/epics/automation-dynamic-prioritization-sprint-planning.md"
+    },
+    {
+      "slug": "automation-feedback-loops-continuous-improvement",
+      "docPath": "docs/epics/automation-feedback-loops-continuous-improvement.md"
+    },
+    {
+      "slug": "automation-human-in-the-loop-escalation",
+      "docPath": "docs/epics/automation-human-in-the-loop-escalation.md"
+    },
+    {
+      "slug": "automation-issueops-state-machine-triggers",
+      "docPath": "docs/epics/automation-issueops-state-machine-triggers.md"
+    },
+    {
+      "slug": "automation-memory-augmented-agent-patterns",
+      "docPath": "docs/epics/automation-memory-augmented-agent-patterns.md"
+    },
+    {
+      "slug": "automation-multi-agent-orchestration-patterns",
+      "docPath": "docs/epics/automation-multi-agent-orchestration-patterns.md"
+    },
+    {
+      "slug": "automation-onboarding-checklist-generation",
+      "docPath": "docs/epics/automation-onboarding-checklist-generation.md"
+    },
+    {
+      "slug": "automation-prune-archive-backlog",
+      "docPath": "docs/epics/automation-prune-archive-backlog.md"
+    },
+    {
+      "slug": "automation-script-ci-scheduling",
+      "docPath": "docs/epics/automation-script-ci-scheduling.md"
+    },
+    {
+      "slug": "automation-script-docs-update",
+      "docPath": "docs/epics/automation-script-docs-update.md"
+    },
+    {
+      "slug": "automation-script-error-handling-standardization",
+      "docPath": "docs/epics/automation-script-error-handling-standardization.md"
+    },
+    {
+      "slug": "automation-script-llm-friendly-flags",
+      "docPath": "docs/epics/automation-script-llm-friendly-flags.md"
+    },
+    {
+      "slug": "automation-script-shared-helpers",
+      "docPath": "docs/epics/automation-script-shared-helpers.md"
+    },
+    {
+      "slug": "automation-security-compliance-guardrails",
+      "docPath": "docs/epics/automation-security-compliance-guardrails.md"
+    },
+    {
+      "slug": "automation-stale-todo-detection-escalation",
+      "docPath": "docs/epics/automation-stale-todo-detection-escalation.md"
+    },
+    {
+      "slug": "automation-stale-todo-issueops-integration",
+      "docPath": "docs/epics/automation-stale-todo-issueops-integration.md"
+    },
+    {
+      "slug": "automation-technical-debt-hotspot-ci-integration",
+      "docPath": "docs/epics/automation-technical-debt-hotspot-ci-integration.md"
+    },
+    {
+      "slug": "automation-technical-debt-hotspot-detection",
+      "docPath": "docs/epics/automation-technical-debt-hotspot-detection.md"
+    },
+    {
+      "slug": "automation-tool-integration-orchestration",
+      "docPath": "docs/epics/automation-tool-integration-orchestration.md"
+    },
+    {
+      "slug": "chunkingutility-agentic-implementation",
+      "docPath": "docs/epics/chunkingutility-agentic-implementation.md"
+    },
+    {
+      "slug": "chunkingutility-semantic-implementation",
+      "docPath": "docs/epics/chunkingutility-semantic-implementation.md"
+    },
+    {
+      "slug": "chunkingutility-test-coverage",
+      "docPath": "docs/epics/chunkingutility-test-coverage.md"
+    },
+    {
+      "slug": "describe-health-registry-docs-update",
+      "docPath": "docs/epics/describe-health-registry-docs-update.md"
+    },
+    {
+      "slug": "describe-registry-automation-ci",
+      "docPath": "docs/epics/describe-registry-automation-ci.md"
+    },
+    {
+      "slug": "doc-improvements-schema-validation",
+      "docPath": "docs/epics/doc-improvements-schema-validation.md"
+    },
+    {
+      "slug": "docs-feature-table-context-utilities",
+      "docPath": "docs/epics/docs-feature-table-context-utilities.md"
+    },
+    {
+      "slug": "epic-advanced-agents",
+      "docPath": "docs/epics/epic-advanced-agents.md"
+    },
+    {
+      "slug": "epic-advanced-automation-compliance",
+      "docPath": "docs/epics/epic-advanced-automation-compliance.md"
+    },
+    {
+      "slug": "epic-advanced-utilities",
+      "docPath": "docs/epics/epic-advanced-utilities.md"
+    },
+    {
+      "slug": "epic-automation-metadata-and-onboarding",
+      "docPath": "docs/epics/epic-automation-metadata-and-onboarding.md"
+    },
+    {
+      "slug": "epic-cicd-security-compliance",
+      "docPath": "docs/epics/epic-cicd-security-compliance.md"
+    },
+    {
+      "slug": "epic-cli-script-standardization-discoverability",
+      "docPath": "docs/epics/epic-cli-script-standardization-discoverability.md"
+    },
+    {
+      "slug": "epic-codebase-refactor-dry-yagni",
+      "docPath": "docs/epics/epic-codebase-refactor-dry-yagni.md"
+    },
+    {
+      "slug": "epic-context-rag-semantic",
+      "docPath": "docs/epics/epic-context-rag-semantic.md"
+    },
+    {
+      "slug": "epic-doc-code-parity",
+      "docPath": "docs/epics/epic-doc-code-parity.md"
+    },
+    {
+      "slug": "epic-docs-code-e2e-automation-plan-surfacing",
+      "docPath": "docs/epics/epic-docs-code-e2e-automation-plan-surfacing.md"
+    },
+    {
+      "slug": "epic-documentation-onboarding",
+      "docPath": "docs/epics/epic-documentation-onboarding.md"
+    },
+    {
+      "slug": "epic-intelligent-backlog-roadmap-automation",
+      "docPath": "docs/epics/epic-intelligent-backlog-roadmap-automation.md"
+    },
+    {
+      "slug": "epic-nv-embed-integration",
+      "docPath": "docs/epics/epic-nv-embed-integration.md"
+    },
+    {
+      "slug": "epic-quality-tools-feedback",
+      "docPath": "docs/epics/epic-quality-tools-feedback.md"
+    },
+    {
+      "slug": "epic-utilities-refactor",
+      "docPath": "docs/epics/epic-utilities-refactor.md"
+    },
+    {
+      "slug": "implement-bm25-dpr-adapters",
+      "docPath": "docs/epics/implement-bm25-dpr-adapters.md"
+    },
+    {
+      "slug": "integrate-open-source-llm-apis",
+      "docPath": "docs/epics/integrate-open-source-llm-apis.md"
+    },
+    {
+      "slug": "onboarding-docs-registry-architecture",
+      "docPath": "docs/epics/onboarding-docs-registry-architecture.md"
+    },
+    {
+      "slug": "orchestrated-agent-e2e-tests",
+      "docPath": "docs/epics/orchestrated-agent-e2e-tests.md"
+    },
+    {
+      "slug": "planned-orchestration-engine",
+      "docPath": "docs/epics/planned-orchestration-engine.md"
+    },
+    {
+      "slug": "planned-utils",
+      "docPath": "docs/epics/planned-utils.md"
+    },
+    {
+      "slug": "ragpipelineutility-advanced-implementation",
+      "docPath": "docs/epics/ragpipelineutility-advanced-implementation.md"
+    },
+    {
+      "slug": "ragpipelineutility-chunking-integration",
+      "docPath": "docs/epics/ragpipelineutility-chunking-integration.md"
+    },
+    {
+      "slug": "ragpipelineutility-rerank-integration",
+      "docPath": "docs/epics/ragpipelineutility-rerank-integration.md"
+    },
+    {
+      "slug": "reasoning-loop-utility-integration-tests-docs",
+      "docPath": "docs/epics/reasoning-loop-utility-integration-tests-docs.md"
+    },
+    {
+      "slug": "registry-compliance-test-coverage",
+      "docPath": "docs/epics/registry-compliance-test-coverage.md"
+    },
+    {
+      "slug": "rerankutility-crossencoder-implementation",
+      "docPath": "docs/epics/rerankutility-crossencoder-implementation.md"
+    },
+    {
+      "slug": "rerankutility-embedding-implementation",
+      "docPath": "docs/epics/rerankutility-embedding-implementation.md"
+    },
+    {
+      "slug": "rerankutility-llm-implementation",
+      "docPath": "docs/epics/rerankutility-llm-implementation.md"
+    },
+    {
+      "slug": "rerankutility-mmr-implementation",
+      "docPath": "docs/epics/rerankutility-mmr-implementation.md"
+    },
+    {
+      "slug": "rerankutility-test-coverage",
+      "docPath": "docs/epics/rerankutility-test-coverage.md"
+    },
+    {
+      "slug": "review-adapter-utils",
+      "docPath": "docs/epics/review-adapter-utils.md"
+    },
+    {
+      "slug": "review-agent-intent-registry",
+      "docPath": "docs/epics/review-agent-intent-registry.md"
+    },
+    {
+      "slug": "review-agent-message-protocol",
+      "docPath": "docs/epics/review-agent-message-protocol.md"
+    },
+    {
+      "slug": "review-agent-orchestration-helper",
+      "docPath": "docs/epics/review-agent-orchestration-helper.md"
+    },
+    {
+      "slug": "review-agent-profile-registry",
+      "docPath": "docs/epics/review-agent-profile-registry.md"
+    },
+    {
+      "slug": "review-aggregate-describe-registry",
+      "docPath": "docs/epics/review-aggregate-describe-registry.md"
+    },
+    {
+      "slug": "review-backlog-insights",
+      "docPath": "docs/epics/review-backlog-insights.md"
+    },
+    {
+      "slug": "review-backlog-sync",
+      "docPath": "docs/epics/review-backlog-sync.md"
+    },
+    {
+      "slug": "review-chunking-utility",
+      "docPath": "docs/epics/review-chunking-utility.md"
+    },
+    {
+      "slug": "review-chunking",
+      "docPath": "docs/epics/review-chunking.md"
+    },
+    {
+      "slug": "review-hybrid-retrieval-utility",
+      "docPath": "docs/epics/review-hybrid-retrieval-utility.md"
+    },
+    {
+      "slug": "schema-validation-plugins-registry",
+      "docPath": "docs/epics/schema-validation-plugins-registry.md"
+    },
+    {
+      "slug": "shimi-eval-vector-baseline",
+      "docPath": "docs/epics/shimi-eval-vector-baseline.md"
+    },
+    {
+      "slug": "shimi-llm-backend",
+      "docPath": "docs/epics/shimi-llm-backend.md"
+    },
+    {
+      "slug": "shimi-real-world-benchmarking",
+      "docPath": "docs/epics/shimi-real-world-benchmarking.md"
+    },
+    {
+      "slug": "task",
+      "docPath": "docs/epics/task.md"
+    },
+    {
+      "slug": "test-coverage-context-utilities",
+      "docPath": "docs/epics/test-coverage-context-utilities.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-121",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-121.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-125",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-125.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-129",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-129.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-217",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-217.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-218",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-218.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-220",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-220.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-268",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-268.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-308",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-308.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-309",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-309.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-310",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-310.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-481",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-481.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-482",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-482.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-74",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-74.md"
+    },
+    {
+      "slug": "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-81",
+      "docPath": "docs/epics/todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-81.md"
+    },
+    {
+      "slug": "todo-nootropic-adapters-kafka-event-bus-ts-18",
+      "docPath": "docs/epics/todo-nootropic-adapters-kafka-event-bus-ts-18.md"
+    },
+    {
+      "slug": "todo-nootropic-adapters-kafka-event-bus-ts-48",
+      "docPath": "docs/epics/todo-nootropic-adapters-kafka-event-bus-ts-48.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-ensemble-agent-ts-33",
+      "docPath": "docs/epics/todo-nootropic-agents-ensemble-agent-ts-33.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-formal-verifier-agent-ts-21",
+      "docPath": "docs/epics/todo-nootropic-agents-formal-verifier-agent-ts-21.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-formal-verifier-agent-ts-35",
+      "docPath": "docs/epics/todo-nootropic-agents-formal-verifier-agent-ts-35.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-formal-verifier-agent-ts-38",
+      "docPath": "docs/epics/todo-nootropic-agents-formal-verifier-agent-ts-38.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-formal-verifier-agent-ts-45",
+      "docPath": "docs/epics/todo-nootropic-agents-formal-verifier-agent-ts-45.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-mutation-agent-ts-20",
+      "docPath": "docs/epics/todo-nootropic-agents-mutation-agent-ts-20.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-mutation-agent-ts-35",
+      "docPath": "docs/epics/todo-nootropic-agents-mutation-agent-ts-35.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-mutation-agent-ts-39",
+      "docPath": "docs/epics/todo-nootropic-agents-mutation-agent-ts-39.md"
+    },
+    {
+      "slug": "todo-nootropic-agents-mutation-agent-ts-47",
+      "docPath": "docs/epics/todo-nootropic-agents-mutation-agent-ts-47.md"
+    },
+    {
+      "slug": "todo-nootropic-capabilities-ragpipeline-utility-ts-31",
+      "docPath": "docs/epics/todo-nootropic-capabilities-ragpipeline-utility-ts-31.md"
+    },
+    {
+      "slug": "todo-nootropic-capabilities-ragpipeline-utility-ts-33",
+      "docPath": "docs/epics/todo-nootropic-capabilities-ragpipeline-utility-ts-33.md"
+    },
+    {
+      "slug": "todo-nootropic-capabilities-ragpipeline-utility-ts-36",
+      "docPath": "docs/epics/todo-nootropic-capabilities-ragpipeline-utility-ts-36.md"
+    },
+    {
+      "slug": "todo-nootropic-capabilities-ragpipeline-utility-ts-38",
+      "docPath": "docs/epics/todo-nootropic-capabilities-ragpipeline-utility-ts-38.md"
+    },
+    {
+      "slug": "todo-nootropic-capabilities-ragpipeline-utility-ts-59",
+      "docPath": "docs/epics/todo-nootropic-capabilities-ragpipeline-utility-ts-59.md"
+    },
+    {
+      "slug": "todo-nootropic-context-mutation-engine-ts-4",
+      "docPath": "docs/epics/todo-nootropic-context-mutation-engine-ts-4.md"
+    },
+    {
+      "slug": "todo-nootropic-context-mutation-engine-ts-76",
+      "docPath": "docs/epics/todo-nootropic-context-mutation-engine-ts-76.md"
+    },
+    {
+      "slug": "todo-nootropic-context-mutation-engine-ts-88",
+      "docPath": "docs/epics/todo-nootropic-context-mutation-engine-ts-88.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-238",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-238.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-239",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-239.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-273",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-273.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-278",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-278.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-466",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-466.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-471",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-471.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-578",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-578.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-579",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-579.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-580",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-580.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-581",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-581.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-582",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-582.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-583",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-583.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-584",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-584.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-585",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-585.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-586",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-586.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-587",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-587.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-588",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-588.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-591",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-591.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-596",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-596.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-890",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-890.md"
+    },
+    {
+      "slug": "todo-nootropic-context-snapshot-helper-ts-895",
+      "docPath": "docs/epics/todo-nootropic-context-snapshot-helper-ts-895.md"
+    },
+    {
+      "slug": "todo-nootropic-quality-selfcheck-ts-157",
+      "docPath": "docs/epics/todo-nootropic-quality-selfcheck-ts-157.md"
+    },
+    {
+      "slug": "todo-nootropic-quality-selfcheck-ts-417",
+      "docPath": "docs/epics/todo-nootropic-quality-selfcheck-ts-417.md"
+    },
+    {
+      "slug": "todo-nootropic-quality-sonarqube-api-ts-48",
+      "docPath": "docs/epics/todo-nootropic-quality-sonarqube-api-ts-48.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-async-api-spec-ts-27",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-async-api-spec-ts-27.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-async-api-spec-ts-35",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-async-api-spec-ts-35.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-async-api-spec-ts-61",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-async-api-spec-ts-61.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-14",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-14.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-17",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-17.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-24",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-24.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-30",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-30.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-38",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-38.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-40",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-40.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-42",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-42.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-44",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-44.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-backlog-todos-ts-46",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-46.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-open-api-spec-ts-30",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-open-api-spec-ts-30.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-generate-open-api-spec-ts-55",
+      "docPath": "docs/epics/todo-nootropic-scripts-generate-open-api-spec-ts-55.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-issue-ops-state-machine-ts-7",
+      "docPath": "docs/epics/todo-nootropic-scripts-issue-ops-state-machine-ts-7.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-issue-ops-state-machine-ts-83",
+      "docPath": "docs/epics/todo-nootropic-scripts-issue-ops-state-machine-ts-83.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-issue-ops-state-machine-ts-96",
+      "docPath": "docs/epics/todo-nootropic-scripts-issue-ops-state-machine-ts-96.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-issue-ops-state-machine-ts-97",
+      "docPath": "docs/epics/todo-nootropic-scripts-issue-ops-state-machine-ts-97.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-issue-ops-state-machine-ts-98",
+      "docPath": "docs/epics/todo-nootropic-scripts-issue-ops-state-machine-ts-98.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-prune-and-compress-cache-ts-16",
+      "docPath": "docs/epics/todo-nootropic-scripts-prune-and-compress-cache-ts-16.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-prune-and-compress-cache-ts-8",
+      "docPath": "docs/epics/todo-nootropic-scripts-prune-and-compress-cache-ts-8.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-prune-backlog-todos-ts-30",
+      "docPath": "docs/epics/todo-nootropic-scripts-prune-backlog-todos-ts-30.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-prune-backlog-todos-ts-5",
+      "docPath": "docs/epics/todo-nootropic-scripts-prune-backlog-todos-ts-5.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-prune-backlog-todos-ts-54",
+      "docPath": "docs/epics/todo-nootropic-scripts-prune-backlog-todos-ts-54.md"
+    },
+    {
+      "slug": "todo-nootropic-scripts-prune-backlog-todos-ts-56",
+      "docPath": "docs/epics/todo-nootropic-scripts-prune-backlog-todos-ts-56.md"
+    },
+    {
+      "slug": "todo-nootropic-tests-adapter-dapr-context-propagation-test-ts-96",
+      "docPath": "docs/epics/todo-nootropic-tests-adapter-dapr-context-propagation-test-ts-96.md"
+    },
+    {
+      "slug": "todo-nootropic-tests-adapter-kafka-context-propagation-test-ts-74",
+      "docPath": "docs/epics/todo-nootropic-tests-adapter-kafka-context-propagation-test-ts-74.md"
+    },
+    {
+      "slug": "todo-nootropic-tests-adapter-nats-context-propagation-test-ts-97",
+      "docPath": "docs/epics/todo-nootropic-tests-adapter-nats-context-propagation-test-ts-97.md"
+    },
+    {
+      "slug": "todo-nootropic-tests-context-llm-adapter-integration-test-ts-47",
+      "docPath": "docs/epics/todo-nootropic-tests-context-llm-adapter-integration-test-ts-47.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-context-manager-ts-281",
+      "docPath": "docs/epics/todo-nootropic-utils-context-context-manager-ts-281.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-context-manager-ts-371",
+      "docPath": "docs/epics/todo-nootropic-utils-context-context-manager-ts-371.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-context-manager-ts-85",
+      "docPath": "docs/epics/todo-nootropic-utils-context-context-manager-ts-85.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-experimental-chunking-utility-ts-24",
+      "docPath": "docs/epics/todo-nootropic-utils-context-experimental-chunking-utility-ts-24.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-experimental-chunking-utility-ts-40",
+      "docPath": "docs/epics/todo-nootropic-utils-context-experimental-chunking-utility-ts-40.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-26",
+      "docPath": "docs/epics/todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-26.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-43",
+      "docPath": "docs/epics/todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-43.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-46",
+      "docPath": "docs/epics/todo-nootropic-utils-context-experimental-hybrid-retrieval-utility-ts-46.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-rerank-utility-ts-38",
+      "docPath": "docs/epics/todo-nootropic-utils-context-rerank-utility-ts-38.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-shimi-memory-ts-407",
+      "docPath": "docs/epics/todo-nootropic-utils-context-shimi-memory-ts-407.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-shimi-memory-ts-412",
+      "docPath": "docs/epics/todo-nootropic-utils-context-shimi-memory-ts-412.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-shimi-memory-ts-49",
+      "docPath": "docs/epics/todo-nootropic-utils-context-shimi-memory-ts-49.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-context-shimi-memory-ts-53",
+      "docPath": "docs/epics/todo-nootropic-utils-context-shimi-memory-ts-53.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-191",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-191.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-196",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-196.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-203",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-203.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-209",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-209.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-213",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-213.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-216",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-216.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-220",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-220.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-224",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-224.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-344",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-344.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-348",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-348.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-353",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-353.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-357",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-357.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-360",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-360.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-363",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-363.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-397",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-397.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-401",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-401.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-406",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-406.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-410",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-410.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-413",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-413.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-security-secrets-manager-ts-416",
+      "docPath": "docs/epics/todo-nootropic-utils-security-secrets-manager-ts-416.md"
+    },
+    {
+      "slug": "todo-nootropic-utils-ts-179",
+      "docPath": "docs/epics/todo-nootropic-utils-ts-179.md"
+    },
+    {
+      "slug": "ts-migrate-integration",
+      "docPath": "docs/epics/ts-migrate-integration.md"
+    }
+  ],
+  "stories": [
+    {
+      "slug": "adapterutils-nodejs-dynamic-import",
+      "docPath": "docs/stories/adapterutils-nodejs-dynamic-import.md"
+    },
+    {
+      "slug": "add-refresh-onboarding-troubleshooting-automation-scripts-docs",
+      "docPath": "docs/stories/add-refresh-onboarding-troubleshooting-automation-scripts-docs.md"
+    },
+    {
+      "slug": "agent-ensemble-advanced",
+      "docPath": "docs/stories/agent-ensemble-advanced.md"
+    },
+    {
+      "slug": "agent-ensemble-moe",
+      "docPath": "docs/stories/agent-ensemble-moe.md"
+    },
+    {
+      "slug": "agent-explainability",
+      "docPath": "docs/stories/agent-explainability.md"
+    },
+    {
+      "slug": "agent-feedback-critic",
+      "docPath": "docs/stories/agent-feedback-critic.md"
+    },
+    {
+      "slug": "agent-hitl-advanced",
+      "docPath": "docs/stories/agent-hitl-advanced.md"
+    },
+    {
+      "slug": "agent-memory-advanced",
+      "docPath": "docs/stories/agent-memory-advanced.md"
+    },
+    {
+      "slug": "agent-multimodal-advanced",
+      "docPath": "docs/stories/agent-multimodal-advanced.md"
+    },
+    {
+      "slug": "agent-multimodal",
+      "docPath": "docs/stories/agent-multimodal.md"
+    },
+    {
+      "slug": "agent-mutation-fuzzing",
+      "docPath": "docs/stories/agent-mutation-fuzzing.md"
+    },
+    {
+      "slug": "agent-orchestration-advanced",
+      "docPath": "docs/stories/agent-orchestration-advanced.md"
+    },
+    {
+      "slug": "agent-supervisor-advanced",
+      "docPath": "docs/stories/agent-supervisor-advanced.md"
+    },
+    {
+      "slug": "agent-vibecoding-advanced",
+      "docPath": "docs/stories/agent-vibecoding-advanced.md"
+    },
+    {
+      "slug": "agent-voice-coding",
+      "docPath": "docs/stories/agent-voice-coding.md"
+    },
+    {
+      "slug": "automate-documentation-discoverability-tools-workflows-agents",
+      "docPath": "docs/stories/automate-documentation-discoverability-tools-workflows-agents.md"
+    },
+    {
+      "slug": "automate-feedback-loops-dynamic-prioritization-sprint-planning",
+      "docPath": "docs/stories/automate-feedback-loops-dynamic-prioritization-sprint-planning.md"
+    },
+    {
+      "slug": "automate-human-in-the-loop-escalation-review",
+      "docPath": "docs/stories/automate-human-in-the-loop-escalation-review.md"
+    },
+    {
+      "slug": "automate-onboarding-checklist-generation-enforcement",
+      "docPath": "docs/stories/automate-onboarding-checklist-generation-enforcement.md"
+    },
+    {
+      "slug": "automate-security-compliance-guardrails",
+      "docPath": "docs/stories/automate-security-compliance-guardrails.md"
+    },
+    {
+      "slug": "automate-tool-integration-orchestration",
+      "docPath": "docs/stories/automate-tool-integration-orchestration.md"
+    },
+    {
+      "slug": "automated-suggestion",
+      "docPath": "docs/stories/automated-suggestion.md"
+    },
+    {
+      "slug": "automation-feature-registration-policy-enforcement",
+      "docPath": "docs/stories/automation-feature-registration-policy-enforcement.md"
+    },
+    {
+      "slug": "automation-llm-friendly-schema-output",
+      "docPath": "docs/stories/automation-llm-friendly-schema-output.md"
+    },
+    {
+      "slug": "backlog-missing-docmanifest-sections",
+      "docPath": "docs/stories/backlog-missing-docmanifest-sections.md"
+    },
+    {
+      "slug": "backlog-roadmap-sync",
+      "docPath": "docs/stories/backlog-roadmap-sync.md"
+    },
+    {
+      "slug": "benchmark-evaluate-upgraded-utilities",
+      "docPath": "docs/stories/benchmark-evaluate-upgraded-utilities.md"
+    },
+    {
+      "slug": "change-history",
+      "docPath": "docs/stories/change-history.md"
+    },
+    {
+      "slug": "ci-cd-workflow-optimization-monorepo",
+      "docPath": "docs/stories/ci-cd-workflow-optimization-monorepo.md"
+    },
+    {
+      "slug": "cicd-security-compliance",
+      "docPath": "docs/stories/cicd-security-compliance.md"
+    },
+    {
+      "slug": "context-handoff-memory-optimization",
+      "docPath": "docs/stories/context-handoff-memory-optimization.md"
+    },
+    {
+      "slug": "contextual-enhancement",
+      "docPath": "docs/stories/contextual-enhancement.md"
+    },
+    {
+      "slug": "continuous-supervised-correction-ingestion",
+      "docPath": "docs/stories/continuous-supervised-correction-ingestion.md"
+    },
+    {
+      "slug": "cross-check-backlog-doc-code-drift",
+      "docPath": "docs/stories/cross-check-backlog-doc-code-drift.md"
+    },
+    {
+      "slug": "dependency-mapping",
+      "docPath": "docs/stories/dependency-mapping.md"
+    },
+    {
+      "slug": "doc-code-sync-api-schema-badges",
+      "docPath": "docs/stories/doc-code-sync-api-schema-badges.md"
+    },
+    {
+      "slug": "docs-automation-onboarding-updates",
+      "docPath": "docs/stories/docs-automation-onboarding-updates.md"
+    },
+    {
+      "slug": "docs-llm-adapter-integration",
+      "docPath": "docs/stories/docs-llm-adapter-integration.md"
+    },
+    {
+      "slug": "document-hybrid-retrieval-adapters",
+      "docPath": "docs/stories/document-hybrid-retrieval-adapters.md"
+    },
+    {
+      "slug": "documentation-onboarding",
+      "docPath": "docs/stories/documentation-onboarding.md"
+    },
+    {
+      "slug": "draft-missing-capability-docs",
+      "docPath": "docs/stories/draft-missing-capability-docs.md"
+    },
+    {
+      "slug": "epic-advanced-context-and-memory-management",
+      "docPath": "docs/stories/epic-advanced-context-and-memory-management.md"
+    },
+    {
+      "slug": "epic-grouping",
+      "docPath": "docs/stories/epic-grouping.md"
+    },
+    {
+      "slug": "epic-local-inference-stack-integration",
+      "docPath": "docs/stories/epic-local-inference-stack-integration.md"
+    },
+    {
+      "slug": "epic-security-compliance-audit",
+      "docPath": "docs/stories/epic-security-compliance-audit.md"
+    },
+    {
+      "slug": "epic-semantic-search-and-analytics",
+      "docPath": "docs/stories/epic-semantic-search-and-analytics.md"
+    },
+    {
+      "slug": "evaluate-js-bm25-implementation",
+      "docPath": "docs/stories/evaluate-js-bm25-implementation.md"
+    },
+    {
+      "slug": "expand-describe-registry-docs",
+      "docPath": "docs/stories/expand-describe-registry-docs.md"
+    },
+    {
+      "slug": "expand-quality-feedback-test-coverage",
+      "docPath": "docs/stories/expand-quality-feedback-test-coverage.md"
+    },
+    {
+      "slug": "feedback-loop",
+      "docPath": "docs/stories/feedback-loop.md"
+    },
+    {
+      "slug": "feedback-moderation-enhancement",
+      "docPath": "docs/stories/feedback-moderation-enhancement.md"
+    },
+    {
+      "slug": "hybrid-retrieval-enhancement",
+      "docPath": "docs/stories/hybrid-retrieval-enhancement.md"
+    },
+    {
+      "slug": "hygiene-automation",
+      "docPath": "docs/stories/hygiene-automation.md"
+    },
+    {
+      "slug": "implement-document-multi-agent-orchestration-patterns",
+      "docPath": "docs/stories/implement-document-multi-agent-orchestration-patterns.md"
+    },
+    {
+      "slug": "implement-memory-augmented-agent-patterns",
+      "docPath": "docs/stories/implement-memory-augmented-agent-patterns.md"
+    },
+    {
+      "slug": "implement-plugin-rating-review-social-memory",
+      "docPath": "docs/stories/implement-plugin-rating-review-social-memory.md"
+    },
+    {
+      "slug": "implement-self-auditing-and-self-healing-hooks",
+      "docPath": "docs/stories/implement-self-auditing-and-self-healing-hooks.md"
+    },
+    {
+      "slug": "integrate-bm25s-python-adapter",
+      "docPath": "docs/stories/integrate-bm25s-python-adapter.md"
+    },
+    {
+      "slug": "integrate-huggingface-llm-adapter",
+      "docPath": "docs/stories/integrate-huggingface-llm-adapter.md"
+    },
+    {
+      "slug": "integrate-ollama-llm-adapter",
+      "docPath": "docs/stories/integrate-ollama-llm-adapter.md"
+    },
+    {
+      "slug": "integrate-openrouter-llm-adapter",
+      "docPath": "docs/stories/integrate-openrouter-llm-adapter.md"
+    },
+    {
+      "slug": "integrate-vectorstore-js",
+      "docPath": "docs/stories/integrate-vectorstore-js.md"
+    },
+    {
+      "slug": "llm-adapter-advanced-integration-tests",
+      "docPath": "docs/stories/llm-adapter-advanced-integration-tests.md"
+    },
+    {
+      "slug": "llm-adapter-feedback-observability",
+      "docPath": "docs/stories/llm-adapter-feedback-observability.md"
+    },
+    {
+      "slug": "llm-adapter-integration-tests",
+      "docPath": "docs/stories/llm-adapter-integration-tests.md"
+    },
+    {
+      "slug": "llm-adapter-performance-monitoring",
+      "docPath": "docs/stories/llm-adapter-performance-monitoring.md"
+    },
+    {
+      "slug": "llm-adapter-repeatability-alignment",
+      "docPath": "docs/stories/llm-adapter-repeatability-alignment.md"
+    },
+    {
+      "slug": "llm-adapter-responsibility-testing",
+      "docPath": "docs/stories/llm-adapter-responsibility-testing.md"
+    },
+    {
+      "slug": "llm-adapter-usage-docs",
+      "docPath": "docs/stories/llm-adapter-usage-docs.md"
+    },
+    {
+      "slug": "llm-ai-metadata",
+      "docPath": "docs/stories/llm-ai-metadata.md"
+    },
+    {
+      "slug": "llm-ai-usage-hints-and-schema-output",
+      "docPath": "docs/stories/llm-ai-usage-hints-and-schema-output.md"
+    },
+    {
+      "slug": "llm-chunk-scoring-enhancement",
+      "docPath": "docs/stories/llm-chunk-scoring-enhancement.md"
+    },
+    {
+      "slug": "nightly-fine-tuning-telemetry-adaptation",
+      "docPath": "docs/stories/nightly-fine-tuning-telemetry-adaptation.md"
+    },
+    {
+      "slug": "nv-embed-docs-onboarding",
+      "docPath": "docs/stories/nv-embed-docs-onboarding.md"
+    },
+    {
+      "slug": "nv-embed-pipeline-ci-test",
+      "docPath": "docs/stories/nv-embed-pipeline-ci-test.md"
+    },
+    {
+      "slug": "nv-embed-quantization-support",
+      "docPath": "docs/stories/nv-embed-quantization-support.md"
+    },
+    {
+      "slug": "plugin-ecosystem-marketplace",
+      "docPath": "docs/stories/plugin-ecosystem-marketplace.md"
+    },
+    {
+      "slug": "pluginfeedback-critic-llm-review",
+      "docPath": "docs/stories/pluginfeedback-critic-llm-review.md"
+    },
+    {
+      "slug": "quality-cross-tool-dedup",
+      "docPath": "docs/stories/quality-cross-tool-dedup.md"
+    },
+    {
+      "slug": "quality-sonarqube-autofix",
+      "docPath": "docs/stories/quality-sonarqube-autofix.md"
+    },
+    {
+      "slug": "quality-tools-semgrep-sonarqube",
+      "docPath": "docs/stories/quality-tools-semgrep-sonarqube.md"
+    },
+    {
+      "slug": "rag-evaluation-integration",
+      "docPath": "docs/stories/rag-evaluation-integration.md"
+    },
+    {
+      "slug": "rag-evaluation-ragas-ares-trulens",
+      "docPath": "docs/stories/rag-evaluation-ragas-ares-trulens.md"
+    },
+    {
+      "slug": "rag-pipeline-utility",
+      "docPath": "docs/stories/rag-pipeline-utility.md"
+    },
+    {
+      "slug": "sastmemories-vectorstore-dedup",
+      "docPath": "docs/stories/sastmemories-vectorstore-dedup.md"
+    },
+    {
+      "slug": "scaffold-marketplace-discovery-ui",
+      "docPath": "docs/stories/scaffold-marketplace-discovery-ui.md"
+    },
+    {
+      "slug": "secretsmanager-vault-leasing",
+      "docPath": "docs/stories/secretsmanager-vault-leasing.md"
+    },
+    {
+      "slug": "security-secrets-management-cicd",
+      "docPath": "docs/stories/security-secrets-management-cicd.md"
+    },
+    {
+      "slug": "status-ownership",
+      "docPath": "docs/stories/status-ownership.md"
+    },
+    {
+      "slug": "subtask-context-cache-rag-feedback-mutation",
+      "docPath": "docs/stories/subtask-context-cache-rag-feedback-mutation.md"
+    },
+    {
+      "slug": "subtask-update-readme-and-docs",
+      "docPath": "docs/stories/subtask-update-readme-and-docs.md"
+    },
+    {
+      "slug": "test-coverage-hybrid-retrieval-adapters",
+      "docPath": "docs/stories/test-coverage-hybrid-retrieval-adapters.md"
+    },
+    {
+      "slug": "test-coverage-llm-adapters",
+      "docPath": "docs/stories/test-coverage-llm-adapters.md"
+    },
+    {
+      "slug": "test-quality-integration",
+      "docPath": "docs/stories/test-quality-integration.md"
+    },
+    {
+      "slug": "update-docmanifest-status",
+      "docPath": "docs/stories/update-docmanifest-status.md"
+    },
+    {
+      "slug": "update-onboarding-for-cli-and-registry",
+      "docPath": "docs/stories/update-onboarding-for-cli-and-registry.md"
+    },
+    {
+      "slug": "update-readme-and-docs-for-parity",
+      "docPath": "docs/stories/update-readme-and-docs-for-parity.md"
+    },
+    {
+      "slug": "updatenotifier-npm-integration",
+      "docPath": "docs/stories/updatenotifier-npm-integration.md"
+    },
+    {
+      "slug": "utility-capability-refactor",
+      "docPath": "docs/stories/utility-capability-refactor.md"
+    },
+    {
+      "slug": "utility-context-rag",
+      "docPath": "docs/stories/utility-context-rag.md"
+    },
+    {
+      "slug": "utility-infra-tooling",
+      "docPath": "docs/stories/utility-infra-tooling.md"
+    },
+    {
+      "slug": "utility-memory-advanced",
+      "docPath": "docs/stories/utility-memory-advanced.md"
+    },
+    {
+      "slug": "utility-retrieval-rerank",
+      "docPath": "docs/stories/utility-retrieval-rerank.md"
+    },
+    {
+      "slug": "utility-security",
+      "docPath": "docs/stories/utility-security.md"
+    },
+    {
+      "slug": "utils-context",
+      "docPath": "docs/stories/utils-context.md"
+    },
+    {
+      "slug": "utils-describe",
+      "docPath": "docs/stories/utils-describe.md"
+    },
+    {
+      "slug": "utils-event",
+      "docPath": "docs/stories/utils-event.md"
+    },
+    {
+      "slug": "utils-feedback",
+      "docPath": "docs/stories/utils-feedback.md"
+    },
+    {
+      "slug": "utils-plugin",
+      "docPath": "docs/stories/utils-plugin.md"
+    },
+    {
+      "slug": "utils-security",
+      "docPath": "docs/stories/utils-security.md"
+    },
+    {
+      "slug": "utils-testing",
+      "docPath": "docs/stories/utils-testing.md"
+    }
   ]
 }

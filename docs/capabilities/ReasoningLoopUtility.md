@@ -4,7 +4,7 @@ Iterative code generation, explanation, and repair (chain-of-thought, self-debug
 
 **Usage:**
 
-`import { ReasoningLoopUtility } from 'ai-helpers/agents/ReasoningLoopUtility'; const util = new ReasoningLoopUtility(); await util.runReasoningLoop(input);`
+`import { ReasoningLoopUtility } from 'nootropic/agents/ReasoningLoopUtility'; const util = new ReasoningLoopUtility(); await util.runReasoningLoop(input);`
 
 ## Methods/Functions
 

@@ -18,7 +18,7 @@ export default [
     ignores: [
       'dist/',
       'node_modules/',
-      '.ai-helpers-cache/archive/',
+      '.nootropic-cache/archive/',
     ],
     languageOptions: {
       parser: tsParser,

@@ -4,7 +4,7 @@ Integrates LLM-driven spec generation, formal verification (TLA+, Coq, Lean), an
 
 **Usage:**
 
-`import { FormalVerifierAgent } from 'ai-helpers/agents/FormalVerifierAgent'; const agent = new FormalVerifierAgent({ profile: { name: 'FormalVerifierAgent' } }); await agent.runTask({ ... });`
+`import { FormalVerifierAgent } from 'nootropic/agents/FormalVerifierAgent'; const agent = new FormalVerifierAgent({ profile: { name: 'FormalVerifierAgent' } }); await agent.runTask({ ... });`
 
 ## Methods/Functions
 

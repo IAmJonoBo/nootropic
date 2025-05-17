@@ -7,7 +7,7 @@
 ## Usage Example
 
 ```ts
-import { ShimiMemory } from 'ai-helpers/utils/context/shimiMemory';
+import { ShimiMemory } from 'nootropic/utils/context/shimiMemory';
 const shimi = new ShimiMemory();
 await shimi.insertEntity({ concept: 'foo', explanation: 'bar' });
 const results = await shimi.retrieveEntities('query');

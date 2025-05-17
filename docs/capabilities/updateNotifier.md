@@ -1,10 +1,10 @@
 # updateNotifier
 
-Notifies users of available package updates via CLI. Useful for keeping AI-Helpers up to date.
+Notifies users of available package updates via CLI. Useful for keeping nootropic up to date.
 
 **Usage:**
 
-`import updateNotifierCapability from 'ai-helpers/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();`
+`import updateNotifierCapability from 'nootropic/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();`
 
 ## Methods/Functions
 
@@ -29,4 +29,8 @@ Notifies users of available package updates via CLI. Useful for keeping AI-Helpe
 ## References
 
 - https://www.npmjs.com/package/update-notifier
+
+## AI/LLM Usage Hint
+
+- LLM/AI-friendly documentation enabled.
 

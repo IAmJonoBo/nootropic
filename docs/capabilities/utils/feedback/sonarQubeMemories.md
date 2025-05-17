@@ -1,6 +1,16 @@
 # utils/feedback/sonarQubeMemories
 
-Modular SonarQube feedback/memories logic for LLM/agent workflows. Registry/LLM/AI-compliant.
+Modular SonarQube feedback/memories logic for LLM/agent workflows. Now extends a shared, registry/describe/health-compliant base class (`BaseMemoryUtility`).
+
+## Unified Feedback/Memory Architecture
+
+- All feedback/memory utilities (Semgrep, SonarQube, SAST, plugin feedback) now extend a single, robust base class: `BaseMemoryUtility`.
+- This ensures:
+  - DRY, type-safe aggregation and deduplication
+  - Zod schema validation at all dynamic boundaries
+  - Registry/describe/health compliance for LLM/AI/automation workflows
+  - Easy extension for new memory types or storage backends
+- See `utils/feedback/BaseMemoryUtility.ts` for extension points and architecture.
 
 ## Methods/Functions
 
@@ -71,7 +81,14 @@ Modular SonarQube feedback/memories logic for LLM/agent workflows. Registry/LLM/
   }
 }
 ```
+
+## Extension Points
+
+- To add a new feedback/memory type, extend `BaseMemoryUtility` and provide a Zod schema and file path.
+- All registry/describe/health logic is inherited and LLM/AI-friendly.
+
 ## References
 
 - types/SastFeedbackMemory.js
+- utils/feedback/BaseMemoryUtility.ts
 

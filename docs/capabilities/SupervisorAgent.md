@@ -13,7 +13,7 @@ The `SupervisorAgent` monitors other agents for health, compliance, and performa
 ## Usage
 
 ```ts
-import { SupervisorAgent } from 'ai-helpers/agents/SupervisorAgent';
+import { SupervisorAgent } from 'nootropic/agents/SupervisorAgent';
 const agent = new SupervisorAgent({ profile: { name: 'SupervisorAgent' } });
 const result = await agent.runTask({ subAgents: ['AgentA', 'AgentB'], metrics: [0.1, 0.2, 0.3] });
 console.log(result);

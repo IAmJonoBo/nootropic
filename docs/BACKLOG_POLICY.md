@@ -1,6 +1,6 @@
 # Backlog Policy
 
-[//]: # (Rebranding note: This file was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.)
+[//]: # (Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.)
 
 ## Overview
 
@@ -28,10 +28,10 @@ This document describes the lifecycle and best practices for managing TODOs and 
      - `triage: 'pending'` (default)
      - `triage: 'resolved'` (completed or no longer relevant)
      - `triage: 'ignored'` (not actionable or deferred)
-   - Use the script `scripts/pruneBacklogTodos.ts` to archive resolved/ignored TODOs to `.ai-helpers-cache/backlog-archive.json` and remove them from the main backlog.
+   - Use the script `scripts/pruneBacklogTodos.ts` to archive resolved/ignored TODOs to `.nootropic-cache/backlog-archive.json` and remove them from the main backlog.
 
 4. **Backlog Summary & CI**
-   - The backlog summary (`.ai-helpers-cache/backlog-summary.json`) excludes resolved/ignored TODOs.
+   - The backlog summary (`.nootropic-cache/backlog-summary.json`) excludes resolved/ignored TODOs.
    - CI enforces that all TODOs are actionable, attributed, and triaged.
 
 ## Best Practices
@@ -45,8 +45,8 @@ This document describes the lifecycle and best practices for managing TODOs and 
 - `scripts/generateBacklogTodos.ts`: Automated extraction
 - `scripts/pruneBacklogTodos.ts`: Automated pruning/archiving
 - `agentBacklog.json`: Canonical backlog
-- `.ai-helpers-cache/backlog-archive.json`: Archived TODOs
-- `.ai-helpers-cache/backlog-summary.json`: Machine-usable summary
+- `.nootropic-cache/backlog-archive.json`: Archived TODOs
+- `.nootropic-cache/backlog-summary.json`: Machine-usable summary
 
 ## 🤖 AI-Driven Triage, Hotspots & Sprint Planning
 
@@ -59,7 +59,7 @@ The project uses AI/LLM-powered automation to:
 
 **Scripts:**
 - `scripts/aiTriageBacklogTodos.ts`: Adds AI-driven triage/priority fields to `agentBacklog.json`
-- `scripts/backlogInsights.ts`: Outputs `.ai-helpers-cache/backlog-insights.json` (hotspots, staleness, priorities)
+- `scripts/backlogInsights.ts`: Outputs `.nootropic-cache/backlog-insights.json` (hotspots, staleness, priorities)
 
 **Usage:**
 ```sh
@@ -69,7 +69,7 @@ pnpm tsx scripts/backlogInsights.ts
 
 **Outputs:**
 - `aiSuggestedTriage`, `aiSuggestedPriority` in `agentBacklog.json`
-- `.ai-helpers-cache/backlog-insights.json`
+- `.nootropic-cache/backlog-insights.json`
 
 See README.md for workflow and integration with CI/CD.
 
@@ -78,7 +78,7 @@ See README.md for workflow and integration with CI/CD.
 The project uses a code-level dependency graph to enhance triage and sprint planning:
 
 - `scripts/generateCodeDependencyGraph.ts` scans all canonical .ts/.js files and outputs:
-  - `.ai-helpers-cache/code-dependency-graph.json` (machine-usable)
+  - `.nootropic-cache/code-dependency-graph.json` (machine-usable)
   - `docs/codeDependencyGraph.mmd` (Mermaid diagram)
 - AI triage (`scripts/aiTriageBacklogTodos.ts`) uses this graph to:
   - Flag TODOs in files with many dependents (dependency hotspots)
@@ -102,8 +102,8 @@ See README.md for workflow and integration with CI/CD.
 
 The project uses deep, multi-layered context graphs and semantic embeddings to maximize agent context awareness and safety:
 
-- `.ai-helpers-cache/context-graph.json`: Unified code dependency, call, and data flow graph (see `scripts/generateContextGraph.ts`).
-- `.ai-helpers-cache/semantic-embeddings.json`: Semantic embeddings for all functions, classes, and files (see `scripts/generateSemanticEmbeddings.ts`).
+- `.nootropic-cache/context-graph.json`: Unified code dependency, call, and data flow graph (see `scripts/generateContextGraph.ts`).
+- `.nootropic-cache/semantic-embeddings.json`: Semantic embeddings for all functions, classes, and files (see `scripts/generateSemanticEmbeddings.ts`).
 - `scripts/simulateImpact.ts`: Simulates the impact of changes, listing all affected modules, tests, and docs.
 - `utils/feedback/semgrepMemories.ts`: Provides `contextAwareTriageSemgrepFinding` for context-rich, proactive triage and rationale.
 

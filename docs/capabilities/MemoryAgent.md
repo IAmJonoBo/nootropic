@@ -12,7 +12,7 @@ The `MemoryAgent` manages persistent memory, context pruning, and retrieval for 
 ## Usage
 
 ```ts
-import { MemoryAgent } from 'ai-helpers/agents';
+import { MemoryAgent } from 'nootropic/agents';
 const agent = new MemoryAgent({ profile: { name: 'MemoryAgent' } });
 const result = await agent.runTask({ ... });
 console.log(result);
@@ -34,7 +34,7 @@ console.log(result);
 - Document extension points and rationale in describe()
 
 ## Research References
-- [AI-Helpers Project](https://github.com/AI-Helpers/AI-Helpers)
+- [nootropic Project](https://github.com/nootropic/nootropic)
 - [LangGraph](https://github.com/langchain-ai/langgraph)
 - [R3Mem: Reversible Compression](https://arxiv.org/abs/2402.00000)
 - [HEMA: Hippocampus-Inspired Memory](https://arxiv.org/abs/2402.00000)

@@ -13,7 +13,7 @@ The `ReviewAgent` provides advanced, LLM/AI-friendly review of drafts and conten
 ## Usage
 
 ```ts
-import { ReviewAgent } from 'ai-helpers/agents';
+import { ReviewAgent } from 'nootropic/agents';
 const agent = new ReviewAgent({ profile: { name: 'ReviewAgent' } });
 const result = await agent.runTask({ id: 't1', description: 'Review draft', content: 'This is an excellent draft because it is clear.' });
 console.log(result);

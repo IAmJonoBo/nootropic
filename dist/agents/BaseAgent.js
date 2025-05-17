@@ -1,4 +1,4 @@
-// AI-Helpers: BaseAgent class for modular, extensible agent logic
+// nootropic: BaseAgent class for modular, extensible agent logic
 // Supports dynamic tool discovery, structured output enforcement, and LLM/agent introspection
 import { getPlugins } from '../pluginRegistry.js';
 export class BaseAgent {

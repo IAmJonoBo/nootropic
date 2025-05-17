@@ -9,7 +9,7 @@
 ## Usage Example
 
 ```ts
-import { OpenRouterLLMAdapter } from 'ai-helpers/adapters/OpenRouterLLMAdapter';
+import { OpenRouterLLMAdapter } from 'nootropic/adapters/OpenRouterLLMAdapter';
 const adapter = new OpenRouterLLMAdapter();
 await adapter.generateText('Hello!');
 await adapter.embedText('Text to embed');

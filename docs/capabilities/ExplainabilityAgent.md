@@ -12,7 +12,7 @@ The `ExplainabilityAgent` provides detailed, LLM-friendly rationales and traces 
 ## Usage
 
 ```ts
-import { ExplainabilityAgent } from 'ai-helpers/agents';
+import { ExplainabilityAgent } from 'nootropic/agents';
 const agent = new ExplainabilityAgent({ profile: { name: 'ExplainabilityAgent' } });
 const result = await agent.runTask('Explain this code change');
 console.log(result);

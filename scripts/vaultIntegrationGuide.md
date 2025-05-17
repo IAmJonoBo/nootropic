@@ -1,6 +1,6 @@
 # HashiCorp Vault Integration Guide
 
-This guide describes how to integrate HashiCorp Vault with AI-Helpers for secure, centralized, and auditable secret management in CI/CD workflows.
+This guide describes how to integrate HashiCorp Vault with nootropic for secure, centralized, and auditable secret management in CI/CD workflows.
 
 ## Why Vault?
 - Centralized, encrypted secret storage
@@ -13,12 +13,12 @@ This guide describes how to integrate HashiCorp Vault with AI-Helpers for secure
 2. Create a Vault policy and role for CI/CD workflows
 3. Configure GitHub Actions or CI runners to authenticate with Vault (token, AppRole, or OIDC)
 4. Store secrets in Vault (e.g., API keys, DB credentials)
-5. Update AI-Helpers config to use Vault for secret retrieval (planned: automated integration)
+5. Update nootropic config to use Vault for secret retrieval (planned: automated integration)
 
 ## Required Environment Variables
 - `VAULT_ADDR`: Vault server address
 - `VAULT_TOKEN` or `VAULT_ROLE_ID`/`VAULT_SECRET_ID`: Auth credentials
-- `VAULT_PATH`: Path to secrets (e.g., `secret/data/ai-helpers`)
+- `VAULT_PATH`: Path to secrets (e.g., `secret/data/nootropic`)
 
 ## Best Practices
 - Use short-lived tokens or OIDC for CI/CD authentication
@@ -35,4 +35,4 @@ This guide describes how to integrate HashiCorp Vault with AI-Helpers for secure
 
 ---
 
-*Planned: Automated Vault integration in AI-Helpers, compliance reporting, and describe() registry support for Vault-backed secrets.* 
+*Planned: Automated Vault integration in nootropic, compliance reporting, and describe() registry support for Vault-backed secrets.* 

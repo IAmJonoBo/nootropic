@@ -1,6 +1,6 @@
 # LLM & Agent Integration Guide
 
-[//]: # (Rebranding note: This file was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.)
+[//]: # (Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.)
 
 ## Overview
 
@@ -12,11 +12,11 @@ How to integrate nootropic with LLMs, agent frameworks, and automation systems f
 
 - Use the CLI:
   ```sh
-  pnpm run ai-helpers list-capabilities
+  pnpm run nootropic list-capabilities
   ```
 - Use the programmatic API:
   ```ts
-  import { listCapabilities } from 'ai-helpers';
+  import { listCapabilities } from 'nootropic';
   const caps = await listCapabilities();
   console.log(caps);
   ```
@@ -33,7 +33,7 @@ How to integrate nootropic with LLMs, agent frameworks, and automation systems f
 - All helpers/tools have clear TypeScript input/output types and (optionally) JSON schema in their `describe()` output.
 - Use the `.describe()` static method or export to get a self-description:
   ```ts
-  import { OrchestrationEngine } from 'ai-helpers';
+  import { OrchestrationEngine } from 'nootropic';
   console.log(OrchestrationEngine.describe());
   ```
 - Example agent workflow:
@@ -90,7 +90,7 @@ A: Import the helper, check its `.describe()` method, and call it with type-safe
 A: Use the chunked context APIs (e.g., `getContextChunk(size)`).
 
 **Q: How do I get a machine-readable list of all capabilities?**
-A: Use the programmatic API or read `ai-helpers-capabilities.json`.
+A: Use the programmatic API or read `nootropic-capabilities.json`.
 
 ---
 
@@ -109,7 +109,7 @@ A: Use the programmatic API or read `ai-helpers-capabilities.json`.
 
 ## Intelligent, Token-Aware Handover Payloads
 
-AI-Helpers provides advanced, research-backed context handoff for LLM/agent workflows. When the context window approaches 80% utilization, the system can automatically generate an optimized payload using a hybrid of:
+nootropic provides advanced, research-backed context handoff for LLM/agent workflows. When the context window approaches 80% utilization, the system can automatically generate an optimized payload using a hybrid of:
 - **Sliding window** (recent N messages/events)
 - **Vector retrieval** (most relevant old context, via semantic search)
 - **Summarization** (for the rest)
@@ -131,19 +131,19 @@ See `AgentContextConfig` in `contextSnapshotHelper.ts` for schema and usage.
 You can generate an optimized handover payload using the CLI:
 
 ```sh
-pnpm ai-helpers handover-payload \
+pnpm nootropic handover-payload \
   --critical-types user_intent,plan,code_diff \
   --sliding-window 10 \
   --max-tokens 16000 \
   --exclude-types ephemeral \
-  --context-file .ai-helpers-cache/context.json \
+  --context-file .nootropic-cache/context.json \
   --json
 ```
 
 Or programmatically via:
 
 ```ts
-import { getOptimizedHandoverPayload } from 'ai-helpers/contextSnapshotHelper';
+import { getOptimizedHandoverPayload } from 'nootropic/contextSnapshotHelper';
 const { payload, log } = getOptimizedHandoverPayload(contextArr, agentConfig);
 ```
 
@@ -171,7 +171,7 @@ This system ensures robust, efficient, and agent-usable handoff for all LLM/agen
 
 ### BaseAgent
 
-- The `BaseAgent` class (in `agents/BaseAgent.ts`) is the foundation for all agent logic in AI-Helpers.
+- The `BaseAgent` class (in `agents/BaseAgent.ts`) is the foundation for all agent logic in nootropic.
 - It supports:
   - **Dynamic tool discovery**: Agents can list and invoke tools/plugins at runtime via the plugin registry.
   - **Structured output enforcement**: All outputs are validated against schemas for LLM/agent reliability.
@@ -181,7 +181,7 @@ This system ensures robust, efficient, and agent-usable handoff for all LLM/agen
 ### Example Usage
 
 ```ts
-import { BaseAgent } from 'ai-helpers';
+import { BaseAgent } from 'nootropic';
 const agent = new BaseAgent({ profile: { name: 'myAgent' } });
 const tools = await agent.listTools();
 const result = await agent.runTask({ id: 't1', description: 'Do something' });

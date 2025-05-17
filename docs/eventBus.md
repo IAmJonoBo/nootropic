@@ -2,7 +2,7 @@
 
 ## Overview
 
-AI-Helpers uses a modular, pluggable event bus system to enable robust, observable, and distributed communication between agents, plugins, and orchestration components. The event bus supports multiple backends, including file-based (JSONL), NATS (default), and planned support for Kafka and Dapr.
+nootropic uses a modular, pluggable event bus system to enable robust, observable, and distributed communication between agents, plugins, and orchestration components. The event bus supports multiple backends, including file-based (JSONL), NATS (default), and planned support for Kafka and Dapr.
 
 ## Key Features
 

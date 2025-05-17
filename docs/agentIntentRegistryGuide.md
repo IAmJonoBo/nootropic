@@ -5,23 +5,23 @@ This system allows agents to register their current intent, plan steps, and subm
 ## 1. Registering Intent/Plan (CLI)
 
 ```sh
-pnpm tsx AI-Helpers/agentIntentRegistry.ts register <agent> <intent> <planStep1> <planStep2> ...
+pnpm tsx nootropic/agentIntentRegistry.ts register <agent> <intent> <planStep1> <planStep2> ...
 ```
 
 Example:
 ```sh
-pnpm tsx AI-Helpers/agentIntentRegistry.ts register agentA "Refactor context engine" "Extract helpers" "Write tests"
+pnpm tsx nootropic/agentIntentRegistry.ts register agentA "Refactor context engine" "Extract helpers" "Write tests"
 ```
 
 ## 2. Submitting Feedback (CLI)
 
 ```sh
-pnpm tsx AI-Helpers/agentIntentRegistry.ts feedback <agent> <suggestion> <rating> [comment]
+pnpm tsx nootropic/agentIntentRegistry.ts feedback <agent> <suggestion> <rating> [comment]
 ```
 
 Example:
 ```sh
-pnpm tsx AI-Helpers/agentIntentRegistry.ts feedback agentA "Add tests" 5 "Very useful suggestion!"
+pnpm tsx nootropic/agentIntentRegistry.ts feedback agentA "Add tests" 5 "Very useful suggestion!"
 ```
 
 ## 3. HTTP API
@@ -92,4 +92,4 @@ Get all feedback:
 
 ---
 
-All data is stored in `AI-Helpers/agentIntentRegistry.json` and `AI-Helpers/agentFeedback.json` for agent and future use. 
+All data is stored in `nootropic/agentIntentRegistry.json` and `nootropic/agentFeedback.json` for agent and future use. 

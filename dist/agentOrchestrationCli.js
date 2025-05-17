@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// AI-Helpers CLI: Modern, user-friendly, extensible, and LLM/agent-optimized
+// nootropic CLI: Modern, user-friendly, extensible, and LLM/agent-optimized
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { createRequire } from 'module';
@@ -19,13 +19,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(path.join(__dirname, 'package.json'), 'utf-8'));
 const program = new Command();
 program
-    .name('ai-helpers')
-    .description('AI-Helpers: Orchestrate, test, and automate AI agent workflows (LLM/agent-optimized CLI)')
+    .name('nootropic')
+    .description('nootropic: Orchestrate, test, and automate AI agent workflows (LLM/agent-optimized CLI)')
     .version(pkg.version, '-v, --version', 'Show version')
     .option('--json', 'Output results as machine-readable JSON')
     .option('--debug', 'Enable debug/verbose output')
     .option('--config <file>', 'Path to config file')
-    .option('--analytics', 'Enable analytics (opt-in, logs command usage to .ai-helpers-analytics.log)')
+    .option('--analytics', 'Enable analytics (opt-in, logs command usage to .nootropic-analytics.log)')
     .option('--no-analytics', 'Disable analytics');
 program
     .command('run')
@@ -221,7 +221,7 @@ function analyticsEnabled(program) {
 function logAnalytics(program, event, data = {}) {
     if (!analyticsEnabled(program))
         return;
-    const logFile = path.join(process.cwd(), '.ai-helpers-analytics.log');
+    const logFile = path.join(process.cwd(), '.nootropic-analytics.log');
     const entry = { timestamp: new Date().toISOString(), event, ...data };
     fs.appendFileSync(logFile, JSON.stringify(entry) + '\n');
 }

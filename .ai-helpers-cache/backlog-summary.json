@@ -1295,105 +1295,70 @@
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:10",
-      "description": "[TODO] // TODO: Integrate OTel metrics via telemetry.ts or a shared metrics module (nootropic copy/adapters/KafkaEventBus.ts:10)",
+      "id": "todo:nootropic/contextMutationEngine.ts:4",
+      "description": "[TODO] // TODO/FIXME Policy (2025): All TODO/FIXME comments must be actionable, attributed, and resolved promptly. Use TODO(owner): or FIXME(owner): for traceability. Generic or stale TODOs are not allowed. (nootropic/contextMutationEngine.ts:4)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:53",
-      "description": "[TODO] * - OTel traces/metrics/logs are emitted for all operations (TODO) (nootropic copy/adapters/KafkaEventBus.ts:53)",
+      "id": "todo:nootropic/contextMutationEngine.ts:76",
+      "description": "[TODO] // For TODO/FIXME, replace with [RESOLVED] or require actionable, attributed comments per 2025 best practices (nootropic/contextMutationEngine.ts:76)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:239",
-      "description": "[TODO] // TODO: Implement with Kafka Streams or external storage if needed (nootropic copy/adapters/KafkaEventBus.ts:239)",
+      "id": "todo:nootropic/contextMutationEngine.ts:88",
+      "description": "[TODO] const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]'); (nootropic/contextMutationEngine.ts:88)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:244",
-      "description": "[TODO] // TODO: Implement with Kafka Streams, or by consuming all messages from the topic (nootropic copy/adapters/KafkaEventBus.ts:244)",
-      "status": "not started",
-      "priority": "low",
-      "note": "Auto-extracted from codebase. Please triage and update as needed."
-    },
-    {
-      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:263",
-      "description": "[TODO] //   // TODO: Track and report offset lag per topic/partition/group (nootropic copy/adapters/KafkaEventBus.ts:263)",
-      "status": "not started",
-      "priority": "low",
-      "note": "Auto-extracted from codebase. Please triage and update as needed."
-    },
-    {
-      "id": "todo:nootropic copy/adapters/KafkaEventBus.ts:266",
-      "description": "[TODO] //   // TODO: Track and report time lag per topic/partition/group (nootropic copy/adapters/KafkaEventBus.ts:266)",
-      "status": "not started",
-      "priority": "low",
-      "note": "Auto-extracted from codebase. Please triage and update as needed."
-    },
-    {
-      "id": "todo:nootropic copy/contextMutationEngine.ts:85",
-      "description": "[TODO] // For TODOs, suggest removing the TODO comment (nootropic copy/contextMutationEngine.ts:85)",
-      "status": "not started",
-      "priority": "low",
-      "note": "Auto-extracted from codebase. Please triage and update as needed."
-    },
-    {
-      "id": "todo:nootropic copy/contextMutationEngine.ts:97",
-      "description": "[TODO] const patched = original.replace(/(\\/\\/\\s*TODO.*|\\/\\/\\s*FIXME.*)/, '// [RESOLVED]'); (nootropic copy/contextMutationEngine.ts:97)",
-      "status": "not started",
-      "priority": "low",
-      "note": "Auto-extracted from codebase. Please triage and update as needed."
-    },
-    {
-      "id": "todo:nootropic copy/contextSnapshotHelper.ts:231",
+      "id": "todo:nootropic/contextSnapshotHelper.ts:231",
       "description": "[TODO] // --- 10. TODO/FIXME Extraction --- (nootropic copy/contextSnapshotHelper.ts:231)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/contextSnapshotHelper.ts:249",
+      "id": "todo:nootropic/contextSnapshotHelper.ts:249",
       "description": "[TODO] if (/TODO|FIXME/.test(line)) { (nootropic copy/contextSnapshotHelper.ts:249)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/contextSnapshotHelper.ts:492",
+      "id": "todo:nootropic/contextSnapshotHelper.ts:492",
       "description": "[TODO] // --- TODOs for future agents --- (nootropic copy/contextSnapshotHelper.ts:492)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/contextSnapshotHelper.ts:505",
+      "id": "todo:nootropic/contextSnapshotHelper.ts:505",
       "description": "[TODO] // Heuristic: penalize for more TODOs, large files, and missing tests (nootropic copy/contextSnapshotHelper.ts:505)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/contextSnapshotHelper.ts:793",
+      "id": "todo:nootropic/contextSnapshotHelper.ts:793",
       "description": "[TODO] { name: 'extractTodos', signature: '() => TodoEntry[]', description: 'Extracts TODO/FIXME comments from code.' }, (nootropic copy/contextSnapshotHelper.ts:793)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/quality/selfcheck.ts:152",
+      "id": "todo:nootropic/quality/selfcheck.ts:152",
       "description": "[TODO] // TODO: Implement real code block extraction and testing (nootropic copy/quality/selfcheck.ts:152)",
       "status": "not started",
       "priority": "low",
       "note": "Auto-extracted from codebase. Please triage and update as needed."
     },
     {
-      "id": "todo:nootropic copy/tests/adapter.kafka.context-propagation.test.ts:75",
+      "id": "todo:nootropic/tests/adapter.kafka.context-propagation.test.ts:75",
       "description": "[TODO] // TODO: Add tests for W3C/B3 interop and custom metadata propagation (nootropic copy/tests/adapter.kafka.context-propagation.test.ts:75)",
       "status": "not started",
       "priority": "low",

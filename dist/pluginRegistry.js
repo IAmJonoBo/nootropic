@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { readJsonSafe, writeJsonSafe, getOrInitJson, esmEntrypointCheck } from './utils.js';
 import { PLUGIN_REGISTRY_PATH } from './paths.js';
 import fs from 'fs';
@@ -29,8 +29,8 @@ if (esmEntrypointCheck(import.meta.url)) {
         console.log(JSON.stringify(await listPlugins(), null, 2));
     }
     else {
-        console.log('Usage: pnpm tsx AI-Helpers/pluginRegistry.ts register <name> <type> <entry> [metaJson]');
-        console.log('       pnpm tsx AI-Helpers/pluginRegistry.ts list');
+        console.log('Usage: pnpm tsx nootropic/pluginRegistry.ts register <name> <type> <entry> [metaJson]');
+        console.log('       pnpm tsx nootropic/pluginRegistry.ts list');
     }
 }
 const PLUGIN_DIR = path.resolve(process.cwd(), 'plugins');

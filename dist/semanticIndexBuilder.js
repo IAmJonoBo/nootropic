@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 // import fs from 'fs';
 import path from 'path';
 import { readJsonSafe, writeJsonSafe, ensureDirExists, listFilesRecursive } from './utils.js';
@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // --- Extract text chunks from code, docs, and agent messages ---
 async function extractChunks() {
-    // For now, just scan extension/src/agents, AI-Helpers/, and docs/
+    // For now, just scan extension/src/agents, nootropic/, and docs/
     const dirs = [
         `${__dirname}/../extension/src/agents`,
         __dirname,
@@ -64,7 +64,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     (async () => {
         const [cmd, ...args] = parseArgs(process.argv).args;
         if (cmd === 'help' || args.includes('--help')) {
-            printHelp('pnpm tsx AI-Helpers/semanticIndexBuilder.ts', 'Build the semantic search index.');
+            printHelp('pnpm tsx nootropic/semanticIndexBuilder.ts', 'Build the semantic search index.');
             process.exit(0);
         }
         try {
@@ -87,7 +87,7 @@ export function describe() {
             { name: 'extractChunks', signature: '() => Promise<Omit<SemanticIndexEntry, "embedding">[]>', description: 'Extracts text chunks from code, docs, and messages.' },
             { name: 'embed', signature: '(text: string) => number[]', description: 'Generates a fake embedding for a text chunk.' }
         ],
-        usage: "import { buildSemanticIndex } from 'ai-helpers/semanticIndexBuilder';",
+        usage: "import { buildSemanticIndex } from 'nootropic/semanticIndexBuilder';",
         schema: {
             buildSemanticIndex: {
                 input: { type: 'null' },

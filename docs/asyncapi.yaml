@@ -1,15 +1,15 @@
-# AsyncAPI 3.0.0 spec for AI-Helpers event-driven system
+# AsyncAPI 3.0.0 spec for nootropic event-driven system
 # This is a living spec. Extend as new events/channels are added.
 # Maintainers: See https://www.asyncapi.com/docs/reference/specification/latest for 3.0.0 structure.
 asyncapi: 3.0.0
 info:
-  title: AI-Helpers Event API
+  title: nootropic Event API
   version: 0.1.0
   description: |
-    Event-driven API for AI-Helpers agents, plugins, and orchestration. All event payloads are validated against canonical JSON Schemas in .ai-helpers-cache/event-schema.json. See README.md for event metadata and best practices.
+    Event-driven API for nootropic agents, plugins, and orchestration. All event payloads are validated against canonical JSON Schemas in .nootropic-cache/event-schema.json. See README.md for event metadata and best practices.
   contact:
     name: Maintainers
-    url: https://github.com/AI-Helpers/AI-Helpers
+    url: https://github.com/nootropic/nootropic
 servers:
   local:
     host: localhost:9092
@@ -38,18 +38,18 @@ components:
       title: TaskAssigned Event
       summary: Emitted when a task is assigned to an agent.
       payload:
-        $ref: '../.ai-helpers-cache/event-schema.json#/TaskAssigned'
+        $ref: '../.nootropic-cache/event-schema.json#/TaskAssigned'
     DraftCreatedMessage:
       name: DraftCreated
       title: DraftCreated Event
       summary: Emitted when a draft is created by an agent.
       payload:
-        $ref: '../.ai-helpers-cache/event-schema.json#/DraftCreated'
+        $ref: '../.nootropic-cache/event-schema.json#/DraftCreated'
     LogMessage:
       name: Log
       title: Log Event
       summary: Emitted for audit and observability logs.
       payload:
-        $ref: '../.ai-helpers-cache/event-schema.json#/Log'
+        $ref: '../.nootropic-cache/event-schema.json#/Log'
   # schemas: Reference all event payload schemas here as needed
-  # See .ai-helpers-cache/event-schema.json 
+  # See .nootropic-cache/event-schema.json 

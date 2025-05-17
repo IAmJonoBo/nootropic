@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { addAgentMessage, getAgentMessages } from './contextSnapshotHelper.js';
 // --- Message Types ---
 const MESSAGE_TYPES = ['proposal', 'counter', 'accept', 'reject', 'info'];
@@ -43,8 +43,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         console.log(JSON.stringify(msgs, null, 2));
     }
     else {
-        console.log('Usage: pnpm tsx AI-Helpers/agentMessageProtocol.ts send <agent> <type> <to|null> <content>');
-        console.log('       pnpm tsx AI-Helpers/agentMessageProtocol.ts read <type|null> <agent|null> <to|null>');
+        console.log('Usage: pnpm tsx nootropic/agentMessageProtocol.ts send <agent> <type> <to|null> <content>');
+        console.log('       pnpm tsx nootropic/agentMessageProtocol.ts read <type|null> <agent|null> <to|null>');
     }
 }
 export { sendProtocolMessage, readProtocolMessages, MESSAGE_TYPES };

@@ -1,6 +1,6 @@
 # Event Bus, Audit Log & Memory Lane Guide
 
-[//]: # (Rebranding note: This file was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.)
+[//]: # (Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.)
 
 This system now persists a structured, append-only log of all agent events, context snapshots, audit logs, and mutation plans for full traceability, replay, and observability. All events are stored in `.nootropic-cache/event-log.jsonl` (JSONL, schema-aligned with `event-schema.json`). Legacy `memoryLane.json` is still supported for backward compatibility.
 
@@ -13,19 +13,19 @@ pnpm tsx nootropic/memoryLaneHelper.ts append '{"type":"TaskAssigned","agentId":
 ## 2. Viewing the Event Log (CLI)
 
 ```sh
-pnpm tsx AI-Helpers/memoryLaneHelper.ts get
+pnpm tsx nootropic/memoryLaneHelper.ts get
 ```
 
 ## 3. Tailing the Event Log (CLI)
 
 ```sh
-pnpm tsx AI-Helpers/memoryLaneHelper.ts tail 20
+pnpm tsx nootropic/memoryLaneHelper.ts tail 20
 ```
 
 ## 4. Programmatic API
 
 ```ts
-import { publishEvent, getEvents, subscribe, logEvent } from 'ai-helpers/memoryLaneHelper';
+import { publishEvent, getEvents, subscribe, logEvent } from 'nootropic/memoryLaneHelper';
 
 // Publish an event
 await publishEvent({ type: 'TaskCompleted', agentId: 'agent1', timestamp: new Date().toISOString(), payload: { result: {...}, success: true } });
@@ -42,7 +42,7 @@ await logEvent('info', 'Agent started', { details: '...' }, 'agent1');
 
 ## 5. Event Schema & Audit Logging
 
-- All events follow the schema in `.ai-helpers-cache/event-schema.json` (type, agentId, timestamp, payload, correlationId, etc.).
+- All events follow the schema in `.nootropic-cache/event-schema.json` (type, agentId, timestamp, payload, correlationId, etc.).
 - Audit logs are stored as events of type `Log` with level, message, and details.
 - The event log is append-only and replayable for debugging, observability, and compliance.
 
@@ -81,7 +81,7 @@ Response:
 
 The event bus now supports pluggable backends for distributed, scalable event-driven agent orchestration:
 
-- **Local JSONL (default):** Events are stored in `.ai-helpers-cache/event-log.jsonl`.
+- **Local JSONL (default):** Events are stored in `.nootropic-cache/event-log.jsonl`.
 - **Redis Streams:** Set `EVENT_BUS_BACKEND=redis` and configure `REDIS_URL`/`REDIS_PASSWORD` to use Redis Streams for event publishing, subscribing, and replay.
 - If Redis is unavailable, the system falls back to local JSONL.
 
@@ -157,7 +157,7 @@ The event bus now supports additional distributed backends for advanced, scalabl
 - **Setup:** Install Dapr CLI/sidecar and configure pub/sub component (Kafka, Redis, NATS, etc.). Set `EVENT_BUS_BACKEND=dapr` and configure Dapr component YAMLs.
 - **Usage:**
   ```ts
-  import { DaprEventBus } from 'ai-helpers/adapters/DaprEventBus';
+  import { DaprEventBus } from 'nootropic/adapters/DaprEventBus';
   const bus = new DaprEventBus();
   await bus.publishEvent(event, 'aihelpers.events');
   await bus.subscribeToTopic('aihelpers.events', async (event) => { /* ... */ });
@@ -208,11 +208,11 @@ See `memoryLaneHelper.ts` for the backend interface and selector logic. Referenc
 
 ## Event Schema Governance, Versioning & CI/CD Validation (2024 Best Practices)
 
-- **Central Schema Registry:** All event types and payloads are defined in `.ai-helpers-cache/event-schema.json`.
+- **Central Schema Registry:** All event types and payloads are defined in `.nootropic-cache/event-schema.json`.
 - **Versioning:** Event schemas follow semantic versioning. Breaking changes increment the major version; backward-compatible changes increment the minor version.
 - **Compatibility:** CI/CD pipeline enforces backward/forward compatibility using JSON Schema validation (see Ajv or similar tools).
 - **Update Process:**
-  1. Propose schema changes in a PR, updating `.ai-helpers-cache/event-schema.json`.
+  1. Propose schema changes in a PR, updating `.nootropic-cache/event-schema.json`.
   2. Run schema validation and compatibility checks in CI/CD.
   3. Update relevant documentation and backlog items to reference the new/changed event(s).
   4. Reference external best practices and research links as needed.
@@ -389,7 +389,7 @@ subscribe(event => { console.log('Received event:', event); });
 
 The event log supports replay and restoration for debugging, recovery, and rollback scenarios:
 
-- **Replay:** You can replay events from `.ai-helpers-cache/event-log.jsonl` to restore system state, debug workflows, or simulate past actions.
+- **Replay:** You can replay events from `.nootropic-cache/event-log.jsonl` to restore system state, debug workflows, or simulate past actions.
 - **Rollback/Undo:** You can roll back to a previous state by replaying events up to a checkpoint or by undoing specific events (where supported).
 - **Filtering:** Replay/rollback can be filtered by event type, agentId, correlationId, or topic for targeted restoration.
 - **Dry-run:** All replay/rollback operations support dry-run mode to preview changes without applying them.
@@ -398,7 +398,7 @@ The event log supports replay and restoration for debugging, recovery, and rollb
 ### CLI Usage
 
 ```sh
-pnpm tsx AI-Helpers/memoryLaneHelper.ts replay --from <start> --to <end> [--type <type>] [--agentId <id>] [--correlationId <id>] [--topic <topic>] [--dry-run]
+pnpm tsx nootropic/memoryLaneHelper.ts replay --from <start> --to <end> [--type <type>] [--agentId <id>] [--correlationId <id>] [--topic <topic>] [--dry-run]
 ```
 
 - `--from <start>`: Start index or timestamp
@@ -412,7 +412,7 @@ pnpm tsx AI-Helpers/memoryLaneHelper.ts replay --from <start> --to <end> [--type
 ### Programmatic API
 
 ```ts
-import { replayEvents, rollbackToCheckpoint } from 'ai-helpers/memoryLaneHelper';
+import { replayEvents, rollbackToCheckpoint } from 'nootropic/memoryLaneHelper';
 await replayEvents({ from: 0, to: 100, type: 'TaskAssigned', dryRun: true });
 await rollbackToCheckpoint({ checkpointId: 'abc123', dryRun: false });
 ```
@@ -433,13 +433,13 @@ You can now roll back to a checkpoint in the event log (by index, timestamp, or 
 ### CLI Usage
 
 ```sh
-pnpm tsx AI-Helpers/memoryLaneHelper.ts rollback --checkpoint <id|timestamp|index> [--type <type>] [--agentId <id>] [--correlationId <id>] [--topic <topic>] [--dry-run]
+pnpm tsx nootropic/memoryLaneHelper.ts rollback --checkpoint <id|timestamp|index> [--type <type>] [--agentId <id>] [--correlationId <id>] [--topic <topic>] [--dry-run]
 ```
 
 ### Programmatic API
 
 ```ts
-import { rollbackToCheckpoint } from 'ai-helpers/memoryLaneHelper';
+import { rollbackToCheckpoint } from 'nootropic/memoryLaneHelper';
 await rollbackToCheckpoint({ checkpoint: '2024-06-01T12:00:00Z', dryRun: true });
 ```
 

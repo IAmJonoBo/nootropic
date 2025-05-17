@@ -1,6 +1,6 @@
 # Pluggable Extensions & Custom Extractors Guide
 
-[//]: # (Rebranding note: This file was updated from 'AI-Helpers' to 'nootropic'. Legacy references are archived in .ai-helpers-cache/archive/ for rollback.)
+[//]: # (Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.)
 
 > **Note:** Plugin health and error status are now aggregated and surfaced in the describe registry, CLI, and docs. The describe registry is the canonical source for all plugin capability, health, and error metadata. Feature tables and documentation are auto-generated from the registry, following 2025 OTel/GenAI SIG best practices. See [agentBacklog.json](../agentBacklog.json#note-latest-best-practices), [docs/ROADMAP.md](../docs/ROADMAP.md#plugin-health-checks--error-reporting), and [README.md](../README.md#otel-observability) for details.
 
@@ -173,7 +173,7 @@ The plugin registry now supports community-driven feedback for all plugins, incl
     ```
 
 ## Machine-Usable & Registry-Compliant
-- All feedback is stored in `.ai-helpers-cache/plugin-feedback.json` and is discoverable via the registry and describe APIs.
+- All feedback is stored in `.nootropic-cache/plugin-feedback.json` and is discoverable via the registry and describe APIs.
 - Feedback is structured for LLM/agent consumption and explainability.
 - Feedback aggregation is performed automatically and surfaced in all plugin listings.
 

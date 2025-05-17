@@ -13,7 +13,7 @@ The `MutationAgent` handles live patching, mutation testing, and repair for agen
 ## Usage
 
 ```ts
-import { MutationAgent } from 'ai-helpers/agents';
+import { MutationAgent } from 'nootropic/agents';
 const agent = new MutationAgent({ profile: { name: 'MutationAgent' } });
 const result = await agent.runTask({ file: 'example.js', code: 'var x = 1;' });
 console.log(result);

@@ -1,0 +1,371 @@
+Unused files (90)
+adapterUtils.ts                                          
+agentIntentRegistry.ts                                   
+agentMessageProtocol.ts                                  
+agentOrchestrationCli.ts                                 
+agentOrchestrationHelper.ts                              
+agentProfileRegistry.ts                                  
+agents/index.ts                                          
+agents/ReasoningLoopUtility.ts                           
+agents/WriterAgent.ts                                    
+aggregateDescribeRegistry.ts                             
+aiTriageBacklogTodos.ts                                  
+backlogInsights.ts                                       
+backlogSync.ts                                           
+capabilities/EmbeddingProvider.ts                        
+capabilities/embeddingRegistry.ts                        
+chunking.ts                                              
+ChunkingUtility.ts                                       
+composeWorkflows.ts                                      
+contextMutationEngine.ts                                 
+contextRealtimeServer.ts                                 
+delete_completed_backlog_tasks.js                        
+deleteCompletedBacklog.cjs                               
+deprecationChecker.ts                                    
+dlqReplay.ts                                             
+docDiagramGenerator.ts                                   
+event_driven_mutation_suggestion_traceability.ts         
+examplePlugin.ts                                         
+generateAsyncApiSpec.ts                                  
+generateBacklogSummary.ts                                
+generateBacklogTodos.ts                                  
+generateCodeDependencyGraph.ts                           
+generateComplianceReport.ts                              
+generateContextGraph.ts                                  
+generateDocManifest.ts                                   
+generateDocsFromDescribe.ts                              
+generateFeatureTable.ts                                  
+generateHealthStatus.ts                                  
+generateOnboardingChecklist.ts                           
+generateOpenApiSpec.ts                                   
+generateRecentMessages.ts                                
+generateRoadmap.ts                                       
+generateSemanticEmbeddings.ts                            
+hybridRetrieval.ts                                       
+HybridRetrievalUtility.ts                                
+issueOpsStateMachine.ts                                  
+jwtValidation.ts                                         
+liveMutationPRHelper.ts                                  
+openaiEmbedding.ts                                       
+otel.config.ts                                           
+pluginFeedbackApi.ts                                     
+pluginMarketplaceCli.ts                                  
+pruneAndCompressCache.ts                                 
+pruneAndSortBacklog.js                                   
+pruneBacklogTodos.ts                                     
+secretsManager.ts                                        
+semanticIndexBuilder.ts                                  
+semanticKernelAdapter.ts                                 
+semanticSearchHelper.ts                                  
+simulateImpact.ts                                        
+sonarqubeApi.ts                                          
+sortBacklogByPriority.cjs                                
+sortBacklogByPriority.js                                 
+submitPluginFeedback.ts                                  
+syncBacklogWithDescribe.ts                               
+updateNotifier.ts                                        
+utils/describe/planned_agent_discovery.ts                
+utils/describe/planned_ajv_cli_validation_in_ci.ts       
+utils/describe/planned_api_doc_best_practices.ts         
+utils/describe/planned_api_doc_workflow.ts               
+utils/describe/planned_cache_management.ts               
+utils/describe/planned_ci_cd_integration.ts              
+utils/describe/planned_context_handover.ts               
+utils/describe/planned_ContextManager.ts                 
+utils/describe/planned_contextSnapshotHelper.ts          
+utils/describe/planned_contributing_md.ts                
+utils/describe/planned_editor_config_recommendations.ts  
+utils/describe/planned_liveMutationPRHelper.ts           
+utils/describe/planned_monorepo_typescript_config.ts     
+utils/describe/planned_multi_agent_orchestration.ts      
+utils/describe/planned_onboarding_guide.ts               
+utils/describe/planned_onboarding_instructions.ts        
+utils/describe/planned_sample_config_files.ts            
+utils/describe/planned_schema_validation_onboarding.ts   
+utils/describe/planned_SecretsManager.ts                 
+utils/describe/planned_streaming_backend_integration.ts  
+utils/describe/planned_tsdoc_style_enforcement.ts        
+utils/describe/planned_TypeScript_type_casting_note.ts   
+utils/describe/planned_updated_agent_event_interface.ts  
+utils/describe/registryDescribe.ts                       
+workflowSchema.ts                                        
+Unused devDependencies (2)
+chalk      package.json:61:6
+commander  package.json:63:6
+Unlisted dependencies (6)
+react                        App.tsx                       
+react                        main.tsx                      
+react-dom/client             main.tsx                      
+node-cron                    quality/selfcheck.ts          
+@tensorflow/tfjs-node        utils/testing/toxicityCheck.ts
+@tensorflow-models/toxicity  utils/testing/toxicityCheck.ts
+Unlisted binaries (2)
+tsc  .github/workflows/ci.yml
+tsc  package.json            
+Unresolved imports (7)
+d  typedoc.json
+e  typedoc.json
+f  typedoc.json
+a  typedoc.json
+u  typedoc.json
+l  typedoc.json
+t  typedoc.json
+Unused exports (232)
+init                                                       function  adapters/crewAIAdapter.ts:151:23           
+shutdown                                                   function  adapters/crewAIAdapter.ts:152:23           
+reload                                                     function  adapters/crewAIAdapter.ts:153:23           
+health                                                     function  adapters/crewAIAdapter.ts:154:23           
+describe                                                   function  adapters/crewAIAdapter.ts:155:23           
+init                                                       function  adapters/DaprEventBus.ts:195:23            
+shutdown                                                   function  adapters/DaprEventBus.ts:196:23            
+reload                                                     function  adapters/DaprEventBus.ts:197:23            
+health                                                     function  adapters/DaprEventBus.ts:198:23            
+describe                                                   function  adapters/DaprEventBus.ts:199:23            
+init                                                       function  adapters/HuggingFaceLLMAdapter.ts:103:23   
+shutdown                                                   function  adapters/HuggingFaceLLMAdapter.ts:104:23   
+reload                                                     function  adapters/HuggingFaceLLMAdapter.ts:105:23   
+health                                                     function  adapters/HuggingFaceLLMAdapter.ts:106:23   
+describe                                                   function  adapters/HuggingFaceLLMAdapter.ts:107:23   
+KafkaEventBus                                                        adapters/index.ts:31:9                     
+init                                                       function  adapters/index.ts:38:23                    
+shutdown                                                   function  adapters/index.ts:39:23                    
+reload                                                     function  adapters/index.ts:40:23                    
+health                                                     function  adapters/index.ts:41:23                    
+describe                                                   function  adapters/index.ts:42:23                    
+init                                                       function  adapters/KafkaEventBus.ts:423:23           
+shutdown                                                   function  adapters/KafkaEventBus.ts:424:23           
+reload                                                     function  adapters/KafkaEventBus.ts:425:23           
+health                                                     function  adapters/KafkaEventBus.ts:426:23           
+describe                                                   function  adapters/KafkaEventBus.ts:427:23           
+init                                                       function  adapters/langchainAdapter.ts:154:23        
+shutdown                                                   function  adapters/langchainAdapter.ts:155:23        
+reload                                                     function  adapters/langchainAdapter.ts:156:23        
+health                                                     function  adapters/langchainAdapter.ts:157:23        
+describe                                                   function  adapters/langchainAdapter.ts:158:23        
+init                                                       function  adapters/NatsEventBus.ts:266:23            
+shutdown                                                   function  adapters/NatsEventBus.ts:267:23            
+reload                                                     function  adapters/NatsEventBus.ts:268:23            
+health                                                     function  adapters/NatsEventBus.ts:269:23            
+describe                                                   function  adapters/NatsEventBus.ts:270:23            
+init                                                       function  adapters/OllamaLLMAdapter.ts:104:23        
+shutdown                                                   function  adapters/OllamaLLMAdapter.ts:105:23        
+reload                                                     function  adapters/OllamaLLMAdapter.ts:106:23        
+health                                                     function  adapters/OllamaLLMAdapter.ts:107:23        
+describe                                                   function  adapters/OllamaLLMAdapter.ts:108:23        
+init                                                       function  adapters/OpenRouterLLMAdapter.ts:123:23    
+shutdown                                                   function  adapters/OpenRouterLLMAdapter.ts:124:23    
+reload                                                     function  adapters/OpenRouterLLMAdapter.ts:125:23    
+health                                                     function  adapters/OpenRouterLLMAdapter.ts:126:23    
+describe                                                   function  adapters/OpenRouterLLMAdapter.ts:127:23    
+init                                                       function  adapters/semanticKernelAdapter.ts:152:23   
+shutdown                                                   function  adapters/semanticKernelAdapter.ts:153:23   
+reload                                                     function  adapters/semanticKernelAdapter.ts:154:23   
+health                                                     function  adapters/semanticKernelAdapter.ts:155:23   
+describe                                                   function  adapters/semanticKernelAdapter.ts:156:23   
+initAgentControl                    agentControl           function  agentControl.ts:172:23                     
+init                                                       function  agents/BaseAgent.ts:260:23                 
+shutdown                                                   function  agents/BaseAgent.ts:261:23                 
+reload                                                     function  agents/BaseAgent.ts:262:23                 
+health                                                     function  agents/BaseAgent.ts:263:23                 
+describe                                                   function  agents/BaseAgent.ts:264:23                 
+init                                                       function  agents/CollectionAgent.ts:184:23           
+shutdown                                                   function  agents/CollectionAgent.ts:185:23           
+reload                                                     function  agents/CollectionAgent.ts:186:23           
+health                                                     function  agents/CollectionAgent.ts:187:23           
+describe                                                   function  agents/CollectionAgent.ts:188:23           
+init                                                       function  agents/ContentAgent.ts:244:23              
+shutdown                                                   function  agents/ContentAgent.ts:245:23              
+reload                                                     function  agents/ContentAgent.ts:246:23              
+health                                                     function  agents/ContentAgent.ts:247:23              
+describe                                                   function  agents/ContentAgent.ts:248:23              
+MajorityVotingStrategy                                     class     agents/EnsembleAgent.ts:22:14              
+SemanticVotingStrategy                                     class     agents/EnsembleAgent.ts:40:14              
+WeightedVotingStrategy                                     class     agents/EnsembleAgent.ts:78:14              
+SyntacticVotingStrategy                                    class     agents/EnsembleAgent.ts:97:14              
+init                                                       function  agents/EnsembleAgent.ts:309:23             
+shutdown                                                   function  agents/EnsembleAgent.ts:310:23             
+reload                                                     function  agents/EnsembleAgent.ts:311:23             
+health                                                     function  agents/EnsembleAgent.ts:312:23             
+describe                                                   function  agents/EnsembleAgent.ts:313:23             
+init                                                       function  agents/ExplainabilityAgent.ts:151:23       
+shutdown                                                   function  agents/ExplainabilityAgent.ts:152:23       
+reload                                                     function  agents/ExplainabilityAgent.ts:153:23       
+health                                                     function  agents/ExplainabilityAgent.ts:154:23       
+describe                                                   function  agents/ExplainabilityAgent.ts:155:23       
+init                                                       function  agents/FeedbackAgent.ts:242:23             
+shutdown                                                   function  agents/FeedbackAgent.ts:243:23             
+reload                                                     function  agents/FeedbackAgent.ts:244:23             
+health                                                     function  agents/FeedbackAgent.ts:245:23             
+describe                                                   function  agents/FeedbackAgent.ts:246:23             
+FormalVerifierAgentCapability                                        agents/FormalVerifierAgent.ts:224:9        
+schema                                                               agents/FormalVerifierAgent.ts:224:40       
+init                                                       function  agents/FormalVerifierAgent.ts:229:23       
+shutdown                                                   function  agents/FormalVerifierAgent.ts:230:23       
+reload                                                     function  agents/FormalVerifierAgent.ts:231:23       
+health                                                     function  agents/FormalVerifierAgent.ts:232:23       
+describe                                                   function  agents/FormalVerifierAgent.ts:233:23       
+init                                                       function  agents/HumanInTheLoopAgent.ts:146:23       
+shutdown                                                   function  agents/HumanInTheLoopAgent.ts:147:23       
+reload                                                     function  agents/HumanInTheLoopAgent.ts:148:23       
+health                                                     function  agents/HumanInTheLoopAgent.ts:149:23       
+describe                                                   function  agents/HumanInTheLoopAgent.ts:150:23       
+init                                                       function  agents/MemoryAgent.ts:135:23               
+shutdown                                                   function  agents/MemoryAgent.ts:136:23               
+reload                                                     function  agents/MemoryAgent.ts:137:23               
+health                                                     function  agents/MemoryAgent.ts:138:23               
+describe                                                   function  agents/MemoryAgent.ts:139:23               
+init                                                       function  agents/MultimodalAgent.ts:193:23           
+shutdown                                                   function  agents/MultimodalAgent.ts:194:23           
+reload                                                     function  agents/MultimodalAgent.ts:195:23           
+health                                                     function  agents/MultimodalAgent.ts:196:23           
+describe                                                   function  agents/MultimodalAgent.ts:197:23           
+init                                                       function  agents/MutationAgent.ts:230:23             
+shutdown                                                   function  agents/MutationAgent.ts:231:23             
+reload                                                     function  agents/MutationAgent.ts:232:23             
+health                                                     function  agents/MutationAgent.ts:233:23             
+describe                                                   function  agents/MutationAgent.ts:234:23             
+init                                                       function  agents/OrchestratorAgent.ts:95:23          
+shutdown                                                   function  agents/OrchestratorAgent.ts:96:23          
+reload                                                     function  agents/OrchestratorAgent.ts:97:23          
+health                                                     function  agents/OrchestratorAgent.ts:98:23          
+describe                                                   function  agents/OrchestratorAgent.ts:99:23          
+init                                                       function  agents/ReviewAgent.ts:344:23               
+shutdown                                                   function  agents/ReviewAgent.ts:345:23               
+reload                                                     function  agents/ReviewAgent.ts:346:23               
+health                                                     function  agents/ReviewAgent.ts:347:23               
+describe                                                   function  agents/ReviewAgent.ts:348:23               
+init                                                       function  agents/SupervisorAgent.ts:252:23           
+shutdown                                                   function  agents/SupervisorAgent.ts:253:23           
+reload                                                     function  agents/SupervisorAgent.ts:254:23           
+health                                                     function  agents/SupervisorAgent.ts:255:23           
+describe                                                   function  agents/SupervisorAgent.ts:256:23           
+init                                                       function  agents/VibeCodingAgent.ts:204:23           
+shutdown                                                   function  agents/VibeCodingAgent.ts:205:23           
+reload                                                     function  agents/VibeCodingAgent.ts:206:23           
+health                                                     function  agents/VibeCodingAgent.ts:207:23           
+describe                                                   function  agents/VibeCodingAgent.ts:208:23           
+default                                                              capabilities/RAGPipelineUtility.ts:105:8   
+default                                                              capabilities/ReasoningLoopUtility.ts:270:8 
+ReasoningLoopUtilityCapability                                       capabilities/ReasoningLoopUtility.ts:272:14
+schema                                                               capabilities/ReasoningLoopUtility.ts:279:14
+gatherSnapshotCore                  contextSnapshotHelper  function  contextSnapshotHelper.ts:523:23            
+gatherSnapshotTelemetry             contextSnapshotHelper  function  contextSnapshotHelper.ts:531:23            
+gatherSnapshotAgent                 contextSnapshotHelper  function  contextSnapshotHelper.ts:539:23            
+gatherSnapshotOrchestration         contextSnapshotHelper  function  contextSnapshotHelper.ts:548:23            
+gatherSnapshotHandover              contextSnapshotHelper  function  contextSnapshotHelper.ts:560:17            
+getAgentMessages                    contextSnapshotHelper            contextSnapshotHelper.ts:659:9             
+initContextSnapshotHelper           contextSnapshotHelper  function  contextSnapshotHelper.ts:1087:23           
+publishToTopic                                             function  memoryLaneHelper.ts:162:23                 
+getEvents                                                  function  memoryLaneHelper.ts:163:23                 
+getEventsByTopic                                           function  memoryLaneHelper.ts:164:23                 
+subscribe                                                  function  memoryLaneHelper.ts:165:17                 
+logEvent                                                   function  memoryLaneHelper.ts:167:23                 
+initMemoryLaneHelper                                       function  memoryLaneHelper.ts:200:23                 
+replayEvents                                               function  memoryLaneHelper.ts:232:23                 
+getMemoryLane                                                        memoryLaneHelper.ts:341:28                 
+describe                                                             memoryLaneHelper.ts:341:43                 
+describe                                                   function  orchestrationEngineSelector.ts:33:17       
+PATCH_DIR                                                            paths.ts:8:14                              
+PluginRegistryEntry                 pluginRegistry                   pluginRegistry.ts:179:50                   
+describe                                                   function  quality/selfcheck.ts:299:17                
+getSemgrepFindings                                         function  quality/selfcheck.ts:371:23                
+explainSemgrepFinding                                      function  quality/selfcheck.ts:424:23                
+suggestSemgrepFix                                          function  quality/selfcheck.ts:432:23                
+autoFixSemgrepFinding                                      function  quality/selfcheck.ts:445:23                
+default                                                    variable  quality/selfcheck.ts:487:8                 
+runSecretScan                                                        secretScanHelper.ts:94:9                   
+AgentProfileSchema                                                   types/AgentOrchestrationEngine.ts:20:14    
+AgentContextSchema                                                   types/AgentOrchestrationEngine.ts:33:14    
+TaskAssignedEventSchema                                              types/AgentOrchestrationEngine.ts:186:14   
+DraftFeedbackEventSchema                                             types/AgentOrchestrationEngine.ts:195:14   
+TaskStartedEventSchema                                               types/AgentOrchestrationEngine.ts:204:14   
+DraftCreatedEventSchema                                              types/AgentOrchestrationEngine.ts:213:14   
+TaskCompletedEventSchema                                             types/AgentOrchestrationEngine.ts:222:14   
+DataCollectionRequestedEventSchema                                   types/AgentOrchestrationEngine.ts:231:14   
+DataCollectedEventSchema                                             types/AgentOrchestrationEngine.ts:240:14   
+DraftReviewedEventSchema                                             types/AgentOrchestrationEngine.ts:249:14   
+ReviewRequestedEventSchema                                           types/AgentOrchestrationEngine.ts:258:14   
+ReviewFeedbackEventSchema                                            types/AgentOrchestrationEngine.ts:267:14   
+LogEventSchema                                                       types/AgentOrchestrationEngine.ts:276:14   
+describe                            utils                  function  utils.ts:168:17                            
+listFilesRecursive                  utils                            utils.ts:342:17                            
+writeJsonFile                                              function  utils/automationHelpers.ts:42:23           
+safeParseJson                                              function  utils/automationHelpers.ts:55:17           
+safeStringifyJson                                          function  utils/automationHelpers.ts:67:17           
+init                                                       function  utils/automationHelpers.ts:98:23           
+shutdown                                                   function  utils/automationHelpers.ts:101:23          
+reload                                                     function  utils/automationHelpers.ts:104:23          
+health                                                     function  utils/automationHelpers.ts:107:23          
+describe                                                   function  utils/automationHelpers.ts:110:23          
+init                                                       function  utils/cliHelpers.ts:68:23                  
+shutdown                                                   function  utils/cliHelpers.ts:69:23                  
+reload                                                     function  utils/cliHelpers.ts:70:23                  
+health                                                     function  utils/cliHelpers.ts:71:23                  
+describe                                                   function  utils/cliHelpers.ts:72:23                  
+getCacheDirPath                                            function  utils/context/cacheDir.ts:11:17            
+listCacheFiles                                             function  utils/context/cacheDir.ts:41:23            
+default                                                    variable  utils/context/cacheDir.ts:74:8             
+ContextManager                                             class     utils/context/contextManager.ts:38:14      
+describe                                                   function  utils/context/contextManager.ts:274:17     
+findFilePath                                               function  utils/context/contextManager.ts:327:23     
+writeJsonFile                                              function  utils/context/contextManager.ts:367:23     
+generateTodoPatch                                          function  utils/context/contextManager.ts:374:17     
+extractWordsFromFile                                       function  utils/context/contextManager.ts:455:23     
+cacheDirCapability                                                   utils/context/index.ts:3:20                
+default                                                    variable  utils/context/rerank.ts:104:8              
+RerankUtilitySchema                                                  utils/context/RerankUtility.ts:93:14       
+describe                                                   function  utils/context/RerankUtility.ts:98:17       
+default                                                    variable  utils/context/RerankUtility.ts:130:8       
+CRDTMergeUtility                                           class     utils/context/shimiMemory.ts:97:14         
+ShimiMemorySchema                                                    utils/context/shimiMemory.ts:412:14        
+default                                                    variable  utils/context/shimiMemory.ts:432:8         
+MemTree                                                    class     utils/context/shimiMemory.ts:450:14        
+embedTexts                                                 function  utils/embedding/embeddingClient.ts:11:23   
+NVEmbedBackend                                             class     utils/embedding/embeddingClient.ts:35:14   
+OllamaEmbedBackend                                         class     utils/embedding/embeddingClient.ts:56:14   
+HuggingFaceEmbedBackend                                    class     utils/embedding/embeddingClient.ts:79:14   
+OpenRouterEmbedBackend                                     class     utils/embedding/embeddingClient.ts:113:14  
+NomicEmbedBackend                                          class     utils/embedding/embeddingClient.ts:143:14  
+LMStudioEmbedBackend                                       class     utils/embedding/embeddingClient.ts:165:14  
+submitPluginFeedback                                       function  utils/feedback/pluginFeedback.ts:29:23     
+loadAllPluginFeedback                                      function  utils/feedback/pluginFeedback.ts:41:23     
+listFeedbackForPlugin                                      function  utils/feedback/pluginFeedback.ts:56:23     
+default                                                    variable  utils/feedback/pluginFeedback.ts:174:8     
+loadAllMemories                                            function  utils/feedback/sastMemories.ts:33:23       
+deduplicateMemories                                        function  utils/feedback/sastMemories.ts:59:17       
+listAllSastMemories                                        function  utils/feedback/sastMemories.ts:74:23       
+getMemoriesForFile                                         function  utils/feedback/sastMemories.ts:85:23       
+getMemoriesForRule                                         function  utils/feedback/sastMemories.ts:93:23       
+syncWithRemote                                             function  utils/feedback/sastMemories.ts:103:23      
+mergeWithRemote                                            function  utils/feedback/sastMemories.ts:123:17      
+default                                                    variable  utils/feedback/sastMemories.ts:225:8       
+contextAwareTriageSemgrepFinding                           function  utils/feedback/semgrepMemories.ts:129:23   
+default                                                              utils/feedback/semgrepMemories.ts:232:8    
+default                                                              utils/feedback/sonarQubeMemories.ts:119:8  
+default                                                    variable  utils/plugin/adapterUtils.ts:62:8          
+Unused exported types (20)
+AgentTool                                       type       agents/BaseAgent.ts:12:13              
+VotingStrategy                                  interface  agents/EnsembleAgent.ts:17:18          
+TestFileInfo             contextSnapshotHelper  type       contextSnapshotHelper.ts:138:13        
+TodoEntry                contextSnapshotHelper  type       contextSnapshotHelper.ts:286:13        
+AgentContextConfig       contextSnapshotHelper  type       contextSnapshotHelper.ts:905:13        
+ReplayOptions                                   interface  memoryLaneHelper.ts:219:18             
+OrchestrationEngineName                         type       orchestrationEngineSelector.ts:7:13    
+PluginModule             pluginRegistry         type       pluginRegistry.ts:88:13                
+AgentLifecycleEvent                             type       types/AgentOrchestrationEngine.ts:51:13
+PluginAppContext                                type       types/AgentOrchestrationEngine.ts:95:13
+PatchInfo                                       interface  utils/context/contextManager.ts:381:18 
+RerankStrategy                                  type       utils/context/rerank.ts:5:13           
+RerankOptions                                   interface  utils/context/rerank.ts:7:18           
+Reranker                                        interface  utils/context/RerankUtility.ts:6:18    
+RerankLLMAdapter                                interface  utils/context/RerankUtility.ts:10:18   
+SemanticNode                                    interface  utils/context/shimiMemory.ts:26:18     
+ShimiLLMAdapter                                 interface  utils/context/shimiMemory.ts:88:18     
+MemTreeNode                                     interface  utils/context/shimiMemory.ts:439:18    
+PluginFeedback                                  type       utils/feedback/pluginFeedback.ts:9:13  
+PluginFeedbackAggregate                         type       utils/feedback/pluginFeedback.ts:17:13 
+Duplicate exports (4)
+RAGPipelineUtility|default           capabilities/RAGPipelineUtility.ts  
+ReasoningLoopUtility|default         capabilities/ReasoningLoopUtility.ts
+semgrepMemoriesCapability|default    utils/feedback/semgrepMemories.ts   
+sonarQubeMemoriesCapability|default  utils/feedback/sonarQubeMemories.ts 

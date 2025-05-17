@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { PATCH_DIR } from './paths.js';
 import { listFilesRecursive, ensureDirExists } from './utils.js';
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
@@ -69,7 +69,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         const { args } = parseArgs(process.argv);
         const cmd = args[0];
         if (cmd === 'help' || args.includes('--help')) {
-            printHelp('pnpm tsx AI-Helpers/liveMutationPRHelper.ts', 'Run live code mutation, branch, and PR suggestion.');
+            printHelp('pnpm tsx nootropic/liveMutationPRHelper.ts', 'Run live code mutation, branch, and PR suggestion.');
             process.exit(0);
         }
         try {

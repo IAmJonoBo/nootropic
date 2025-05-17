@@ -4,7 +4,7 @@ Utility for dynamic ESM import with fallback and error formatting. Useful for pl
 
 **Usage:**
 
-`import adapterUtilsCapability from 'ai-helpers/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');`
+`import adapterUtilsCapability from 'nootropic/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');`
 
 ## Methods/Functions
 
@@ -39,4 +39,8 @@ Utility for dynamic ESM import with fallback and error formatting. Useful for pl
 ## References
 
 - https://nodejs.org/api/esm.html#esm_dynamic_imports
+
+## AI/LLM Usage Hint
+
+- LLM/AI-friendly documentation enabled.
 

@@ -1,6 +1,6 @@
 // Node.js globals for CLI context
 // Use process and console directly (no need to declare)
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { readJsonSafe, writeJsonSafe } from './utils.js';
 import { appendMemoryEvent } from './memoryLaneHelper.js';
 import { AGENT_INTENT_PATH, AGENT_FEEDBACK_PATH } from './paths.js';
@@ -52,7 +52,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     (async () => {
         const [cmd, ...args] = parseArgs(process.argv).args;
         if (cmd === 'help' || args.includes('--help')) {
-            printHelp('pnpm tsx AI-Helpers/agentIntentRegistry.ts register <agent> <intent> <planJson>', 'Register, list, or recommend agent intents.');
+            printHelp('pnpm tsx nootropic/agentIntentRegistry.ts register <agent> <intent> <planJson>', 'Register, list, or recommend agent intents.');
             process.exit(0);
         }
         try {
@@ -73,7 +73,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
                 console.log(JSON.stringify(await getFeedback(), null, 2));
             }
             else {
-                printHelp('pnpm tsx AI-Helpers/agentIntentRegistry.ts register <agent> <intent> <planJson>', 'Register, list, or recommend agent intents.');
+                printHelp('pnpm tsx nootropic/agentIntentRegistry.ts register <agent> <intent> <planJson>', 'Register, list, or recommend agent intents.');
                 process.exit(1);
             }
         }

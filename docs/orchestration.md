@@ -785,4 +785,35 @@ KafkaEventBus now reports consumer lag (offset lag) as an OTel ObservableGauge m
 
 ## Distributed Event Bus Support
 
-nootropic now supports a pluggable, distributed event bus architecture. The default backend is NATS, providing robust, cloud-native, and observable event streaming for agent workflows. Kafka and Dapr adapters are planned for future releases. For details on configuration, extension, and best practices, see [docs/eventBus.md](./eventBus.md). 
+nootropic now supports a pluggable, distributed event bus architecture. The default backend is NATS, providing robust, cloud-native, and observable event streaming for agent workflows. Kafka and Dapr adapters are planned for future releases. For details on configuration, extension, and best practices, see [docs/eventBus.md](./eventBus.md).
+
+## Advanced Workflow Step Types (2025+)
+
+nootropic workflows now support the following step types:
+
+- **task**: (default) Standard agent/tool invocation step.
+- **approval**: Human-in-the-loop approval step (e.g., HumanInTheLoopAgent). Pauses workflow for human or LLM approval. Emits rationale/approval events and can use a custom approval handler.
+- **parallel**: Runs multiple child steps concurrently (define child step ids in `metadata.children`). Results are aggregated. Emits rationale event on completion.
+- **loop**: Repeats a step or group of steps (stub; for future extension, LLM/AI-driven iteration supported via hooks).
+
+All steps are executed in topological order based on dependencies. Hooks for policy, mutation, rationale, and approval are supported for LLM/AI explainability and governance.
+
+### Example Workflow YAML
+
+See [`orchestration/examples/simple-workflow.yaml`](../orchestration/examples/simple-workflow.yaml) for a full example.
+
+### Example: Advanced Workflow Execution with Hooks
+
+See the [README](../README.md#🧩-declarative-composable-workflows-2025-best-practices) for a code example using `executeWorkflow` with hooks for policy, rationale, and approval.
+
+- **Extension points:**
+  - `preStep`/`postStep` hooks for policy/mutation (LLM/AI-driven governance)
+  - `rationaleHandler` for explainability events (LLM/AI-friendly)
+  - `approvalHandler` for custom approval logic (HITL/LLM/automation)
+
+All new features are implemented as minimal, composable abstractions, reusing existing event, agent, and registry patterns (DRY/YAGNI). See `composeWorkflows.ts` for implementation details.
+
+## Canonical Sources and Further Reading
+
+- See the [README](../README.md#🧩-declarative-composable-workflows-2025-best-practices) for the canonical workflow documentation and code examples.
+- See [agentBacklog.json](../agentBacklog.json) for the current backlog and roadmap. 

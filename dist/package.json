@@ -1,19 +1,19 @@
 {
-    "name": "ai-helpers",
+    "name": "nootropic",
     "version": "0.1.0",
-    "description": "AI-Helpers: Modular, ESM-only TypeScript toolkit for orchestrating, testing, and automating AI agent workflows. Optimized for LLM and agent integration.",
-    "gptdoc": "AI-Helpers/API/Usage: import { getOrchestrationEngine } from 'ai-helpers'; const engine = getOrchestrationEngine('langchain'); const result = await engine.runAgentTask({ name: 'TestAgent' }, { id: 't1', description: 'Say hello' }); console.log(result); // Use listCapabilities() to discover all helpers and plugins.",
+    "description": "nootropic: Modular, ESM-only TypeScript toolkit for orchestrating, testing, and automating AI agent workflows. Optimized for LLM and agent integration.",
+    "gptdoc": "nootropic/API/Usage: import { getOrchestrationEngine } from 'nootropic'; const engine = getOrchestrationEngine('langchain'); const result = await engine.runAgentTask({ name: 'TestAgent' }, { id: 't1', description: 'Say hello' }); console.log(result); // Use listCapabilities() to discover all helpers and plugins.",
     "type": "module",
     "main": "./index.js",
     "types": "./index.d.ts",
     "bin": {
-        "ai-helpers": "./agentOrchestrationCli.js"
+        "nootropic": "./agentOrchestrationCli.js"
     },
     "scripts": {
         "build": "tsc && pnpm run copy-non-ts",
         "copy-non-ts": "cpx \"adapters/**/*.{json,js,md}\" dist/adapters && cpx \"plugins/**/*.{json,js,md}\" dist/plugins && cpx \"quality/**/*.{json,js,md}\" dist/quality",
         "test": "vitest run || jest",
-        "update": "pnpm up ai-helpers",
+        "update": "pnpm up nootropic",
         "quality": "tsx quality/index.ts"
     },
     "keywords": [

@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This is the mutation/refactor engine for all future agents.
+// nootropic is for Cursor agents only. This is the mutation/refactor engine for all future agents.
 // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { PATCH_DIR, MUTATION_PLAN_PATH } from './paths.js';
 import { ensureDirExists, listFilesRecursive, readJsonSafe, writeJsonSafe } from './utils.js';
@@ -104,7 +104,7 @@ async function runMutationEngine() {
         const suggestions = getMutationSuggestions();
         const patches = await generatePatches(suggestions);
         await writeMutationPlan(patches, suggestions);
-        console.log('AI mutation/refactor plan and patches generated in AI-Helpers/.');
+        console.log('AI mutation/refactor plan and patches generated in nootropic/.');
     }
     catch (e) {
         console.error('Error in mutation engine:', e);

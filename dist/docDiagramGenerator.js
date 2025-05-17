@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { DOCS_DIR, CONTEXT_PATH, DOC_MANIFEST_PATH } from './paths.js';
 import { ensureDirExists, readJsonSafe, writeJsonSafe } from './utils.js';
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
@@ -60,7 +60,7 @@ async function runDocDiagramGenerator() {
         files.push(await generateCollabMap(context));
         files.push(await generateDepGraph(context));
         await writeManifest(files);
-        console.log('Docs and diagrams generated in AI-Helpers/docs/. Manifest written.');
+        console.log('Docs and diagrams generated in nootropic/docs/. Manifest written.');
     }
     catch (e) {
         console.error('Error generating docs/diagrams:', e);
@@ -73,7 +73,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         const { args } = parseArgs(process.argv);
         const cmd = args[0];
         if (cmd === 'help' || args.includes('--help')) {
-            printHelp('pnpm tsx AI-Helpers/docDiagramGenerator.ts', 'Generate agent docs and diagrams.');
+            printHelp('pnpm tsx nootropic/docDiagramGenerator.ts', 'Generate agent docs and diagrams.');
             process.exit(0);
         }
         try {

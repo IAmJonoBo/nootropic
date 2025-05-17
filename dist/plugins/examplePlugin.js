@@ -1,8 +1,8 @@
 export function describe() {
     return {
         name: 'examplePlugin',
-        description: 'A sample plugin for AI-Helpers. Demonstrates plugin loading and structure.',
-        usage: 'ai-helpers plugins run examplePlugin',
+        description: 'A sample plugin for nootropic. Demonstrates plugin loading and structure.',
+        usage: 'nootropic plugins run examplePlugin',
         options: [],
         schema: {
             input: {

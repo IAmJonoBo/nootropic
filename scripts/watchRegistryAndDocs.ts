@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * File watcher for AI-Helpers: automatically runs registry and doc sync scripts on file changes.
+ * File watcher for nootropic: automatically runs registry and doc sync scripts on file changes.
  * Watches all source, plugin, and doc files for changes and triggers:
  *   - pnpm run validate-describe-registry
  *   - pnpm run docs:check-sync
@@ -11,7 +11,6 @@
  *
  * LLM/AI usage: This script ensures the describe registry and docs are always up to date during development.
  */
-// @ts-expect-error: If types are missing, recommend: pnpm add -D @types/chokidar
 import chokidar from 'chokidar';
 import { exec } from 'child_process';
 // import path from 'path'; // Unused
@@ -62,6 +61,11 @@ function runScripts() {
       return;
     }
     const cmd = SCRIPTS[i];
+    if (typeof cmd !== 'string') {
+      console.error(`[watch:registry] Invalid script at index ${i}`);
+      running = false;
+      return;
+    }
     console.log(`[watch:registry] Running: ${cmd}`);
     const proc = exec(cmd, { cwd: process.cwd() });
     proc.stdout?.pipe(process.stdout);

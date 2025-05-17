@@ -7,8 +7,8 @@
 ## Usage Example
 
 ```ts
-import { RerankUtility, BiEncoderReranker, CrossEncoderReranker } from 'ai-helpers/utils/context/RerankUtility';
-import { HuggingFaceLLMAdapter } from 'ai-helpers/adapters/HuggingFaceLLMAdapter';
+import { RerankUtility, BiEncoderReranker, CrossEncoderReranker } from 'nootropic/utils/context/RerankUtility';
+import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter';
 const hf = new HuggingFaceLLMAdapter();
 const bi = new BiEncoderReranker(hf);
 const cross = new CrossEncoderReranker(hf);

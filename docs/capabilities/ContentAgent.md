@@ -13,7 +13,7 @@ The `ContentAgent` generates content drafts and responds to feedback, supporting
 ## Usage
 
 ```ts
-import { ContentAgent } from 'ai-helpers/agents';
+import { ContentAgent } from 'nootropic/agents';
 const agent = new ContentAgent({ profile: { name: 'ContentAgent' } });
 const result = await agent.runTask({ contentPlan: { ... } });
 console.log(result);

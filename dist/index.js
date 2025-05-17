@@ -13,7 +13,7 @@ import { ReviewerAgent } from './agents/ReviewerAgent.js';
 // CLI is available via the bin entry (see package.json)
 // Utilities (updateNotifier, deprecationChecker) will be added soon 
 /**
- * Lists all available helpers, adapters, and plugins in AI-Helpers by aggregating describe() from all core modules and plugins.
+ * Lists all available helpers, adapters, and plugins in nootropic by aggregating describe() from all core modules and plugins.
  * Returns an array of capability objects (see docs/llm-integration.md).
  * @returns {Promise<unknown[]>}
  */

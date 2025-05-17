@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
-// @ts-expect-error TS(2305): Module '"../utils/cliHelpers.js"' has no exported ... Remove this comment to see the full error message
+// @ts-ignore
 import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
-// @ts-expect-error TS(2305): Module '"../utils/automationHelpers.js"' has no ex... Remove this comment to see the full error message
+// @ts-ignore
 import { readJsonFile, handleError } from '../utils/automationHelpers.js';
 
 const usage = 'Usage: pnpm tsx scripts/docs-check-sync.ts [--help] [--json]';
@@ -44,20 +44,31 @@ async function main() {
   if (showHelp) return printUsage(usage, options);
   try {
     const manifestPath = 'docs/docManifest.json';
-    const describePath = '.ai-helpers-cache/describe-registry.json';
+    const describePath = '.nootropic-cache/describe-registry.json';
     const manifest = await readJsonFile(manifestPath);
     const registry = await readJsonFile(describePath);
 
-    // @ts-expect-error TS(2571): Object is of type 'unknown'.
-    const manifestSections = new Set(manifest.sections ?? []);
-    // @ts-expect-error TS(2571): Object is of type 'unknown'.
-    const registrySections = new Set((registry ?? []).filter((d: unknown) => !d.status ?? (d.status !== 'planned' && d.status !== 'in progress')).map((d: unknown) => d.name));
+    const manifestSections = new Set(
+      typeof manifest === 'object' && manifest !== null && 'sections' in manifest && Array.isArray((manifest as Record<string, unknown>)['sections'])
+        ? (manifest as Record<string, unknown>)['sections'] as unknown[]
+        : []
+    );
+    const registrySections = new Set(
+      ((registry ?? []) as unknown[])
+        .filter((d: unknown) => {
+          if (typeof d !== 'object' || d === null) return false;
+          const obj = d as Record<string, unknown>;
+          return !('status' in obj) || (obj['status'] !== 'planned' && obj['status'] !== 'in progress');
+        })
+        .map((d: unknown) => {
+          if (typeof d !== 'object' || d === null) return '';
+          return (d as Record<string, unknown>)['name'] as string ?? '';
+        })
+    );
 
     // Check for missing implemented modules
-    // @ts-expect-error TS(2304): Cannot find name 'x'.
     const missingInManifest = Array.from(registrySections).filter(x => !manifestSections.has(x));
-    // @ts-expect-error TS(2304): Cannot find name 'x'.
-    const missingInRegistry = Array.from(manifestSections).filter(x => !registrySections.has(x));
+    const missingInRegistry = Array.from(manifestSections).filter(x => typeof x === 'string' && !registrySections.has(x));
 
     let failed = false;
     if (missingInManifest.length) {
@@ -72,23 +83,26 @@ async function main() {
     }
 
     // Warn only for planned/in-progress features
-    // @ts-expect-error TS(2571): Object is of type 'unknown'.
-    if (manifest.planned && manifest.planned.length) {
-      console.log('\nPlanned/in-progress features (for roadmap/backlog, not required for sync):');
-      // @ts-expect-error TS(2571): Object is of type 'unknown'.
-      for (const p of manifest.planned) console.log('  -', p);
+    const hasPlanned =
+      typeof manifest === 'object' &&
+      manifest !== null &&
+      Object.prototype.hasOwnProperty.call(manifest, 'planned') &&
+      Array.isArray((manifest as Record<string, unknown>)['planned']);
+    if (hasPlanned) {
+      const plannedArr = (manifest as Record<string, unknown>)['planned'] as unknown[];
+      console.log('Planned sections:');
+      for (const p of plannedArr) console.log('  -', p);
     }
 
     if (failed) {
-      printError('Doc/code sync check failed.', args['json']);
+      printError('Doc/code sync check failed.', Boolean(args['json']));
     } else {
-      printResult('Doc/code sync check passed. All implemented modules are in sync.', args['json']);
+      printResult('Doc/code sync check passed. All implemented modules are in sync.', Boolean(args['json']));
     }
   } catch (e) {
-    handleError(e, args['json']);
-    printError(e, args['json']);
+    handleError(e, Boolean(args['json']));
+    printError(String(e), Boolean(args['json']));
   }
-  // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
   process.exit(0);
 }
 

@@ -4,7 +4,7 @@ Agent for real-time voice-to-code using Whisper and LLMs. Converts audio input t
 
 **Usage:**
 
-`import { VibeCodingAgent } from 'ai-helpers/agents/VibeCodingAgent'; const agent = new VibeCodingAgent({ profile: { name: 'VibeCodingAgent' } }); await agent.runTask({ ... });`
+`import { VibeCodingAgent } from 'nootropic/agents/VibeCodingAgent'; const agent = new VibeCodingAgent({ profile: { name: 'VibeCodingAgent' } }); await agent.runTask({ ... });`
 
 ## Methods/Functions
 

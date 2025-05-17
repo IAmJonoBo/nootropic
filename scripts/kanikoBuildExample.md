@@ -30,7 +30,7 @@ jobs:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASS }}
-          image: ${{ secrets.REGISTRY_URL }}/ai-helpers:${{ github.sha }}
+          image: ${{ secrets.REGISTRY_URL }}/nootropic:${{ github.sha }}
           dockerfile: ./Dockerfile
           context: .
 ```
@@ -50,4 +50,4 @@ jobs:
 
 ---
 
-*Planned: Automated Kaniko integration and Vault/ArgoCD secret injection in AI-Helpers workflows.* 
+*Planned: Automated Kaniko integration and Vault/ArgoCD secret injection in nootropic workflows.* 

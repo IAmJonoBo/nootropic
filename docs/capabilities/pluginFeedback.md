@@ -1,94 +1,38 @@
 # pluginFeedback
 
-Submit, list, and aggregate plugin feedback (rating, review, social memory).
-
-**Usage:**
-
-`import { submitPluginFeedback, listFeedbackForPlugin, aggregatePluginFeedback } from 'ai-helpers/utils/feedback/pluginFeedback';`
+Feedback/memory utility (base class). Subclasses provide type-specific logic.
 
 ## Methods/Functions
 
-- **submitPluginFeedback**: (feedback: PluginFeedback) => Promise<void> - Submit feedback for a plugin.
-- **listFeedbackForPlugin**: (pluginName: string) => Promise<PluginFeedback[]> - List all feedback for a plugin.
-- **aggregatePluginFeedback**: (pluginName: string) => Promise<PluginFeedbackAggregate> - Aggregate feedback for a plugin.
+- **add**: (memory: T) => Promise<void> - Add a memory entry.
+- **list**: () => Promise<T[]> - List all memory entries.
+- **deduplicate**: (memories: T[]) => T[] - Deduplicate memory entries.
 
 ## Schema
 
 ```json
 {
-  "submitPluginFeedback": {
-    "input": {
-      "type": "object",
-      "properties": {
-        "pluginName": {
-          "type": "string"
-        },
-        "user": {
-          "type": "string"
-        },
-        "rating": {
-          "type": "number",
-          "minimum": 1,
-          "maximum": 5
-        },
-        "review": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        }
+  "_def": {
+    "unknownKeys": "strip",
+    "catchall": {
+      "_def": {
+        "typeName": "ZodNever"
       },
-      "required": [
-        "pluginName",
-        "user",
-        "rating",
-        "timestamp"
-      ]
+      "~standard": {
+        "version": 1,
+        "vendor": "zod"
+      }
     },
-    "output": {
-      "type": "null",
-      "description": "No output (side effect: feedback stored)"
-    }
+    "typeName": "ZodObject"
   },
-  "listFeedbackForPlugin": {
-    "input": {
-      "type": "object",
-      "properties": {
-        "pluginName": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "pluginName"
-      ]
-    },
-    "output": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      },
-      "description": "Array of PluginFeedback"
-    }
+  "~standard": {
+    "version": 1,
+    "vendor": "zod"
   },
-  "aggregatePluginFeedback": {
-    "input": {
-      "type": "object",
-      "properties": {
-        "pluginName": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "pluginName"
-      ]
-    },
-    "output": {
-      "type": "object",
-      "description": "PluginFeedbackAggregate"
-    }
-  }
+  "_cached": null
 }
 ```
-## References
+## AI/LLM Usage Hint
 
+- LLM/AI-friendly documentation enabled.
 

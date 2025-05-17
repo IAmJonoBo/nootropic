@@ -1,12 +1,10 @@
 #!/usr/bin/env tsx
-// @ts-expect-error TS(2307): Cannot find module 'fs' or its corresponding type ... Remove this comment to see the full error message
 import fs from 'fs';
-// @ts-expect-error TS(2307): Cannot find module 'path' or its corresponding typ... Remove this comment to see the full error message
 import path from 'path';
-// @ts-expect-error TS(2305): Module '"../utils/cliHelpers.js"' has no exported ... Remove this comment to see the full error message
+// @ts-ignore
 import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
 
-const REGISTRY_PATH = path.resolve('.ai-helpers-cache/describe-registry.json');
+const REGISTRY_PATH = path.resolve('.nootropic-cache/describe-registry.json');
 
 const usage = 'Usage: pnpm tsx scripts/licenseValidation.ts [--help] [--json]';
 const options = {
@@ -56,20 +54,16 @@ function main() {
   if (showHelp) return printUsage(usage, options);
   try {
     if (!fs.existsSync(REGISTRY_PATH)) {
-      printError('Describe registry not found: ' + REGISTRY_PATH, args['json']);
-      // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
+      printError('Describe registry not found: ' + REGISTRY_PATH, Boolean(args['json']));
       process.exit(1);
     }
     const registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf-8'));
-    // @ts-expect-error TS(6133): 'hasError' is declared but its value is never read... Remove this comment to see the full error message
     let hasError = false;
     const summary = [];
     summary.push('| Name | License | OSS | Provenance | CloudOnly | OptInRequired |');
     summary.push('|------|---------|-----|------------|-----------|---------------|');
     for (const cap of registry) {
-      // @ts-expect-error TS(6133): 'license' is declared but its value is never read.
       const { name, license, isOpenSource, provenance, cloudOnly, optInRequired } = cap;
-      // @ts-expect-error TS(2581): Cannot find name '$'. Do you need to install type ... Remove this comment to see the full error message
       let row = `| ${name ?? ''} | ${license ?? ''} | ${isOpenSource ? '✅' : '❌'} | ${provenance ?? ''} | ${cloudOnly ? '✅' : ''} | ${optInRequired ? '✅' : ''} |`;
       summary.push(row);
       // Check required fields
@@ -89,14 +83,14 @@ function main() {
       console.log('\nLicense/OSS Compliance Table:');
       for (const line of summary) console.log(line);
       if (hasError) {
-        printError('License/OSS compliance check failed. See errors above.', false);
+        printError('License/OSS compliance check failed. See errors above.', Boolean(args['json']));
       } else {
-        printResult('License/OSS compliance check passed.', false);
+        printResult('License/OSS compliance check passed.', Boolean(args['json']));
       }
     }
     process.exit(hasError ? 1 : 0);
   } catch (e) {
-    printError(e, args['json']);
+    printError(e, Boolean(args['json']));
     process.exit(1);
   }
 }

@@ -1,4 +1,4 @@
-// AI-Helpers is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 import { readJsonSafe, writeJsonSafe, getOrInitJson, esmEntrypointCheck } from './utils.js';
 import { MEMORY_LANE_PATH } from './paths.js';
 // --- Append an event to memory lane ---
@@ -27,8 +27,8 @@ if (esmEntrypointCheck(import.meta.url)) {
         console.log(JSON.stringify(await getMemoryLane(), null, 2));
     }
     else {
-        console.log('Usage: pnpm tsx AI-Helpers/memoryLaneHelper.ts append <jsonEvent>');
-        console.log('       pnpm tsx AI-Helpers/memoryLaneHelper.ts get');
+        console.log('Usage: pnpm tsx nootropic/memoryLaneHelper.ts append <jsonEvent>');
+        console.log('       pnpm tsx nootropic/memoryLaneHelper.ts get');
     }
 }
 export { appendMemoryEvent, getMemoryLane };

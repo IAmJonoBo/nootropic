@@ -6,9 +6,9 @@ The semantic search feature allows agents (and humans) to find relevant code, do
 
 The semantic index now includes:
 - All code, Markdown, and JSON files (chunked by lines/sections)
-- All outputs from the describe registry (`.ai-helpers-cache/describe-registry.json`)
+- All outputs from the describe registry (`.nootropic-cache/describe-registry.json`)
 - All per-capability docs in `docs/capabilities/`
-- All LLM/AI docs in `.ai-helpers-cache/llm-docs.json`
+- All LLM/AI docs in `.nootropic-cache/llm-docs.json`
 
 Each chunk is tagged with metadata: `source` (e.g., `code`, `describe-registry`, `llm-docs`, `capability-doc`), `capability` (if available), and `section` (if available).
 
@@ -17,17 +17,17 @@ Each chunk is tagged with metadata: `source` (e.g., `code`, `describe-registry`,
 Before searching, build the index:
 
 ```sh
-pnpm tsx AI-Helpers/semanticIndexBuilder.ts
+pnpm tsx nootropic/semanticIndexBuilder.ts
 ```
 
-This creates `AI-Helpers/.ai-helpers-cache/semantic-index.json`.
+This creates `nootropic/.nootropic-cache/semantic-index.json`.
 
 ## 3. CLI Usage
 
 Search for relevant code, docs, or describe outputs:
 
 ```sh
-pnpm tsx AI-Helpers/semanticSearchHelper.ts "How do agents communicate?"
+pnpm tsx nootropic/semanticSearchHelper.ts "How do agents communicate?"
 ```
 
 ### Filtering by Source or Capability
@@ -103,4 +103,4 @@ Send a message to the WebSocket server:
 
 ---
 
-For more, see the code in `AI-Helpers/semanticIndexBuilder.ts`, `AI-Helpers/semanticSearchHelper.ts`, and `capabilities/EmbeddingProvider.ts`. 
+For more, see the code in `nootropic/semanticIndexBuilder.ts`, `nootropic/semanticSearchHelper.ts`, and `capabilities/EmbeddingProvider.ts`. 

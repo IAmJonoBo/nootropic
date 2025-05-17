@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
-const logFile = path.join(process.cwd(), '.ai-helpers-analytics.log');
-describe('AI-Helpers analytics logging', () => {
+const logFile = path.join(process.cwd(), '.nootropic-analytics.log');
+describe('nootropic analytics logging', () => {
     beforeEach(() => {
         if (fs.existsSync(logFile))
             fs.unlinkSync(logFile);
