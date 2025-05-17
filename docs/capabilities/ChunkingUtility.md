@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # ChunkingUtility
 
 **Description:** Modular chunking utility supporting LLM-driven chunk filtering, semantic/agentic chunking, and redundancy filtering. Registry/describe/health compliant.

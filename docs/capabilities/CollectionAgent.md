@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # CollectionAgent
 
 > **Status:** Implemented (2024-06). See `agents/CollectionAgent.ts` for source and extension points.

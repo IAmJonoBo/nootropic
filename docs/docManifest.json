@@ -81,16 +81,65 @@
     "docs/capabilities/semgrepMemories.md",
     "docs/capabilities/sonarQubeMemories.md"
   ],
-  "timestamp": "2025-05-17T16:27:37.461Z",
+  "timestamp": "2025-05-17T17:38:38.702Z",
   "sections": [
+    "Capability",
+    "ChunkingUtility",
+    "CollectionAgent",
+    "ContentAgent",
+    "ExplainabilityAgent",
+    "HuggingFaceLLMAdapter",
+    "HybridRetrievalUtility",
+    "OllamaLLMAdapter",
+    "OpenRouterLLMAdapter",
+    "ReasoningLoopUtility",
+    "RerankUtility",
     "adapterUtils",
+    "EnsembleAgent",
+    "FeedbackAgent",
+    "FormalVerifierAgent",
+    "MemoryAgent",
+    "MultimodalAgent",
+    "MutationAgent",
+    "ReviewAgent",
+    "ShimiMemory",
+    "SupervisorAgent",
+    "VibeCodingAgent",
+    "agents",
+    "contextMutationEngine",
+    "crewAIAdapter",
+    "embeddingRegistry",
+    "event-driven mutation suggestion traceability",
+    "examplePlugin",
+    "langchainAdapter",
+    "pluginFeedback",
+    "sastMemories",
+    "semanticIndexBuilder",
+    "semanticKernelAdapter",
+    "semgrepMemories",
+    "sonarQubeMemories",
+    "updateNotifier",
     "pluginFeedback",
     "sastMemories",
     "semgrepMemories",
     "sonarQubeMemories",
-    "updateNotifier",
+    "BaseAgent.js (planned)",
+    "CLI usage (planned)",
+    "DataCollectorAgent.js (planned)",
+    "OrchestrationEngine (planned)",
+    "ReviewerAgent.js (planned)",
+    "TypeScript type-casting note (planned)",
+    "WriterAgent.js (planned)",
     "advanced-event-replay-debugging",
+    "agent discovery (planned)",
+    "agent event interface (planned)",
     "agent-plugin-describe-review",
+    "agentIntentRegistry (planned)",
+    "agentProfileRegistry (planned)",
+    "ajv-cli validation in ci (planned)",
+    "api doc best practices (planned)",
+    "api doc workflow (planned)",
+    "api documentation generation (planned)",
     "archive-review-and-removal",
     "automation-automated-documentation-discoverability",
     "automation-cache-health-reporting",
@@ -115,13 +164,22 @@
     "automation-technical-debt-hotspot-ci-integration",
     "automation-technical-debt-hotspot-detection",
     "automation-tool-integration-orchestration",
+    "cache management (planned)",
     "chunkingutility-agentic-implementation",
     "chunkingutility-semantic-implementation",
     "chunkingutility-test-coverage",
+    "coding standards (planned)",
+    "context handover (planned)",
+    "contextMutationEngine event emission (planned)",
+    "contextSnapshotHelper (planned)",
+    "contributing.md (planned)",
+    "describe registry (in progress)",
     "describe-health-registry-docs-update",
     "describe-registry-automation-ci",
     "doc-improvements-schema-validation",
+    "docDiagramGenerator (planned)",
     "docs-feature-table-context-utilities",
+    "editor config recommendations (planned)",
     "epic-advanced-agents",
     "epic-advanced-automation-compliance",
     "epic-advanced-utilities",
@@ -137,12 +195,30 @@
     "epic-nv-embed-integration",
     "epic-quality-tools-feedback",
     "epic-utilities-refactor",
+    "event bus abstraction (planned)",
+    "event payload convention (planned)",
+    "event schema references (planned)",
+    "event-driven MAS patterns (planned)",
+    "event-driven agent example (WriterAgent) (planned)",
+    "event-driven agent pattern (planned)",
+    "event-driven traceability (liveMutationPRHelper) (planned)",
+    "github actions workflow (planned)",
     "implement-bm25-dpr-adapters",
     "integrate-open-source-llm-apis",
+    "liveMutationPRHelper (planned)",
+    "matrix validation strategy (planned)",
+    "monorepo typescript config (planned)",
+    "multi-agent orchestration (planned)",
+    "mutationSuggested event schema (planned)",
+    "onboarding guide (planned)",
+    "onboarding instructions (planned)",
+    "onboarding troubleshooting (planned)",
     "onboarding-docs-registry-architecture",
     "orchestrated-agent-e2e-tests",
     "planned-orchestration-engine",
     "planned-utils",
+    "plugin architecture (planned)",
+    "quality system (planned)",
     "ragpipelineutility-advanced-implementation",
     "ragpipelineutility-chunking-integration",
     "ragpipelineutility-rerank-integration",
@@ -164,10 +240,15 @@
     "review-chunking-utility",
     "review-chunking",
     "review-hybrid-retrieval-utility",
+    "sample config files (planned)",
+    "schema validation onboarding (planned)",
     "schema-validation-plugins-registry",
+    "setup and environment requirements (planned)",
     "shimi-eval-vector-baseline",
     "shimi-llm-backend",
     "shimi-real-world-benchmarking",
+    "streaming backend integration (planned)",
+    "supervisor agent pattern (planned)",
     "task",
     "test-coverage-context-utilities",
     "todo-flight-control-venv-lib-python3-13-site-packages-torch-utils-model-dump-code-js-121",
@@ -290,7 +371,12 @@
     "todo-nootropic-utils-security-secrets-manager-ts-413",
     "todo-nootropic-utils-security-secrets-manager-ts-416",
     "todo-nootropic-utils-ts-179",
-    "ts-migrate-integration"
+    "ts-migrate-integration",
+    "tsdoc style enforcement (planned)",
+    "typedoc integration (planned)",
+    "typedoc.json config (planned)",
+    "updated agent event interface (planned)",
+    "utils (planned)"
   ],
   "references": {
     "event-driven MAS patterns": "orchestration.md",
@@ -341,36 +427,81 @@
   "planned": [
     "ContextManager",
     "SecretsManager",
-    "TypeScript type-casting note (planned)",
-    "agent discovery (planned)",
-    "ajv-cli validation in ci (planned)",
-    "api doc best practices (planned)",
-    "api doc workflow (planned)",
-    "cache management (planned)",
-    "ci/cd integration (planned)",
-    "context handover (planned)",
-    "contextSnapshotHelper (planned)",
-    "contributing.md (planned)",
-    "editor config recommendations (planned)",
-    "liveMutationPRHelper (planned)",
-    "monorepo typescript config (planned)",
-    "multi-agent orchestration (planned)",
-    "onboarding guide (planned)",
-    "onboarding instructions (planned)",
-    "sample config files (planned)",
-    "schema validation onboarding (planned)",
-    "streaming backend integration (planned)",
-    "tsdoc style enforcement (planned)",
-    "updated agent event interface (planned)"
+    "HumanInTheLoopAgent",
+    "cd integration (planned)",
+    "cd troubleshooting (planned)",
+    "Husky hooks (planned)",
+    "selfcheck (planned)",
+    "ci integration (planned)"
   ],
   "epics": [
+    {
+      "slug": "BaseAgent.js (planned)",
+      "docPath": "docs/epics/BaseAgent.js (planned).md"
+    },
+    {
+      "slug": "CLI usage (planned)",
+      "docPath": "docs/epics/CLI usage (planned).md"
+    },
+    {
+      "slug": "DataCollectorAgent.js (planned)",
+      "docPath": "docs/epics/DataCollectorAgent.js (planned).md"
+    },
+    {
+      "slug": "OrchestrationEngine (planned)",
+      "docPath": "docs/epics/OrchestrationEngine (planned).md"
+    },
+    {
+      "slug": "ReviewerAgent.js (planned)",
+      "docPath": "docs/epics/ReviewerAgent.js (planned).md"
+    },
+    {
+      "slug": "TypeScript type-casting note (planned)",
+      "docPath": "docs/epics/TypeScript type-casting note (planned).md"
+    },
+    {
+      "slug": "WriterAgent.js (planned)",
+      "docPath": "docs/epics/WriterAgent.js (planned).md"
+    },
     {
       "slug": "advanced-event-replay-debugging",
       "docPath": "docs/epics/advanced-event-replay-debugging.md"
     },
     {
+      "slug": "agent discovery (planned)",
+      "docPath": "docs/epics/agent discovery (planned).md"
+    },
+    {
+      "slug": "agent event interface (planned)",
+      "docPath": "docs/epics/agent event interface (planned).md"
+    },
+    {
       "slug": "agent-plugin-describe-review",
       "docPath": "docs/epics/agent-plugin-describe-review.md"
+    },
+    {
+      "slug": "agentIntentRegistry (planned)",
+      "docPath": "docs/epics/agentIntentRegistry (planned).md"
+    },
+    {
+      "slug": "agentProfileRegistry (planned)",
+      "docPath": "docs/epics/agentProfileRegistry (planned).md"
+    },
+    {
+      "slug": "ajv-cli validation in ci (planned)",
+      "docPath": "docs/epics/ajv-cli validation in ci (planned).md"
+    },
+    {
+      "slug": "api doc best practices (planned)",
+      "docPath": "docs/epics/api doc best practices (planned).md"
+    },
+    {
+      "slug": "api doc workflow (planned)",
+      "docPath": "docs/epics/api doc workflow (planned).md"
+    },
+    {
+      "slug": "api documentation generation (planned)",
+      "docPath": "docs/epics/api documentation generation (planned).md"
     },
     {
       "slug": "archive-review-and-removal",
@@ -469,6 +600,10 @@
       "docPath": "docs/epics/automation-tool-integration-orchestration.md"
     },
     {
+      "slug": "cache management (planned)",
+      "docPath": "docs/epics/cache management (planned).md"
+    },
+    {
       "slug": "chunkingutility-agentic-implementation",
       "docPath": "docs/epics/chunkingutility-agentic-implementation.md"
     },
@@ -479,6 +614,30 @@
     {
       "slug": "chunkingutility-test-coverage",
       "docPath": "docs/epics/chunkingutility-test-coverage.md"
+    },
+    {
+      "slug": "coding standards (planned)",
+      "docPath": "docs/epics/coding standards (planned).md"
+    },
+    {
+      "slug": "context handover (planned)",
+      "docPath": "docs/epics/context handover (planned).md"
+    },
+    {
+      "slug": "contextMutationEngine event emission (planned)",
+      "docPath": "docs/epics/contextMutationEngine event emission (planned).md"
+    },
+    {
+      "slug": "contextSnapshotHelper (planned)",
+      "docPath": "docs/epics/contextSnapshotHelper (planned).md"
+    },
+    {
+      "slug": "contributing.md (planned)",
+      "docPath": "docs/epics/contributing.md (planned).md"
+    },
+    {
+      "slug": "describe registry (in progress)",
+      "docPath": "docs/epics/describe registry (in progress).md"
     },
     {
       "slug": "describe-health-registry-docs-update",
@@ -493,8 +652,16 @@
       "docPath": "docs/epics/doc-improvements-schema-validation.md"
     },
     {
+      "slug": "docDiagramGenerator (planned)",
+      "docPath": "docs/epics/docDiagramGenerator (planned).md"
+    },
+    {
       "slug": "docs-feature-table-context-utilities",
       "docPath": "docs/epics/docs-feature-table-context-utilities.md"
+    },
+    {
+      "slug": "editor config recommendations (planned)",
+      "docPath": "docs/epics/editor config recommendations (planned).md"
     },
     {
       "slug": "epic-advanced-agents",
@@ -557,12 +724,76 @@
       "docPath": "docs/epics/epic-utilities-refactor.md"
     },
     {
+      "slug": "event bus abstraction (planned)",
+      "docPath": "docs/epics/event bus abstraction (planned).md"
+    },
+    {
+      "slug": "event payload convention (planned)",
+      "docPath": "docs/epics/event payload convention (planned).md"
+    },
+    {
+      "slug": "event schema references (planned)",
+      "docPath": "docs/epics/event schema references (planned).md"
+    },
+    {
+      "slug": "event-driven MAS patterns (planned)",
+      "docPath": "docs/epics/event-driven MAS patterns (planned).md"
+    },
+    {
+      "slug": "event-driven agent example (WriterAgent) (planned)",
+      "docPath": "docs/epics/event-driven agent example (WriterAgent) (planned).md"
+    },
+    {
+      "slug": "event-driven agent pattern (planned)",
+      "docPath": "docs/epics/event-driven agent pattern (planned).md"
+    },
+    {
+      "slug": "event-driven traceability (liveMutationPRHelper) (planned)",
+      "docPath": "docs/epics/event-driven traceability (liveMutationPRHelper) (planned).md"
+    },
+    {
+      "slug": "github actions workflow (planned)",
+      "docPath": "docs/epics/github actions workflow (planned).md"
+    },
+    {
       "slug": "implement-bm25-dpr-adapters",
       "docPath": "docs/epics/implement-bm25-dpr-adapters.md"
     },
     {
       "slug": "integrate-open-source-llm-apis",
       "docPath": "docs/epics/integrate-open-source-llm-apis.md"
+    },
+    {
+      "slug": "liveMutationPRHelper (planned)",
+      "docPath": "docs/epics/liveMutationPRHelper (planned).md"
+    },
+    {
+      "slug": "matrix validation strategy (planned)",
+      "docPath": "docs/epics/matrix validation strategy (planned).md"
+    },
+    {
+      "slug": "monorepo typescript config (planned)",
+      "docPath": "docs/epics/monorepo typescript config (planned).md"
+    },
+    {
+      "slug": "multi-agent orchestration (planned)",
+      "docPath": "docs/epics/multi-agent orchestration (planned).md"
+    },
+    {
+      "slug": "mutationSuggested event schema (planned)",
+      "docPath": "docs/epics/mutationSuggested event schema (planned).md"
+    },
+    {
+      "slug": "onboarding guide (planned)",
+      "docPath": "docs/epics/onboarding guide (planned).md"
+    },
+    {
+      "slug": "onboarding instructions (planned)",
+      "docPath": "docs/epics/onboarding instructions (planned).md"
+    },
+    {
+      "slug": "onboarding troubleshooting (planned)",
+      "docPath": "docs/epics/onboarding troubleshooting (planned).md"
     },
     {
       "slug": "onboarding-docs-registry-architecture",
@@ -579,6 +810,14 @@
     {
       "slug": "planned-utils",
       "docPath": "docs/epics/planned-utils.md"
+    },
+    {
+      "slug": "plugin architecture (planned)",
+      "docPath": "docs/epics/plugin architecture (planned).md"
+    },
+    {
+      "slug": "quality system (planned)",
+      "docPath": "docs/epics/quality system (planned).md"
     },
     {
       "slug": "ragpipelineutility-advanced-implementation",
@@ -665,8 +904,20 @@
       "docPath": "docs/epics/review-hybrid-retrieval-utility.md"
     },
     {
+      "slug": "sample config files (planned)",
+      "docPath": "docs/epics/sample config files (planned).md"
+    },
+    {
+      "slug": "schema validation onboarding (planned)",
+      "docPath": "docs/epics/schema validation onboarding (planned).md"
+    },
+    {
       "slug": "schema-validation-plugins-registry",
       "docPath": "docs/epics/schema-validation-plugins-registry.md"
+    },
+    {
+      "slug": "setup and environment requirements (planned)",
+      "docPath": "docs/epics/setup and environment requirements (planned).md"
     },
     {
       "slug": "shimi-eval-vector-baseline",
@@ -679,6 +930,14 @@
     {
       "slug": "shimi-real-world-benchmarking",
       "docPath": "docs/epics/shimi-real-world-benchmarking.md"
+    },
+    {
+      "slug": "streaming backend integration (planned)",
+      "docPath": "docs/epics/streaming backend integration (planned).md"
+    },
+    {
+      "slug": "supervisor agent pattern (planned)",
+      "docPath": "docs/epics/supervisor agent pattern (planned).md"
     },
     {
       "slug": "task",
@@ -1171,6 +1430,26 @@
     {
       "slug": "ts-migrate-integration",
       "docPath": "docs/epics/ts-migrate-integration.md"
+    },
+    {
+      "slug": "tsdoc style enforcement (planned)",
+      "docPath": "docs/epics/tsdoc style enforcement (planned).md"
+    },
+    {
+      "slug": "typedoc integration (planned)",
+      "docPath": "docs/epics/typedoc integration (planned).md"
+    },
+    {
+      "slug": "typedoc.json config (planned)",
+      "docPath": "docs/epics/typedoc.json config (planned).md"
+    },
+    {
+      "slug": "updated agent event interface (planned)",
+      "docPath": "docs/epics/updated agent event interface (planned).md"
+    },
+    {
+      "slug": "utils (planned)",
+      "docPath": "docs/epics/utils (planned).md"
     }
   ],
   "stories": [
@@ -1618,5 +1897,6 @@
       "slug": "utils-testing",
       "docPath": "docs/stories/utils-testing.md"
     }
-  ]
+  ],
+  "inProgress": []
 }

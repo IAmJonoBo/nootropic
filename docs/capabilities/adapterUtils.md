@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # adapterUtils
 
 Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading.

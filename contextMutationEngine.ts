@@ -6,13 +6,13 @@
 // @ts-ignore
 import { PATCH_DIR } from './paths.js';
 // @ts-ignore
-import { writeFileSafe, findFilePath, generateTodoPatch, PatchInfo } from './utils/context/contextManager.js';
+import { writeFileSafe, findFilePath, generateTodoPatch, PatchInfo } from './src/utils/context/contextManager.js';
 // @ts-ignore
 import { readJsonSafe } from './utils.js';
 // @ts-ignore
-import { ensureDirExists } from './utils/context/contextManager.js';
+import { ensureDirExists } from './src/utils/context/contextManager.js';
 // @ts-ignore
-import { getCacheFilePath, ensureCacheDirExists } from './utils/context/cacheDir.js';
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 // @ts-ignore
 import { extractTodos, detectSchemaDrift, getTestFiles, gatherSnapshotData, getContextChunk } from './contextSnapshotHelper.js';
 // @ts-ignore

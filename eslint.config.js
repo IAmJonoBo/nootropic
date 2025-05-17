@@ -19,6 +19,8 @@ export default [
       'dist/',
       'node_modules/',
       '.nootropic-cache/archive/',
+      '**/*.d.ts',
+      'web/src/vite-env.d.ts',
     ],
     languageOptions: {
       parser: tsParser,

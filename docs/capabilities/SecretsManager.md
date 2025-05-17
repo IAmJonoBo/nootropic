@@ -1,3 +1,6 @@
+---
+status: planned
+---
 # SecretsManager
 
 Planned: SecretsManager documentation.

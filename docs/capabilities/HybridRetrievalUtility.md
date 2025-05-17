@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # HybridRetrievalUtility
 
 **Description:** Hybrid retrieval utility combining dense (DPR/embeddings) and sparse (BM25) retrieval. Registry/describe/health compliant.

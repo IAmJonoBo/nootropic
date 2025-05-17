@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # examplePlugin
 
 A sample plugin for nootropic. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety.

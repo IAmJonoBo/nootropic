@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # ReasoningLoopUtility
 
 Iterative code generation, explanation, and repair (chain-of-thought, self-debugging, SCoT).

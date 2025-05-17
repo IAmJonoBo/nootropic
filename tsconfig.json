@@ -118,16 +118,12 @@
   "include": [
     "./*.ts",
     "./*.tsx",
-    "adapters/**/*.ts",
-    "agents/**/*.ts",
-    "capabilities/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "orchestration/**/*.ts",
-    "plugins/**/*.ts",
-    "quality/**/*.ts",
     "scripts/**/*.ts",
     "tests/**/*.ts",
     "types/**/*.ts",
-    "utils/**/*.ts",
     "App.tsx",
     "main.tsx"
   ]

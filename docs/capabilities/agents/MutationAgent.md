@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # MutationAgent
 
 > **Status:** Implemented (2024-06). See `agents/MutationAgent.ts` for source and extension points.

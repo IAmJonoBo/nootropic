@@ -209,7 +209,7 @@ program
       } else {
         // Print license/compliance info
         if (desc && typeof desc === 'object' && 'license' in desc) {
-          const d = desc as import('./capabilities/Capability.js').CapabilityDescribe;
+          const d = desc as import('./src/capabilities/Capability.js').CapabilityDescribe;
           console.log(`\nCapability: ${d.name}`);
           console.log(`Description: ${d.description}`);
           console.log(`License: ${d.license}`);

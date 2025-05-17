@@ -12,7 +12,7 @@
 import { spawn } from 'child_process';
 import { Kafka, logLevel, Producer } from 'kafkajs';
 // @ts-ignore
-import { DLQEventSchema } from '../types/AgentOrchestrationEngine.js';
+import { DLQEventSchema } from '../src/schemas/AgentOrchestrationEngineSchema.js';
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 
 const TEST_BROKERS = process.env['TEST_KAFKA_BROKERS']?.split(',') ?? ['localhost:9092'];

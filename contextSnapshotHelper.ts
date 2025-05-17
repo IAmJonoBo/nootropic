@@ -30,16 +30,16 @@
 // This is the foundational context handoff tool for all agents.
 // ============================================================================
 
-import { pathExists, readJsonFile, writeFileSafe } from './utils/context/contextManager.js';
+import { pathExists, readJsonFile, writeFileSafe } from './src/utils/context/contextManager.js';
 import path from 'path';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { getSecretScanReport } from './secretScanHelper.js';
 import { appendMemoryEvent } from './memoryLaneHelper.js';
-import { getCacheFilePath, ensureCacheDirExists } from './utils/context/cacheDir.js';
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import { initTelemetry, shutdownTelemetry } from './telemetry.js';
 import { promises as fsp } from 'fs';
-import { listFilesInDir } from './utils/context/contextManager.js';
+import { listFilesInDir } from './src/utils/context/contextManager.js';
 import { z } from 'zod';
 
 // ==== Enhanced Context Management Imports ====

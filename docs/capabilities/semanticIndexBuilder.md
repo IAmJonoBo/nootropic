@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # semanticIndexBuilder
 
 The `semanticIndexBuilder` builds a comprehensive semantic search index for the nootropic project. It now indexes:

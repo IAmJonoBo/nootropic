@@ -4,16 +4,16 @@ import path from 'path';
 // @ts-ignore
 import { readJsonSafe, writeJsonSafe, listFilesRecursive } from './utils.js';
 // @ts-ignore
-import { ensureDirExists } from './utils/context/contextManager.js';
+import { ensureDirExists } from './src/utils/context/contextManager.js';
 // @ts-ignore
-import { getCacheFilePath, ensureCacheDirExists } from './utils/context/cacheDir.js';
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import { fileURLToPath } from 'url';
 // @ts-ignore
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
 // @ts-ignore
 import { initTelemetry, shutdownTelemetry } from './telemetry.js';
 // @ts-ignore
-import { getEmbeddingProvider } from './capabilities/embeddingRegistry.js';
+import { getEmbeddingProvider } from './src/capabilities/embeddingRegistry.js';
 
 interface SemanticIndexEntry {
   file: string;

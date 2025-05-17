@@ -6,7 +6,7 @@ import { CrewAIAdapter } from '../adapters/crewAIAdapter.js';
 // @ts-ignore
 import { SemanticKernelAdapter } from '../adapters/semanticKernelAdapter.js';
 // @ts-ignore
-import type { AgentProfile, AgentTask } from '../types/AgentOrchestrationEngine.js';
+import type { AgentProfile, AgentTask } from '../types/AgentOrchestrationEngine.d.ts';
 
 const adapters = [
   { name: 'LangChainAdapter', Adapter: LangChainAdapter },

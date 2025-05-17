@@ -1,5 +1,5 @@
 // @ts-ignore
-import type { AgentOrchestrationEngine, AgentProfile, AgentTask, AgentContext, AgentResult } from './types/AgentOrchestrationEngine.js';
+import type { AgentOrchestrationEngine, AgentProfile, AgentTask, AgentContext, AgentResult } from './src/schemas/AgentOrchestrationEngineSchema.js';
 
 // Real Semantic Kernel integration skeleton
 let semanticKernelAvailable = false;

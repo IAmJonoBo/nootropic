@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # updateNotifier
 
 Notifies users of available package updates via CLI. Useful for keeping nootropic up to date.

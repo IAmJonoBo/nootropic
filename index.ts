@@ -1,16 +1,16 @@
 // --- Explicit Named Exports (2025 Best Practices) ---
-export { LangChainAdapter } from './adapters/langchainAdapter.js';
-export { CrewAIAdapter } from './adapters/crewAIAdapter.js';
-export { SemanticKernelAdapter } from './adapters/semanticKernelAdapter.js';
+export { LangChainAdapter } from './src/adapters/langchainAdapter.js';
+export { CrewAIAdapter } from './src/adapters/crewAIAdapter.js';
+export { SemanticKernelAdapter } from './src/adapters/semanticKernelAdapter.js';
 export { getOrchestrationEngine } from './orchestrationEngineSelector.js';
-export type { AgentOrchestrationEngine, AgentProfile, AgentTask, AgentContext, AgentResult, AgentLogger, AgentEvent, Plugin, PluginManager } from './types/AgentOrchestrationEngine.js';
+export type { AgentOrchestrationEngine, AgentProfile, AgentTask, AgentContext, AgentResult, AgentLogger, AgentEvent, Plugin, PluginManager } from './src/schemas/AgentOrchestrationEngineSchema.js';
 // @ts-ignore
-import checkForUpdates from './utils/describe/updateNotifier.js';
+import checkForUpdates from './src/utils/describe/updateNotifier.js';
 export { checkForUpdates };
-export { BaseAgent } from './agents/BaseAgent.js';
-export { ContentAgent } from './agents/ContentAgent.js';
-export { CollectionAgent } from './agents/CollectionAgent.js';
-export { ReviewAgent } from './agents/ReviewAgent.js';
+export { BaseAgent } from './src/agents/BaseAgent.js';
+export { ContentAgent } from './src/agents/ContentAgent.js';
+export { CollectionAgent } from './src/agents/CollectionAgent.js';
+export { ReviewAgent } from './src/agents/ReviewAgent.js';
 
 // --- Internal imports for runtime logic (not re-exported) ---
 // @ts-ignore
@@ -18,17 +18,17 @@ import { getPlugins } from './pluginRegistry.js';
 // @ts-ignore
 import { initTelemetry, shutdownTelemetry } from './telemetry.js';
 // @ts-ignore
-import { BaseAgent as _BaseAgent } from './agents/BaseAgent.js';
+import { BaseAgent as _BaseAgent } from './src/agents/BaseAgent.js';
 // @ts-ignore
-import { ContentAgent as _ContentAgent } from './agents/ContentAgent.js';
+import { ContentAgent as _ContentAgent } from './src/agents/ContentAgent.js';
 // @ts-ignore
-import { CollectionAgent as _CollectionAgent } from './agents/CollectionAgent.js';
+import { CollectionAgent as _CollectionAgent } from './src/agents/CollectionAgent.js';
 // @ts-ignore
-import { ReviewAgent as _ReviewAgent } from './agents/ReviewAgent.js';
+import { ReviewAgent as _ReviewAgent } from './src/agents/ReviewAgent.js';
 // @ts-ignore
-import registry from './capabilities/registry.js';
+import registry from './src/capabilities/registry.js';
 // @ts-ignore
-import { registerAllAdapters } from './adapters/index.js';
+import { registerAllAdapters } from './src/adapters/index.js';
 
 registerAllAdapters(registry);
 

@@ -28,4 +28,14 @@ These checks are enforced in CI (`.github/workflows/ci.yml`, `.github/workflows/
 - Some TSDoc linter warnings (e.g., about the '>' character in function signatures, or unsupported tags like @param/@returns) are known parser limitations and **do not affect type safety or documentation generation** (e.g., with TypeDoc or JSDoc).
 - These warnings can be safely ignored. See the relevant comments in `utils.ts` and `jwtValidation.ts` for details.
 - If you encounter these warnings, you do **not** need to fix or suppress them—they are expected and documented here for clarity.
-- All tests must use [Vitest](https://vitest.dev/) with ESM/TypeScript. Jest is not supported. See `vitest.config.ts` for configuration and best practices. 
+- All tests must use [Vitest](https://vitest.dev/) with ESM/TypeScript. Jest is not supported. See `vitest.config.ts` for configuration and best practices.
+
+## 📝 Manifest and Registry Hygiene
+
+- All planned, in-progress, or stub capability docs in `docs/capabilities` **must** include a YAML frontmatter `status` field (e.g., `status: planned`, `status: in progress`, `status: stub`).
+- The sync and manifest scripts (`scripts/generateDocManifest.ts`, `scripts/docs-check-sync.ts`) will categorize docs based on this field. If missing, they will use filename/title heuristics, but this is discouraged.
+- **Implemented/complete docs should also include `status: implemented` or `status: complete` in YAML frontmatter for clarity and automation.**
+- All agent capability docs should be placed in `docs/capabilities/agents/` for discoverability and LLM/AI workflows.
+- The sync scripts will warn if a doc is missing a status field or is ambiguous. Please fix these warnings promptly.
+- Naming conventions for planned/in-progress/stub docs (e.g., `(planned)`, `(in progress)`, `planned-`, `stub`, `draft`) are supported but explicit status fields are preferred for automation and LLM-friendliness.
+- See the onboarding and CLI usage guides for more details on documentation and automation best practices.

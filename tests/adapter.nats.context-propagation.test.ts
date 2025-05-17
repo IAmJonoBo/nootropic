@@ -5,7 +5,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { NatsEventBus, TraceContext } from '../adapters/NatsEventBus.js';
 import { randomUUID } from 'crypto';
 // @ts-ignore
-import { AgentEvent } from '../types/AgentOrchestrationEngine.js';
+import type { AgentEvent } from '../types/AgentOrchestrationEngine.js';
 
 describe('NatsEventBus Context Propagation', () => {
   const subject = process.env['NATS_SUBJECT'] ?? 'aihelpers.events';

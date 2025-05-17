@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # agents
 
 Exports all core nootropic agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.

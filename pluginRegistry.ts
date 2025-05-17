@@ -17,7 +17,7 @@ import path from 'path';
 // @ts-ignore
 // Removed unused: import { publishEvent, subscribeToTopic } from './memoryLaneHelper.js';
 // @ts-ignore
-import { aggregatePluginFeedback } from './utils/feedback/pluginFeedback.js';
+import { aggregatePluginFeedback } from './src/utils/feedback/pluginFeedback.js';
 // Removed unused: function isAgentEvent(event: unknown): event is AgentEvent { ... }
 // Removed unused: pluginRegisteredCounter, pluginUnregisteredCounter, pluginErrorCounter
 import { z } from 'zod';
@@ -119,7 +119,7 @@ function isValidPluginModule(mod: unknown): mod is PluginModule {
  * Returns an array of plugin modules with describe/run exports. All outputs are Zod-validated.
  */
 export async function getPlugins(): Promise<PluginModule[]> {
-  const { ensureCacheDirExists } = await import('./utils/context/cacheDir.js');
+  const { ensureCacheDirExists } = await import('./src/utils/context/cacheDir.js');
   await ensureCacheDirExists();
   const PLUGIN_DIR = path.resolve(process.cwd(), 'plugins');
   if (!fs.existsSync(PLUGIN_DIR)) return [];

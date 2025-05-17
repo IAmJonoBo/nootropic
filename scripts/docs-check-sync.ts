@@ -66,9 +66,25 @@ async function main() {
         })
     );
 
+    // Enhanced: Filter manifest sections to ignore planned/in-progress by status or naming
+    function isPlannedOrStub(section: any) {
+      if (typeof section !== 'string') return false;
+      const lower = section.toLowerCase();
+      return lower.includes('(planned)') || lower.includes('(in progress)') || lower.includes('todo-') || lower.includes('epic-') || lower.includes('review-') || lower.includes('archive-') || lower.includes('implement-') || lower.includes('automation-') || lower.includes('planned-') || lower.includes('stub') || lower.includes('draft');
+    }
+
+    // Get epics and stories slugs from manifest (if present)
+    const epicsSlugs = Array.isArray((manifest as any).epics) ? (manifest as any).epics.map((e: any) => e.slug) : [];
+    const storiesSlugs = Array.isArray((manifest as any).stories) ? (manifest as any).stories.map((s: any) => s.slug) : [];
+    const ignoreSlugs = new Set([...epicsSlugs, ...storiesSlugs]);
+
+    const filteredManifestSections = new Set(
+      Array.from(manifestSections).filter(x => !isPlannedOrStub(x) && !ignoreSlugs.has(x))
+    );
+
     // Check for missing implemented modules
-    const missingInManifest = Array.from(registrySections).filter(x => !manifestSections.has(x));
-    const missingInRegistry = Array.from(manifestSections).filter(x => typeof x === 'string' && !registrySections.has(x));
+    const missingInManifest = Array.from(registrySections).filter(x => !filteredManifestSections.has(x));
+    const missingInRegistry = Array.from(filteredManifestSections).filter(x => typeof x === 'string' && !registrySections.has(x));
 
     let failed = false;
     if (missingInManifest.length) {

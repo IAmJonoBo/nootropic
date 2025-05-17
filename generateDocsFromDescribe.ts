@@ -1,10 +1,10 @@
 #!/usr/bin/env tsx
 import fs from 'fs';
 import path from 'path';
-import { parseCliArgs, printUsage, printResult, printError } from './utils/cliHelpers.js';
-import { readJsonFile, writeJsonFile, handleError } from './utils/automationHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from './src/utils/cliHelpers.js';
+import { readJsonFile, writeJsonFile, handleError } from './src/utils/automationHelpers.js';
 // @ts-ignore
-import type { CapabilityDescribe } from './capabilities/Capability.js';
+import type { CapabilityDescribe } from './src/capabilities/Capability.js';
 
 const REGISTRY_PATH = '.nootropic-cache/describe-registry.json';
 const DOCS_DIR = 'docs/capabilities';

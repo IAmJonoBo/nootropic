@@ -13,7 +13,7 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { parseCliArgs, printUsage, printResult, printError } from './utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from './src/utils/cliHelpers.js';
 
 const BACKLOG_PATH = path.resolve('agentBacklog.json');
 const CORE_FILES = ['contextSnapshotHelper.ts', 'contextMutationEngine.ts', 'pluginRegistry.ts', 'capabilities/registry.ts', 'utils/security/secretsManager.ts'];

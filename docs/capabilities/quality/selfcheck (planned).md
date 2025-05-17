@@ -1,3 +1,6 @@
+---
+status: planned
+---
 # quality/selfcheck (Planned)
 
 > **Status:** Planned (see [agentBacklog.json](../../agentBacklog.json) and [docManifest.json](../docManifest.json) for up-to-date status)

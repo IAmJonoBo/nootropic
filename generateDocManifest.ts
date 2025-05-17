@@ -1,6 +1,5 @@
 #!/usr/bin/env tsx
 import { promises as fsp } from 'fs';
-import path from 'path';
 
 async function getMarkdownSlugs(dir: string) {
   const files = await fsp.readdir(dir);

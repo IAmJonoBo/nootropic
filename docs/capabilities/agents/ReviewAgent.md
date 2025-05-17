@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # ReviewAgent
 
 > **Status:** Implemented (2024-06). See `agents/ReviewAgent.ts` for source and extension points.

@@ -1,0 +1,159 @@
+import { SastFeedbackMemorySchema } from '../../schemas/SastFeedbackMemorySchema.js';
+import type { SastFeedbackMemory } from '../../schemas/SastFeedbackMemorySchema.js';
+import { BaseMemoryUtility } from './BaseMemoryUtility.js';
+import { trace } from '@opentelemetry/api';
+
+const SAST_MEMORIES_PATH = '.nootropic-cache/sast-memories.json';
+
+/**
+ * sastMemories: Deduplicates, lists, and syncs SAST feedback memories across tools.
+ *
+ * LLM/AI-usage: Designed for robust, machine-usable SAST feedback memory management in agent workflows. Extension points for new memory types, adapters, or deduplication strategies.
+ * Extension: Add new memory types, adapters, or deduplication/merge strategies as needed.
+ *
+ * Main Functions:
+ *   - loadAllMemories(): Load all SAST feedback memories
+ *   - deduplicateMemories(memories): Deduplicate memories by id, tool, and context
+ *   - listAllSastMemories(): List all deduplicated SAST memories
+ *   - getMemoriesForFile(file): Get all memories for a given file
+ *   - getMemoriesForRule(ruleId): Get all memories for a given ruleId
+ *   - syncWithRemote(localMemories, remoteAdapter): Sync local SAST memories with remote storage
+ *   - mergeWithRemote(local, remote): Merge local and remote SAST memories
+ */
+
+export class SastMemoriesUtility extends BaseMemoryUtility<SastFeedbackMemory> {
+  name = 'sastMemories';
+  filePath = SAST_MEMORIES_PATH;
+  schema = SastFeedbackMemorySchema;
+
+  /**
+   * Deduplicate memories by id, tool, and context. Uses pluggable deduplication if set.
+   */
+  override deduplicate(memories: SastFeedbackMemory[]): SastFeedbackMemory[] {
+    if (this.deduplicateFn) return this.deduplicateFn(memories);
+    const map = new Map<string, SastFeedbackMemory>();
+    for (const m of memories) {
+      const key = `${m.id}|${m.tool}|${JSON.stringify(m.context ?? {})}`;
+      if (!map.has(key)) map.set(key, m);
+    }
+    return Array.from(map.values());
+  }
+
+  /**
+   * List all deduplicated SAST memories (across tools).
+   */
+  async listAllSastMemories(): Promise<SastFeedbackMemory[]> {
+    const all = await this.loadAll();
+    const deduped = this.deduplicate(all);
+    await this.saveAll(deduped);
+    return deduped;
+  }
+
+  /**
+   * Get all memories for a given file.
+   */
+  async getMemoriesForFile(file: string): Promise<SastFeedbackMemory[]> {
+    const all = await this.listAllSastMemories();
+    return all.filter(m => m.file === file);
+  }
+
+  /**
+   * Get all memories for a given ruleId.
+   */
+  async getMemoriesForRule(ruleId: string): Promise<SastFeedbackMemory[]> {
+    const all = await this.listAllSastMemories();
+    return all.filter(m => m.ruleId === ruleId);
+  }
+
+  /**
+   * Syncs local SAST feedback memories with a remote adapter instance.
+   */
+  async syncWithRemote(localMemories: SastFeedbackMemory[], remoteAdapter: unknown): Promise<SastFeedbackMemory[]> {
+    if (!remoteAdapter || typeof remoteAdapter !== 'object' ||
+        typeof (remoteAdapter as { downloadMemories: unknown }).downloadMemories !== 'function' ||
+        typeof (remoteAdapter as { mergeMemories: unknown }).mergeMemories !== 'function' ||
+        typeof (remoteAdapter as { uploadMemories: unknown }).uploadMemories !== 'function') {
+      throw new Error('remoteAdapter must implement downloadMemories, mergeMemories, and uploadMemories methods');
+    }
+    const span = trace.getTracer('sastMemories').startSpan('syncWithRemote');
+    const remoteMemories = await (remoteAdapter as { downloadMemories: () => Promise<SastFeedbackMemory[]> }).downloadMemories();
+    const merged = await (remoteAdapter as { mergeMemories: (local: SastFeedbackMemory[], remote: SastFeedbackMemory[]) => Promise<SastFeedbackMemory[]> }).mergeMemories(localMemories, remoteMemories);
+    await (remoteAdapter as { uploadMemories: (memories: SastFeedbackMemory[]) => Promise<void> }).uploadMemories(merged);
+    span.end();
+    return merged;
+  }
+
+  /**
+   * Merges local and remote SAST feedback memories.
+   */
+  mergeWithRemote(local: SastFeedbackMemory[], remote: SastFeedbackMemory[]): SastFeedbackMemory[] {
+    const span = trace.getTracer('sastMemories').startSpan('mergeWithRemote');
+    const seen = new Set<string>();
+    const canonicalId = (m: SastFeedbackMemory) => `${m.tool}:${m.file}:${m.ruleId ?? ''}:${m.id}`;
+    const merged = [...local, ...remote].filter(mem => {
+      const id = canonicalId(mem);
+      if (seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    });
+    span.end();
+    return merged;
+  }
+}
+
+const sastMemories = new SastMemoriesUtility();
+
+export const listAllSastMemories = sastMemories.listAllSastMemories.bind(sastMemories);
+export const getMemoriesForFile = sastMemories.getMemoriesForFile.bind(sastMemories);
+export const getMemoriesForRule = sastMemories.getMemoriesForRule.bind(sastMemories);
+export const syncWithRemote = sastMemories.syncWithRemote.bind(sastMemories);
+export const mergeWithRemote = sastMemories.mergeWithRemote.bind(sastMemories);
+export const deduplicateMemories = sastMemories.deduplicate.bind(sastMemories);
+
+const sastMemoriesCapability = {
+  name: 'sastMemories',
+  describe: () => ({
+    ...sastMemories.describe(),
+    promptTemplates: [
+      {
+        name: 'List All SAST Memories',
+        description: 'List all deduplicated SAST feedback memories.',
+        template: 'listAllSastMemories()'
+      },
+      {
+        name: 'Get Memories for File',
+        description: 'Get all SAST memories for a given file.',
+        template: 'getMemoriesForFile(file)'
+      },
+      {
+        name: 'Get Memories for Rule',
+        description: 'Get all SAST memories for a given ruleId.',
+        template: 'getMemoriesForRule(ruleId)'
+      },
+      {
+        name: 'Sync with Remote',
+        description: 'Sync local SAST memories with a remote adapter.',
+        template: 'syncWithRemote(localMemories, remoteAdapter)'
+      },
+      {
+        name: 'Merge with Remote',
+        description: 'Merge local and remote SAST memories.',
+        template: 'mergeWithRemote(local, remote)'
+      }
+    ],
+    usage: "import sastMemoriesCapability from 'nootropic/utils/feedback/sastMemories';\nconst memories = await sastMemoriesCapability.run({ id, tool, ... });",
+    docs: 'See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.',
+    features: [
+      'Pluggable, event-driven deduplication',
+      'Generic aggregation (by key or custom logic)',
+      'Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility',
+      'Registry/describe/health compliance and LLM/AI-friendliness'
+    ],
+    schema: SastFeedbackMemorySchema
+  }),
+  health: sastMemories.health.bind(sastMemories),
+  init: async function() {},
+  reload: async function() {}
+};
+
+export default sastMemoriesCapability; 

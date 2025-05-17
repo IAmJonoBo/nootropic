@@ -6,11 +6,11 @@
  * Extension: Add new event bus backends or event types via the registry.
  */
 import { readJsonSafe, writeJsonSafe, getOrInitJson, esmEntrypointCheck } from './utils.js';
-import { getCacheFilePath, ensureCacheDirExists } from './utils/context/cacheDir.js';
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import { promises as fsp } from 'fs';
-import registry from './capabilities/registry.js';
-import type { EventBusAdapter, AgentEvent as ImportedAgentEvent } from './types/AgentOrchestrationEngine.js';
-import { validateAgentEvent } from './types/AgentOrchestrationEngine.js';
+import registry from './src/capabilities/registry.js';
+import type { EventBusAdapter, AgentEvent as ImportedAgentEvent } from './src/schemas/AgentOrchestrationEngineSchema.js';
+import { validateAgentEvent } from './src/schemas/AgentOrchestrationEngineSchema.js';
 import { z } from 'zod';
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug';

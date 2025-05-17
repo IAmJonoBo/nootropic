@@ -22,7 +22,7 @@ import { Kafka, logLevel, Message } from 'kafkajs';
 // @ts-ignore
 import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
 // @ts-ignore
-import { DLQEventSchema } from '../types/AgentOrchestrationEngine.js';
+import { DLQEventSchema } from './src/schemas/AgentOrchestrationEngineSchema.js';
 import { SpanStatusCode, trace } from '@opentelemetry/api';
 
 const tracer = trace.getTracer('dlqReplay');

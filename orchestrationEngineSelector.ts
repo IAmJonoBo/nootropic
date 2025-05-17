@@ -5,7 +5,7 @@ import { CrewAIAdapter } from './adapters/crewAIAdapter.js';
 // @ts-ignore
 import { SemanticKernelAdapter } from './adapters/semanticKernelAdapter.js';
 // @ts-ignore
-import type { AgentOrchestrationEngine } from './types/AgentOrchestrationEngine.js';
+import type { AgentOrchestrationEngine } from './src/schemas/AgentOrchestrationEngineSchema.js';
 
 // Extend this type as you add more engines
 export type OrchestrationEngineName = 'langchain' | 'crewAI' | 'semanticKernel';

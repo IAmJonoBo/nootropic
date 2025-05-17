@@ -1,3 +1,6 @@
+---
+status: implemented
+---
 # sastMemories
 
 Feedback/memory utility (base class). Subclasses provide type-specific logic.

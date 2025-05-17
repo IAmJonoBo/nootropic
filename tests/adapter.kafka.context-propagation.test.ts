@@ -5,8 +5,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 // Suppress linter errors for missing Jest globals; this file is intentionally written for environments with a test runner.
 // @ts-ignore
 import { KafkaEventBus, TraceContext } from '../adapters/KafkaEventBus.js';
-// @ts-ignore
-import { AgentEvent } from '../types/AgentOrchestrationEngine.js';
+import type { AgentEvent } from '../types/AgentOrchestrationEngine.js';
 import { randomUUID } from 'crypto';
 
 describe('KafkaEventBus Context Propagation', () => {

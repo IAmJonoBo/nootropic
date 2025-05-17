@@ -1,3 +1,6 @@
+---
+status: planned
+---
 # ContextManager
 
 Planned: ContextManager documentation.
