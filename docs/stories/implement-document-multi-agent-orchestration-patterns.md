@@ -8,5 +8,5 @@
 - id: implement-document-multi-agent-orchestration-patterns
 - slug: implement-document-multi-agent-orchestration-patterns
 - docPath: docs/stories/implement-document-multi-agent-orchestration-patterns.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

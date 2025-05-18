@@ -1,5 +1,5 @@
 // @ts-ignore
-import { CollectionAgent } from '../agents/CollectionAgent.js';
+import { CollectionAgent } from '../src/agents/CollectionAgent';
 import { describe, it, expect } from 'vitest';
 
 describe('CollectionAgent', () => {

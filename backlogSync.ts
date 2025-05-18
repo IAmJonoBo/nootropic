@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from './src/utils/cliHelpers.js';
 
 const usage = 'Usage: pnpm tsx scripts/backlogSync.ts [--help] [--json] [--dry-run]';
 const options = {

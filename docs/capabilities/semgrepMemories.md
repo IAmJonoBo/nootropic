@@ -1,9 +1,12 @@
----
-status: implemented
----
 # semgrepMemories
 
 Feedback/memory utility (base class). Subclasses provide type-specific logic.
+
+**Usage:**
+
+`import { addSemgrepMemory, listSemgrepMemories } from "nootropic/utils/feedback/semgrepMemories";
+await addSemgrepMemory("semgrep:rule:file:42", { memoryType: "triage", rationale: "False positive", triage: "false_positive" });
+const memories = await listSemgrepMemories("semgrep:rule:file:42");`
 
 ## Methods/Functions
 

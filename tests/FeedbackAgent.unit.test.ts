@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { FeedbackAgent } from '../agents/FeedbackAgent.js';
+import { FeedbackAgent } from '../src/agents/FeedbackAgent';
 
 describe('FeedbackAgent', () => {
   it('should run a feedback task and return a result', async () => {

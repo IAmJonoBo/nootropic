@@ -8,5 +8,5 @@
 - id: todo:nootropic/scripts/issueOpsStateMachine.ts:7
 - slug: todo-nootropic-scripts-issue-ops-state-machine-ts-7
 - docPath: docs/epics/todo-nootropic-scripts-issue-ops-state-machine-ts-7.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

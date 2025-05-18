@@ -69,8 +69,8 @@ export class SupervisorAgent extends BaseAgent {
       events.push(agentEvent);
       // (stub) Would publish event to event bus
     };
-    const subAgents = typeof task === 'object' && task !== null && Array.isArray((task as any).subAgents) ? (task as any).subAgents : [];
-    const metrics = typeof task === 'object' && task !== null && Array.isArray((task as any).metrics) ? (task as any).metrics : [];
+    const subAgents = typeof task === 'object' && task !== null && 'subAgents' in task && Array.isArray((task as { subAgents?: unknown }).subAgents) ? (task as { subAgents: string[] }).subAgents : [];
+    const metrics = typeof task === 'object' && task !== null && 'metrics' in task && Array.isArray((task as { metrics?: unknown }).metrics) ? (task as { metrics: number[] }).metrics : [];
     // === Hierarchical Supervision ===
     const supervisionResult = await this.subAgentRegistryStub(subAgents);
     await emitEvent({ type: 'supervision', payload: { subAgents, result: supervisionResult } });
@@ -82,8 +82,9 @@ export class SupervisorAgent extends BaseAgent {
     // === Self-Healing Workflows ===
     let selfHealResult = null;
     if (anomalyResult && anomalyResult.anomaly && subAgents.length > 0) {
-      selfHealResult = await this.remediationPlaybookStub(subAgents[0]);
-      await emitEvent({ type: 'selfHealing', payload: { agent: subAgents[0], result: selfHealResult } });
+      const firstAgent = typeof subAgents[0] === 'string' ? subAgents[0] : '';
+      selfHealResult = await this.remediationPlaybookStub(firstAgent);
+      await emitEvent({ type: 'selfHealing', payload: { agent: firstAgent, result: selfHealResult } });
       logs.push('Self-Healing: (stub) ' + selfHealResult);
     }
     // === Escalation/Observability ===

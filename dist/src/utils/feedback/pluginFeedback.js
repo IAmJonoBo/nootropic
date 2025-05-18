@@ -1,0 +1,91 @@
+import path from 'path';
+import { z } from 'zod';
+import { BaseMemoryUtility } from './BaseMemoryUtility.js';
+const PLUGIN_FEEDBACK_PATH = path.join('.nootropic-cache', 'plugin-feedback.json');
+export const PluginFeedbackSchema = z.object({
+    pluginName: z.string(),
+    user: z.string(),
+    rating: z.number().min(1).max(5),
+    review: z.string().optional(),
+    timestamp: z.string()
+});
+/**
+ * PluginFeedbackUtility: Feedback/memory utility for plugin feedback.
+ * Extends BaseMemoryUtility for aggregation, deduplication, and registry compliance.
+ */
+export class PluginFeedbackUtility extends BaseMemoryUtility {
+    name = 'pluginFeedback';
+    filePath = PLUGIN_FEEDBACK_PATH;
+    schema = PluginFeedbackSchema;
+    /**
+     * Submit feedback for a plugin.
+     */
+    async submitPluginFeedback(feedback) {
+        await this.add(feedback);
+    }
+    /**
+     * List all feedback for a given plugin.
+     */
+    async listFeedbackForPlugin(pluginName) {
+        const all = await this.list();
+        return all.filter(fb => fb.pluginName === pluginName);
+    }
+    /**
+     * Aggregate feedback for a plugin (average rating, review count, etc).
+     */
+    async aggregatePluginFeedback(pluginName) {
+        const result = await this.aggregate((fb) => fb.pluginName, (group) => {
+            const ratings = group.map(fb => fb.rating);
+            const reviews = group.filter(fb => fb.review).map(fb => ({ user: fb.user, review: fb.review, timestamp: fb.timestamp }));
+            const averageRating = ratings.length ? ratings.reduce((a, b) => a + b, 0) / ratings.length : 0;
+            return {
+                pluginName,
+                averageRating,
+                reviewCount: reviews.length,
+                ratings,
+                reviews
+            };
+        });
+        return result[pluginName];
+    }
+}
+const pluginFeedback = new PluginFeedbackUtility();
+export const submitPluginFeedback = pluginFeedback.submitPluginFeedback.bind(pluginFeedback);
+export const listFeedbackForPlugin = pluginFeedback.listFeedbackForPlugin.bind(pluginFeedback);
+export const aggregatePluginFeedback = pluginFeedback.aggregatePluginFeedback.bind(pluginFeedback);
+const pluginFeedbackCapability = {
+    name: 'pluginFeedback',
+    describe: () => ({
+        ...pluginFeedback.describe(),
+        promptTemplates: [
+            {
+                name: 'Submit Plugin Feedback',
+                description: 'Submit feedback for a plugin (rating, review, user, timestamp).',
+                template: 'submitPluginFeedback({ pluginName, user, rating, review?, timestamp? })'
+            },
+            {
+                name: 'Aggregate Plugin Feedback',
+                description: 'Aggregate feedback for a plugin (average rating, review count, etc).',
+                template: 'aggregatePluginFeedback(pluginName)'
+            },
+            {
+                name: 'List Feedback for Plugin',
+                description: 'List all feedback for a given plugin.',
+                template: 'listFeedbackForPlugin(pluginName)'
+            }
+        ],
+        usage: "import pluginFeedbackCapability from 'nootropic/utils/feedback/pluginFeedback';\nconst feedback = await pluginFeedbackCapability.run({ pluginName, user, rating, review });",
+        docs: 'See docs/capabilities/pluginFeedback.md for full API, schema, and event hook details.',
+        features: [
+            'Pluggable, event-driven deduplication',
+            'Generic aggregation (by key or custom logic)',
+            'Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility',
+            'Registry/describe/health compliance and LLM/AI-friendliness'
+        ],
+        schema: PluginFeedbackSchema
+    }),
+    health: pluginFeedback.health.bind(pluginFeedback),
+    init: async function () { },
+    reload: async function () { }
+};
+export default pluginFeedbackCapability;

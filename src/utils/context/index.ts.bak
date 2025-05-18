@@ -1,0 +1,5 @@
+// Only export registry-compliant, canonical utilities. Advanced/LLM-driven utilities are in ./experimental/ for future extension.
+export * from './internal';
+export { default as cacheDirCapability } from './cacheDir';
+export * from './rerank';
+export * from './shimiMemory'; 

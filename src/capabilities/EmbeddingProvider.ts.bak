@@ -1,0 +1,24 @@
+// @ts-ignore
+import type { Capability, CapabilityDescribe, HealthStatus } from './Capability';
+
+export interface EmbeddingProvider extends Capability {
+  /**
+   * Returns the name of the embedding provider/model.
+   */
+  readonly name: string;
+
+  /**
+   * Embed a string or array of strings. Returns a 2D array of floats (one vector per input).
+   */
+  embed(text: string | string[]): Promise<number[][]>;
+
+  /**
+   * Health check for the provider.
+   */
+  health(): Promise<HealthStatus>;
+
+  /**
+   * Registry/LLM-friendly describe output.
+   */
+  describe(): CapabilityDescribe;
+} 

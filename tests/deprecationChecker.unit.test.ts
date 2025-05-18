@@ -1,6 +1,6 @@
 import { describe, it, vi, beforeEach, afterEach } from 'vitest';
 // @ts-ignore
-// import * as deprecationChecker from '../utils/deprecationChecker.js';
+// import * as deprecationChecker from '../utils/deprecationChecker';
 // TODO: deprecationChecker module missing. Test skipped until implemented.
 describe.skip('deprecationChecker', () => {
   let warnSpy: ReturnType<typeof vi.spyOn>;

@@ -1,344 +1,5 @@
 [
   {
-    "name": "ContextManager",
-    "description": "Planned: ContextManager documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "SecretsManager",
-    "description": "Planned: SecretsManager documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "TypeScript type-casting note (planned)",
-    "description": "Planned: TypeScript type-casting note documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "agent discovery (planned)",
-    "description": "Planned: Agent discovery documentation and implementation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "ajv-cli validation in ci (planned)",
-    "description": "Planned: ajv-cli validation in CI documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "api doc best practices (planned)",
-    "description": "Planned: API doc best practices documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "api doc workflow (planned)",
-    "description": "Planned: API doc workflow documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "cache management (planned)",
-    "description": "Planned: Cache management documentation and implementation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "ci/cd integration (planned)",
-    "description": "Planned: CI/CD integration documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "contextSnapshotHelper (planned)",
-    "description": "Planned: contextSnapshotHelper documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "context handover (planned)",
-    "description": "Planned: Context handover documentation and implementation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "contributing.md (planned)",
-    "description": "Planned: Contributing.md documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true
-  },
-  {
-    "name": "editor config recommendations (planned)",
-    "description": "Planned: Editor config recommendations documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "liveMutationPRHelper (planned)",
-    "description": "Planned: liveMutationPRHelper documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "monorepo typescript config (planned)",
-    "description": "Planned: Monorepo TypeScript config documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "multi-agent orchestration (planned)",
-    "description": "Planned: Multi-agent orchestration documentation and implementation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "onboarding guide (planned)",
-    "description": "Planned: Onboarding guide documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "onboarding instructions (planned)",
-    "description": "Planned: Onboarding instructions documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "sample config files (planned)",
-    "description": "Planned: Sample config files documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true
-  },
-  {
-    "name": "schema validation onboarding (planned)",
-    "description": "Planned: Schema validation onboarding documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "streaming backend integration (planned)",
-    "description": "Planned: Streaming backend integration documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "tsdoc style enforcement (planned)",
-    "description": "Planned: TSDoc style enforcement documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "updated agent event interface (planned)",
-    "description": "Planned: Updated agent event interface documentation.",
-    "status": "planned",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "planned": true,
-    "license": "Apache-2.0",
-    "isOpenSource": true,
-    "schema": {}
-  },
-  {
-    "name": "updateNotifier",
-    "description": "Notifies users of available package updates via CLI. Useful for keeping nootropic up to date.",
-    "methods": [
-      {
-        "name": "checkForUpdates",
-        "signature": "() => void",
-        "description": "Checks for updates and notifies the user via CLI."
-      }
-    ],
-    "schema": {
-      "checkForUpdates": {
-        "input": {
-          "type": "null",
-          "description": "No input required"
-        },
-        "output": {
-          "type": "null",
-          "description": "No output (side effect: CLI notification)"
-        }
-      }
-    },
-    "license": "MIT",
-    "isOpenSource": true,
-    "usage": "import updateNotifierCapability from 'nootropic/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "promptTemplates": [
-      {
-        "name": "Check for Updates",
-        "description": "Prompt for instructing the agent or LLM to check for available package updates and notify the user.",
-        "template": "Check if there are any updates available for the nootropic package. If an update is found, notify the user with the new version and changelog.",
-        "usage": "Used by checkForUpdates to trigger an update check and notification."
-      }
-    ],
-    "references": [
-      "https://www.npmjs.com/package/update-notifier"
-    ]
-  },
-  {
-    "name": "adapterUtils",
-    "description": "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading.",
-    "methods": [
-      {
-        "name": "tryDynamicImport",
-        "signature": "(moduleName: string) => Promise<unknown | null>",
-        "description": "Attempts to dynamically import a module, returns null on failure."
-      }
-    ],
-    "schema": {
-      "tryDynamicImport": {
-        "input": {
-          "type": "object",
-          "properties": {
-            "moduleName": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "moduleName"
-          ]
-        },
-        "output": {
-          "type": [
-            "object",
-            "null"
-          ],
-          "description": "Imported module or null on failure"
-        }
-      }
-    },
-    "license": "MIT",
-    "isOpenSource": true,
-    "usage": "import adapterUtilsCapability from 'nootropic/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');",
-    "docsFirst": true,
-    "aiFriendlyDocs": true,
-    "promptTemplates": [
-      {
-        "name": "Dynamic Import Module",
-        "description": "Prompt for instructing the agent or LLM to dynamically import a module by name, with fallback and error handling.",
-        "template": "Attempt to dynamically import the module named \"{{moduleName}}\". If the import fails, return null and log the error.",
-        "usage": "Used by tryDynamicImport to load modules at runtime for plugin/adapter loading."
-      }
-    ],
-    "references": [
-      "https://nodejs.org/api/esm.html#esm_dynamic_imports"
-    ]
-  },
-  {
     "name": "pluginFeedback",
     "description": "Feedback/memory utility (base class). Subclasses provide type-specific logic.",
     "license": "MIT",
@@ -382,7 +43,32 @@
         "vendor": "zod"
       },
       "_cached": null
-    }
+    },
+    "promptTemplates": [
+      {
+        "name": "Submit Plugin Feedback",
+        "description": "Submit feedback for a plugin (rating, review, user, timestamp).",
+        "template": "submitPluginFeedback({ pluginName, user, rating, review?, timestamp? })"
+      },
+      {
+        "name": "Aggregate Plugin Feedback",
+        "description": "Aggregate feedback for a plugin (average rating, review count, etc).",
+        "template": "aggregatePluginFeedback(pluginName)"
+      },
+      {
+        "name": "List Feedback for Plugin",
+        "description": "List all feedback for a given plugin.",
+        "template": "listFeedbackForPlugin(pluginName)"
+      }
+    ],
+    "usage": "import pluginFeedbackCapability from 'nootropic/utils/feedback/pluginFeedback';\nconst feedback = await pluginFeedbackCapability.run({ pluginName, user, rating, review });",
+    "docs": "See docs/capabilities/pluginFeedback.md for full API, schema, and event hook details.",
+    "features": [
+      "Pluggable, event-driven deduplication",
+      "Generic aggregation (by key or custom logic)",
+      "Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility",
+      "Registry/describe/health compliance and LLM/AI-friendliness"
+    ]
   },
   {
     "name": "sastMemories",
@@ -428,7 +114,42 @@
         "vendor": "zod"
       },
       "_cached": null
-    }
+    },
+    "promptTemplates": [
+      {
+        "name": "List All SAST Memories",
+        "description": "List all deduplicated SAST feedback memories.",
+        "template": "listAllSastMemories()"
+      },
+      {
+        "name": "Get Memories for File",
+        "description": "Get all SAST memories for a given file.",
+        "template": "getMemoriesForFile(file)"
+      },
+      {
+        "name": "Get Memories for Rule",
+        "description": "Get all SAST memories for a given ruleId.",
+        "template": "getMemoriesForRule(ruleId)"
+      },
+      {
+        "name": "Sync with Remote",
+        "description": "Sync local SAST memories with a remote adapter.",
+        "template": "syncWithRemote(localMemories, remoteAdapter)"
+      },
+      {
+        "name": "Merge with Remote",
+        "description": "Merge local and remote SAST memories.",
+        "template": "mergeWithRemote(local, remote)"
+      }
+    ],
+    "usage": "import sastMemoriesCapability from 'nootropic/utils/feedback/sastMemories';\nconst memories = await sastMemoriesCapability.run({ id, tool, ... });",
+    "docs": "See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.",
+    "features": [
+      "Pluggable, event-driven deduplication",
+      "Generic aggregation (by key or custom logic)",
+      "Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility",
+      "Registry/describe/health compliance and LLM/AI-friendliness"
+    ]
   },
   {
     "name": "semgrepMemories",
@@ -474,7 +195,42 @@
         "vendor": "zod"
       },
       "_cached": null
-    }
+    },
+    "promptTemplates": [
+      {
+        "name": "Add Semgrep Memory",
+        "description": "Add feedback/memory to a Semgrep finding.",
+        "template": "addSemgrepMemory(findingId, memory)"
+      },
+      {
+        "name": "List Semgrep Memories",
+        "description": "List all feedback/memories for a Semgrep finding.",
+        "template": "listSemgrepMemories(findingId)"
+      },
+      {
+        "name": "Apply Semgrep Memories",
+        "description": "Attach memories to findings for context-aware remediation.",
+        "template": "applySemgrepMemories(findings)"
+      },
+      {
+        "name": "LLM Triage Semgrep Finding",
+        "description": "LLM-powered triage for a Semgrep finding.",
+        "template": "llmTriageSemgrepFinding(finding, memories?)"
+      },
+      {
+        "name": "Context-Aware Triage",
+        "description": "Context-aware, agentic triage for a Semgrep finding.",
+        "template": "contextAwareTriageSemgrepFinding(finding, memories?)"
+      }
+    ],
+    "usage": "import { addSemgrepMemory, listSemgrepMemories } from \"nootropic/utils/feedback/semgrepMemories\";\nawait addSemgrepMemory(\"semgrep:rule:file:42\", { memoryType: \"triage\", rationale: \"False positive\", triage: \"false_positive\" });\nconst memories = await listSemgrepMemories(\"semgrep:rule:file:42\");",
+    "docs": "See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.",
+    "features": [
+      "Pluggable, event-driven deduplication",
+      "Generic aggregation (by key or custom logic)",
+      "Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility",
+      "Registry/describe/health compliance and LLM/AI-friendliness"
+    ]
   },
   {
     "name": "sonarQubeMemories",
@@ -520,6 +276,1109 @@
         "vendor": "zod"
       },
       "_cached": null
+    },
+    "promptTemplates": [
+      {
+        "name": "Add SonarQube Memory",
+        "description": "Add feedback/memory to a SonarQube finding.",
+        "template": "addSonarQubeMemory(findingId, memory)"
+      },
+      {
+        "name": "List SonarQube Memories",
+        "description": "List all feedback/memories for a SonarQube finding.",
+        "template": "listSonarQubeMemories(findingId)"
+      },
+      {
+        "name": "Apply SonarQube Memories",
+        "description": "Attach memories to findings for context-aware remediation.",
+        "template": "applySonarQubeMemories(findings)"
+      }
+    ],
+    "usage": "import { addSonarQubeMemory, listSonarQubeMemories } from \"nootropic/utils/feedback/sonarQubeMemories\";\nawait addSonarQubeMemory(\"sonarqube:rule:file:42\", { memoryType: \"triage\", rationale: \"False positive\", triage: \"false_positive\" });\nconst memories = await listSonarQubeMemories(\"sonarqube:rule:file:42\");",
+    "docs": "See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.",
+    "features": [
+      "Pluggable, event-driven deduplication",
+      "Generic aggregation (by key or custom logic)",
+      "Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility",
+      "Registry/describe/health compliance and LLM/AI-friendliness"
+    ]
+  },
+  {
+    "name": "ShimiMemory",
+    "description": "Semantic Hierarchical Memory Index (SHIMI) for decentralized agent reasoning. Supports entity insertion, retrieval, and decentralized sync. Registry/LLM/AI-friendly.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://arxiv.org/abs/2504.06135",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "usage": "import { ShimiMemory } from 'nootropic/utils/context/shimiMemory'; const shimi = new ShimiMemory(); await shimi.insertEntity({ concept: 'foo', explanation: 'bar' }); await shimi.retrieveEntities('foo');",
+    "methods": [
+      {
+        "name": "insertEntity",
+        "signature": "(entity: { concept: string; explanation: string; [key: string]: unknown }) => Promise<void>",
+        "description": "Insert an entity into the semantic memory graph."
+      },
+      {
+        "name": "retrieveEntities",
+        "signature": "(query: string, topK?: number) => Promise<unknown[]>",
+        "description": "Retrieve entities by semantic query."
+      },
+      {
+        "name": "crdtMerge",
+        "signature": "(remote: ShimiMemory) => Promise<void>",
+        "description": "Merge with a remote SHIMI memory using CRDT logic."
+      }
+    ],
+    "promptTemplates": [
+      {
+        "name": "Insert Entity",
+        "description": "Insert an entity into the semantic memory graph.",
+        "template": "insertEntity({ concept, explanation, ... })"
+      },
+      {
+        "name": "Retrieve Entities",
+        "description": "Retrieve entities by semantic query.",
+        "template": "retrieveEntities(query, topK?)"
+      },
+      {
+        "name": "CRDT Merge",
+        "description": "Merge with a remote SHIMI memory using CRDT logic.",
+        "template": "crdtMerge(remoteShimiMemory)"
+      }
+    ],
+    "schema": {
+      "_def": {
+        "unknownKeys": "strip",
+        "catchall": {
+          "_def": {
+            "typeName": "ZodNever"
+          },
+          "~standard": {
+            "version": 1,
+            "vendor": "zod"
+          }
+        },
+        "typeName": "ZodObject"
+      },
+      "~standard": {
+        "version": 1,
+        "vendor": "zod"
+      },
+      "_cached": null
     }
+  },
+  {
+    "name": "RAGPipelineUtility",
+    "description": "Hybrid retrieval, advanced chunking, reranking, and feedback loops for RAG pipelines. Delegates all core steps to modular, registry-compliant context utilities (ChunkingUtility, HybridRetrievalUtility, RerankUtility). Integrates with embedding providers and semantic index. Registry-compliant.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://github.com/jerryjliu/llama_index",
+    "methods": [
+      {
+        "name": "runRAGPipeline",
+        "signature": "(input: unknown) => Promise<{ output: unknown; logs: string[] }>",
+        "description": "Run a RAG pipeline: hybrid retrieval, chunking, reranking, feedback."
+      },
+      {
+        "name": "health",
+        "signature": "() => Promise<HealthStatus>",
+        "description": "Health check for RAGPipelineUtility."
+      }
+    ],
+    "usage": "import { RAGPipelineUtility } from 'nootropic/capabilities/RAGPipelineUtility'; const util = new RAGPipelineUtility(publishEvent); await util.runRAGPipeline(input);",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "https://github.com/jerryjliu/llama_index",
+      "https://weaviate.io/",
+      "https://github.com/explodinggradients/ragas",
+      "README.md#state-of-the-art-rag-pipelines-for-code--context-optimization",
+      "docs/ROADMAP.md#rag-pipeline-utility",
+      "RerankUtility.describe()"
+    ]
+  },
+  {
+    "name": "RerankUtility",
+    "description": "Modular reranking utility supporting embedding-based, LLM-based, cross-encoder, and MMR (diversity) reranking. Registry-driven, describe/health compliant. Stubs for pluggable backends.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://arxiv.org/html/2404.01037v1",
+    "methods": [
+      {
+        "name": "rerank",
+        "signature": "(options: RerankOptions) => Promise<string[]>",
+        "description": "Rerank results using the selected strategy."
+      },
+      {
+        "name": "health",
+        "signature": "() => Promise<HealthStatus>",
+        "description": "Health check."
+      },
+      {
+        "name": "describe",
+        "signature": "() => CapabilityDescribe",
+        "description": "Describe this utility."
+      }
+    ],
+    "usage": "import RerankUtility from 'nootropic/utils/context/rerank'; const util = new RerankUtility(); await util.rerank({ strategy: 'embedding', query: 'foo', results });",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "promptTemplates": [
+      {
+        "name": "Rerank Results",
+        "description": "Rerank a list of results for a query using a specified strategy.",
+        "template": "rerank({ strategy, query, results, topK? })"
+      }
+    ],
+    "references": [
+      "https://arxiv.org/html/2404.01037v1",
+      "https://github.com/explodinggradients/ragas",
+      "https://www.pinecone.io/learn/series/rag/rerankers/"
+    ],
+    "schema": {
+      "_def": {
+        "unknownKeys": "strip",
+        "catchall": {
+          "_def": {
+            "typeName": "ZodNever"
+          },
+          "~standard": {
+            "version": 1,
+            "vendor": "zod"
+          }
+        },
+        "typeName": "ZodObject"
+      },
+      "~standard": {
+        "version": 1,
+        "vendor": "zod"
+      },
+      "_cached": null
+    }
+  },
+  {
+    "name": "ReasoningLoopUtility",
+    "description": "Advanced iterative code generation, explanation, and repair utility for agent workflows. Supports uncertainty-aware chain-of-thought, SCoT (structured reasoning), robust backtracking, pluggable LLM-driven explanation/repair, and event-driven feedback integration. Emits reasoningStep, explanation, and repair events for each step.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://github.com/nootropic/nootropic",
+    "methods": [
+      {
+        "name": "runLoop",
+        "signature": "(input: string, options?: { maxSteps?: number; allowBacktrack?: boolean; uncertaintyThreshold?: number; feedback?: (step: string, confidence: number, rationale: string) => Promise<'accept'|'revise'|'backtrack'>; emitEvent?: (event: { type: string; payload: unknown }) => Promise<void>; structuredReasoning?: boolean; uncertaintyFn?: (step: string, history: string[]) => Promise<number> | number; llmExplain?: (step: string, context: string[]) => Promise<string>; llmRepair?: (step: string, context: string[]) => Promise<string>; maxBacktrackSteps?: number }) => Promise<{ result: string; log: string[] }>",
+        "description": "Runs an advanced iterative reasoning loop for code generation and repair. Supports uncertainty-aware CoT, SCoT, robust backtracking, and feedback integration."
+      },
+      {
+        "name": "generateStructuredPlan",
+        "signature": "(input: string, llmExplain?: (step: string, context: string[]) => Promise<string>) => Promise<string>",
+        "description": "Generates a structured plan (SCoT) for the input problem using LLM or template."
+      },
+      {
+        "name": "explainStep",
+        "signature": "(step: string) => Promise<string>",
+        "description": "Explains a reasoning step or decision (pluggable LLM or stub)."
+      },
+      {
+        "name": "repairStep",
+        "signature": "(step: string) => Promise<string>",
+        "description": "Attempts to repair a failed or suboptimal step (pluggable LLM or stub)."
+      }
+    ],
+    "schema": {
+      "runLoop": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "description": "Optional config for reasoning loop"
+            }
+          },
+          "required": [
+            "input"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "log": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "result",
+            "log"
+          ]
+        }
+      },
+      "generateStructuredPlan": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "input"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "plan": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "plan"
+          ]
+        }
+      },
+      "explainStep": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "step": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "step"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "explanation"
+          ]
+        }
+      },
+      "repairStep": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "step": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "step"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "repaired": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "repaired"
+          ]
+        }
+      },
+      "health": {
+        "input": {
+          "type": "null",
+          "description": "No input required"
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "status",
+            "timestamp"
+          ]
+        }
+      }
+    },
+    "usage": "import { ReasoningLoopUtility } from 'nootropic/capabilities/ReasoningLoopUtility'; const util = new ReasoningLoopUtility(publishEvent); await util.runLoop(input);",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "references": [
+      "https://arxiv.org/abs/2201.11903",
+      "https://arxiv.org/abs/2302.03494",
+      "README.md#chain-of-thought-prompting--self-debugging-augmented-with-scot",
+      "docs/ROADMAP.md#ensemble-llm-code-generation--voting-strategies"
+    ]
+  },
+  {
+    "name": "ExperimentalChunkingUtility",
+    "description": "Experimental LLM-driven chunk filtering utility (ChunkRAG-inspired) with adaptive semantic splitting and HNSW-based redundancy reduction. For research and prototyping only. Not production-ready.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://arxiv.org/abs/2310.02600",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "usage": "import ExperimentalChunkingUtility from 'nootropic/utils/context/experimental/ChunkingUtility'; const util = new ExperimentalChunkingUtility(); await util.chunkAndFilter('text', 'query');",
+    "status": "experimental",
+    "methods": [
+      {
+        "name": "chunkAndFilter",
+        "signature": "(text: string, query: string) => Promise<Chunk[]>",
+        "description": "Chunk and filter text using LLM-driven strategies, adaptive semantic splitting, and HNSW-based redundancy reduction."
+      }
+    ],
+    "extensionPoints": [
+      "Pluggable chunking strategies (LLMChunkRAGStrategy, SemanticChunkingStrategy, etc.)",
+      "LLM/embedding backend adapters",
+      "HNSW/ColBERT/advanced chunking (TODO)"
+    ],
+    "references": [
+      "https://arxiv.org/abs/2310.02600",
+      "https://github.com/facebookresearch/llama",
+      "https://github.com/yoshoku/hnswlib-node"
+    ],
+    "schema": {
+      "_def": {
+        "unknownKeys": "strip",
+        "catchall": {
+          "_def": {
+            "typeName": "ZodNever"
+          },
+          "~standard": {
+            "version": 1,
+            "vendor": "zod"
+          }
+        },
+        "typeName": "ZodObject"
+      },
+      "~standard": {
+        "version": 1,
+        "vendor": "zod"
+      },
+      "_cached": null
+    }
+  },
+  {
+    "name": "KmsVaultSecretsManager",
+    "description": "Envelope encryption and KMS/Vault key management. Supports AWS KMS, GCP KMS, Azure Key Vault, and HashiCorp Vault. Use for production-grade secret management.",
+    "license": "Apache-2.0",
+    "isOpenSource": true,
+    "provenance": "https://github.com/aws/aws-sdk-js-v3",
+    "methods": [
+      {
+        "name": "getSecret",
+        "signature": "(name: string) => Promise<string>",
+        "description": "Retrieves a secret by name."
+      },
+      {
+        "name": "setSecret",
+        "signature": "(name: string, value: string) => Promise<void>",
+        "description": "Sets a secret."
+      },
+      {
+        "name": "rotateSecret",
+        "signature": "(name: string) => Promise<string>",
+        "description": "Rotates a secret."
+      }
+    ],
+    "usage": "import { KmsVaultSecretsManager } from 'nootropic/utils/security/secretsManager'; const secrets = new KmsVaultSecretsManager({ provider: 'aws', keyId: '...', region: '...' }); await secrets.getSecret('API_KEY');",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "promptTemplates": [
+      {
+        "name": "Get Secret",
+        "description": "Prompt for instructing the agent or LLM to retrieve a secret by name.",
+        "template": "Retrieve the secret named \"{{name}}\" from the secrets manager.",
+        "usage": "Used by getSecret to fetch a secret value."
+      },
+      {
+        "name": "Set Secret",
+        "description": "Prompt for instructing the agent or LLM to set a secret by name and value.",
+        "template": "Set the secret named \"{{name}}\" to the value \"{{value}}\" in the secrets manager.",
+        "usage": "Used by setSecret to store a secret value."
+      },
+      {
+        "name": "Rotate Secret",
+        "description": "Prompt for instructing the agent or LLM to rotate a secret by name.",
+        "template": "Rotate the secret named \"{{name}}\" in the secrets manager and return the new value.",
+        "usage": "Used by rotateSecret to rotate a secret."
+      }
+    ],
+    "references": [
+      "https://docs.aws.amazon.com/kms/",
+      "https://cloud.google.com/kms/docs",
+      "https://learn.microsoft.com/en-us/azure/key-vault/",
+      "https://www.vaultproject.io/docs",
+      "scripts/vaultIntegrationGuide.md"
+    ],
+    "schema": {}
+  },
+  {
+    "name": "VaultSecretsManager",
+    "description": "Production-ready secrets manager using HashiCorp Vault. All operations are audited. Configure Vault with proper policies and authentication (token, AppRole, etc.).",
+    "license": "MPL-2.0",
+    "isOpenSource": true,
+    "provenance": "https://www.vaultproject.io/",
+    "methods": [
+      {
+        "name": "getSecret",
+        "signature": "(name: string) => Promise<string>",
+        "description": "Retrieves a secret from Vault."
+      },
+      {
+        "name": "setSecret",
+        "signature": "(name: string, value: string) => Promise<void>",
+        "description": "Stores a secret in Vault."
+      },
+      {
+        "name": "rotateSecret",
+        "signature": "(name: string) => Promise<string>",
+        "description": "Not implemented; use Vault rotation policies."
+      }
+    ],
+    "usage": "import { VaultSecretsManager } from 'nootropic/utils/security/secretsManager'; const secrets = new VaultSecretsManager({ endpoint: 'http://localhost:8200', token: 's.xxxxx' }); await secrets.getSecret('API_KEY');",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "promptTemplates": [
+      {
+        "name": "Get Secret",
+        "description": "Prompt for instructing the agent or LLM to retrieve a secret by name.",
+        "template": "Retrieve the secret named \"{{name}}\" from the secrets manager.",
+        "usage": "Used by getSecret to fetch a secret value."
+      },
+      {
+        "name": "Set Secret",
+        "description": "Prompt for instructing the agent or LLM to set a secret by name and value.",
+        "template": "Set the secret named \"{{name}}\" to the value \"{{value}}\" in the secrets manager.",
+        "usage": "Used by setSecret to store a secret value."
+      },
+      {
+        "name": "Rotate Secret",
+        "description": "Prompt for instructing the agent or LLM to rotate a secret by name.",
+        "template": "Rotate the secret named \"{{name}}\" in the secrets manager and return the new value.",
+        "usage": "Used by rotateSecret to rotate a secret."
+      }
+    ],
+    "references": [
+      "https://www.vaultproject.io/",
+      "https://github.com/hashicorp/vault",
+      "https://www.npmjs.com/package/node-vault"
+    ],
+    "schema": {}
+  },
+  {
+    "name": "LocalSecretsManager",
+    "description": "Local fallback secrets manager: loads secrets from .env or a local JSON file. Use KMS/Vault in production. Planned: Vault/ArgoCD/Kaniko integration for secure CI/CD and secret management.",
+    "license": "MIT",
+    "isOpenSource": true,
+    "provenance": "https://github.com/nootropic/nootropic",
+    "methods": [
+      {
+        "name": "getSecret",
+        "signature": "(name: string) => Promise<string>",
+        "description": "Retrieves a secret by name."
+      },
+      {
+        "name": "setSecret",
+        "signature": "(name: string, value: string) => Promise<void>",
+        "description": "Sets a secret."
+      },
+      {
+        "name": "rotateSecret",
+        "signature": "(name: string) => Promise<string>",
+        "description": "Rotates a secret."
+      }
+    ],
+    "usage": "import { LocalSecretsManager } from 'nootropic/utils/security/secretsManager'; const secrets = new LocalSecretsManager(); await secrets.getSecret('API_KEY');",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "promptTemplates": [
+      {
+        "name": "Get Secret",
+        "description": "Prompt for instructing the agent or LLM to retrieve a secret by name.",
+        "template": "Retrieve the secret named \"{{name}}\" from the secrets manager.",
+        "usage": "Used by getSecret to fetch a secret value."
+      },
+      {
+        "name": "Set Secret",
+        "description": "Prompt for instructing the agent or LLM to set a secret by name and value.",
+        "template": "Set the secret named \"{{name}}\" to the value \"{{value}}\" in the secrets manager.",
+        "usage": "Used by setSecret to store a secret value."
+      },
+      {
+        "name": "Rotate Secret",
+        "description": "Prompt for instructing the agent or LLM to rotate a secret by name.",
+        "template": "Rotate the secret named \"{{name}}\" in the secrets manager and return the new value.",
+        "usage": "Used by rotateSecret to rotate a secret."
+      }
+    ],
+    "references": [
+      "https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3",
+      "scripts/vaultIntegrationGuide.md",
+      "scripts/kanikoBuildExample.md",
+      "scripts/argoCdIntegrationGuide.md"
+    ],
+    "schema": {}
+  },
+  {
+    "name": "KanikoBuildManager",
+    "description": "Manages container builds using Google Kaniko. Supports secure, rootless builds in CI/CD pipelines.",
+    "license": "Apache-2.0",
+    "isOpenSource": true,
+    "provenance": "https://github.com/GoogleContainerTools/kaniko",
+    "methods": [
+      {
+        "name": "runBuild",
+        "signature": "(options?: Record<string, unknown>) => Promise<void>",
+        "description": "Runs a Kaniko build."
+      },
+      {
+        "name": "injectSecrets",
+        "signature": "(secrets?: Record<string, string>) => Promise<void>",
+        "description": "Injects secrets into the build context."
+      }
+    ],
+    "usage": "import { KanikoBuildManager } from 'nootropic/utils/security/secretsManager'; const kaniko = new KanikoBuildManager(); await kaniko.runBuild({ ... });",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "promptTemplates": [
+      {
+        "name": "Get Secret",
+        "description": "Prompt for instructing the agent or LLM to retrieve a secret by name.",
+        "template": "Retrieve the secret named \"{{name}}\" from the secrets manager.",
+        "usage": "Used by getSecret to fetch a secret value."
+      },
+      {
+        "name": "Set Secret",
+        "description": "Prompt for instructing the agent or LLM to set a secret by name and value.",
+        "template": "Set the secret named \"{{name}}\" to the value \"{{value}}\" in the secrets manager.",
+        "usage": "Used by setSecret to store a secret value."
+      },
+      {
+        "name": "Rotate Secret",
+        "description": "Prompt for instructing the agent or LLM to rotate a secret by name.",
+        "template": "Rotate the secret named \"{{name}}\" in the secrets manager and return the new value.",
+        "usage": "Used by rotateSecret to rotate a secret."
+      }
+    ],
+    "references": [
+      "https://github.com/GoogleContainerTools/kaniko",
+      "scripts/kanikoBuildExample.md"
+    ],
+    "schema": {}
+  },
+  {
+    "name": "quality system (planned)",
+    "description": "Planned: Quality system documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "plugin architecture (planned)",
+    "description": "Planned: Plugin architecture documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "agent discovery (planned)",
+    "description": "Planned: Agent discovery documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "describe registry (in progress)",
+    "description": "In progress: Central describe registry for all capabilities.",
+    "status": "in progress",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "CLI usage (planned)",
+    "description": "Planned: CLI usage documentation and onboarding.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "event bus abstraction (planned)",
+    "description": "Planned: Event bus abstraction documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "cache management (planned)",
+    "description": "Planned: Cache management documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "context handover (planned)",
+    "description": "Planned: Context handover documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "multi-agent orchestration (planned)",
+    "description": "Planned: Multi-agent orchestration documentation and implementation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "event-driven MAS patterns (planned)",
+    "description": "Planned: Event-driven MAS patterns documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "agent event interface (planned)",
+    "description": "Planned: Agent event interface documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "streaming backend integration (planned)",
+    "description": "Planned: Streaming backend integration documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "supervisor agent pattern (planned)",
+    "description": "Planned: Supervisor agent pattern documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "pre-commit/Husky hooks (planned)",
+    "description": "Planned: Pre-commit/Husky hooks documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "onboarding instructions (planned)",
+    "description": "Planned: Onboarding instructions documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "sample config files (planned)",
+    "description": "Planned: Sample config files documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "ci/cd integration (planned)",
+    "description": "Planned: CI/CD integration documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "ajv-cli validation in ci (planned)",
+    "description": "Planned: ajv-cli validation in CI documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "github actions workflow (planned)",
+    "description": "Planned: GitHub Actions workflow documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "matrix validation strategy (planned)",
+    "description": "Planned: Matrix validation strategy documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "ci/cd troubleshooting (planned)",
+    "description": "Planned: CI/CD troubleshooting documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "onboarding guide (planned)",
+    "description": "Planned: Onboarding guide documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "contributing.md (planned)",
+    "description": "Planned: Contributing.md documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "setup and environment requirements (planned)",
+    "description": "Planned: Setup and environment requirements documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "coding standards (planned)",
+    "description": "Planned: Coding standards documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "onboarding troubleshooting (planned)",
+    "description": "Planned: Onboarding troubleshooting documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "schema validation onboarding (planned)",
+    "description": "Planned: Schema validation onboarding documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "editor config recommendations (planned)",
+    "description": "Planned: Editor config recommendations documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "api documentation generation (planned)",
+    "description": "Planned: API documentation generation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "typedoc integration (planned)",
+    "description": "Planned: TypeDoc integration documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "tsdoc style enforcement (planned)",
+    "description": "Planned: TSDoc style enforcement documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "typedoc.json config (planned)",
+    "description": "Planned: typedoc.json config documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "api doc workflow (planned)",
+    "description": "Planned: API doc workflow documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "api doc best practices (planned)",
+    "description": "Planned: API doc best practices documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "tsdoc/typedoc/eslint/ci integration (planned)",
+    "description": "Planned: TSDoc/TypeDoc/ESLint/CI integration documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "monorepo typescript config (planned)",
+    "description": "Planned: Monorepo TypeScript config documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "event-driven agent example (WriterAgent) (planned)",
+    "description": "Planned: Event-driven agent example (WriterAgent) documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "updated agent event interface (planned)",
+    "description": "Planned: Updated agent event interface documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "event-driven agent pattern (planned)",
+    "description": "Planned: Event-driven agent pattern documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "quality/selfcheck (planned)",
+    "description": "Planned: quality/selfcheck documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "contextSnapshotHelper (planned)",
+    "description": "Planned: contextSnapshotHelper documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "semanticIndexBuilder (planned)",
+    "description": "Planned: semanticIndexBuilder documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "./agents/BaseAgent.js (planned)",
+    "description": "Planned: ./agents/BaseAgent.js documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "./agents/DataCollectorAgent.js (planned)",
+    "description": "Planned: ./agents/DataCollectorAgent.js documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "./agents/WriterAgent.js (planned)",
+    "description": "Planned: ./agents/WriterAgent.js documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "./agents/ReviewerAgent.js (planned)",
+    "description": "Planned: ./agents/ReviewerAgent.js documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "agentProfileRegistry (planned)",
+    "description": "Planned: agentProfileRegistry documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "agentIntentRegistry (planned)",
+    "description": "Planned: agentIntentRegistry documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "docDiagramGenerator (planned)",
+    "description": "Planned: docDiagramGenerator documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
+  },
+  {
+    "name": "liveMutationPRHelper (planned)",
+    "description": "Planned: liveMutationPRHelper documentation.",
+    "status": "planned",
+    "docsFirst": true,
+    "aiFriendlyDocs": true,
+    "planned": true,
+    "license": "Apache-2.0",
+    "isOpenSource": true
   }
 ]

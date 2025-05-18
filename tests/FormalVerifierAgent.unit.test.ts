@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { FormalVerifierAgent } from '../agents/FormalVerifierAgent.js';
+import { FormalVerifierAgent } from '../src/agents/FormalVerifierAgent';
 
 describe('FormalVerifierAgent', () => {
   it('should run a formal verification task and emit event-driven logs', async () => {

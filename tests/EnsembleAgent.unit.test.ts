@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { EnsembleAgent } from '../agents/EnsembleAgent.js';
+import { EnsembleAgent } from '../src/agents/EnsembleAgent';
 
 describe('EnsembleAgent', () => {
   it('should run a task and emit event-driven logs', async () => {

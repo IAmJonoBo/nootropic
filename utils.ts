@@ -8,7 +8,8 @@ import { promises as fsp } from 'fs';
 import path from 'path';
 import { rrdir } from 'rrdir';
 // @ts-ignore
-import { getPlugins } from './pluginRegistry.js';
+// import { getPlugins } from './pluginLoader.js';
+import { readJsonSafe, writeJsonSafe, getOrInitJson } from './fileHelpers.js';
 
 // --- Error logger ---
 function errorLogger(context: string, error: unknown) {
@@ -23,38 +24,6 @@ function errorLogger(context: string, error: unknown) {
 // --- ESM entrypoint check ---
 function esmEntrypointCheck(importMetaUrl: string): boolean {
   return importMetaUrl === `file://${process.argv[1]}`;
-}
-
-// --- Async Read JSON file safely ---
-async function readJsonSafe<T = unknown>(filePath: string, fallback: T = null as unknown as T): Promise<T> {
-  try {
-    await fsp.access(filePath);
-    return JSON.parse(await fsp.readFile(filePath, 'utf-8')) as T;
-  } catch {
-    // Intentional: return fallback if file does not exist or cannot be read
-    return fallback;
-  }
-}
-
-// --- Async Write JSON file safely ---
-async function writeJsonSafe(filePath: string, data: unknown): Promise<void> {
-  try {
-    await fsp.writeFile(filePath, JSON.stringify(data, null, 2));
-  } catch {
-    // Propagate error for robust error handling
-    throw new Error('Failed to write JSON file');
-  }
-}
-
-// --- Async Get or initialize JSON file ---
-async function getOrInitJson<T = unknown>(filePath: string, init: T): Promise<T> {
-  try {
-    await fsp.access(filePath);
-    return await readJsonSafe<T>(filePath, init);
-  } catch {
-    await writeJsonSafe(filePath, init);
-    return init;
-  }
 }
 
 /**
@@ -142,7 +111,8 @@ export async function aggregateDescribeRegistry() {
       }
     }
   }
-  // Add plugins from plugin registry (for dynamic plugins)
+  // Plugin aggregation is currently disabled. To enable, uncomment the following lines and ensure getPlugins() is imported and available.
+  /*
   try {
     const plugins = await getPlugins();
     for (const plugin of plugins) {
@@ -155,6 +125,7 @@ export async function aggregateDescribeRegistry() {
       }
     }
   } catch {}
+  */
   // Validate required fields
   const validated = results.filter(d => d && typeof d === 'object' && 'name' in d && 'description' in d && typeof d.name === 'string' && typeof d.description === 'string');
   await writeJsonSafe('.nootropic-cache/describe-registry.json', validated);
@@ -171,14 +142,11 @@ export function describe() {
     name: 'utils',
     description: 'Shared utilities for file I/O, error logging, and ESM entrypoint checks. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.',
     functions: [
-      { name: 'readJsonSafe', signature: 'async (filePath, fallback) => Promise<T>', description: 'Reads a JSON file safely, returns fallback on error.' },
-      { name: 'writeJsonSafe', signature: 'async (filePath, data) => Promise<void>', description: 'Writes data to a JSON file safely.' },
-      { name: 'getOrInitJson', signature: 'async (filePath, init) => Promise<T>', description: 'Gets or initializes a JSON file.' },
       { name: 'errorLogger', signature: '(context, error) => void', description: 'Logs errors in a consistent format.' },
       { name: 'esmEntrypointCheck', signature: '(importMetaUrl) => boolean', description: 'Checks if the current file is the ESM entrypoint.' },
-      { name: 'listFilesRecursive', signature: 'async (dirPath) => Promise<string[]\>', description: 'Recursively lists all files in a directory.' },
+      { name: 'listFilesRecursive', signature: 'async (dirPath) => Promise<string[\]>\>', description: 'Recursively lists all files in a directory.' },
       { name: 'loadAiHelpersConfig', signature: 'async (defaults) => Promise<T>', description: 'Loads nootropic config from .nootropicrc (JSON) or nootropic.config.ts, with fallback to defaults.' },
-      { name: 'aggregateDescribeRegistry', signature: 'async () => Promise<unknown[]\>', description: 'Aggregates all describe() outputs and writes to .nootropic-cache/describe-registry.json.' },
+      { name: 'aggregateDescribeRegistry', signature: 'async () => Promise<unknown[\]>\>', description: 'Aggregates all describe() outputs and writes to .nootropic-cache/describe-registry.json.' },
       { name: 'writeFileSafe', signature: 'async (filePath, data) => Promise<void>', description: 'Writes a file safely with robust error handling.' },
       { name: 'findFilePath', signature: '(filename, dirs) => Promise<string | null>', description: 'Recursively searches for a file by name in given directories.' },
       { name: 'generateTodoPatch', signature: '(original, patched, file, line) => string', description: 'Generates a patch for TODO/FIXME resolution.' },
@@ -186,39 +154,6 @@ export function describe() {
     ],
     usage: "import { readJsonSafe, writeJsonSafe, errorLogger } from 'nootropic';",
     schema: {
-      readJsonSafe: {
-        input: {
-          type: 'object',
-          properties: {
-            filePath: { type: 'string' },
-            fallback: { type: ['object', 'null'], description: 'Fallback value if file read fails.' }
-          },
-          required: ['filePath']
-        },
-        output: { type: 'object', description: 'Parsed JSON or fallback.' }
-      },
-      writeJsonSafe: {
-        input: {
-          type: 'object',
-          properties: {
-            filePath: { type: 'string' },
-            data: { type: 'object' }
-          },
-          required: ['filePath', 'data']
-        },
-        output: { type: 'null' }
-      },
-      getOrInitJson: {
-        input: {
-          type: 'object',
-          properties: {
-            filePath: { type: 'string' },
-            init: { type: 'object' }
-          },
-          required: ['filePath', 'init']
-        },
-        output: { type: 'object' }
-      },
       errorLogger: {
         input: {
           type: 'object',

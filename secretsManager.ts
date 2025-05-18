@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { trace } from '@opentelemetry/api';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { KMSClient } from '@aws-sdk/client-kms';
+// import { KMSClient } from '@aws-sdk/client-kms';
 // @ts-ignore
 import type { Capability, HealthStatus, CapabilityDescribe } from '../../capabilities/Capability.js';
 import vault from 'node-vault';
@@ -199,12 +199,12 @@ export async function rotateDEK(): Promise<string> {
 export class KmsVaultSecretsManager implements SecretsManager, Capability {
   public readonly name = 'KmsVaultSecretsManager';
   private config: z.infer<typeof KmsVaultConfigSchema>;
-  private _kmsClient?: KMSClient; // Unused, for future provider support
+  // private _kmsClient?: KMSClient; // Unused, for future provider support
   constructor(_config: unknown) {
     void _config;
     this.config = KmsVaultConfigSchema.parse(_config);
     if (this.config.provider === 'aws') {
-      this._kmsClient = new KMSClient({ region: this.config.region ?? 'us-east-1' });
+      // this._kmsClient = new KMSClient({ region: this.config.region ?? 'us-east-1' });
     }
     // TODO: Init GCP, Azure, Vault clients as needed
   }
@@ -227,9 +227,9 @@ export class KmsVaultSecretsManager implements SecretsManager, Capability {
     // TODO: Call provider-specific API to rotate key
     throw new Error('rotateKey not implemented');
   }
-  private _auditLog() { // Unused, for future audit logging
-    // TODO: Implement audit logging
-  }
+  // private _auditLog() { // Unused, for future audit logging
+  //   // TODO: Implement audit logging
+  // }
   async encryptDEK(): Promise<string> {
     // TODO: Use provider SDK to encrypt DEK
     throw new Error('encryptDEK not implemented');

@@ -34,7 +34,7 @@
 import fs from 'fs';
 // import path from 'path'; // Removed unused import
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 
 const SECRET_SCAN_PATHS = [
   'nootropic/secret-scan-report.json',

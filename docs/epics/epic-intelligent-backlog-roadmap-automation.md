@@ -8,7 +8,7 @@
 - id: epic-intelligent-backlog-roadmap-automation
 - slug: epic-intelligent-backlog-roadmap-automation
 - docPath: docs/epics/epic-intelligent-backlog-roadmap-automation.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [epic-grouping](docs/stories/epic-grouping.md)

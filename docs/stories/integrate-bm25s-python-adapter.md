@@ -8,5 +8,5 @@
 - id: integrate-bm25s-python-adapter
 - slug: integrate-bm25s-python-adapter
 - docPath: docs/stories/integrate-bm25s-python-adapter.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

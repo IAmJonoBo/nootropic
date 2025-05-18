@@ -2,6 +2,7 @@
 // Hybrid retrieval utility: dense (DPR/Sentence-Transformers) + sparse (BM25)
 
 import { z } from 'zod';
+// @ts-ignore
 import BM25 from 'okapibm25';
 
 export interface Retriever {
@@ -36,9 +37,7 @@ export class SparseRetriever implements Retriever {
   async retrieve(query: string, topK = 5): Promise<string[]> {
     if (!this.documents.length) return [];
     // Use okapibm25 for BM25 ranking
-    const bm25 = (BM25 as Record<string, unknown>)['BM25'];
-    if (typeof bm25 !== 'function') throw new Error('BM25 is not a function');
-    const scores = bm25(this.documents, query.split(' ')) as number[];
+    const scores = (BM25.default || BM25)(this.documents, query.split(' ')) as number[];
     // Get topK indices
     const topIndices = scores
       .map((score, idx) => ({ score, idx }))
@@ -123,4 +122,8 @@ const HybridRetrievalUtilityCapability = {
   schema: HybridRetrievalUtility.schema
 };
 
-export default HybridRetrievalUtilityCapability; 
+export default HybridRetrievalUtilityCapability;
+
+export async function health() { return { status: 'ok', timestamp: new Date().toISOString() }; }
+
+export async function describe() { return HybridRetrievalUtility.describe(); } 

@@ -126,7 +126,8 @@ export class EnsembleAgent extends BaseAgent implements Capability {
     // === Multi-LLM Candidate Generation (EnsLLM) ===
     // TODO: Generate candidates from diverse LLMs (local/cloud, quantized/cloud, etc.)
     // For now, simulate with ReasoningLoopUtility multi-run and stub LLM call
-    const reasoning = new ReasoningLoopUtility();
+    const eventAdapter = (event: unknown) => publishEvent(event as any);
+    const reasoning = new ReasoningLoopUtility(eventAdapter);
     const events: AgentEvent[] = [];
     const emitEvent = async (event: { type: string; payload: unknown }) => {
       let safePayload: Record<string, unknown> = {};

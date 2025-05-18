@@ -1,6 +1,6 @@
 // Utility: updateNotifier.ts
 // Checks for updates to the nootropic package and notifies the user via CLI.
-// Usage: import updateNotifierCapability from './utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();
+// Usage: import updateNotifierCapability from './utils/describe/updateNotifier.js'; updateNotifierCapability.checkForUpdates();
 
 import updateNotifier from 'update-notifier';
 // @ts-ignore
@@ -14,7 +14,7 @@ export function checkForUpdates() {
   let pkg: unknown = {};
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    pkg = require('../../package.json');
+    pkg = require('../../package.json.js');
   } catch {}
   if (typeof pkg !== 'object' || pkg === null) return;
   const notifier = updateNotifier({ pkg: pkg as Record<string, unknown> });

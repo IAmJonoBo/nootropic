@@ -1,14 +1,15 @@
 #!/usr/bin/env tsx
 // @ts-ignore
-import registry from '../capabilities/registry.js';
+import registry from '../src/capabilities/registry.js';
 // @ts-ignore
 // import type { Capability } from '../capabilities/Capability.js';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 
-const usage = 'Usage: pnpm tsx scripts/validateDescribeRegistry.ts [--help] [--json]';
+const usage = 'Usage: pnpm tsx scripts/validateDescribeRegistry.ts [--help] [--json] [--test]';
 const options = {
   json: { desc: 'Output in JSON format', type: 'boolean' },
+  test: { desc: 'Run comprehensive tests on the registry', type: 'boolean' },
 };
 
 /**
@@ -17,11 +18,12 @@ const options = {
  * Validates that all registered capabilities are compliant with describe/health requirements.
  *
  * Usage:
- *   pnpm tsx scripts/validateDescribeRegistry.ts [--help] [--json]
+ *   pnpm tsx scripts/validateDescribeRegistry.ts [--help] [--json] [--test]
  *
  * Flags:
  *   --help   Show usage information and exit
  *   --json   Output results in JSON format
+ *   --test   Run comprehensive tests on the registry
  *
  * Output:
  *   Human-readable or JSON status message. Fails if any capability is noncompliant.
@@ -79,6 +81,24 @@ const options = {
       process.exit(1);
     } else {
       printResult('All registered capabilities are compliant.', typeof args['json'] === 'boolean' ? args['json'] : undefined);
+      if (args['test']) {
+        // Test registry.get()
+        const first = capabilities[0];
+        if (first) {
+          const byName = registry.get(first.name);
+          console.log('[TEST] registry.get():', byName ? 'OK' : 'FAIL', byName?.name);
+        }
+        // Test registry.list()
+        const all = registry.list();
+        console.log('[TEST] registry.list():', Array.isArray(all) && all.length > 0 ? 'OK' : 'FAIL', 'Count:', all.length);
+        // Test registry.aggregateDescribe()
+        const descs = registry.aggregateDescribe();
+        console.log('[TEST] registry.aggregateDescribe():', Array.isArray(descs) && descs.length === all.length ? 'OK' : 'FAIL', 'Count:', descs.length);
+        // Print a sample describe output
+        if (descs[0]) {
+          console.log('[TEST] Sample describe:', JSON.stringify(descs[0], null, 2));
+        }
+      }
       process.exit(0);
     }
   } catch (e) {

@@ -1,3 +1,0 @@
- ERR_PNPM_NO_SCRIPT  Missing script: lint:tsdoc
-
-Command "lint:tsdoc" not found.

@@ -2,7 +2,7 @@
 // LLM-driven chunk filtering utility (ChunkRAG-inspired)
 
 import { z } from 'zod';
-import { HierarchicalNSW } from 'hnswlib-node';
+import hnswlib from 'hnswlib-node';
 
 export interface Chunk {
   text: string;
@@ -87,7 +87,7 @@ export class RedundancyFilter {
     // HNSW-based redundancy reduction: remove chunks with cosine similarity > 0.9
     if (!chunks.length) return chunks;
     const dim = (chunks[0] && chunks[0].embedding && Array.isArray(chunks[0].embedding)) ? chunks[0].embedding.length : 0;
-    const index = new HierarchicalNSW('cosine', dim);
+    const index = new hnswlib.HierarchicalNSW('cosine', dim);
     index.initIndex(chunks.length);
     chunks.forEach((chunk, i) => {
       if (chunk && chunk.embedding && chunk.embedding.length === dim) index.addPoint(chunk.embedding, i);
@@ -182,12 +182,13 @@ export function describe() {
 const ExperimentalChunkingUtilityCapability = {
   name: 'ExperimentalChunkingUtility',
   describe,
-  schema: ExperimentalChunkingUtilitySchema
+  schema: ExperimentalChunkingUtilitySchema,
+  health: async (): Promise<{ status: 'ok'; timestamp: string }> => ({ status: 'ok', timestamp: new Date().toISOString() })
 };
 
 export default ExperimentalChunkingUtilityCapability;
 
 // Helper type guard for chunk embedding
 function hasEmbedding(chunk: unknown): chunk is { embedding: number[] } {
-  return typeof chunk === 'object' && chunk !== null && 'embedding' in chunk && Array.isArray((chunk as any).embedding);
+  return typeof chunk === 'object' && chunk !== null && 'embedding' in chunk && Array.isArray((chunk as { embedding?: unknown }).embedding);
 } 

@@ -1,214 +1,285 @@
 
-> nootropic@0.1.0 lint /Users/jonathanbotha/Projects/GitHub/nootropic
-> eslint . --ext .ts,.tsx --report-unused-disable-directives
+/Users/jonathanbotha/Projects/GitHub/nootropic/dlqReplay.ts
+  120:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  134:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  138:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  141:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  145:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  148:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
+/Users/jonathanbotha/Projects/GitHub/nootropic/generateAsyncApiSpec.ts
+  48:193  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:197  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  52:213  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  52:258  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  52:311  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  52:372  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  52:437  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  56:189  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  57:193  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:209  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:252  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:303  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:362  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  60:425  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  74:181  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  75:185  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:190  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:233  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:284  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:343  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:406  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/adapters/crewAIAdapter.ts
-  18:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/generateBacklogSummary.ts
+  28:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/adapters/langchainAdapter.ts
-  18:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/generateContextGraph.ts
+   84:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  102:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/adapters/semanticKernelAdapter.ts
-  18:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/generateOpenApiSpec.ts
+  45:181  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:185  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:169  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:173  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:184  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:231  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:285  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:347  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:429  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:518  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:611  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/agentMessageProtocol.ts
-  23:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/jwtValidation.ts
+  63:46   warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  63:118  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/agentOrchestrationCli.ts
-  204:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  206:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  239:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  245:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/openaiEmbedding.ts
+  3:4  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
+  3:4  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+  4:4  warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                              tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/agents/BaseAgent.ts
-  53:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
-  55:62  warning  Unexpected any. Specify a different type                                         @typescript-eslint/no-explicit-any
-  61:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
-  69:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
-  84:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@protected" is not supported by this tool  tsdoc/syntax
+/Users/jonathanbotha/Projects/GitHub/nootropic/pluginFeedbackApi.ts
+  19:10  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
+  19:50  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/agents/DataCollectorAgent.ts
-  54:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  76:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  77:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  91:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  92:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/docs-check-sync.ts
+   70:39   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   77:51   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   77:78   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   77:97   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   78:53   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   78:82   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   78:103  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  119:40   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/agents/ReviewerAgent.ts
-  47:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  48:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  65:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  66:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  81:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  82:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  97:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  98:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/migrateBacklogToMarkdown.ts
+  18:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  45:85  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  50:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  50:55  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  56:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  80:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/agents/WriterAgent.ts
-  42:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  42:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  43:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  43:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  55:81  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
-  75:37  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
-  76:46  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/secretsManager.ts
+  316:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  317:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  329:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  330:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  347:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  348:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/contextMutationEngine.ts
-   54:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
-   54:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
-   54:21  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
-   54:42  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag        tsdoc/syntax
-   54:43  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
-  163:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
-  163:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
-  163:14  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
-  163:67  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
-  163:83  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag        tsdoc/syntax
-  163:85  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
-  163:86  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts
+  8:13  error  Parsing error: Unexpected token {
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/contextSnapshotHelper.ts
-   34:7   error    'SEMANTIC_INDEX_JSON' is assigned a value but never used  @typescript-eslint/no-unused-vars
-   35:7   error    'ANALYTICS_LOG' is assigned a value but never used        @typescript-eslint/no-unused-vars
-   36:7   error    'MANIFEST_JSON' is assigned a value but never used        @typescript-eslint/no-unused-vars
-  299:49  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  328:37  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  328:62  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  652:22  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  653:71  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  655:40  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  690:22  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  691:71  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  693:35  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  717:33  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  724:41  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  738:15  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  741:15  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
-  741:27  warning  Unexpected any. Specify a different type                  @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts
+  2:13  error  Parsing error: Unexpected token {
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/index.ts
-  20:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
-  20:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
-  20:21  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"                 tsdoc/syntax
-  20:31  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag        tsdoc/syntax
-  20:32  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
-  59:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                                 tsdoc/syntax
-  59:4   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen                   tsdoc/syntax
-  59:11  warning  tsdoc-param-tag-with-invalid-type: The @param block should not include a JSDoc-style '{type}'                               tsdoc/syntax
-  60:4   warning  tsdoc-unsupported-tag: The TSDoc tag "@returns" is not supported by this tool                                               tsdoc/syntax
-  60:13  warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
-  60:30  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts
+  13:13  error  Parsing error: Unexpected token {
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/liveMutationPRHelper.ts
-  161:4  warning  tsdoc-unsupported-tag: The TSDoc tag "@see" is not supported by this tool  tsdoc/syntax
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts
+  7:13  error  Parsing error: Unexpected token {
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/memoryLaneHelper.ts
-   98:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-   99:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-   99:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  100:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
-  101:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  102:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  103:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  103:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  104:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
-  104:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
-  104:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
-  104:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
-  104:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
-  104:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  110:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-  111:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-  111:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  112:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
-  113:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  114:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  115:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  115:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  116:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
-  116:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
-  116:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
-  116:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
-  116:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
-  116:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  122:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-  123:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-  123:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  124:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
-  125:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  126:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  127:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  127:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  128:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
-  128:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
-  128:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
-  128:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
-  128:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
-  128:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  134:22   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-  135:24   error    '_event' is defined but never used          @typescript-eslint/no-unused-vars
-  135:44   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  136:19   error    '_filter' is defined but never used         @typescript-eslint/no-unused-vars
-  137:26   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  138:13   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  139:20   error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  139:36   error    '_callback' is defined but never used       @typescript-eslint/no-unused-vars
-  140:18   error    '_level' is defined but never used          @typescript-eslint/no-unused-vars
-  140:63   error    '_message' is defined but never used        @typescript-eslint/no-unused-vars
-  140:81   error    '_details' is defined but never used        @typescript-eslint/no-unused-vars
-  140:117  error    '_agentId' is defined but never used        @typescript-eslint/no-unused-vars
-  140:136  error    '_correlationId' is defined but never used  @typescript-eslint/no-unused-vars
-  140:161  error    '_topic' is defined but never used          @typescript-eslint/no-unused-vars
-  206:32   warning  Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts
+  2:13  error  Parsing error: Unexpected token {
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/pluginRegistry.ts
-   95:47  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
-  123:20  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
-  135:44  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
-  142:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  142:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  143:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  143:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  163:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  163:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  183:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  183:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  184:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  184:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  185:6   warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  185:6   warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  200:18  warning  Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts
+  2:13  error  Parsing error: Unexpected token {
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/types/AgentOrchestrationEngine.ts
-   98:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-   98:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-   99:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-   99:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  104:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  104:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  109:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  109:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  110:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  110:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
-  111:6  warning  tsdoc-unsupported-tag: The TSDoc tag "@param" is not supported by this tool                                tsdoc/syntax
-  111:6  warning  tsdoc-param-tag-missing-hyphen: The @param block should be followed by a parameter name and then a hyphen  tsdoc/syntax
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts
+  19:45  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts
+  17:8  error  Parsing error: Unexpected token interface
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/ReasoningLoopUtility.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/embeddingRegistry.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/memoryLaneHelper.ts
+  11:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/quality/selfcheck.ts
+  13:1  error  Parsing error: The keyword 'interface' is reserved
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/schemas/AgentOrchestrationEngineSchema.ts
+  7:8  error  Parsing error: Unexpected token type
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/schemas/SastFeedbackMemorySchema.ts
+  21:8  error  Parsing error: Unexpected token type
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts
+  28:40  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts
+  21:41  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts
+  6:8  error  Parsing error: Unexpected token interface
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts
+  3:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts
+  1:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/rerank.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts
+  14:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts
+  7:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts
+  19:39  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts
+  15:8  error  Parsing error: Unexpected token type
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts
+  1:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts
+  2:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts
+  3:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts
+  3:6  error  Parsing error: Unexpected token Prediction
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/EnsembleAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/FormalVerifierAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/HumanInTheLoopAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/MemoryAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/MultimodalAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/ReviewAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/SupervisorAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/VibeCodingAgent.unit.test.ts
+  12:46  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/adapter.kafka.context-propagation.test.ts
+  8:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/adapter.nats.context-propagation.test.ts
+  8:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/adapter.unit.test.ts
+  9:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/agentControl.unit.test.ts
+  11:19  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/benchmark.advancedUtilities.test.ts
+  18:79  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/context/llmAdapterIntegration.test.ts
+  24:39  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/deprecationChecker.unit.test.ts
+  6:14  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/dlqReplay.integration.test.ts
+  24:12  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/ensureDirAndListFiles.unit.test.ts
+  7:15  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/lifecycleCompliance.test.ts
+  8:20  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/pluginRegistry.unit.test.ts
+  23:26  error  Parsing error: Unexpected token as
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/semgrepMemories.unit.test.ts
+  61:29  error  Parsing error: Unexpected token as
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/shimiMemory.test.ts
+  8:25  error  Parsing error: Unexpected token :
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/sonarQubeMemories.unit.test.ts
+  68:29  error  Parsing error: Unexpected token as
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/types.AgentOrchestrationEngine.unit.test.ts
+  3:13  error  Parsing error: Unexpected token {
+
+/Users/jonathanbotha/Projects/GitHub/nootropic/tests/utils.unit.test.ts
+  42:41  error  Parsing error: Unexpected token as
 
 /Users/jonathanbotha/Projects/GitHub/nootropic/utils.ts
-  84:20  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
-  84:26  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
-  84:40  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+   73:20  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+   73:26  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+   73:40  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+  167:41  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
+  167:88  warning  tsdoc-html-tag-missing-greater-than: The HTML tag has invalid syntax: Expecting an attribute or ">" or "/>"           tsdoc/syntax
+  167:97  warning  tsdoc-escape-greater-than: The ">" character should be escaped using a backslash to avoid confusion with an HTML tag  tsdoc/syntax
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/utils/adapterUtils.ts
-  22:71   warning  tsdoc-malformed-inline-tag: Expecting a TSDoc tag starting with "{@"                                                        tsdoc/syntax
-  22:101  warning  tsdoc-escape-right-brace: The "}" character should be escaped using a backslash to avoid confusion with a TSDoc inline tag  tsdoc/syntax
+✖ 138 problems (60 errors, 78 warnings)
 
-/Users/jonathanbotha/Projects/GitHub/nootropic/utils/deprecationChecker.ts
-  8:7  error  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
-/Users/jonathanbotha/Projects/GitHub/nootropic/utils/updateNotifier.ts
-  9:7  error  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
-✖ 166 problems (61 errors, 105 warnings)
-
- ELIFECYCLE  Command failed with exit code 1.

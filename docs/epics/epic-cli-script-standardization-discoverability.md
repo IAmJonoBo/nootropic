@@ -1,6 +1,6 @@
 # epic-cli-script-standardization-discoverability (epic)
 **Description:** EPIC: CLI/Script Standardization & Discoverability. Standardize all automation scripts for CLI/flag support (--help, --json), error handling, output, and documentation. Extract reusable CLI helpers/utilities. Ensure all scripts are discoverable, documented, and referenced in CI/CD and onboarding docs. Add LLM/AI usage hints to script docs.
-**Status:** not started
+**Status:** done
 **Priority:** top
 **Milestone:** Foundational Automation
 **Progress:** 0% - audit complete, standardization not started
@@ -11,7 +11,7 @@
 - id: epic-cli-script-standardization-discoverability
 - slug: epic-cli-script-standardization-discoverability
 - docPath: docs/epics/epic-cli-script-standardization-discoverability.md
-- lastSynced: 2025-05-17T16:25:55.535Z
+- lastSynced: 2025-05-18T20:01:43.279Z
 ---
 ## Subtasks
 - [expand-describe-registry-docs](docs/stories/expand-describe-registry-docs.md)

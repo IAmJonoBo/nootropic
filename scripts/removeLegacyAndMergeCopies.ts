@@ -1,6 +1,10 @@
 // removeLegacyAndMergeCopies.ts
-// Usage: pnpm tsx scripts/removeLegacyAndMergeCopies.ts
-// This script removes all traces of legacy directories from agentBacklog.json and the project, and merges any files from legacy copies into the main project if missing, then removes all references.
+// Purpose: Removes legacy directories and merges missing files from 'nootropic copy/'. Usage: pnpm tsx scripts/removeLegacyAndMergeCopies.ts [--help]
+// LLM/AI usage: "Show usage for removeLegacyAndMergeCopies script." "How do I clean up legacy directories and merge copies?"
+if (process.argv.includes('--help')) {
+  console.log('Usage: pnpm tsx scripts/removeLegacyAndMergeCopies.ts [--help]\n\nRemoves all traces of legacy directories from agentBacklog.json and the project, and merges any files from legacy copies into the main project if missing.\n- Usage: pnpm tsx scripts/removeLegacyAndMergeCopies.ts\n- LLM/AI usage: "Show usage for removeLegacyAndMergeCopies script."');
+  process.exit(0);
+}
 
 import fs from 'fs';
 import path from 'path';

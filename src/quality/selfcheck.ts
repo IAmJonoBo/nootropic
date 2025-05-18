@@ -453,7 +453,7 @@ export async function explainSemgrepFinding(finding: { ruleId: string; message: 
 export async function suggestSemgrepFix(finding: { ruleId: string; message: string; file: string; startLine: number; endLine: number; raw?: unknown }): Promise<{ suggestion: string; rationale: string }> {
   // In production, call LLM with code context and finding metadata
   return {
-    suggestion: '// TODO: Review and fix this finding as per rule and best practices.',
+    suggestion: '// TODO: Review and fix this finding as per rule and best practices..js',
     rationale: `This is a placeholder. In production, an LLM would analyze the code and suggest a concrete fix for rule \\"${finding.ruleId}\\".`
   };
 }

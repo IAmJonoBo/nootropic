@@ -1,7 +1,7 @@
 // import { z } from 'zod';
 // import { trace } from '@opentelemetry/api';
 // @ts-ignore
-// import type { SastFeedbackMemory } from '../../types/SastFeedbackMemory';
+// import type { SastFeedbackMemory } from '../../types/SastFeedbackMemory.js';
 // @ts-ignore
 // import { validateJwt, JwtClaimsSchema } from '../security/jwtValidation.js';
 // @ts-ignore

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { HumanInTheLoopAgent } from '../agents/HumanInTheLoopAgent.js';
+import { HumanInTheLoopAgent } from '../src/agents/HumanInTheLoopAgent';
 
 describe('HumanInTheLoopAgent', () => {
   it('should run a HITL task and emit event-driven logs', async () => {

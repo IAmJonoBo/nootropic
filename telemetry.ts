@@ -63,5 +63,5 @@ export function getTracer(name = 'nootropic', version = '1.0.0') {
 }
 
 // Usage:
-// import { initTelemetry } from './telemetry';
+// import { initTelemetry } from './telemetry.js';
 // initTelemetry(); // Call once at app/agent/plugin startup if OTel is enabled 

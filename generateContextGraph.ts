@@ -31,9 +31,9 @@
 import path from 'path';
 import { Project, Node } from 'ts-morph';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 // @ts-ignore
-import { readJsonFile, writeJsonFile, handleError } from '../utils/automationHelpers.js';
+import { readJsonFile, writeJsonFile, handleError } from '../src/utils/automationHelpers.js';
 
 const DEP_GRAPH_PATH = path.resolve('.nootropic-cache/code-dependency-graph.json');
 const CONTEXT_GRAPH_PATH = path.resolve('.nootropic-cache/context-graph.json');

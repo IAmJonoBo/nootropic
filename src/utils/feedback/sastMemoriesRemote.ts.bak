@@ -1,0 +1,15 @@
+// import { z } from 'zod';
+// import { trace } from '@opentelemetry/api';
+// @ts-ignore
+// import type { SastFeedbackMemory } from '../../types/SastFeedbackMemory';
+// @ts-ignore
+// import { validateJwt, JwtClaimsSchema } from '../security/jwtValidation';
+// @ts-ignore
+// import type { SecretsManager } from '../security/secretsManager';
+// @ts-ignore
+// import { EnvelopeSchema } from '../security/secretsManager';
+// import { createCipheriv, randomBytes } from 'crypto';
+// @ts-ignore
+// import type { Capability, HealthStatus, CapabilityDescribe } from '../../capabilities/Capability';
+
+// ...rest of the file unchanged (see previous content for full details)... 

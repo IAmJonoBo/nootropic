@@ -7,5 +7,5 @@
 - id: automation-script-shared-helpers
 - slug: automation-script-shared-helpers
 - docPath: docs/epics/automation-script-shared-helpers.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

@@ -1,9 +1,12 @@
----
-status: implemented
----
 # sonarQubeMemories
 
 Feedback/memory utility (base class). Subclasses provide type-specific logic.
+
+**Usage:**
+
+`import { addSonarQubeMemory, listSonarQubeMemories } from "nootropic/utils/feedback/sonarQubeMemories";
+await addSonarQubeMemory("sonarqube:rule:file:42", { memoryType: "triage", rationale: "False positive", triage: "false_positive" });
+const memories = await listSonarQubeMemories("sonarqube:rule:file:42");`
 
 ## Methods/Functions
 

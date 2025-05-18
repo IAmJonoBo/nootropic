@@ -30,6 +30,13 @@
 
 If a badge is red, see the linked workflow run for troubleshooting steps. All automation is documented below and in CONTRIBUTING.md.
 
+## Recent Improvements (2025-05-18)
+- CLI and audit/fix script are robust, JSON mode and environment aware.
+- Registry is idempotent in non-production.
+- All contextManager instantiations are correct and linter clean.
+- All ESM/TypeScript quirks resolved; all tests pass.
+- CLI is LLM/AI/automation-friendly, outputs valid JSON in JSON mode.
+
 ## 🚀 For AI/LLM Agents: Discovering and Using nootropic
 
 **nootropic** is a modular, ESM-only TypeScript toolkit for orchestrating, testing, and automating AI agent workflows. It is designed for seamless integration with LLMs, agent frameworks, and automation systems.
@@ -1128,3 +1135,14 @@ Plugins and capabilities must export a `describe()` function and conform to the 
 - All context utilities (RerankUtility, contextManager, cacheDir, shimiMemory) and feedback/memory utilities (pluginFeedback, sastMemories, semgrepMemories, sonarQubeMemories) are now registry/describe/health compliant and LLM/AI-friendly, with robust promptTemplates and usage.
 - All tests pass except for known issues with unavailable external services (Kafka, etc.), which are backlogged and do not affect core functionality.
 - See [agentBacklog.json](./agentBacklog.json) and [docs/quality.md](./docs/quality.md) for details and current backlog state.
+
+## Automated Docs Scaffolding
+
+This project uses an automated process to ensure every epic and story in `agentBacklog.json` has a corresponding Markdown documentation file in `docs/epics/` or `docs/stories/`.
+
+- The backlog is parsed for all epics and stories, each with a unique `docPath` and `slug`.
+- The docs folders are scanned for existing files.
+- Any missing documentation is auto-generated using a canonical Markdown template, including all key metadata (id, slug, docPath, lastSynced, description, status, priority, etc).
+- This ensures total parity between backlog, code, and documentation, and supports LLM/AI-friendly workflows.
+
+See `scripts/migrateBacklogToMarkdown.ts` for the canonical template and implementation details.

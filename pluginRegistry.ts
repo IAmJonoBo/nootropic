@@ -1,13 +1,9 @@
 // Rebranding note: This file was updated from 'nootropic' to 'nootropic'. Legacy references are archived in .nootropic-cache/archive/ for rollback.
 // nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 //  TS(2459): Module '"./utils.js"' declares 'readJsonSafe' loca... Remove this comment to see the full error message
-import { readJsonSafe, writeJsonSafe, getOrInitJson, esmEntrypointCheck } from './utils.js';
+import { readJsonSafe, writeJsonSafe, getOrInitJson } from './fileHelpers.js';
 // @ts-ignore
 import { PLUGIN_REGISTRY_PATH } from './paths.js';
-//  TS(2307): Cannot find module 'fs' or its corresponding type ... Remove this comment to see the full error message // TODO: Install missing module
-import fs from 'fs';
-//  TS(2307): Cannot find module 'path' or its corresponding typ... Remove this comment to see the full error message // TODO: Install missing module
-import path from 'path';
 // @ts-ignore
 // Removed unused: import type { Plugin, PluginManager, PluginAppContext } from './types/AgentOrchestrationEngine.js';
 // @ts-ignore
@@ -20,28 +16,10 @@ import path from 'path';
 import { aggregatePluginFeedback } from './src/utils/feedback/pluginFeedback.js';
 // Removed unused: function isAgentEvent(event: unknown): event is AgentEvent { ... }
 // Removed unused: pluginRegisteredCounter, pluginUnregisteredCounter, pluginErrorCounter
-import { z } from 'zod';
-
-// Zod schema for plugin registry entry
-const PluginRegistryEntrySchema = z.object({
-  name: z.string(),
-  type: z.string(),
-  entry: z.string(),
-  meta: z.record(z.string(), z.unknown()).optional(),
-  timestamp: z.string(),
-  feedbackAggregate: z.unknown().optional()
-});
-type PluginRegistryEntry = z.infer<typeof PluginRegistryEntrySchema>;
-
-// Canonical Zod schema for plugin modules
-export const PluginModuleSchema = z.object({
-  name: z.string(),
-  describe: z.function().args().returns(z.unknown()),
-  run: z.function().args(z.any()).returns(z.any()).optional(),
-  // Allow additional properties
-}).catchall(z.unknown());
-
-type PluginModule = z.infer<typeof PluginModuleSchema>;
+// Removed unused: import { z } from 'zod';
+// Removed unused: import { getPlugins } from './pluginLoader.js';
+import { esmEntrypointCheck } from './utils.js';
+import { PluginModuleSchema, PluginModule, PluginRegistryEntrySchema, PluginRegistryEntry } from './pluginTypes.js';
 
 // --- Register a plugin (extractor/analyzer/output) ---
 /**
@@ -112,43 +90,6 @@ function isValidPluginModule(mod: unknown): mod is PluginModule {
     return false;
   }
   return true;
-}
-
-/**
- * Dynamically loads all plugins from the plugins/ directory.
- * Returns an array of plugin modules with describe/run exports. All outputs are Zod-validated.
- */
-export async function getPlugins(): Promise<PluginModule[]> {
-  const { ensureCacheDirExists } = await import('./src/utils/context/cacheDir.js');
-  await ensureCacheDirExists();
-  const PLUGIN_DIR = path.resolve(process.cwd(), 'plugins');
-  if (!fs.existsSync(PLUGIN_DIR)) return [];
-  const files = fs.readdirSync(PLUGIN_DIR).filter(f => f.endsWith('.js') || f.endsWith('.ts'));
-  const plugins: PluginModule[] = [];
-  for (const file of files) {
-    try {
-      const mod = await import(path.join(PLUGIN_DIR, file));
-      if (isValidPluginModule(mod) && (typeof mod.describe === "function" || typeof mod.run === "function")) {
-        const m = mod as { name?: unknown };
-        if (typeof m.name === 'string') {
-          plugins.push(mod);
-        } else {
-          const pluginWithName = { name: file.replace(/\.(js|ts)$/, ''), ...(mod as object) };
-          if (isValidPluginModule(pluginWithName)) plugins.push(pluginWithName as PluginModule);
-        }
-      } else {
-        if (process.env['NOOTROPIC_DEBUG']) {
-          console.warn(`[pluginRegistry] Skipping invalid plugin ${file}: does not conform to PluginModule schema.`);
-        }
-        continue;
-      }
-    } catch (e) {
-      if (process.env['NOOTROPIC_DEBUG']) {
-        console.error(`[pluginRegistry] Failed to load plugin ${file}:`, e);
-      }
-    }
-  }
-  return plugins;
 }
 
 export { registerPlugin, listPlugins, loadPlugin, PluginRegistryEntrySchema as PluginRegistryEntry };

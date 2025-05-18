@@ -1,7 +1,7 @@
 // @ts-nocheck
 // This test expects to be run with Jest or a compatible test runner. Type errors for test globals (describe, it, expect, beforeAll, afterAll) can be ignored if the runner is configured.
 // @ts-ignore
-import { DaprEventBus } from '../adapters/DaprEventBus.js';
+import { DaprEventBus } from '../src/adapters/DaprEventBus';
 import { randomUUID } from 'crypto';
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 // NOTE: Skipped due to DaprClient JS SDK limitation (no programmatic subscribe). TODO: Re-enable when DaprServer supports subscriptions in JS SDK.

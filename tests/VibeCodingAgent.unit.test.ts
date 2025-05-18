@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { VibeCodingAgent } from '../agents/VibeCodingAgent.js';
+import { VibeCodingAgent } from '../src/agents/VibeCodingAgent';
 
 describe('VibeCodingAgent', () => {
   it('should run a voice-to-code task and emit event-driven logs', async () => {

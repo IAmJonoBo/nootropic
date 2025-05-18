@@ -8,5 +8,5 @@
 - id: epic-advanced-context-and-memory-management
 - slug: epic-advanced-context-and-memory-management
 - docPath: docs/stories/epic-advanced-context-and-memory-management.md
-- lastSynced: 2025-05-17T16:25:55.537Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

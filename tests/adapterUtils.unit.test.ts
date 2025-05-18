@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { tryDynamicImport, stubResult, formatError } from '../utils/plugin/adapterUtils.js';
+import { tryDynamicImport, stubResult, formatError } from '../src/utils/plugin/adapterUtils';
 
 describe('adapterUtils', () => {
   it('stubResult returns expected structure', () => {
     const result = stubResult('TestAdapter', 'testSDK');
     expect(result).toEqual({
-      output: null,
+      output: { stub: true, adapter: 'TestAdapter', sdk: 'testSDK' },
       success: false,
       logs: ['[TestAdapter] testSDK SDK not installed. Returning stub result.'],
     });

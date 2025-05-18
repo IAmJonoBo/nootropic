@@ -1,8 +1,8 @@
 #!/usr/bin/env tsx
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 // @ts-ignore
-import { readJsonFile, handleError } from '../utils/automationHelpers.js';
+import { readJsonFile, handleError } from '../src/utils/automationHelpers.js';
 
 const usage = 'Usage: pnpm tsx scripts/docs-check-sync.ts [--help] [--json]';
 const options = {
@@ -82,6 +82,10 @@ async function main() {
       Array.from(manifestSections).filter(x => !isPlannedOrStub(x) && !ignoreSlugs.has(x))
     );
 
+    // Debug: Print filtered manifest and registry sections
+    console.log('DEBUG: filteredManifestSections:', Array.from(filteredManifestSections));
+    console.log('DEBUG: registrySections:', Array.from(registrySections));
+
     // Check for missing implemented modules
     const missingInManifest = Array.from(registrySections).filter(x => !filteredManifestSections.has(x));
     const missingInRegistry = Array.from(filteredManifestSections).filter(x => typeof x === 'string' && !registrySections.has(x));
@@ -109,6 +113,18 @@ async function main() {
       console.log('Planned sections:');
       for (const p of plannedArr) console.log('  -', p);
     }
+
+    // Debug: Print manifest.sections length and first 50 entries
+    if (manifest && typeof manifest === 'object' && 'sections' in manifest) {
+      const sectionsArr = (manifest as any).sections;
+      console.log('DEBUG: manifest.sections type:', typeof sectionsArr, Array.isArray(sectionsArr));
+      console.log('DEBUG: manifest.sections length:', sectionsArr.length);
+      console.log('DEBUG: manifest.sections first 50:', sectionsArr.slice(0, 50));
+    }
+
+    // Debug: Check why RAGPipelineUtility is excluded
+    console.log('DEBUG: isPlannedOrStub("RAGPipelineUtility"):', isPlannedOrStub('RAGPipelineUtility'));
+    console.log('DEBUG: ignoreSlugs has RAGPipelineUtility:', ignoreSlugs.has('RAGPipelineUtility'));
 
     if (failed) {
       printError('Doc/code sync check failed.', Boolean(args['json']));

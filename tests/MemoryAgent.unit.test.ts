@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { MemoryAgent } from '../agents/MemoryAgent.js';
+import { MemoryAgent } from '../src/agents/MemoryAgent';
 
 describe('MemoryAgent', () => {
   it('should run a memory task and emit event-driven logs', async () => {

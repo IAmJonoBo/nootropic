@@ -2,9 +2,9 @@
 // @ts-ignore
 import { listPlugins } from '../pluginRegistry.js';
 // @ts-ignore
-import { submitPluginFeedback, listFeedbackForPlugin, aggregatePluginFeedback } from '../utils/feedback/pluginFeedback.js';
+import { submitPluginFeedback, listFeedbackForPlugin, aggregatePluginFeedback } from '../src/utils/feedback/pluginFeedback.js';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 
 /**
  * Plugin Marketplace CLI Utility (refactored for standard CLI helpers)

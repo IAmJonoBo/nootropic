@@ -8,7 +8,7 @@ import { EventEmitter } from 'events';
 import { ShimiMemory } from './shimiMemory.js';
 import { z } from 'zod';
 
-const CONTEXT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../.nootropic-cache');
+const CONTEXT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../.nootropic-cache.js');
 const CONTEXT_JSON = path.join(CONTEXT_DIR, 'context.json');
 const SNAPSHOT_PREFIX = 'context-snapshot';
 const MANIFEST_PATH = path.join(CONTEXT_DIR, 'cache-manifest.json');
@@ -47,7 +47,11 @@ const PruneContextOptionsSchema = z.object({
  */
 export class ContextManager implements Capability {
   public readonly name = 'ContextManager';
-  private shimi = new ShimiMemory();
+  private shimi: ShimiMemory;
+
+  constructor(options: Record<string, unknown> = {}) {
+    this.shimi = new ShimiMemory(options);
+  }
 
   /**
    * Prunes context memories based on options (age, size, token budget).
@@ -361,50 +365,6 @@ export function describe() {
 }
 
 /**
- * Ensures a directory exists (recursive, robust).
- */
-export async function ensureDirExists(dirPath: string): Promise<void> {
-  try {
-    await fsp.mkdir(dirPath, { recursive: true });
-  } catch (e) {
-    if ((e as { code?: string })?.code !== 'EEXIST') errorLogger(`Failed to ensure dir: ${dirPath}`, e);
-  }
-}
-
-/**
- * Lists all files in a directory (non-recursive).
- */
-export async function listFilesInDir(dirPath: string): Promise<string[]> {
-  try {
-    return await fsp.readdir(dirPath);
-  } catch (e) {
-    errorLogger(`Failed to list files in dir: ${dirPath}`, e);
-    return [];
-  }
-}
-
-/**
- * Writes a file safely with robust error handling.
- */
-export async function writeFileSafe(filePath: string, data: string | object): Promise<void> {
-  const content = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
-  await fsp.writeFile(filePath, content);
-}
-
-/**
- * Recursively searches for a file by name in given directories.
- */
-export async function findFilePath(filename: string, dirs: string[]): Promise<string | null> {
-  for (const dir of dirs) {
-    const files = await listFilesInDir(dir);
-    for (const file of files) {
-      if (file === filename) return path.join(dir, file);
-    }
-  }
-  return null;
-}
-
-/**
  * Checks if a path exists.
  */
 export async function pathExists(pathToCheck: string): Promise<boolean> {
@@ -420,7 +380,7 @@ export async function pathExists(pathToCheck: string): Promise<boolean> {
  * Reads a JSON file, returns null on error.
  */
 export async function readJsonFile<T = unknown>(filePath: string): Promise<T | null> {
-  if (!filePath.endsWith('.json') && !filePath.endsWith('.jsonc')) {
+  if (!filePath.endsWith('.json.js') && !filePath.endsWith('.jsonc')) {
     throw new Error(`Refusing to parse non-JSON file as JSON: ${filePath}`);
   }
   try {
@@ -524,7 +484,7 @@ async function enforceTierPolicies() {
 
 export async function extractWordsFromFile(filePath: string): Promise<string[]> {
   try {
-    if (!filePath.endsWith('.json') && !filePath.endsWith('.jsonc')) {
+    if (!filePath.endsWith('.json.js') && !filePath.endsWith('.jsonc')) {
       // Skip non-JSON files for word extraction
       return [];
     }

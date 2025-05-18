@@ -1,5 +1,5 @@
 import path from 'path';
-import { ensureDirExists, listFilesInDir } from './internal.js';
+import { ensureDirExists, listFilesInDir } from './contextFileHelpers.js';
 import type { Capability, CapabilityDescribe, HealthStatus } from '../../capabilities/Capability.js';
 
 /**
@@ -7,7 +7,7 @@ import type { Capability, CapabilityDescribe, HealthStatus } from '../../capabil
  * This getter pattern avoids ReferenceError and circular import issues.
  */
 export function getCacheDirPath(): string {
-  return path.join(process.cwd(), '.nootropic-cache');
+  return path.join(process.cwd(), '.nootropic-cache.js');
 }
 
 /**

@@ -8,5 +8,5 @@
 - id: todo:nootropic/scripts/generateBacklogTodos.ts:24
 - slug: todo-nootropic-scripts-generate-backlog-todos-ts-24
 - docPath: docs/epics/todo-nootropic-scripts-generate-backlog-todos-ts-24.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

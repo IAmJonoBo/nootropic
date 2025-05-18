@@ -20,10 +20,10 @@
  */
 import { Kafka, logLevel, Message } from 'kafkajs';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 // @ts-ignore
 import { DLQEventSchema } from './src/schemas/AgentOrchestrationEngineSchema.js';
-import { SpanStatusCode, trace } from '@opentelemetry/api';
+import { SpanStatusCode, trace, Span } from '@opentelemetry/api';
 
 const tracer = trace.getTracer('dlqReplay');
 
@@ -117,7 +117,7 @@ async function main() {
               const offsetStr = (typeof message === 'object' && message !== null && 'offset' in message && message['offset']) ? String((message as Record<string, unknown>)['offset']) : 'unknown';
               console.error(`[dlqReplay] Invalid DLQ event at offset ${offsetStr}:`, parsed.error.issues);
               errors++;
-              (span as any).setStatus({ code: SpanStatusCode.ERROR, message: 'Invalid DLQ event' });
+              if (isSpan(span)) span.setStatus({ code: SpanStatusCode.ERROR, message: 'Invalid DLQ event' });
               return;
             }
             const originalEvent = dlqEvent.originalEvent;
@@ -131,24 +131,24 @@ async function main() {
                     topic: mainTopic,
                     messages: [{ value: JSON.stringify(originalEvent) }],
                   });
-                  (produceSpan as any).setStatus({ code: SpanStatusCode.OK });
+                  if (isSpan(produceSpan)) produceSpan.setStatus({ code: SpanStatusCode.OK });
                   replayed++;
                 } catch (produceErr) {
                   console.error(`[dlqReplay] Error producing to ${mainTopic}:`, produceErr);
-                  (produceSpan as any).setStatus({ code: SpanStatusCode.ERROR, message: String(produceErr) });
+                  if (isSpan(produceSpan)) produceSpan.setStatus({ code: SpanStatusCode.ERROR, message: String(produceErr) });
                   errors++;
                 } finally {
-                  (produceSpan as any).end();
+                  if (isSpan(produceSpan)) produceSpan.end();
                 }
               });
             }
-            (span as any).setStatus({ code: SpanStatusCode.OK });
+            if (isSpan(span)) span.setStatus({ code: SpanStatusCode.OK });
           } catch (err) {
             console.error(`[dlqReplay] Error processing DLQ event:`, err);
-            (span as any).setStatus({ code: SpanStatusCode.ERROR, message: String(err) });
+            if (isSpan(span)) span.setStatus({ code: SpanStatusCode.ERROR, message: String(err) });
             errors++;
           } finally {
-            (span as any).end();
+            if (isSpan(span)) span.end();
           }
         });
         if (limit && replayed >= limit) {
@@ -166,4 +166,9 @@ async function main() {
 main().catch((err) => {
   printError(err);
   process.exit(1);
-}); 
+});
+
+// Type guard for OpenTelemetry Span
+function isSpan(obj: unknown): obj is Span {
+  return typeof obj === 'object' && obj !== null && typeof (obj as Span).setStatus === 'function' && typeof (obj as Span).end === 'function';
+} 

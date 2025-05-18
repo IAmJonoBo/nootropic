@@ -7,7 +7,7 @@
 - id: epic-quality-tools-feedback
 - slug: epic-quality-tools-feedback
 - docPath: docs/epics/epic-quality-tools-feedback.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [quality-tools-semgrep-sonarqube](docs/stories/quality-tools-semgrep-sonarqube.md)

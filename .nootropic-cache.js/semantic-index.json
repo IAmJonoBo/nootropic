@@ -1,0 +1,3532 @@
+[
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CLI usage (planned).md",
+    "line": 2,
+    "text": "Planned: CLI usage documentation and onboarding.",
+    "source": "capability-doc",
+    "capability": "CLI usage (planned)",
+    "section": "CLI usage (planned)",
+    "embedding": [
+      140187
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CLI usage (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "CLI usage (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/Capability.md",
+    "line": 2,
+    "text": "- All capability event payloads and task inputs **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "Capability",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      372042
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 5,
+    "text": "**Description:** Modular chunking utility supporting LLM-driven chunk filtering, semantic/agentic chunking, and redundancy filtering. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "ChunkingUtility",
+    "embedding": [
+      690661
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 7,
+    "text": "- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "ChunkingUtility",
+    "embedding": [
+      636182
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 11,
+    "text": "```ts import { ChunkingUtility, SemanticChunkingStrategy, LLMChunkRelevanceScorer } from 'nootropic/utils/context/ChunkingUtility'; import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter'; const hf = new HuggingFaceLLMAdapter(); const chunker = new ChunkingUtility(   new SemanticChunkingStrategy(hf),   new LLMChunkRelevanceScorer(hf) ); await chunker.chunkAndFilter('text', 'query'); ```",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Usage Example",
+    "embedding": [
+      244854
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 24,
+    "text": "| Method           | Signature                                              | Description                                 | |------------------|-------------------------------------------------------|---------------------------------------------| | chunkAndFilter   | (text: string, query: string) => Promise<Chunk[]>      | Chunk and filter text using LLM scoring     |",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Methods",
+    "embedding": [
+      934873
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 29,
+    "text": "- Fixed-size - Sentence - Paragraph - Semantic (embedding-based) - Recursive - Agentic (task-driven)",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Supported Strategies",
+    "embedding": [
+      481273
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 37,
+    "text": "- HuggingFaceLLMAdapter - OpenRouterLLMAdapter - OllamaLLMAdapter",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Integration Points",
+    "embedding": [
+      817908
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 42,
+    "text": "- https://arxiv.org/abs/2310.02600 - https://zilliz.com/learn/guide-to-chunking-strategies-for-rag",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "References",
+    "embedding": [
+      377566
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 46,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 52,
+    "text": "- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters. - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      987540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ChunkingUtility.md",
+    "line": 58,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "ChunkingUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CollectionAgent.md",
+    "line": 2,
+    "text": "Collects data in response to events. Fully event-driven.",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "CollectionAgent",
+    "embedding": [
+      904276
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CollectionAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "CollectionAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CollectionAgent.md",
+    "line": 6,
+    "text": "`Instantiate and call startEventLoop() to run as a service.`",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "CollectionAgent",
+    "embedding": [
+      54132
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CollectionAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task, logger?) => Promise<AgentResult> - Collects data using available tools. - **listTools**: () => Promise<AgentTool[]> - Lists dynamically discovered tools/plugins. - **getContext**: () => Promise<AgentContext> - Returns the agent context. - **startEventLoop**: () => Promise<void> - Starts the event-driven runtime loop: subscribes to DataCollectionRequested and TaskAssigned events, processes them, and emits results.",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      523794
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CollectionAgent.md",
+    "line": 17,
+    "text": "- https://github.com/nootropic/nootropic - https://github.com/nootropic/nootropic/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "References",
+    "embedding": [
+      286788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/CollectionAgent.md",
+    "line": 22,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "CollectionAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 5,
+    "text": "> **Status:** Implemented (2024-06). See `agents/ContentAgent.ts` for source and extension points.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "ContentAgent",
+    "embedding": [
+      894030
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 9,
+    "text": "The `ContentAgent` generates content drafts and responds to feedback, supporting: - **RAG-Driven Planning:** Ingests domain docs and generates a content outline before drafting. (TODO: Integrate RAG pipeline for outline generation) - **Map-Reduce Summarisation:** Chunks drafts, summarises pieces, then synthesises for coherence on limited-context LLMs. (TODO: Integrate map-reduce summarisation logic) - **Adaptive Tone Tuning:** Adjusts tone and style on-the-fly based on feedback using instruction-tuned embedding models. (TODO: Integrate instruction-tuned embedding model) - **Event-driven:** Subscribes to `TaskAssigned` and `DraftFeedback` events; emits `Log` and `TaskCompleted` events.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Overview",
+    "embedding": [
+      417890
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 17,
+    "text": "```ts import { ContentAgent } from 'nootropic/agents'; const agent = new ContentAgent({ profile: { name: 'ContentAgent' } }); const result = await agent.runTask({ contentPlan: { ... } }); console.log(result); ```",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Usage",
+    "embedding": [
+      5496
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 24,
+    "text": "- To run as a service: `agent.startEventLoop()`",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Usage",
+    "embedding": [
+      205871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 27,
+    "text": "- **RAG Pipeline:** Integrate a RAG pipeline for domain doc ingestion and outline generation. (TODO: Integrate RAG pipeline) - **Map-Reduce Summarisation:** Integrate map-reduce summarisation for long outputs. (TODO: Integrate summarisation logic) - **Tone Tuning:** Integrate instruction-tuned embedding model for adaptive tone and style. (TODO: Integrate tone tuning backend) - **Benchmarking & Test Coverage:** Automate benchmarking and test coverage for all enhancements. (TODO: Add/expand tests and benchmarks)",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Extension Points",
+    "embedding": [
+      954878
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 33,
+    "text": "- Integrate RAG pipeline for robust planning - Use map-reduce summarisation for long content - Tune tone/style using feedback and embedding models - Automate benchmarking and test coverage for all enhancements - Document extension points and rationale in describe()",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Best Practices",
+    "embedding": [
+      117351
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 40,
+    "text": "- [LangChain](https://github.com/hwchase17/langchain) - [RAG for Content Generation (arXiv:2304.05128)](https://arxiv.org/abs/2304.05128) - [Instructor Embedding](https://github.com/instructor-large/instructor-embedding)",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Research References",
+    "embedding": [
+      871669
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 45,
+    "text": "- Use `--json` flag for machine-readable output if running via CLI. - All outputs are schema-validated and event-driven for agentic workflows.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "LLM/AI Usage Hints",
+    "embedding": [
+      334240
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 49,
+    "text": "- If content is not generated as expected, check RAG and summarisation logic or extend with advanced backends. - For custom tone tuning, override `adaptiveToneTuning()`.",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      705784
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 52,
+    "text": "---",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      44685
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContentAgent.md",
+    "line": 54,
+    "text": "_Last updated: 2024-06_ ",
+    "source": "capability-doc",
+    "capability": "ContentAgent",
+    "section": "Troubleshooting",
+    "embedding": [
+      452158
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContextManager.md",
+    "line": 1,
+    "text": "--- status: planned ---",
+    "source": "capability-doc",
+    "capability": "ContextManager",
+    "embedding": [
+      353798
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContextManager.md",
+    "line": 5,
+    "text": "Planned: ContextManager documentation.",
+    "source": "capability-doc",
+    "capability": "ContextManager",
+    "section": "ContextManager",
+    "embedding": [
+      325676
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContextManager.md",
+    "line": 9,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "ContextManager",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ContextManager.md",
+    "line": 14,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "ContextManager",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 2,
+    "text": "Orchestrates multi-LLM code generation, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing integration. Advanced features: EnsLLM (multi-LLM candidate generation), structured voting (CodeBLEU, CrossHair), meta-LLM adjudication, self-debugging loop (LEDEX), efficiency-aware gating (SPIO). Extension points: voting strategies (majority, weighted, syntactic, semantic, behavioral, meta-LLM), LLM integration, self-debugging, event schemas, efficiency-aware routing. Best practices: Use modular voting strategies, emit rationale and voting events, support event-driven explainability, document event schemas, integrate efficiency-aware routing. Reference: arXiv:2503.15838v1, AutoGen, LangGraph.",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "EnsembleAgent",
+    "embedding": [
+      402395
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "EnsembleAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 6,
+    "text": "`import { EnsembleAgent, SemanticVotingStrategy } from 'nootropic/agents/EnsembleAgent'; const agent = new EnsembleAgent({ profile: { name: 'EnsembleAgent' }, votingStrategy: new SemanticVotingStrategy('nv-embed') }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "EnsembleAgent",
+    "embedding": [
+      847488
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task: unknown) => Promise<AgentResult> - Run a task using ensemble modeling, modular voting/selection (majority, weighted, syntactic, semantic, behavioral, meta-LLM), self-debugging, and event-driven mutation/self-healing. Emits rationale/explanation and votingRationale events. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **health**: () => Promise<HealthStatus> - Health check for EnsembleAgent. - **SemanticVotingStrategy**: new SemanticVotingStrategy(backendName?: string) - Semantic voting using embedding backend.",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      1902
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 19,
+    "text": "```json {   \"runTask\": {     \"input\": {       \"type\": \"any\",       \"description\": \"Task input (problem, code, or prompt)\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"result\": {           \"type\": \"string\"         }       },       \"required\": [         \"result\"       ]     }   },   \"init\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: initialization)\"     }   },   \"shutdown\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: shutdown)\"     }   },   \"reload\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: reload)\"     }   },   \"health\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"status\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"status\",         \"timestamp\"       ]     }   } } ```",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "Schema",
+    "embedding": [
+      557021
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 93,
+    "text": "- arXiv:2503.15838v1 - https://github.com/microsoft/AutoGen - https://github.com/langchain-ai/langgraph - README.md#ensemble-llm-code-generation--voting-strategies - docs/ROADMAP.md#ensemble-agent",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "References",
+    "embedding": [
+      849864
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/EnsembleAgent.md",
+    "line": 101,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "EnsembleAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ExplainabilityAgent.md",
+    "line": 2,
+    "text": "Provides detailed, LLM-friendly rationales and traces for any action or decision, supporting transparency and compliance. Enhancements: Hybrid LIME/SHAP pipelines, attention-based rationale highlighting, interactive traceback views (VS Code integration). Extension points: LIME/SHAP interpretability integration, LLM attention extraction, VS Code API integration for tracebacks. Best practices: Integrate LIME/SHAP for interpretability, extract and visualize LLM attention, support interactive tracebacks in developer tools, document extension points and rationale in describe().",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "ExplainabilityAgent",
+    "embedding": [
+      531644
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ExplainabilityAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "ExplainabilityAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ExplainabilityAgent.md",
+    "line": 6,
+    "text": "`import { ExplainabilityAgent } from 'nootropic/agents/ExplainabilityAgent';`",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "ExplainabilityAgent",
+    "embedding": [
+      370417
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ExplainabilityAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task) => Promise<AgentResult> - Runs an explainability task with LIME/SHAP, attention, and traceback. - **runLimeShapInterpretability**: () => Promise<{ lime: string; shap: string }> - Run LIME/SHAP interpretability passes. - **extractAttentionHighlights**: () => Promise<string> - Extract attention-based rationale highlights. - **showTracebackInVSCode**: () => Promise<string> - Show interactive traceback in VS Code (stub).",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      248031
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ExplainabilityAgent.md",
+    "line": 17,
+    "text": "- https://github.com/marcotcr/lime - https://github.com/slundberg/shap - https://code.visualstudio.com/api - https://arxiv.org/abs/1706.03762 - README.md#explainabilityagent - docs/ROADMAP.md#explainability-agent",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "References",
+    "embedding": [
+      665414
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ExplainabilityAgent.md",
+    "line": 26,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "ExplainabilityAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/FeedbackAgent.md",
+    "line": 2,
+    "text": "Aggregates, summarizes, and routes feedback from LLMs/humans, manages improvement suggestions. Enhancements: Automated self-critique (CRITIC), noise filtering, multi-agent aggregation, OpenTelemetry observability. Integrates SHIMI memory for distributed aggregation. Extension points: LLM/CRITIC backend for self-critique, advanced aggregation/voting strategies, OpenTelemetry/observability hooks, SHIMI memory for distributed rationale aggregation, LLM/human moderation for feedback approval. Best practices: Integrate LLM/CRITIC backend for self-critique, use advanced aggregation/voting, emit OpenTelemetry metrics, automate benchmarking and test coverage.",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "FeedbackAgent",
+    "embedding": [
+      475330
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/FeedbackAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "FeedbackAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/FeedbackAgent.md",
+    "line": 6,
+    "text": "`Instantiate and call startEventLoop() to run as a service. Optionally pass backendName for LLM/CRITIC backend.`",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "FeedbackAgent",
+    "embedding": [
+      148004
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/FeedbackAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task) => Promise<AgentResult> - Runs a feedback aggregation task with self-critique, noise filtering, and observability. - **selfCritiqueLoop**: (feedback: string) => Promise<{ improved: string; confidence: number; rationale: string }> - Automated self-critique using CRITIC framework, with LLM extension point. - **noiseFilter**: (feedbacks: string[]) => Promise<string[]> - Aggregate and filter feedback using multi-agent aggregation. - **emitObservabilityMetrics**: (metrics?: { latency?: number; volume?: number; sentimentDrift?: number }) => Promise<void> - Emit OpenTelemetry metrics for feedback aggregation. - **summarizeRationale**: (events: AgentEvent[]) => Promise<string> - Summarize rationale from aggregated events (LLM extension point). - **moderateFeedback**: (summary: string) => Promise<{ status: string; reason?: string }> - Moderate feedback using LLM/human moderation (extension point).",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      884860
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/FeedbackAgent.md",
+    "line": 19,
+    "text": "- https://arxiv.org/abs/2309.00864 - https://github.com/akira-ai/akira - https://opentelemetry.io/ - https://arxiv.org/abs/2504.06135",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "References",
+    "embedding": [
+      60431
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/FeedbackAgent.md",
+    "line": 26,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "FeedbackAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 2,
+    "text": "**Description:** Adapter for HuggingFace Inference API. Supports text generation, embeddings, and model info. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "HuggingFaceLLMAdapter",
+    "embedding": [
+      71205
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 4,
+    "text": "- **License:** Apache-2.0 - **Provenance:** https://huggingface.co/docs/api-inference/index - **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "HuggingFaceLLMAdapter",
+    "embedding": [
+      309170
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 10,
+    "text": "```ts import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter'; const adapter = new HuggingFaceLLMAdapter(); await adapter.generateText('Hello!'); await adapter.embedText('Text to embed'); await adapter.getModelInfo('bigscience/bloom-560m'); ```",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Usage Example",
+    "embedding": [
+      89102
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 20,
+    "text": "| Method         | Signature                                                                 | Description                                 | |----------------|--------------------------------------------------------------------------|---------------------------------------------| | generateText   | (prompt: string, model?: string, options?: object) => Promise<string>     | Generate text using a HuggingFace model     | | embedText      | (text: string, model?: string, options?: object) => Promise<number[]>     | Get embeddings for text                     | | getModelInfo   | (model: string) => Promise<object>                                       | Get model metadata from HuggingFace         | | health         | () => Promise<HealthStatus>                                              | Health check                                | | describe       | () => CapabilityDescribe                                                 | Describe this adapter                       |",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Methods",
+    "embedding": [
+      457297
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 29,
+    "text": "- ChunkingUtility - HybridRetrievalUtility - RerankUtility - ShimiMemory",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Integration Points",
+    "embedding": [
+      293787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 35,
+    "text": "- https://huggingface.co/docs/api-inference/index",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "References",
+    "embedding": [
+      315706
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 38,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 44,
+    "text": "- **Repeatability/Alignment**: Adapter is tested for consistent output across multiple runs (Continuous Alignment Testing). - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      24762
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HuggingFaceLLMAdapter.md",
+    "line": 50,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "HuggingFaceLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 2,
+    "text": "Embeds human review and feedback into agentic workflows, supporting governance, active learning, and reciprocal learning. Advanced features: governance-driven HITL, active learning loops, reciprocal learning (RHML), event-driven checkpoints. Extension points: governance/review frameworks, active/reciprocal learning, event schemas, annotation UIs. Best practices: Use confidence thresholds to trigger human review, store and leverage human corrections, emit events for all checkpoints and reviews, document extension points and rationale. Reference: RHML, enterprise HITL frameworks.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "HumanInTheLoopAgent",
+    "embedding": [
+      113380
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "HumanInTheLoopAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 6,
+    "text": "`import { HumanInTheLoopAgent } from 'nootropic/agents';`",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "HumanInTheLoopAgent",
+    "embedding": [
+      339140
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task) => Promise<AgentResult> - Runs a human-in-the-loop task. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **listTools**: () => Promise<AgentTool[]> - Lists available tools/plugins. - **getContext**: () => Promise<AgentContext> - Returns the agent context. - **startEventLoop**: () => Promise<void> - Starts the event-driven runtime loop. - **health**: () => Promise<HealthStatus> - Health check for HumanInTheLoopAgent.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      259874
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 21,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 26,
+    "text": "- https://github.com/nootropic/nootropic - https://github.com/nootropic/nootropic/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "References",
+    "embedding": [
+      286788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HumanInTheLoopAgent.md",
+    "line": 31,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "HumanInTheLoopAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 5,
+    "text": "**Description:** Hybrid retrieval utility combining dense (DPR/embeddings) and sparse (BM25) retrieval. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "HybridRetrievalUtility",
+    "embedding": [
+      496210
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 7,
+    "text": "- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "HybridRetrievalUtility",
+    "embedding": [
+      636182
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 11,
+    "text": "```ts import { HybridRetrievalUtility, DenseRetriever } from 'nootropic/utils/context/HybridRetrievalUtility'; import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter'; const hf = new HuggingFaceLLMAdapter(); const dense = new DenseRetriever(hf); const hybrid = new HybridRetrievalUtility(dense); await hybrid.retrieve('query'); ```",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Usage Example",
+    "embedding": [
+      848338
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 22,
+    "text": "| Method     | Signature                                 | Description                                 | |------------|--------------------------------------------|---------------------------------------------| | retrieve   | (query: string, topK?: number) => Promise<string[]> | Retrieve results using hybrid strategy      |",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Methods",
+    "embedding": [
+      673022
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 27,
+    "text": "- Dense (DPR/embeddings) - Sparse (BM25) - Hybrid (fusion)",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Supported Strategies",
+    "embedding": [
+      858686
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 32,
+    "text": "- HuggingFaceLLMAdapter - OpenRouterLLMAdapter - OllamaLLMAdapter - BM25/Vector backends",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Integration Points",
+    "embedding": [
+      644986
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 38,
+    "text": "- https://github.com/facebookresearch/DPR - https://github.com/dorianbrown/rank_bm25",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "References",
+    "embedding": [
+      581683
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 42,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 48,
+    "text": "- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters. - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      987540
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 54,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/HybridRetrievalUtility.md",
+    "line": 58,
+    "text": "- All hybrid retrieval utility event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "HybridRetrievalUtility",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      972341
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 2,
+    "text": "Manages persistent memory, context pruning, and retrieval for agents and plugins.",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "MemoryAgent",
+    "embedding": [
+      43935
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "MemoryAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 6,
+    "text": "`import { MemoryAgent } from 'nootropic/agents';`",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "MemoryAgent",
+    "embedding": [
+      218726
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task) => Promise<AgentResult> - Runs a memory/context management task. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **listTools**: () => Promise<AgentTool[]> - Lists available tools/plugins. - **getContext**: () => Promise<AgentContext> - Returns the agent context. - **startEventLoop**: () => Promise<void> - Starts the event-driven runtime loop. - **health**: () => Promise<HealthStatus> - Health check for MemoryAgent.",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      50650
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 21,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 26,
+    "text": "- https://github.com/nootropic/nootropic - https://github.com/nootropic/nootropic/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "References",
+    "embedding": [
+      286788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MemoryAgent.md",
+    "line": 31,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "MemoryAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MutationAgent.md",
+    "line": 2,
+    "text": "Handles live patching, mutation testing (StrykerJS), LLM-augmented mutant generation, property-based fuzzing, patch ensemble/voting, and rollback for agents/plugins. Emits events for each mutation, repair, fuzzing, and rollback. Extension points for LLM/ensemble, fuzzing, and semantic voting. Best practices: Integrate StrykerJS for mutation testing, use LLM-driven repair for surviving mutants, integrate property-based fuzzing for robust validation, emit events for all mutation/repair/fuzzing/rollback actions, support rollback and auditability, document event schemas and rationale in describe(). References arXiv:2302.03494, LiveCodeBench, StrykerJS, Defects4J, Hypothesis.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "MutationAgent",
+    "embedding": [
+      280124
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MutationAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "MutationAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MutationAgent.md",
+    "line": 6,
+    "text": "`import { MutationAgent } from 'nootropic/agents'; const agent = new MutationAgent({ profile: { name: 'MutationAgent' }, backendName: 'nv-embed' }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "MutationAgent",
+    "embedding": [
+      304699
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MutationAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task) => Promise<AgentResult> - Runs a mutation/patching/repair task. Integrates LLM/embedding backend if available. - **generateMutants**: (code: string) => Promise<unknown[]> - LLM-augmented mutant generation, guided by real-bug corpora. - **propertyBasedFuzz**: (mutant: unknown) => Promise<{ passed: boolean; details?: string }> - Property-based fuzzing for boundary/edge-case validation. - **patchEnsembleVoting**: (candidates: unknown[]) => Promise<unknown> - Patch ensemble/voting (majority/semantic equivalence). - **listTools**: () => Promise<AgentTool[]> - Lists available tools/plugins. - **getContext**: () => Promise<AgentContext> - Returns the agent context. - **startEventLoop**: () => Promise<void> - Starts the event-driven runtime loop. - **health**: () => Promise<HealthStatus> - Health check for MutationAgent.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      571039
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MutationAgent.md",
+    "line": 21,
+    "text": "- https://stryker-mutator.io/ - https://arxiv.org/abs/2302.03494 - https://github.com/ise-uiuc/LiveCodeBench - https://github.com/rjust/defects4j/ - https://hypothesis.readthedocs.io/en/latest/ - README.md#mutationagent - docs/ROADMAP.md#mutationagent",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "References",
+    "embedding": [
+      663818
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/MutationAgent.md",
+    "line": 31,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "MutationAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 2,
+    "text": "**Description:** Adapter for Ollama local LLM server. Supports text generation, embeddings (if available), and model info. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "OllamaLLMAdapter",
+    "embedding": [
+      132482
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 4,
+    "text": "- **License:** MIT - **Provenance:** https://github.com/jmorganca/ollama - **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "OllamaLLMAdapter",
+    "embedding": [
+      657491
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 10,
+    "text": "```ts import { OllamaLLMAdapter } from 'nootropic/adapters/OllamaLLMAdapter'; const adapter = new OllamaLLMAdapter(); await adapter.generateText('Hello!'); await adapter.embedText('Text to embed'); await adapter.getModelInfo('llama2'); ```",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Usage Example",
+    "embedding": [
+      350356
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 20,
+    "text": "| Method         | Signature                                                                 | Description                                 | |----------------|--------------------------------------------------------------------------|---------------------------------------------| | generateText   | (prompt: string, model?: string, options?: object) => Promise<string>     | Generate text using an Ollama model         | | embedText      | (text: string, model?: string, options?: object) => Promise<number[]>     | Get embeddings for text (if supported)      | | getModelInfo   | (model: string) => Promise<object>                                       | Get model metadata from Ollama              | | health         | () => Promise<HealthStatus>                                              | Health check                                | | describe       | () => CapabilityDescribe                                                 | Describe this adapter                       |",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Methods",
+    "embedding": [
+      493981
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 29,
+    "text": "- ChunkingUtility - HybridRetrievalUtility - RerankUtility - ShimiMemory",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Integration Points",
+    "embedding": [
+      293787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 35,
+    "text": "- https://github.com/jmorganca/ollama",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "References",
+    "embedding": [
+      701280
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 38,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 44,
+    "text": "- **Repeatability/Alignment**: Adapter is tested for consistent output across multiple runs (Continuous Alignment Testing). - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      24762
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 50,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OllamaLLMAdapter.md",
+    "line": 54,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "OllamaLLMAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 2,
+    "text": "**Description:** Adapter for OpenRouter API. Supports text generation, embeddings, and model info. Registry/describe/health compliant.",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "OpenRouterLLMAdapter",
+    "embedding": [
+      646985
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 4,
+    "text": "- **License:** MIT - **Provenance:** https://openrouter.ai/docs - **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "OpenRouterLLMAdapter",
+    "embedding": [
+      586850
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 10,
+    "text": "```ts import { OpenRouterLLMAdapter } from 'nootropic/adapters/OpenRouterLLMAdapter'; const adapter = new OpenRouterLLMAdapter(); await adapter.generateText('Hello!'); await adapter.embedText('Text to embed'); await adapter.getModelInfo('openai/gpt-3.5-turbo'); ```",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Usage Example",
+    "embedding": [
+      920882
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 20,
+    "text": "| Method         | Signature                                                                 | Description                                 | |----------------|--------------------------------------------------------------------------|---------------------------------------------| | generateText   | (prompt: string, model?: string, options?: object) => Promise<string>     | Generate text using an OpenRouter model     | | embedText      | (text: string, model?: string, options?: object) => Promise<number[]>     | Get embeddings for text                     | | getModelInfo   | (model: string) => Promise<object>                                       | Get model metadata from OpenRouter          | | health         | () => Promise<HealthStatus>                                              | Health check                                | | describe       | () => CapabilityDescribe                                                 | Describe this adapter                       |",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Methods",
+    "embedding": [
+      826105
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 29,
+    "text": "- ChunkingUtility - HybridRetrievalUtility - RerankUtility - ShimiMemory",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Integration Points",
+    "embedding": [
+      293787
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 35,
+    "text": "- https://openrouter.ai/docs",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "References",
+    "embedding": [
+      551049
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 38,
+    "text": "- Exports `describe()` and `health()` methods - Discoverable via registry and /capabilities endpoint - AI/LLM-friendly documentation ",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Registry/Describe/Health Compliance",
+    "embedding": [
+      511229
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 44,
+    "text": "- **Repeatability/Alignment**: Adapter is tested for consistent output across multiple runs (Continuous Alignment Testing). - **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools). - **Performance/Cost**: Latency and token usage are logged and monitored. - **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs. - **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      24762
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 50,
+    "text": "See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. ",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "🧪 Advanced Testing & Best Practices (2024)",
+    "embedding": [
+      460174
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OpenRouterLLMAdapter.md",
+    "line": 54,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "OpenRouterLLMAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestrationEngine (planned).md",
+    "line": 2,
+    "text": "Planned: OrchestrationEngine documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "OrchestrationEngine (planned)",
+    "section": "OrchestrationEngine (planned)",
+    "embedding": [
+      691046
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestrationEngine (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled. ",
+    "source": "capability-doc",
+    "capability": "OrchestrationEngine (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      125096
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 2,
+    "text": "Coordinates multi-agent workflows, delegates tasks, and manages dependencies between agents.",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "OrchestratorAgent",
+    "embedding": [
+      699016
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "OrchestratorAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 6,
+    "text": "`import { OrchestratorAgent } from 'nootropic/agents';`",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "OrchestratorAgent",
+    "embedding": [
+      89213
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task, logger?) => Promise<AgentResult> - Runs an orchestrated workflow. - **listTools**: () => Promise<AgentTool[]> - Lists available tools/plugins. - **getContext**: () => Promise<AgentContext> - Returns the agent context. - **startEventLoop**: () => Promise<void> - Starts the event-driven runtime loop.",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      819416
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 17,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 22,
+    "text": "- https://github.com/nootropic/nootropic - https://github.com/nootropic/nootropic/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "References",
+    "embedding": [
+      286788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/OrchestratorAgent.md",
+    "line": 27,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "OrchestratorAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RAGPipelineUtility.md",
+    "line": 2,
+    "text": "Hybrid retrieval, advanced chunking, reranking, and feedback loops for RAG pipelines. Delegates all core steps to modular, registry-compliant context utilities (ChunkingUtility, HybridRetrievalUtility, RerankUtility). Integrates with embedding providers and semantic index. Registry-compliant.",
+    "source": "capability-doc",
+    "capability": "RAGPipelineUtility",
+    "section": "RAGPipelineUtility",
+    "embedding": [
+      842501
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RAGPipelineUtility.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "RAGPipelineUtility",
+    "section": "RAGPipelineUtility",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RAGPipelineUtility.md",
+    "line": 6,
+    "text": "`import { RAGPipelineUtility } from 'nootropic/capabilities/RAGPipelineUtility'; const util = new RAGPipelineUtility(publishEvent); await util.runRAGPipeline(input);`",
+    "source": "capability-doc",
+    "capability": "RAGPipelineUtility",
+    "section": "RAGPipelineUtility",
+    "embedding": [
+      70241
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RAGPipelineUtility.md",
+    "line": 10,
+    "text": "- **runRAGPipeline**: (input: unknown) => Promise<{ output: unknown; logs: string[] }> - Run a RAG pipeline: hybrid retrieval, chunking, reranking, feedback. - **health**: () => Promise<HealthStatus> - Health check for RAGPipelineUtility.",
+    "source": "capability-doc",
+    "capability": "RAGPipelineUtility",
+    "section": "Methods/Functions",
+    "embedding": [
+      960177
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RAGPipelineUtility.md",
+    "line": 15,
+    "text": "- https://github.com/jerryjliu/llama_index - https://weaviate.io/ - https://github.com/explodinggradients/ragas - README.md#state-of-the-art-rag-pipelines-for-code--context-optimization - docs/ROADMAP.md#rag-pipeline-utility - RerankUtility.describe()",
+    "source": "capability-doc",
+    "capability": "RAGPipelineUtility",
+    "section": "References",
+    "embedding": [
+      22993
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RAGPipelineUtility.md",
+    "line": 24,
+    "text": "- LLM/AI-friendly documentation enabled. - **Note:** You must now inject a publishEvent function when constructing RAGPipelineUtility, e.g. `new RAGPipelineUtility(publishEvent)`. This enables event-driven explainability and decouples event bus logic.",
+    "source": "capability-doc",
+    "capability": "RAGPipelineUtility",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      211282
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 2,
+    "text": "Advanced iterative code generation, explanation, and repair utility for agent workflows. Supports uncertainty-aware chain-of-thought, SCoT (structured reasoning), robust backtracking, pluggable LLM-driven explanation/repair, and event-driven feedback integration. Emits reasoningStep, explanation, and repair events for each step.",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "ReasoningLoopUtility",
+    "embedding": [
+      226374
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 6,
+    "text": "- **runLoop**: (input: string, options?: { maxSteps?: number; allowBacktrack?: boolean; uncertaintyThreshold?: number; feedback?: (step: string, confidence: number, rationale: string) => Promise<'accept'|'revise'|'backtrack'>; emitEvent?: (event: { type: string; payload: unknown }) => Promise<void>; structuredReasoning?: boolean; uncertaintyFn?: (step: string, history: string[]) => Promise<number> | number; llmExplain?: (step: string, context: string[]) => Promise<string>; llmRepair?: (step: string, context: string[]) => Promise<string>; maxBacktrackSteps?: number }) => Promise<{ result: string; log: string[] }> - Runs an advanced iterative reasoning loop for code generation and repair. Supports uncertainty-aware CoT, SCoT, robust backtracking, and feedback integration. - **generateStructuredPlan**: (input: string, llmExplain?: (step: string, context: string[]) => Promise<string>) => Promise<string> - Generates a structured plan (SCoT) for the input problem using LLM or template. - **explainStep**: (step: string) => Promise<string> - Explains a reasoning step or decision (pluggable LLM or stub). - **repairStep**: (step: string) => Promise<string> - Attempts to repair a failed or suboptimal step (pluggable LLM or stub).",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "Methods/Functions",
+    "embedding": [
+      587656
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 13,
+    "text": "```json {   \"runLoop\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"input\": {           \"type\": \"string\"         },         \"options\": {           \"type\": \"object\",           \"description\": \"Optional config for reasoning loop\"         }       },       \"required\": [         \"input\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"result\": {           \"type\": \"string\"         },         \"log\": {           \"type\": \"array\",           \"items\": {             \"type\": \"string\"           }         }       },       \"required\": [         \"result\",         \"log\"       ]     }   },   \"generateStructuredPlan\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"input\": {           \"type\": \"string\"         }       },       \"required\": [         \"input\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"plan\": {           \"type\": \"string\"         }       },       \"required\": [         \"plan\"       ]     }   },   \"explainStep\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"step\": {           \"type\": \"string\"         }       },       \"required\": [         \"step\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"explanation\": {           \"type\": \"string\"         }       },       \"required\": [         \"explanation\"       ]     }   },   \"repairStep\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"step\": {           \"type\": \"string\"         }       },       \"required\": [         \"step\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"repaired\": {           \"type\": \"string\"         }       },       \"required\": [         \"repaired\"       ]     }   },   \"health\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"status\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"status\",         \"timestamp\"       ]     }   } } ```",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "Schema",
+    "embedding": [
+      520279
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 147,
+    "text": "- https://arxiv.org/abs/2201.11903 - https://arxiv.org/abs/2302.03494 - README.md#chain-of-thought-prompting--self-debugging-augmented-with-scot - docs/ROADMAP.md#ensemble-llm-code-generation--voting-strategies",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "References",
+    "embedding": [
+      777622
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReasoningLoopUtility.md",
+    "line": 154,
+    "text": "- LLM/AI-friendly documentation enabled. - **Note:** You must now inject a publishEvent function when constructing ReasoningLoopUtility, e.g. `new ReasoningLoopUtility(publishEvent)`. This enables event-driven explainability and decouples event bus logic.",
+    "source": "capability-doc",
+    "capability": "ReasoningLoopUtility",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      779010
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 2,
+    "text": "Modular reranking utility supporting embedding-based, LLM-based, cross-encoder, and MMR (diversity) reranking. Registry-driven, describe/health compliant. Stubs for pluggable backends.",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "RerankUtility",
+    "embedding": [
+      111676
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "RerankUtility",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 6,
+    "text": "`import RerankUtility from 'nootropic/utils/context/rerank'; const util = new RerankUtility(); await util.rerank({ strategy: 'embedding', query: 'foo', results });`",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "RerankUtility",
+    "embedding": [
+      449176
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 10,
+    "text": "- **rerank**: (options: RerankOptions) => Promise<string[]> - Rerank results using the selected strategy. - **health**: () => Promise<HealthStatus> - Health check. - **describe**: () => CapabilityDescribe - Describe this utility.",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Methods/Functions",
+    "embedding": [
+      125618
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 16,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 40,
+    "text": "- https://arxiv.org/html/2404.01037v1 - https://github.com/explodinggradients/ragas - https://www.pinecone.io/learn/series/rag/rerankers/",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "References",
+    "embedding": [
+      349151
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/RerankUtility.md",
+    "line": 46,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "RerankUtility",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReviewAgent.md",
+    "line": 2,
+    "text": "Reviews drafts and provides feedback. Event-driven. Enhancements: Sentiment-and-aspect analysis, multi-pass chain-of-thought (SCoT) review, ensemble scoring. Extension points: LLM/embedding backend for sentiment/aspect analysis, multi-model ensemble scoring (quantized LLMs, voting strategies), custom multi-pass review logic (SCoT, domain-specific passes), benchmarking and test coverage automation. Best practices: Integrate LLM/embedding backend for sentiment/aspect analysis, use multi-model ensemble for robust scoring, document extension points and rationale in describe(), automate benchmarking and test coverage for all enhancements.",
+    "source": "capability-doc",
+    "capability": "ReviewAgent",
+    "section": "ReviewAgent",
+    "embedding": [
+      754335
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReviewAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "ReviewAgent",
+    "section": "ReviewAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReviewAgent.md",
+    "line": 6,
+    "text": "`Instantiate and call startEventLoop() to run as a service. Optionally pass backendName for LLM/embedding backend.`",
+    "source": "capability-doc",
+    "capability": "ReviewAgent",
+    "section": "ReviewAgent",
+    "embedding": [
+      478195
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReviewAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task, logger?) => Promise<AgentResult> - Reviews outputs using sentiment analysis, multi-pass SCoT, and ensemble scoring. - **sentimentAndAspectAnalysis**: (content: string) => Promise<{ sentiment: string; aspects: Record<string, string> }> - LLM-powered sentiment and aspect analysis. Extension: HuggingFace, Ollama, or local LLM. - **multiPassChainOfThought**: (content: string) => Promise<string[]> - Multi-pass chain-of-thought review. Extension: SCoT pipeline, LLM/embedding backend. - **ensembleScoring**: (content: string) => Promise<number> - Aggregate scores from multiple models. Extension: quantized LLMs, voting/aggregation strategies. - **listTools**: () => Promise<AgentTool[]> - Lists dynamically discovered tools/plugins. - **getContext**: () => Promise<AgentContext> - Returns the agent context. - **startEventLoop**: () => Promise<void> - Starts the event-driven runtime loop: subscribes to ReviewRequested and TaskAssigned events, processes them, and emits results.",
+    "source": "capability-doc",
+    "capability": "ReviewAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      421527
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReviewAgent.md",
+    "line": 20,
+    "text": "- https://huggingface.co/tasks/sentiment-analysis - https://arxiv.org/abs/2305.10601 - https://arxiv.org/abs/2302.09664 - https://github.com/facebookresearch/llama - https://github.com/nootropic/nootropic - https://github.com/nootropic/nootropic/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "ReviewAgent",
+    "section": "References",
+    "embedding": [
+      936626
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ReviewAgent.md",
+    "line": 29,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "ReviewAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SecretsManager.md",
+    "line": 1,
+    "text": "--- status: planned ---",
+    "source": "capability-doc",
+    "capability": "SecretsManager",
+    "embedding": [
+      353798
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SecretsManager.md",
+    "line": 5,
+    "text": "Planned: SecretsManager documentation.",
+    "source": "capability-doc",
+    "capability": "SecretsManager",
+    "section": "SecretsManager",
+    "embedding": [
+      109504
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SecretsManager.md",
+    "line": 9,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "SecretsManager",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SecretsManager.md",
+    "line": 14,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "SecretsManager",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ShimiMemory.md",
+    "line": 2,
+    "text": "Semantic Hierarchical Memory Index (SHIMI) for decentralized agent reasoning. Supports entity insertion, retrieval, and decentralized sync. Registry/LLM/AI-friendly.",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "ShimiMemory",
+    "embedding": [
+      135303
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ShimiMemory.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "ShimiMemory",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ShimiMemory.md",
+    "line": 6,
+    "text": "`import { ShimiMemory } from 'nootropic/utils/context/shimiMemory'; const shimi = new ShimiMemory(); await shimi.insertEntity({ concept: 'foo', explanation: 'bar' }); await shimi.retrieveEntities('foo');`",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "ShimiMemory",
+    "embedding": [
+      868616
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ShimiMemory.md",
+    "line": 10,
+    "text": "- **insertEntity**: (entity: { concept: string; explanation: string; [key: string]: unknown }) => Promise<void> - Insert an entity into the semantic memory graph. - **retrieveEntities**: (query: string, topK?: number) => Promise<unknown[]> - Retrieve entities by semantic query. - **crdtMerge**: (remote: ShimiMemory) => Promise<void> - Merge with a remote SHIMI memory using CRDT logic.",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Methods/Functions",
+    "embedding": [
+      693267
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ShimiMemory.md",
+    "line": 16,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ShimiMemory.md",
+    "line": 40,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "ShimiMemory",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SupervisorAgent.md",
+    "line": 2,
+    "text": "Monitors other agents for health, compliance, and performance; can trigger self-healing or escalation. Enhancements: Hierarchical supervision, event-driven anomaly detection, self-healing workflows. Extension points for anomaly detection, self-healing, and observability.",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "SupervisorAgent",
+    "embedding": [
+      239515
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SupervisorAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "SupervisorAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SupervisorAgent.md",
+    "line": 6,
+    "text": "`import { SupervisorAgent } from 'nootropic/agents/SupervisorAgent';`",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "SupervisorAgent",
+    "embedding": [
+      585425
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SupervisorAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task) => Promise<AgentResult> - Runs a supervision task with hierarchical supervision, anomaly detection, and self-healing. - **superviseAgents**: (subAgents: string[]) => Promise<{ healthReports: Record<string, unknown> }> - Supervise sub-agents and aggregate health reports. - **detectAnomalies**: (metrics: number[]) => Promise<{ anomaly: boolean; score: number }> - Detect anomalies in agent metrics (streaming Z-score). - **selfHeal**: (agent: string) => Promise<{ healed: boolean; action: string }> - Self-heal misbehaving agents using remediation playbooks.",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      155966
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SupervisorAgent.md",
+    "line": 17,
+    "text": "- https://github.com/hwchase17/langchain - https://arxiv.org/abs/2304.05128 - https://en.wikipedia.org/wiki/Anomaly_detection - README.md#supervisoragent - docs/ROADMAP.md#supervisor-agent",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "References",
+    "embedding": [
+      783569
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/SupervisorAgent.md",
+    "line": 25,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "SupervisorAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/TypeScript type-casting note (planned).md",
+    "line": 2,
+    "text": "Planned: TypeScript type-casting note documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "TypeScript type-casting note (planned)",
+    "section": "TypeScript type-casting note (planned)",
+    "embedding": [
+      20926
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/TypeScript type-casting note (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled. ",
+    "source": "capability-doc",
+    "capability": "TypeScript type-casting note (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      125096
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 2,
+    "text": "Enables voice, error log ingestion, and conversational repair for real-time, interactive coding. Advanced features: Whisper-driven transcription (whisper.cpp, Metal), voice-to-code (Serenade), error-log ingestion and LLM-driven repair, conversational debugging UI. Extension points: speech-to-code, error-driven repair, conversational UI, event schemas. Best practices: Use robust speech-to-text and voice-to-code models, leverage error-log ingestion, integrate conversational UIs, document extension points and rationale. Reference: Whisper, Serenade, Error-Analysis LLMs.",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "VibeCodingAgent",
+    "embedding": [
+      250720
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "VibeCodingAgent",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 6,
+    "text": "`import { VibeCodingAgent } from 'nootropic/agents/VibeCodingAgent'; const agent = new VibeCodingAgent({ profile: { name: 'VibeCodingAgent' } }); await agent.runTask({ ... });`",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "VibeCodingAgent",
+    "embedding": [
+      29775
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 10,
+    "text": "- **runTask**: (task: { audio: string }) => Promise<{ result: string }> - Run a voice-to-code task and return the result. - **init**: () => Promise<void> - Initialize the agent. - **shutdown**: () => Promise<void> - Shutdown the agent. - **reload**: () => Promise<void> - Reload the agent. - **health**: () => Promise<HealthStatus> - Health check for VibeCodingAgent.",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "Methods/Functions",
+    "embedding": [
+      779243
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 18,
+    "text": "```json {   \"runTask\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"audio\": {           \"type\": \"string\"         }       },       \"required\": [         \"audio\"       ]     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"result\": {           \"type\": \"string\"         }       },       \"required\": [         \"result\"       ]     }   },   \"init\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: initialization)\"     }   },   \"shutdown\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: shutdown)\"     }   },   \"reload\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: reload)\"     }   },   \"health\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"object\",       \"properties\": {         \"status\": {           \"type\": \"string\"         },         \"timestamp\": {           \"type\": \"string\"         }       },       \"required\": [         \"status\",         \"timestamp\"       ]     }   } } ```",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "Schema",
+    "embedding": [
+      537704
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 99,
+    "text": "- https://medium.com/@niall.mcnulty/vibe-coding-b79a6d3f0caa - https://www.ibm.com/think/topics/vibe-coding - README.md#vibe-coding - docs/ROADMAP.md#vibe-coding-agent",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "References",
+    "embedding": [
+      717083
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/VibeCodingAgent.md",
+    "line": 106,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "VibeCodingAgent",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 5,
+    "text": "Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading.",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "adapterUtils",
+    "embedding": [
+      593480
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 7,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "adapterUtils",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 9,
+    "text": "`import adapterUtilsCapability from 'nootropic/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');`",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "adapterUtils",
+    "embedding": [
+      973877
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 13,
+    "text": "- **tryDynamicImport**: (moduleName: string) => Promise<unknown | null> - Attempts to dynamically import a module, returns null on failure.",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "Methods/Functions",
+    "embedding": [
+      906628
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 17,
+    "text": "```json {   \"tryDynamicImport\": {     \"input\": {       \"type\": \"object\",       \"properties\": {         \"moduleName\": {           \"type\": \"string\"         }       },       \"required\": [         \"moduleName\"       ]     },     \"output\": {       \"type\": [         \"object\",         \"null\"       ],       \"description\": \"Imported module or null on failure\"     }   } } ```",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "Schema",
+    "embedding": [
+      389967
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 43,
+    "text": "- https://nodejs.org/api/esm.html#esm_dynamic_imports",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "References",
+    "embedding": [
+      621478
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/adapterUtils.md",
+    "line": 47,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "adapterUtils",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agent discovery (planned).md",
+    "line": 2,
+    "text": "Planned: Agent discovery documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "agent discovery (planned)",
+    "section": "agent discovery (planned)",
+    "embedding": [
+      466968
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agent discovery (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "agent discovery (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agent event interface (planned).md",
+    "line": 2,
+    "text": "Planned: Agent event interface documentation.",
+    "source": "capability-doc",
+    "capability": "agent event interface (planned)",
+    "section": "agent event interface (planned)",
+    "embedding": [
+      154726
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agent event interface (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "agent event interface (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agentIntentRegistry (planned).md",
+    "line": 2,
+    "text": "Planned: agentIntentRegistry documentation.",
+    "source": "capability-doc",
+    "capability": "agentIntentRegistry (planned)",
+    "section": "agentIntentRegistry (planned)",
+    "embedding": [
+      184256
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agentIntentRegistry (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "agentIntentRegistry (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agentProfileRegistry (planned).md",
+    "line": 2,
+    "text": "Planned: agentProfileRegistry documentation.",
+    "source": "capability-doc",
+    "capability": "agentProfileRegistry (planned)",
+    "section": "agentProfileRegistry (planned)",
+    "embedding": [
+      781481
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agentProfileRegistry (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "agentProfileRegistry (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "agents",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 5,
+    "text": "Exports all core nootropic agents. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "agents",
+    "embedding": [
+      33113
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 7,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "agents",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 9,
+    "text": "`import { BaseAgent, ContentAgent, CollectionAgent, ReviewAgent } from 'nootropic/agents';`",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "agents",
+    "embedding": [
+      400988
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 13,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 18,
+    "text": "- Strict TypeScript - Type-safe event-driven patterns - Automated documentation (TSDoc, TypeDoc, describe()) - Docs-first engineering - CI enforcement of docs/code sync",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "Best Practices",
+    "embedding": [
+      613391
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/agents.md",
+    "line": 26,
+    "text": "- https://benhouston3d.com/blog/crafting-readmes-for-ai - https://www.octopipe.com/blog/docs-first-engineering-workflow - https://medium.com/@nikhithsomasani/best-practices-for-using-typescript-in-2025-a-guide-for-experienced-developers-4fca1cfdf052 - https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3",
+    "source": "capability-doc",
+    "capability": "agents",
+    "section": "References",
+    "embedding": [
+      760522
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ajv-cli validation in ci (planned).md",
+    "line": 2,
+    "text": "Planned: ajv-cli validation in CI documentation.",
+    "source": "capability-doc",
+    "capability": "ajv-cli validation in ci (planned)",
+    "section": "ajv-cli validation in ci (planned)",
+    "embedding": [
+      110672
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/ajv-cli validation in ci (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "ajv-cli validation in ci (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/api doc best practices (planned).md",
+    "line": 2,
+    "text": "Planned: API doc best practices documentation.",
+    "source": "capability-doc",
+    "capability": "api doc best practices (planned)",
+    "section": "api doc best practices (planned)",
+    "embedding": [
+      870368
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/api doc best practices (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "api doc best practices (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/api doc workflow (planned).md",
+    "line": 2,
+    "text": "Planned: API doc workflow documentation.",
+    "source": "capability-doc",
+    "capability": "api doc workflow (planned)",
+    "section": "api doc workflow (planned)",
+    "embedding": [
+      70109
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/api doc workflow (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "api doc workflow (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/api documentation generation (planned).md",
+    "line": 2,
+    "text": "Planned: API documentation generation.",
+    "source": "capability-doc",
+    "capability": "api documentation generation (planned)",
+    "section": "api documentation generation (planned)",
+    "embedding": [
+      939584
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/api documentation generation (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "api documentation generation (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/cache management (planned).md",
+    "line": 2,
+    "text": "Planned: Cache management documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "cache management (planned)",
+    "section": "cache management (planned)",
+    "embedding": [
+      76920
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/cache management (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "cache management (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/coding standards (planned).md",
+    "line": 2,
+    "text": "Planned: Coding standards documentation.",
+    "source": "capability-doc",
+    "capability": "coding standards (planned)",
+    "section": "coding standards (planned)",
+    "embedding": [
+      625418
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/coding standards (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "coding standards (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/context handover (planned).md",
+    "line": 2,
+    "text": "Planned: Context handover documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "context handover (planned)",
+    "section": "context handover (planned)",
+    "embedding": [
+      917675
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/context handover (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "context handover (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/contextMutationEngine.md",
+    "line": 2,
+    "text": "Event-driven mutation suggestion traceability and context mutation engine.",
+    "source": "capability-doc",
+    "capability": "contextMutationEngine",
+    "section": "contextMutationEngine",
+    "embedding": [
+      749532
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/contextMutationEngine.md",
+    "line": 6,
+    "text": "```json {} ```",
+    "source": "capability-doc",
+    "capability": "contextMutationEngine",
+    "section": "Schema",
+    "embedding": [
+      871930
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/contextSnapshotHelper (planned).md",
+    "line": 2,
+    "text": "Planned: contextSnapshotHelper documentation.",
+    "source": "capability-doc",
+    "capability": "contextSnapshotHelper (planned)",
+    "section": "contextSnapshotHelper (planned)",
+    "embedding": [
+      631005
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/contextSnapshotHelper (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "contextSnapshotHelper (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/contributing.md (planned).md",
+    "line": 2,
+    "text": "Planned: Contributing.md documentation.",
+    "source": "capability-doc",
+    "capability": "contributing.md (planned)",
+    "section": "contributing.md (planned)",
+    "embedding": [
+      529603
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/contributing.md (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "contributing.md (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/crewAIAdapter.md",
+    "line": 2,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "crewAIAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/describe registry (in progress).md",
+    "line": 2,
+    "text": "In progress: Central describe registry for all capabilities.",
+    "source": "capability-doc",
+    "capability": "describe registry (in progress)",
+    "section": "describe registry (in progress)",
+    "embedding": [
+      814939
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/describe registry (in progress).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "describe registry (in progress)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/docDiagramGenerator (planned).md",
+    "line": 2,
+    "text": "Planned: docDiagramGenerator documentation.",
+    "source": "capability-doc",
+    "capability": "docDiagramGenerator (planned)",
+    "section": "docDiagramGenerator (planned)",
+    "embedding": [
+      106694
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/docDiagramGenerator (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "docDiagramGenerator (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/editor config recommendations (planned).md",
+    "line": 2,
+    "text": "Planned: Editor config recommendations documentation.",
+    "source": "capability-doc",
+    "capability": "editor config recommendations (planned)",
+    "section": "editor config recommendations (planned)",
+    "embedding": [
+      761423
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/editor config recommendations (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "editor config recommendations (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/embeddingRegistry.md",
+    "line": 2,
+    "text": "- All embedding provider event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "embeddingRegistry",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      414387
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event bus abstraction (planned).md",
+    "line": 2,
+    "text": "Planned: Event bus abstraction documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "event bus abstraction (planned)",
+    "section": "event bus abstraction (planned)",
+    "embedding": [
+      598403
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event bus abstraction (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "event bus abstraction (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven MAS patterns (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven MAS patterns documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven MAS patterns (planned)",
+    "section": "event-driven MAS patterns (planned)",
+    "embedding": [
+      12593
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven MAS patterns (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "event-driven MAS patterns (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven agent example (WriterAgent) (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven agent example (WriterAgent) documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven agent example (WriterAgent) (planned)",
+    "section": "event-driven agent example (WriterAgent) (planned)",
+    "embedding": [
+      748517
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven agent example (WriterAgent) (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "event-driven agent example (WriterAgent) (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven agent pattern (planned).md",
+    "line": 2,
+    "text": "Planned: Event-driven agent pattern documentation.",
+    "source": "capability-doc",
+    "capability": "event-driven agent pattern (planned)",
+    "section": "event-driven agent pattern (planned)",
+    "embedding": [
+      877470
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven agent pattern (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "event-driven agent pattern (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/event-driven mutation suggestion traceability.md",
+    "line": 2,
+    "text": "Implements full traceability for all mutation/refactor suggestions via structured event emission. Every suggestion (schema drift, TODO, test gap) emits a v1.mutationSuggested event, which is logged, replayable, and observable via the event bus. Events are schema-validated, versioned, and compatible with distributed backends (NATS, Kafka, Dapr, JSONL).",
+    "source": "capability-doc",
+    "capability": "event-driven mutation suggestion traceability",
+    "section": "event-driven mutation suggestion traceability",
+    "embedding": [
+      260853
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 5,
+    "text": "A sample plugin for nootropic. Demonstrates plugin lifecycle, dynamic event subscription, and hot-reload safety.",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "examplePlugin",
+    "embedding": [
+      729556
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 7,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "examplePlugin",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 9,
+    "text": "`nootropic plugins run examplePlugin`",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "examplePlugin",
+    "embedding": [
+      607889
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 13,
+    "text": "```json {   \"input\": {     \"_def\": {       \"items\": [],       \"typeName\": \"ZodTuple\",       \"rest\": null     },     \"~standard\": {       \"version\": 1,       \"vendor\": \"zod\"     }   },   \"output\": {     \"_def\": {       \"unknownKeys\": \"strip\",       \"catchall\": {         \"_def\": {           \"typeName\": \"ZodNever\"         },         \"~standard\": {           \"version\": 1,           \"vendor\": \"zod\"         }       },       \"typeName\": \"ZodObject\"     },     \"~standard\": {       \"version\": 1,       \"vendor\": \"zod\"     },     \"_cached\": null   } } ```",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "Schema",
+    "embedding": [
+      885882
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 50,
+    "text": "- Validate all plugin inputs/outputs using Zod schemas - Return structured errors for invalid input - Reference schemas in describe() for discoverability - Use appContext.subscribeToEvent with plugin name for dynamic subscription tracking - Clean up all event subscriptions in shutdown() (handled by PluginManager)",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "Best Practices",
+    "embedding": [
+      914657
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/examplePlugin.md",
+    "line": 58,
+    "text": "- https://github.com/nootropic/nootropic - https://github.com/nootropic/nootropic/blob/main/README.md",
+    "source": "capability-doc",
+    "capability": "examplePlugin",
+    "section": "References",
+    "embedding": [
+      286788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/github actions workflow (planned).md",
+    "line": 2,
+    "text": "Planned: GitHub Actions workflow documentation.",
+    "source": "capability-doc",
+    "capability": "github actions workflow (planned)",
+    "section": "github actions workflow (planned)",
+    "embedding": [
+      137791
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/github actions workflow (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "github actions workflow (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/langchainAdapter.md",
+    "line": 2,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "langchainAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/liveMutationPRHelper (planned).md",
+    "line": 2,
+    "text": "Planned: liveMutationPRHelper documentation.",
+    "source": "capability-doc",
+    "capability": "liveMutationPRHelper (planned)",
+    "section": "liveMutationPRHelper (planned)",
+    "embedding": [
+      255717
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/liveMutationPRHelper (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "liveMutationPRHelper (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/matrix validation strategy (planned).md",
+    "line": 2,
+    "text": "Planned: Matrix validation strategy documentation.",
+    "source": "capability-doc",
+    "capability": "matrix validation strategy (planned)",
+    "section": "matrix validation strategy (planned)",
+    "embedding": [
+      179439
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/matrix validation strategy (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "matrix validation strategy (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/monorepo typescript config (planned).md",
+    "line": 2,
+    "text": "Planned: Monorepo TypeScript config documentation.",
+    "source": "capability-doc",
+    "capability": "monorepo typescript config (planned)",
+    "section": "monorepo typescript config (planned)",
+    "embedding": [
+      515704
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/monorepo typescript config (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "monorepo typescript config (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/multi-agent orchestration (planned).md",
+    "line": 2,
+    "text": "Planned: Multi-agent orchestration documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "multi-agent orchestration (planned)",
+    "section": "multi-agent orchestration (planned)",
+    "embedding": [
+      283797
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/multi-agent orchestration (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "multi-agent orchestration (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/onboarding guide (planned).md",
+    "line": 2,
+    "text": "Planned: Onboarding guide documentation.",
+    "source": "capability-doc",
+    "capability": "onboarding guide (planned)",
+    "section": "onboarding guide (planned)",
+    "embedding": [
+      413331
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/onboarding guide (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "onboarding guide (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/onboarding instructions (planned).md",
+    "line": 2,
+    "text": "Planned: Onboarding instructions documentation.",
+    "source": "capability-doc",
+    "capability": "onboarding instructions (planned)",
+    "section": "onboarding instructions (planned)",
+    "embedding": [
+      263668
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/onboarding instructions (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "onboarding instructions (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/onboarding troubleshooting (planned).md",
+    "line": 2,
+    "text": "Planned: Onboarding troubleshooting documentation.",
+    "source": "capability-doc",
+    "capability": "onboarding troubleshooting (planned)",
+    "section": "onboarding troubleshooting (planned)",
+    "embedding": [
+      162485
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/onboarding troubleshooting (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "onboarding troubleshooting (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/plugin architecture (planned).md",
+    "line": 2,
+    "text": "Planned: Plugin architecture documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "plugin architecture (planned)",
+    "section": "plugin architecture (planned)",
+    "embedding": [
+      434915
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/plugin architecture (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "plugin architecture (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/pluginFeedback.md",
+    "line": 2,
+    "text": "Feedback/memory utility (base class). Subclasses provide type-specific logic.",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "pluginFeedback",
+    "embedding": [
+      920913
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/pluginFeedback.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "pluginFeedback",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/pluginFeedback.md",
+    "line": 6,
+    "text": "`import pluginFeedbackCapability from 'nootropic/utils/feedback/pluginFeedback'; const feedback = await pluginFeedbackCapability.run({ pluginName, user, rating, review });`",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "pluginFeedback",
+    "embedding": [
+      494668
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/pluginFeedback.md",
+    "line": 11,
+    "text": "- **add**: (memory: T) => Promise<void> - Add a memory entry. - **list**: () => Promise<T[]> - List all memory entries. - **deduplicate**: (memories: T[]) => T[] - Deduplicate memory entries.",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "Methods/Functions",
+    "embedding": [
+      233339
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/pluginFeedback.md",
+    "line": 17,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/pluginFeedback.md",
+    "line": 41,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "pluginFeedback",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/quality system (planned).md",
+    "line": 2,
+    "text": "Planned: Quality system documentation and implementation.",
+    "source": "capability-doc",
+    "capability": "quality system (planned)",
+    "section": "quality system (planned)",
+    "embedding": [
+      921991
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/quality system (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "quality system (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sample config files (planned).md",
+    "line": 2,
+    "text": "Planned: Sample config files documentation.",
+    "source": "capability-doc",
+    "capability": "sample config files (planned)",
+    "section": "sample config files (planned)",
+    "embedding": [
+      33871
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sample config files (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "sample config files (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sastMemories.md",
+    "line": 2,
+    "text": "Feedback/memory utility (base class). Subclasses provide type-specific logic.",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "sastMemories",
+    "embedding": [
+      920913
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sastMemories.md",
+    "line": 4,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "sastMemories",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sastMemories.md",
+    "line": 6,
+    "text": "`import sastMemoriesCapability from 'nootropic/utils/feedback/sastMemories'; const memories = await sastMemoriesCapability.run({ id, tool, ... });`",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "sastMemories",
+    "embedding": [
+      187905
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sastMemories.md",
+    "line": 11,
+    "text": "- **add**: (memory: T) => Promise<void> - Add a memory entry. - **list**: () => Promise<T[]> - List all memory entries. - **deduplicate**: (memories: T[]) => T[] - Deduplicate memory entries.",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "Methods/Functions",
+    "embedding": [
+      233339
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sastMemories.md",
+    "line": 17,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sastMemories.md",
+    "line": 41,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "sastMemories",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/schema validation onboarding (planned).md",
+    "line": 2,
+    "text": "Planned: Schema validation onboarding documentation.",
+    "source": "capability-doc",
+    "capability": "schema validation onboarding (planned)",
+    "section": "schema validation onboarding (planned)",
+    "embedding": [
+      879079
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/schema validation onboarding (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "schema validation onboarding (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder (planned).md",
+    "line": 2,
+    "text": "Planned: semanticIndexBuilder documentation.",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder (planned)",
+    "section": "semanticIndexBuilder (planned)",
+    "embedding": [
+      922523
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 5,
+    "text": "The `semanticIndexBuilder` builds a comprehensive semantic search index for the nootropic project. It now indexes: - All code, Markdown, and JSON files (chunked by lines/sections) - All outputs from the describe registry (`.nootropic-cache/describe-registry.json`) - All per-capability docs in `docs/capabilities/` - All LLM/AI docs in `.nootropic-cache/llm-docs.json`",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "semanticIndexBuilder",
+    "embedding": [
+      988304
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 11,
+    "text": "Each chunk is tagged with metadata: `source` (e.g., `code`, `describe-registry`, `llm-docs`, `capability-doc`), `capability` (if available), and `section` (if available).",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "semanticIndexBuilder",
+    "embedding": [
+      260007
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 15,
+    "text": "To build the semantic index:",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Usage",
+    "embedding": [
+      965788
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 17,
+    "text": "```sh pnpm tsx nootropic/semanticIndexBuilder.ts ```",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Usage",
+    "embedding": [
+      236437
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 21,
+    "text": "This creates `.nootropic-cache/semantic-index.json`.",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Usage",
+    "embedding": [
+      813261
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 25,
+    "text": "The semantic search API (HTTP and WebSocket) now robustly supports filtering by `source` and `capability` fields. Use these for targeted LLM/agent workflows: - `source`: Filter by chunk source (e.g., `capability-doc`, `describe-registry`) - `capability`: Filter by capability name (if available)",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "API Filtering Support",
+    "embedding": [
+      241250
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 29,
+    "text": "See [docs/semanticSearchGuide.md](../semanticSearchGuide.md) for API usage and examples.",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "API Filtering Support",
+    "embedding": [
+      141675
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticIndexBuilder.md",
+    "line": 32,
+    "text": "- Keep describe outputs and per-capability docs up to date for maximal LLM/agent discoverability. - Use the `source` and `capability` metadata for targeted semantic search and agent workflows. - Prefer batch embedding for large document sets. ",
+    "source": "capability-doc",
+    "capability": "semanticIndexBuilder",
+    "section": "Best Practices",
+    "embedding": [
+      61052
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semanticKernelAdapter.md",
+    "line": 2,
+    "text": "- All adapter event payloads and data extraction **must** use `Record<string, unknown>` and type guards instead of `any`. - All payloads must be validated at runtime using Zod or equivalent. - See CONTRIBUTING.md and onboarding-checklist.md for migration notes and enforcement policy. ",
+    "source": "capability-doc",
+    "capability": "semanticKernelAdapter",
+    "section": "Type Safety and Event Payload Validation (2025+)",
+    "embedding": [
+      198020
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semgrepMemories.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "semgrepMemories",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semgrepMemories.md",
+    "line": 5,
+    "text": "Feedback/memory utility (base class). Subclasses provide type-specific logic.",
+    "source": "capability-doc",
+    "capability": "semgrepMemories",
+    "section": "semgrepMemories",
+    "embedding": [
+      920913
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semgrepMemories.md",
+    "line": 9,
+    "text": "- **add**: (memory: T) => Promise<void> - Add a memory entry. - **list**: () => Promise<T[]> - List all memory entries. - **deduplicate**: (memories: T[]) => T[] - Deduplicate memory entries.",
+    "source": "capability-doc",
+    "capability": "semgrepMemories",
+    "section": "Methods/Functions",
+    "embedding": [
+      233339
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semgrepMemories.md",
+    "line": 15,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "semgrepMemories",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/semgrepMemories.md",
+    "line": 39,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "semgrepMemories",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/setup and environment requirements (planned).md",
+    "line": 2,
+    "text": "Planned: Setup and environment requirements documentation.",
+    "source": "capability-doc",
+    "capability": "setup and environment requirements (planned)",
+    "section": "setup and environment requirements (planned)",
+    "embedding": [
+      758369
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/setup and environment requirements (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "setup and environment requirements (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sonarQubeMemories.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "sonarQubeMemories",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sonarQubeMemories.md",
+    "line": 5,
+    "text": "Feedback/memory utility (base class). Subclasses provide type-specific logic.",
+    "source": "capability-doc",
+    "capability": "sonarQubeMemories",
+    "section": "sonarQubeMemories",
+    "embedding": [
+      920913
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sonarQubeMemories.md",
+    "line": 9,
+    "text": "- **add**: (memory: T) => Promise<void> - Add a memory entry. - **list**: () => Promise<T[]> - List all memory entries. - **deduplicate**: (memories: T[]) => T[] - Deduplicate memory entries.",
+    "source": "capability-doc",
+    "capability": "sonarQubeMemories",
+    "section": "Methods/Functions",
+    "embedding": [
+      233339
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sonarQubeMemories.md",
+    "line": 15,
+    "text": "```json {   \"_def\": {     \"unknownKeys\": \"strip\",     \"catchall\": {       \"_def\": {         \"typeName\": \"ZodNever\"       },       \"~standard\": {         \"version\": 1,         \"vendor\": \"zod\"       }     },     \"typeName\": \"ZodObject\"   },   \"~standard\": {     \"version\": 1,     \"vendor\": \"zod\"   },   \"_cached\": null } ```",
+    "source": "capability-doc",
+    "capability": "sonarQubeMemories",
+    "section": "Schema",
+    "embedding": [
+      774777
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/sonarQubeMemories.md",
+    "line": 39,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "sonarQubeMemories",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/streaming backend integration (planned).md",
+    "line": 2,
+    "text": "Planned: Streaming backend integration documentation.",
+    "source": "capability-doc",
+    "capability": "streaming backend integration (planned)",
+    "section": "streaming backend integration (planned)",
+    "embedding": [
+      813748
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/streaming backend integration (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "streaming backend integration (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/supervisor agent pattern (planned).md",
+    "line": 2,
+    "text": "Planned: Supervisor agent pattern documentation.",
+    "source": "capability-doc",
+    "capability": "supervisor agent pattern (planned)",
+    "section": "supervisor agent pattern (planned)",
+    "embedding": [
+      230093
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/supervisor agent pattern (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "supervisor agent pattern (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/tsdoc style enforcement (planned).md",
+    "line": 2,
+    "text": "Planned: TSDoc style enforcement documentation.",
+    "source": "capability-doc",
+    "capability": "tsdoc style enforcement (planned)",
+    "section": "tsdoc style enforcement (planned)",
+    "embedding": [
+      135220
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/tsdoc style enforcement (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "tsdoc style enforcement (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/typedoc integration (planned).md",
+    "line": 2,
+    "text": "Planned: TypeDoc integration documentation.",
+    "source": "capability-doc",
+    "capability": "typedoc integration (planned)",
+    "section": "typedoc integration (planned)",
+    "embedding": [
+      269612
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/typedoc integration (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "typedoc integration (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/typedoc.json config (planned).md",
+    "line": 2,
+    "text": "Planned: typedoc.json config documentation.",
+    "source": "capability-doc",
+    "capability": "typedoc.json config (planned)",
+    "section": "typedoc.json config (planned)",
+    "embedding": [
+      706836
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/typedoc.json config (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "typedoc.json config (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 1,
+    "text": "--- status: implemented ---",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "embedding": [
+      301572
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 5,
+    "text": "Notifies users of available package updates via CLI. Useful for keeping nootropic up to date.",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "updateNotifier",
+    "embedding": [
+      306660
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 7,
+    "text": "**Usage:**",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "updateNotifier",
+    "embedding": [
+      659737
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 9,
+    "text": "`import updateNotifierCapability from 'nootropic/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();`",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "updateNotifier",
+    "embedding": [
+      617398
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 13,
+    "text": "- **checkForUpdates**: () => void - Checks for updates and notifies the user via CLI.",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "Methods/Functions",
+    "embedding": [
+      89173
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 17,
+    "text": "```json {   \"checkForUpdates\": {     \"input\": {       \"type\": \"null\",       \"description\": \"No input required\"     },     \"output\": {       \"type\": \"null\",       \"description\": \"No output (side effect: CLI notification)\"     }   } } ```",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "Schema",
+    "embedding": [
+      875986
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 33,
+    "text": "- https://www.npmjs.com/package/update-notifier",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "References",
+    "embedding": [
+      599584
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updateNotifier.md",
+    "line": 37,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "updateNotifier",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updated agent event interface (planned).md",
+    "line": 2,
+    "text": "Planned: Updated agent event interface documentation.",
+    "source": "capability-doc",
+    "capability": "updated agent event interface (planned)",
+    "section": "updated agent event interface (planned)",
+    "embedding": [
+      180331
+    ]
+  },
+  {
+    "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/docs/capabilities/updated agent event interface (planned).md",
+    "line": 6,
+    "text": "- LLM/AI-friendly documentation enabled.",
+    "source": "capability-doc",
+    "capability": "updated agent event interface (planned)",
+    "section": "AI/LLM Usage Hint",
+    "embedding": [
+      842744
+    ]
+  }
+]

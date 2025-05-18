@@ -8,7 +8,7 @@ import { context, SpanStatusCode, Span, TextMapPropagator, defaultTextMapSetter,
 import { B3Propagator, B3InjectEncoding } from '@opentelemetry/propagator-b3';
 import { W3CTraceContextPropagator } from '@opentelemetry/core';
 // @ts-ignore
-import { getMeter, getTracer } from '../telemetry.js';
+import { getMeter, getTracer } from '../../telemetry.js';
 // @ts-ignore
 import type { EventBusAdapter } from '../types/AgentOrchestrationEngine.js';
 // @ts-ignore

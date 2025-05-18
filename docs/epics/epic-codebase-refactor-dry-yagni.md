@@ -11,7 +11,7 @@
 - id: epic-codebase-refactor-dry-yagni
 - slug: epic-codebase-refactor-dry-yagni
 - docPath: docs/epics/epic-codebase-refactor-dry-yagni.md
-- lastSynced: 2025-05-17T16:25:55.537Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [plugin-ecosystem-marketplace](docs/stories/plugin-ecosystem-marketplace.md)

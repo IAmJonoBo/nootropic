@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 // @ts-ignore
-import { sonarQubeMemoriesCapability } from '../utils/feedback/sonarQubeMemories.js';
+import { sonarQubeMemoriesCapability } from '../src/utils/feedback/sonarQubeMemories';
 import { promises as fs } from 'fs';
 import path from 'path';
 

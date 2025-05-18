@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { LangChainAdapter } from '../adapters/langchainAdapter.js';
+import { LangChainAdapter } from '../src/adapters/langchainAdapter.js';
 // @ts-ignore
-import { CrewAIAdapter } from '../adapters/crewAIAdapter.js';
+import { CrewAIAdapter } from '../src/adapters/crewAIAdapter.js';
 // @ts-ignore
-import { SemanticKernelAdapter } from '../adapters/semanticKernelAdapter.js';
+import { SemanticKernelAdapter } from '../src/adapters/semanticKernelAdapter.js';
 // @ts-ignore
-import type { AgentProfile, AgentTask } from '../types/AgentOrchestrationEngine.d.ts';
+import type { AgentProfile, AgentTask } from '../types/AgentOrchestrationEngine.d';
 
 const adapters = [
   { name: 'LangChainAdapter', Adapter: LangChainAdapter },

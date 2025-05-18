@@ -8,5 +8,5 @@
 - id: automate-tool-integration-orchestration
 - slug: automate-tool-integration-orchestration
 - docPath: docs/stories/automate-tool-integration-orchestration.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

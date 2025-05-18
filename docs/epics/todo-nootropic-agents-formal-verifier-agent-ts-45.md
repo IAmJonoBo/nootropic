@@ -10,5 +10,5 @@
 - id: todo:nootropic/agents/FormalVerifierAgent.ts:45
 - slug: todo-nootropic-agents-formal-verifier-agent-ts-45
 - docPath: docs/epics/todo-nootropic-agents-formal-verifier-agent-ts-45.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

@@ -1,7 +1,7 @@
 // nootropic: BaseAgent class for modular, extensible agent logic
 // Supports dynamic tool discovery, structured output enforcement, and LLM/agent introspection
 // @ts-ignore
-import { getPlugins } from '../pluginRegistry.js';
+import { getPlugins } from '../../pluginLoader.js';
 // @ts-ignore
 import type { AgentProfile, AgentTask, AgentContext, AgentResult, AgentLogger, AgentEvent } from '../schemas/AgentOrchestrationEngineSchema.js';
 // @ts-ignore
@@ -54,8 +54,9 @@ export class BaseAgent implements Capability {
 
   /** Dynamically discover available tools/plugins. */
   async listTools(): Promise<AgentTool[]> {
+    type Plugin = { name: string; run?: (...args: unknown[]) => unknown; describe?: () => unknown };
     const plugins = await getPlugins();
-    return plugins.map((p: any) => ({
+    return plugins.map((p: Plugin) => ({
       name: p.name,
       run: typeof p.run === 'function' ? async (...args: unknown[]) => Promise.resolve((p.run as (...args: unknown[]) => unknown)(...args)) : async () => undefined,
       ...(p.describe ? { describe: p.describe } : {})
@@ -76,7 +77,7 @@ export class BaseAgent implements Capability {
 
   /** Subscribe to an event topic with a handler. */
   protected subscribeToEvent(topic: string, handler: (event: unknown) => Promise<void> | void) {
-    subscribeToTopic(topic, handler);
+    subscribeToTopic(topic, (event: AgentEvent) => Promise.resolve(handler(event)));
   }
 
   /** Publish an event to the event bus. */

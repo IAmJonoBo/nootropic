@@ -1,21 +1,33 @@
 // nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
 // import fs from 'fs';
 import path from 'path';
-import { readJsonSafe, writeJsonSafe, ensureDirExists, listFilesRecursive } from './utils.js';
+// @ts-ignore
+import { readJsonSafe, writeJsonSafe, listFilesRecursive } from './utils.js';
+// @ts-ignore
+import { ensureDirExists } from './src/utils/context/contextManager.js';
+// @ts-ignore
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import { fileURLToPath } from 'url';
-import { SEMANTIC_INDEX_PATH } from './paths.js';
+// @ts-ignore
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
+// @ts-ignore
+import { initTelemetry, shutdownTelemetry } from './telemetry.js';
+// @ts-ignore
+import { getEmbeddingProvider } from './src/capabilities/embeddingRegistry.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// --- Extract text chunks from code, docs, and agent messages ---
+const SEMANTIC_INDEX_JSON = getCacheFilePath('semantic-index.json');
+// Initialize OpenTelemetry (if enabled)
+initTelemetry('semantic-index-builder');
+// --- Extract text chunks from code, docs, agent messages, and describe outputs ---
 async function extractChunks() {
-    // For now, just scan extension/src/agents, nootropic/, and docs/
+    const chunks = [];
+    // 1. Code, docs, and agent messages (legacy logic)
     const dirs = [
         `${__dirname}/../extension/src/agents`,
         __dirname,
         `${__dirname}/../docs`,
     ];
-    const chunks = [];
     for (const dir of dirs) {
         await ensureDirExists(dir);
         const files = await listFilesRecursive(dir);
@@ -25,34 +37,188 @@ async function extractChunks() {
             const filePath = `${dir}/${file}`;
             let lines = [];
             try {
-                lines = (await readJsonSafe(filePath, undefined)) || (await import('fs')).promises.readFile(filePath, 'utf-8').then((d) => d.split('\n')).catch(() => []);
+                lines = (await readJsonSafe(filePath, undefined)) ?? (await import('fs')).promises.readFile(filePath, 'utf-8').then((d) => d.split('\n')).catch(() => []);
             }
             catch {
                 lines = [];
             }
             for (let i = 0; i < lines.length; i += 10) {
                 const text = lines.slice(i, i + 10).join(' ');
-                chunks.push({ file: filePath, line: i + 1, text });
+                chunks.push({ file: filePath, line: i + 1, text, source: 'code' });
             }
         }
     }
+    // 2. Describe registry (JSON)
+    try {
+        const describeRegistryPath = path.resolve(__dirname, '../.nootropic-cache/describe-registry.json');
+        const describeRegistry = await readJsonSafe(describeRegistryPath, []);
+        for (const cap of describeRegistry) {
+            const capName = cap && cap.name ? String(cap.name) : 'unknown';
+            for (const key of Object.keys(cap)) {
+                if (typeof cap[key] === 'string' && cap[key].length > 0) {
+                    chunks.push({
+                        file: describeRegistryPath,
+                        line: 1,
+                        text: `${key}: ${cap[key]}`,
+                        source: 'describe-registry',
+                        capability: capName,
+                        section: key,
+                    });
+                }
+                else if (Array.isArray(cap[key])) {
+                    for (const [i, item] of (Array.isArray(cap[key]) ? cap[key] : []).entries()) {
+                        if (typeof item === 'string') {
+                            chunks.push({
+                                file: describeRegistryPath,
+                                line: 1,
+                                text: `${key}[${i}]: ${item}`,
+                                source: 'describe-registry',
+                                capability: capName,
+                                section: key,
+                            });
+                        }
+                        else if (typeof item === 'object' && item !== null) {
+                            chunks.push({
+                                file: describeRegistryPath,
+                                line: 1,
+                                text: `${key}[${i}]: ${JSON.stringify(item)}`,
+                                source: 'describe-registry',
+                                capability: capName,
+                                section: key,
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+    catch (e) {
+        console.warn('[semanticIndexBuilder] Could not load describe-registry.json:', e);
+    }
+    // 3. LLM docs (JSON, more structured)
+    try {
+        const llmDocsPath = path.resolve(__dirname, '../.nootropic-cache/llm-docs.json');
+        const llmDocs = await readJsonSafe(llmDocsPath, []);
+        for (const cap of llmDocs) {
+            const capName = cap && cap.name ? String(cap.name) : 'unknown';
+            for (const key of Object.keys(cap)) {
+                if (typeof cap[key] === 'string' && cap[key].length > 0) {
+                    chunks.push({
+                        file: llmDocsPath,
+                        line: 1,
+                        text: `${key}: ${cap[key]}`,
+                        source: 'llm-docs',
+                        capability: capName,
+                        section: key,
+                    });
+                }
+                else if (Array.isArray(cap[key])) {
+                    for (const [i, item] of (Array.isArray(cap[key]) ? cap[key] : []).entries()) {
+                        if (typeof item === 'string') {
+                            chunks.push({
+                                file: llmDocsPath,
+                                line: 1,
+                                text: `${key}[${i}]: ${item}`,
+                                source: 'llm-docs',
+                                capability: capName,
+                                section: key,
+                            });
+                        }
+                        else if (typeof item === 'object' && item !== null) {
+                            chunks.push({
+                                file: llmDocsPath,
+                                line: 1,
+                                text: `${key}[${i}]: ${JSON.stringify(item)}`,
+                                source: 'llm-docs',
+                                capability: capName,
+                                section: key,
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+    catch (e) {
+        console.warn('[semanticIndexBuilder] Could not load llm-docs.json:', e);
+    }
+    // 4. Per-capability docs (Markdown)
+    try {
+        // Always resolve from project root for robustness
+        const capDocsDir = path.resolve(process.cwd(), 'docs/capabilities');
+        const files = (await import('fs')).readdirSync(capDocsDir).filter((f) => f.endsWith('.md'));
+        for (const file of files) {
+            const filePath = path.join(capDocsDir, file);
+            const content = (await import('fs')).readFileSync(filePath, 'utf-8');
+            // Chunk by heading/paragraph
+            const lines = content.split('\n');
+            let currentSection = '';
+            let buffer = [];
+            let lineNum = 1;
+            for (let i = 0; i < lines.length; ++i) {
+                const line = lines[i] ?? '';
+                if (typeof line === 'string' && line.startsWith('#')) {
+                    // Flush previous section
+                    if (buffer.length > 0) {
+                        chunks.push({
+                            file: filePath,
+                            line: lineNum,
+                            text: buffer.join(' '),
+                            source: 'capability-doc',
+                            capability: file.replace(/\.md$/, ''),
+                            section: currentSection || undefined,
+                        });
+                        buffer = [];
+                    }
+                    currentSection = line.replace(/^#+\s*/, '');
+                    lineNum = i + 1;
+                }
+                else if (typeof line === 'string' && line.trim() === '') {
+                    if (buffer.length > 0) {
+                        chunks.push({
+                            file: filePath,
+                            line: lineNum,
+                            text: buffer.join(' '),
+                            source: 'capability-doc',
+                            capability: file.replace(/\.md$/, ''),
+                            section: currentSection || undefined,
+                        });
+                        buffer = [];
+                    }
+                    lineNum = i + 1;
+                }
+                else if (typeof line === 'string') {
+                    buffer.push(line);
+                }
+            }
+            // Flush last buffer
+            if (buffer.length > 0) {
+                chunks.push({
+                    file: filePath,
+                    line: lineNum,
+                    text: buffer.join(' '),
+                    source: 'capability-doc',
+                    capability: file.replace(/\.md$/, ''),
+                    section: currentSection || undefined,
+                });
+            }
+        }
+    }
+    catch (e) {
+        console.warn('[semanticIndexBuilder] Could not load per-capability docs:', e);
+    }
     return chunks;
-}
-// --- Stub: Generate embedding for a text chunk (replace with real model/OpenAI API) ---
-function embed(text) {
-    // For now, return a fake embedding (hash of text)
-    let hash = 0;
-    for (let i = 0; i < text.length; i++)
-        hash = (hash * 31 + text.charCodeAt(i)) % 1e6;
-    return [hash];
 }
 // --- Build semantic index ---
 async function buildSemanticIndex() {
     try {
         const chunks = await extractChunks();
-        const index = chunks.map(chunk => ({ ...chunk, embedding: embed(chunk.text) }));
-        await writeJsonSafe(SEMANTIC_INDEX_PATH, index);
-        console.log(`Semantic index written to ${SEMANTIC_INDEX_PATH}`);
+        const provider = getEmbeddingProvider();
+        const texts = chunks.map(chunk => chunk.text);
+        const embeddings = await provider.embed(texts);
+        const index = chunks.map((chunk, i) => ({ ...chunk, embedding: embeddings[i] ?? [] }));
+        await writeJsonSafe(SEMANTIC_INDEX_JSON, index);
+        console.log(`Semantic index written to ${SEMANTIC_INDEX_JSON} using provider: ${provider.name}`);
     }
     catch (e) {
         console.error('Error building semantic index:', e);
@@ -75,6 +241,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         }
     })();
 }
+// Ensure graceful shutdown of telemetry on exit
+process.on('exit', shutdownTelemetry);
+process.on('SIGINT', async () => { await shutdownTelemetry(); process.exit(0); });
 /**
  * Returns a description of the semantic index builder and its main functions.
  */
@@ -84,8 +253,7 @@ export function describe() {
         description: 'Builds a semantic search index for code, docs, and agent messages.',
         functions: [
             { name: 'buildSemanticIndex', signature: '() => Promise<void>', description: 'Builds the semantic index.' },
-            { name: 'extractChunks', signature: '() => Promise<Omit<SemanticIndexEntry, "embedding">[]>', description: 'Extracts text chunks from code, docs, and messages.' },
-            { name: 'embed', signature: '(text: string) => number[]', description: 'Generates a fake embedding for a text chunk.' }
+            { name: 'extractChunks', signature: '() => Promise<Omit<SemanticIndexEntry, "embedding">[]>', description: 'Extracts text chunks from code, docs, and messages.' }
         ],
         usage: "import { buildSemanticIndex } from 'nootropic/semanticIndexBuilder';",
         schema: {
@@ -124,4 +292,11 @@ export function describe() {
         }
     };
 }
-export { buildSemanticIndex, extractChunks, embed };
+export { buildSemanticIndex, extractChunks };
+/**
+ * Initializes semanticIndexBuilder. Must be called before using cache-dependent features.
+ * This avoids ESM/circular import issues. See CONTRIBUTING.md.
+ */
+export async function initSemanticIndexBuilder() {
+    await ensureCacheDirExists();
+}

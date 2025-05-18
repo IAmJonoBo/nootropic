@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { SupervisorAgent } from '../agents/SupervisorAgent.js';
+import { SupervisorAgent } from '../src/agents/SupervisorAgent';
 
 describe('SupervisorAgent', () => {
   it('should run a supervision task and emit event-driven logs', async () => {

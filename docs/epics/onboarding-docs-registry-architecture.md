@@ -7,5 +7,5 @@
 - id: onboarding-docs-registry-architecture
 - slug: onboarding-docs-registry-architecture
 - docPath: docs/epics/onboarding-docs-registry-architecture.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

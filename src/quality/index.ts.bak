@@ -1,0 +1,7 @@
+// @ts-ignore
+import { runQualityChecks } from './selfcheck';
+
+(async () => {
+  await runQualityChecks();
+  console.log('[quality] All enabled quality checks completed.');
+})(); 

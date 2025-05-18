@@ -3,7 +3,6 @@ let semanticKernelAvailable = false;
 let initializeKernelExecutor;
 try {
     // Dynamically import Semantic Kernel if available
-    // @ts-ignore
     ({ initializeKernelExecutor } = await import('@microsoft/semantic-kernel'));
     semanticKernelAvailable = true;
 }
@@ -27,7 +26,7 @@ export class SemanticKernelAdapter {
                 ? await initializeKernelExecutor({ agentProfile, context })
                 : undefined;
             const output = executor && typeof executor.run === 'function'
-                ? await executor.run(task.input || task.description)
+                ? await executor.run(task.description)
                 : null;
             return {
                 output,
@@ -45,11 +44,7 @@ export class SemanticKernelAdapter {
     }
     async getAgentContext(agentId) {
         // Semantic Kernel does not expose agent context directly; return stub
-        return {
-            agentId,
-            memory: null,
-            state: null,
-        };
+        return { agentId };
     }
     async listAgents() {
         // Semantic Kernel does not expose agent listing directly; return stub

@@ -10,5 +10,5 @@
 - id: todo:nootropic/quality/selfcheck.ts:157
 - slug: todo-nootropic-quality-selfcheck-ts-157
 - docPath: docs/epics/todo-nootropic-quality-selfcheck-ts-157.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

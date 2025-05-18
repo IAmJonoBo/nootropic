@@ -3,10 +3,10 @@ import * as fs from 'fs';
 
 // Import all main exports from contextSnapshotHelper
 // @ts-ignore
-import * as contextSnapshotHelper from '../contextSnapshotHelper.js';
+import * as contextSnapshotHelper from '../contextSnapshotHelper';
 // Import the actual listFilesInDir to mock it properly
 // @ts-ignore
-import * as contextManager from '../utils/context/contextManager.js';
+import * as contextFileHelpers from '../src/utils/context/contextFileHelpers.js';
 
 // LLM/AI usage hint: These tests validate the core context snapshot, chunking, and handover APIs for agentic workflows. All tests use isolated mocks and do not touch the real cache/filesystem.
 
@@ -36,7 +36,7 @@ describe('contextSnapshotHelper', () => {
   it('extracts TODOs from codebase (mocked)', async () => {
     // Mock file reading to return a file with TODOs
     const readFileSpy = vi.spyOn(fs.promises, 'readFile').mockResolvedValue('const x = 1; // TODO: fix this');
-    const listFilesSpy = vi.spyOn(contextManager, 'listFilesInDir').mockResolvedValue(['mockFile.ts']);
+    const listFilesSpy = vi.spyOn(contextFileHelpers, 'listFilesInDir').mockResolvedValue(['mockFile.ts']);
     const todos = await contextSnapshotHelper.extractTodos();
     expect(Array.isArray(todos)).toBe(true);
     expect(todos.length).toBeGreaterThanOrEqual(0);
@@ -52,7 +52,7 @@ describe('contextSnapshotHelper', () => {
 
   it('lists test files (mocked)', async () => {
     // Mock directory listing
-    const listFilesSpy = vi.spyOn(contextManager, 'listFilesInDir').mockResolvedValue(['testA.test.ts']);
+    const listFilesSpy = vi.spyOn(contextFileHelpers, 'listFilesInDir').mockResolvedValue(['testA.test.ts']);
     const testFiles = await contextSnapshotHelper.getTestFiles();
     expect(Array.isArray(testFiles)).toBe(true);
     listFilesSpy.mockRestore();

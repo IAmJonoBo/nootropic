@@ -202,7 +202,7 @@ export function subscribe(callback: (event: AgentEvent) => void) { return eventB
 /**
  * Subscribe to a specific topic/queue. Callback receives validated AgentEvent.
  */
-export function subscribeToTopic(topic: string, callback: (event: AgentEvent) => void) { return eventBus.subscribeToTopic?.(topic, async (event: AgentEvent) => callback(event)); }
+export function subscribeToTopic(topic: string, callback: (event: AgentEvent) => void) { return eventBus.subscribeToTopic?.(topic, async (event: unknown) => callback(event as AgentEvent)); }
 /**
  * Log an audit event (info, warn, error, debug) to a topic. Details are validated.
  */

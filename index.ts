@@ -14,7 +14,7 @@ export { ReviewAgent } from './src/agents/ReviewAgent.js';
 
 // --- Internal imports for runtime logic (not re-exported) ---
 // @ts-ignore
-import { getPlugins } from './pluginRegistry.js';
+import { getPlugins } from './pluginLoader.js';
 // @ts-ignore
 import { initTelemetry, shutdownTelemetry } from './telemetry.js';
 // @ts-ignore
@@ -29,8 +29,10 @@ import { ReviewAgent as _ReviewAgent } from './src/agents/ReviewAgent.js';
 import registry from './src/capabilities/registry.js';
 // @ts-ignore
 import { registerAllAdapters } from './src/adapters/index.js';
+import { initEventBusBackends } from './src/adapters/initEventBusBackends.js';
 
 registerAllAdapters(registry);
+initEventBusBackends(registry);
 
 // --- Runtime Logic: Capability Listing and Description ---
 /**

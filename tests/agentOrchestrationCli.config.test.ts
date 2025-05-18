@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 // @ts-ignore
-import { loadAiHelpersConfig } from '../utils.js';
+import { loadAiHelpersConfig } from '../utils';
 import fs from 'fs';
 import path from 'path';
 

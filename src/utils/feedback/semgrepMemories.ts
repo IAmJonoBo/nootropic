@@ -106,6 +106,10 @@ export class SemgrepMemoriesUtility extends BaseMemoryUtility<SastFeedbackMemory
     // TODO: Use context graph and embeddings to populate impact
     return { triage, rationale, impact };
   }
+
+  override async health(): Promise<{ status: 'ok' | 'degraded' | 'error'; timestamp: string }> {
+    return { status: 'ok', timestamp: new Date().toISOString() };
+  }
 }
 
 const semgrepMemories = new SemgrepMemoriesUtility();
@@ -145,7 +149,7 @@ export const semgrepMemoriesCapability = {
       'import { addSemgrepMemory, listSemgrepMemories } from "nootropic/utils/feedback/semgrepMemories";',
       'await addSemgrepMemory("semgrep:rule:file:42", { memoryType: "triage", rationale: "False positive", triage: "false_positive" });',
       'const memories = await listSemgrepMemories("semgrep:rule:file:42");'
-    ],
+    ].join('\n'),
     docs: 'See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.',
     features: [
       'Pluggable, event-driven deduplication',
@@ -161,7 +165,8 @@ export const semgrepMemoriesCapability = {
   llmTriageSemgrepFinding: semgrepMemories.llmTriageSemgrepFinding.bind(semgrepMemories),
   contextAwareTriageSemgrepFinding: semgrepMemories.contextAwareTriageSemgrepFinding.bind(semgrepMemories),
   init: async function() {},
-  reload: async function() {}
+  reload: async function() {},
+  health: async () => semgrepMemories.health()
 };
 
 export default semgrepMemoriesCapability; 

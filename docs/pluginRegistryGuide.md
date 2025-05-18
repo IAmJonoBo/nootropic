@@ -121,17 +121,16 @@ The plugin registry now supports community-driven feedback for all plugins, incl
 
 - **CLI:**
   ```sh
-  pnpm tsx scripts/submitPluginFeedback.ts <pluginName> <user> <rating> [review]
+  pnpm tsx scripts/pluginFeedbackCli.ts submit <pluginName> <user> <rating> [review]
   # Example:
-  pnpm tsx scripts/submitPluginFeedback.ts myPlugin alice 5 "Great plugin!"
+  pnpm tsx scripts/pluginFeedbackCli.ts myPlugin alice 5 "Great plugin!"
   ```
 - **HTTP API:**
   - See: `orchestration/examples/pluginFeedbackApi.ts`
   ```
-  POST http://localhost:4000/plugin-feedback
+  POST http://localhost:4000/plugin-feedback/myPlugin
   Content-Type: application/json
   {
-    "pluginName": "myPlugin",
     "user": "alice",
     "rating": 5,
     "review": "Great plugin!"
@@ -140,6 +139,15 @@ The plugin registry now supports community-driven feedback for all plugins, incl
 
 ## Listing Feedback & Aggregates
 
+- **CLI:**
+  - List all feedback for a plugin:
+    ```sh
+    pnpm tsx scripts/pluginFeedbackCli.ts list myPlugin
+    ```
+  - Get aggregate feedback for a plugin:
+    ```sh
+    pnpm tsx scripts/pluginFeedbackCli.ts aggregate myPlugin
+    ```
 - **Registry API:**
   - When listing plugins (via CLI, HTTP, or WebSocket), each plugin entry now includes a `feedbackAggregate` field:
     - `averageRating`: number (1-5)

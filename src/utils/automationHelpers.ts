@@ -7,7 +7,7 @@
  * Extension: Add new helpers for automation scripts as needed.
  *
  * Example usage:
- *   import { readJsonFile, writeJsonFile, handleError } from '../utils/automationHelpers';
+ *   import { readJsonFile, writeJsonFile, handleError } from '../utils/automationHelpers.js';
  *   const data = await readJsonFile('file.json');
  *   await writeJsonFile('file.json', data);
  *   handleError(e, args.json);

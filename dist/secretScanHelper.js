@@ -1,6 +1,12 @@
-// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
-import { SECRET_SCAN_REPORT_PATH } from './paths.js';
+// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper.
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const SECRET_SCAN_REPORT_PATH = path.join(__dirname, 'secret-scan-report.json');
+// @ts-ignore
 import { writeJsonSafe, readJsonSafe } from './utils.js';
+// @ts-ignore
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
 import { execSync } from 'child_process';
 // --- Run trufflehog or gitleaks if available ---
@@ -25,7 +31,7 @@ async function runSecretScan() {
             execSync('which gitleaks', { stdio: 'ignore' });
             const out = execSync('gitleaks detect --source . --report-format json', { encoding: 'utf-8' });
             result.tool = 'gitleaks';
-            result.findings = JSON.parse(out).findings || [];
+            result.findings = JSON.parse(out).findings ?? [];
         }
         catch {
             result.error = 'No secret scanning tool found (trufflehog or gitleaks) or scan failed.';

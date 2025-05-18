@@ -11,7 +11,7 @@
 - id: epic-docs-code-e2e-automation-plan-surfacing
 - slug: epic-docs-code-e2e-automation-plan-surfacing
 - docPath: docs/epics/epic-docs-code-e2e-automation-plan-surfacing.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [automate-onboarding-checklist-generation-enforcement](docs/stories/automate-onboarding-checklist-generation-enforcement.md)

@@ -5,7 +5,7 @@ import type { AgentTask, AgentResult, AgentLogger } from '../schemas/AgentOrches
 // @ts-ignore
 import { publishEvent, subscribeToTopic } from '../memoryLaneHelper.js';
 // @ts-ignore
-import { AgentTaskSchema, AgentResultSchema } from '../src/schemas/AgentOrchestrationEngineSchema.js';
+import { AgentTaskSchema, AgentResultSchema } from '../schemas/AgentOrchestrationEngineSchema.js';
 // @ts-ignore
 import type { CapabilityDescribe, HealthStatus } from '../capabilities/Capability.js';
 
@@ -217,7 +217,7 @@ export class ContentAgent extends BaseAgent {
         type: 'Log',
         agentId,
         timestamp: new Date().toISOString(),
-        payload: { level: 'info', message: 'Received DraftFeedback', details: 'payload' in event ? (event as any).payload : undefined }
+        payload: { level: 'info', message: 'Received DraftFeedback', details: typeof event === 'object' && event !== null && 'payload' in event ? (event as { payload?: unknown }).payload : undefined }
       });
     });
     // Optionally, log that the event loop has started

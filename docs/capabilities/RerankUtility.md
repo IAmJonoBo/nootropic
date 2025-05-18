@@ -1,52 +1,48 @@
 # RerankUtility
 
-**Description:** Bi-encoder and cross-encoder reranking utility. Supports LLM-based, embedding-based, and diversity (MMR) reranking. Registry/describe/health compliant.
+Modular reranking utility supporting embedding-based, LLM-based, cross-encoder, and MMR (diversity) reranking. Registry-driven, describe/health compliant. Stubs for pluggable backends.
 
-- **Compliance:** Capability-compliant, registry/describe/health compliant, open-source-first
+**Usage:**
 
-## Usage Example
+`import RerankUtility from 'nootropic/utils/context/rerank'; const util = new RerankUtility(); await util.rerank({ strategy: 'embedding', query: 'foo', results });`
 
-```ts
-import { RerankUtility, BiEncoderReranker, CrossEncoderReranker } from 'nootropic/utils/context/RerankUtility';
-import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter';
-const hf = new HuggingFaceLLMAdapter();
-const bi = new BiEncoderReranker(hf);
-const cross = new CrossEncoderReranker(hf);
-const rerank = new RerankUtility(bi, cross);
-await rerank.rerank('query', ['a', 'b']);
+## Methods/Functions
+
+- **rerank**: (options: RerankOptions) => Promise<string[]> - Rerank results using the selected strategy.
+- **health**: () => Promise<HealthStatus> - Health check.
+- **describe**: () => CapabilityDescribe - Describe this utility.
+
+## Schema
+
+```json
+{
+  "_def": {
+    "unknownKeys": "strip",
+    "catchall": {
+      "_def": {
+        "typeName": "ZodNever"
+      },
+      "~standard": {
+        "version": 1,
+        "vendor": "zod"
+      }
+    },
+    "typeName": "ZodObject"
+  },
+  "~standard": {
+    "version": 1,
+    "vendor": "zod"
+  },
+  "_cached": null
+}
 ```
-
-## Methods
-
-| Method     | Signature                                         | Description                                 |
-|------------|---------------------------------------------------|---------------------------------------------|
-| rerank     | (query: string, candidates: string[]) => Promise<string[]> | Rerank candidates using bi/cross-encoder   |
-
-## Supported Strategies
-- Bi-encoder
-- Cross-encoder
-- LLM-based
-- MMR (diversity)
-
-## Integration Points
-- HuggingFaceLLMAdapter
-- OpenRouterLLMAdapter
-- OllamaLLMAdapter
-
 ## References
-- https://www.sbert.net/
 
-## Registry/Describe/Health Compliance
-- Exports `describe()` and `health()` methods
-- Discoverable via registry and /capabilities endpoint
-- AI/LLM-friendly documentation 
+- https://arxiv.org/html/2404.01037v1
+- https://github.com/explodinggradients/ragas
+- https://www.pinecone.io/learn/series/rag/rerankers/
 
-## 🧪 Advanced Testing & Best Practices (2024)
+## AI/LLM Usage Hint
 
-- **Repeatability/Alignment**: Utility is tested for consistent output across multiple runs with different LLM adapters.
-- **Responsibility**: Basic bias, toxicity, and fairness checks are included (with stubs or open-source tools).
-- **Performance/Cost**: Latency and token usage are logged and monitored.
-- **Edge Cases**: Tested with malformed, adversarial, and long/complex inputs.
-- **Feedback & Observability**: Feedback loops and error logging are integrated for continuous improvement.
+- LLM/AI-friendly documentation enabled.
 
-See `tests/context/llmAdapterIntegration.test.ts` and README for details. Run with `pnpm test:integration`. 

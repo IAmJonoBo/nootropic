@@ -1,0 +1,2495 @@
+DEBUG: Sync test file write succeeded.
+DEBUG: Test file write succeeded.
+DEBUG: Files to process: [
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/initEventBusBackends.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/ReasoningLoopUtility.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/agentRegistry.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/embeddingRegistry.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextFileHelpers.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/index.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/internal.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/rerank.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ContextManager.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_SecretsManager.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_TypeScript_type_casting_note.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_agent_discovery.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ajv_cli_validation_in_ci.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_best_practices.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_workflow.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_cache_management.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ci_cd_integration.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contextSnapshotHelper.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_context_handover.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing_md.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_editor_config_recommendations.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_liveMutationPRHelper.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_monorepo_typescript_config.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_multi_agent_orchestration.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_guide.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_instructions.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_sample_config_files.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_schema_validation_onboarding.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_streaming_backend_integration.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_tsdoc_style_enforcement.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_updated_agent_event_interface.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/registryDescribe.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/index.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemoriesRemote.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/audit-fix-esm-imports.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/docs-check-sync.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/esm-ts-ignore-codemod.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/generateDocManifest.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/licenseValidation.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/migrateBacklogToMarkdown.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/pluginFeedbackCli.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/removeLegacyAndMergeCopies.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/scanAndHealRegistry.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/validateDescribeRegistry.ts',
+  '/Users/jonathanbotha/Projects/GitHub/nootropic/scripts/watchRegistryAndDocs.ts'
+]
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts : {
+  name: 'BaseAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/nootropic/nootropic',
+  usage: "import { BaseAgent } from 'nootropic/agents';",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  methods: [
+    {
+      name: 'runTask',
+      signature: '(task: unknown) => Promise<AgentResult>',
+      description: 'Run a task and return the result.'
+    },
+    {
+      name: 'init',
+      signature: '() => Promise<void>',
+      description: 'Initialize the agent.'
+    },
+    {
+      name: 'shutdown',
+      signature: '() => Promise<void>',
+      description: 'Shutdown the agent.'
+    },
+    {
+      name: 'reload',
+      signature: '() => Promise<void>',
+      description: 'Reload the agent.'
+    },
+    {
+      name: 'health',
+      signature: '() => Promise<HealthStatus>',
+      description: 'Health check for the agent.'
+    }
+  ],
+  schema: { runTask: { input: [Object], output: [Object] } },
+  promptTemplates: [
+    {
+      name: 'Agent Task Execution',
+      description: 'Prompt for instructing the agent to execute a task and return the result.',
+      template: 'Execute the following task: {{taskDescription}}. Return the result as a structured object.',
+      usage: 'Used by runTask.'
+    },
+    {
+      name: 'Context Handoff',
+      description: 'Prompt for instructing the agent to perform a context handoff when the context window is nearly full.',
+      template: 'When the context window is nearly full, generate an optimized handover payload using recent messages, relevant old context, and a summary. Prioritize critical information.',
+      usage: 'Used by getOptimizedHandoverPayload.'
+    },
+    {
+      name: 'Error Handling',
+      description: 'Prompt for instructing the agent to handle errors gracefully and log them.',
+      template: 'If an error occurs during task execution, log the error and return a structured error object.',
+      usage: 'Used by error handling logic.'
+    }
+  ],
+  references: [
+    'https://benhouston3d.com/blog/crafting-readmes-for-ai',
+    'https://www.octopipe.com/blog/docs-first-engineering-workflow',
+    'https://medium.com/@nikhithsomasani/best-practices-for-using-typescript-in-2025-a-guide-for-experienced-developers-4fca1cfdf052',
+    'https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3'
+  ]
+}
+DEBUG: Passed schema validation BaseAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts
+DEBUG: About to deduplicate BaseAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts : function
+DEBUG: Passed health check, registering BaseAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts
+DEBUG: About to register BaseAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts : {
+  name: 'CollectionAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Collect Data',
+      description: 'Prompt for instructing the agent to collect data from a specified source.',
+      template: 'Collect data from the following source: {{source}}.',
+      usage: 'Used for data collection workflows.'
+    },
+    {
+      name: 'Filter Data',
+      description: 'Prompt for instructing the agent to filter collected data by criteria.',
+      template: 'Filter the collected data by the following criteria: {{criteria}}.',
+      usage: 'Used for data filtering workflows.'
+    },
+    {
+      name: 'Aggregate Data',
+      description: 'Prompt for instructing the agent to aggregate data by a specified method.',
+      template: 'Aggregate the data using the following method: {{method}}.',
+      usage: 'Used for data aggregation workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation CollectionAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts
+DEBUG: About to deduplicate CollectionAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts : function
+DEBUG: Passed health check, registering CollectionAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts
+DEBUG: About to register CollectionAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts : {
+  name: 'ContentAgent',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation ContentAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts
+DEBUG: About to deduplicate ContentAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts : function
+DEBUG: Passed health check, registering ContentAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts
+DEBUG: About to register ContentAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts : {
+  name: 'EnsembleAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [],
+  schema: {}
+}
+DEBUG: Passed schema validation EnsembleAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts
+DEBUG: About to deduplicate EnsembleAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts : function
+DEBUG: Passed health check, registering EnsembleAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts
+DEBUG: About to register EnsembleAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts : {
+  name: 'ExplainabilityAgent',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation ExplainabilityAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts
+DEBUG: About to deduplicate ExplainabilityAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts : function
+DEBUG: Passed health check, registering ExplainabilityAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts
+DEBUG: About to register ExplainabilityAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts : {
+  name: 'FeedbackAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Collect Feedback',
+      description: 'Prompt for instructing the agent to collect feedback from a user or agent.',
+      template: 'Collect feedback from the following user/agent: {{userOrAgent}}.',
+      usage: 'Used for feedback collection workflows.'
+    },
+    {
+      name: 'Submit Feedback',
+      description: 'Prompt for instructing the agent to submit feedback to a system or registry.',
+      template: 'Submit the following feedback to the registry: {{feedbackContent}}.',
+      usage: 'Used for feedback submission workflows.'
+    },
+    {
+      name: 'Summarize Feedback',
+      description: 'Prompt for instructing the agent to summarize all collected feedback.',
+      template: 'Summarize all collected feedback for context: {{context}}.',
+      usage: 'Used for feedback summarization workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation FeedbackAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts
+DEBUG: About to deduplicate FeedbackAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts : function
+DEBUG: Passed health check, registering FeedbackAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts
+DEBUG: About to register FeedbackAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts : {
+  name: 'FormalVerifierAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Verify Code',
+      description: 'Prompt for instructing the agent to formally verify a codebase or function.',
+      template: 'Formally verify the following code/function: {{codeOrFunction}}. Report any issues or proofs.',
+      usage: 'Used for formal verification workflows.'
+    },
+    {
+      name: 'Explain Verification Result',
+      description: 'Prompt for instructing the agent to explain a formal verification result.',
+      template: 'Explain the following formal verification result: {{verificationResult}}.',
+      usage: 'Used for result explanation workflows.'
+    },
+    {
+      name: 'Report Verification Summary',
+      description: 'Prompt for instructing the agent to summarize and report all verification results.',
+      template: 'Summarize and report all formal verification results for context: {{context}}.',
+      usage: 'Used for reporting workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation FormalVerifierAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts
+DEBUG: About to deduplicate FormalVerifierAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts : function
+DEBUG: Passed health check, registering FormalVerifierAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts
+DEBUG: About to register FormalVerifierAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts : {
+  name: 'HumanInTheLoopAgent',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation HumanInTheLoopAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts
+DEBUG: About to deduplicate HumanInTheLoopAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts : function
+DEBUG: Passed health check, registering HumanInTheLoopAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts
+DEBUG: About to register HumanInTheLoopAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts : {
+  name: 'MemoryAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [],
+  schema: {}
+}
+DEBUG: Passed schema validation MemoryAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts
+DEBUG: About to deduplicate MemoryAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts : function
+DEBUG: Passed health check, registering MemoryAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts
+DEBUG: About to register MemoryAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts : {
+  name: 'MultimodalAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Process Multimodal Data',
+      description: 'Prompt for instructing the agent to process multimodal (text, image, audio) data.',
+      template: 'Process the following multimodal data: {{dataDescription}}.',
+      usage: 'Used for multimodal data processing workflows.'
+    },
+    {
+      name: 'Generate Multimodal Output',
+      description: 'Prompt for instructing the agent to generate multimodal output.',
+      template: 'Generate a multimodal output (text, image, audio) for the following prompt: {{prompt}}.',
+      usage: 'Used for multimodal output generation workflows.'
+    },
+    {
+      name: 'Describe Multimodal Content',
+      description: 'Prompt for instructing the agent to describe multimodal content.',
+      template: 'Describe the following multimodal content: {{contentDescription}}.',
+      usage: 'Used for multimodal content description workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation MultimodalAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts
+DEBUG: About to deduplicate MultimodalAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts : function
+DEBUG: Passed health check, registering MultimodalAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts
+DEBUG: About to register MultimodalAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts : {
+  name: 'MutationAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Suggest Mutation',
+      description: 'Prompt for instructing the agent to suggest a code mutation for a given file or function.',
+      template: 'Suggest a mutation for the following file/function: {{target}}. Explain the rationale.',
+      usage: 'Used for mutation suggestion workflows.'
+    },
+    {
+      name: 'Apply Mutation',
+      description: 'Prompt for instructing the agent to apply a code mutation.',
+      template: 'Apply the following mutation to the code: {{mutationDescription}}.',
+      usage: 'Used for mutation application workflows.'
+    },
+    {
+      name: 'Review Mutation',
+      description: 'Prompt for instructing the agent to review a proposed code mutation.',
+      template: 'Review the following code mutation: {{mutationDescription}}. Provide feedback and improvement suggestions.',
+      usage: 'Used for mutation review workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation MutationAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts
+DEBUG: About to deduplicate MutationAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts : function
+DEBUG: Passed health check, registering MutationAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts
+DEBUG: About to register MutationAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts : {
+  name: 'OrchestratorAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [],
+  schema: {}
+}
+DEBUG: Passed schema validation OrchestratorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts
+DEBUG: About to deduplicate OrchestratorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts : function
+DEBUG: Passed health check, registering OrchestratorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts
+DEBUG: About to register OrchestratorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts : {
+  name: 'ReasoningLoopUtility',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [],
+  schema: {}
+}
+DEBUG: Passed schema validation ReasoningLoopUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts
+DEBUG: About to deduplicate ReasoningLoopUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts : function
+DEBUG: Passed health check, registering ReasoningLoopUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts
+DEBUG: About to register ReasoningLoopUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts : {
+  name: 'ReviewAgent',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation ReviewAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts
+DEBUG: About to deduplicate ReviewAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts : function
+DEBUG: Passed health check, registering ReviewAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts
+DEBUG: About to register ReviewAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts : {
+  name: 'SupervisorAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Supervise Agent Task',
+      description: 'Prompt for instructing the supervisor agent to oversee and review a delegated agent task.',
+      template: 'Supervise the execution of the following agent task: {{taskDescription}}. Review the result and provide feedback.',
+      usage: 'Used for agent supervision workflows.'
+    },
+    {
+      name: 'Delegate Task',
+      description: 'Prompt for instructing the supervisor agent to delegate a task to a sub-agent.',
+      template: 'Delegate the following task to the most suitable sub-agent: {{taskDescription}}.',
+      usage: 'Used for task delegation workflows.'
+    },
+    {
+      name: 'Review Agent Output',
+      description: 'Prompt for instructing the supervisor agent to review the output of a sub-agent.',
+      template: 'Review the output of the sub-agent for the following task: {{taskDescription}}. Provide a summary and improvement suggestions.',
+      usage: 'Used for output review workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation SupervisorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts
+DEBUG: About to deduplicate SupervisorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts : function
+DEBUG: Passed health check, registering SupervisorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts
+DEBUG: About to register SupervisorAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts : {
+  name: 'VibeCodingAgent',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation VibeCodingAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts
+DEBUG: About to deduplicate VibeCodingAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts : function
+DEBUG: Passed health check, registering VibeCodingAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts
+DEBUG: About to register VibeCodingAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts : {
+  name: 'WriterAgent',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [
+    {
+      name: 'Write Text',
+      description: 'Prompt for instructing the agent to write text on a given topic.',
+      template: 'Write a detailed article about {{topic}}.',
+      usage: 'Used for content generation.'
+    },
+    {
+      name: 'Edit Text',
+      description: 'Prompt for instructing the agent to edit or improve a given text.',
+      template: 'Edit the following text for clarity and conciseness: {{text}}.',
+      usage: 'Used for editing workflows.'
+    },
+    {
+      name: 'Summarize Text',
+      description: 'Prompt for instructing the agent to summarize a given text.',
+      template: 'Summarize the following text: {{text}}.',
+      usage: 'Used for summarization workflows.'
+    }
+  ]
+}
+DEBUG: Passed schema validation WriterAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts
+DEBUG: About to deduplicate WriterAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts : function
+DEBUG: Passed health check, registering WriterAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts
+DEBUG: About to register WriterAgent /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts : {
+  name: 'agents',
+  description: 'Stub lifecycle hooks for registry compliance.',
+  promptTemplates: [],
+  schema: {}
+}
+DEBUG: Passed schema validation agents /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts
+DEBUG: About to deduplicate agents /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts : function
+DEBUG: Passed health check, registering agents /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts
+DEBUG: About to register agents /Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts : {
+  name: 'DaprEventBus',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation DaprEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts
+DEBUG: About to deduplicate DaprEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts : function
+DEBUG: Passed health check, registering DaprEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts
+DEBUG: About to register DaprEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/DaprEventBus.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts : {
+  name: 'HuggingFaceLLMAdapter',
+  description: 'Adapter for HuggingFace Inference API. Supports text generation, embeddings, and model info. Registry/describe/health compliant.',
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  provenance: 'https://huggingface.co/docs/api-inference/index',
+  methods: [
+    {
+      name: 'generateText',
+      signature: '(prompt, model?, options?) => Promise<string>',
+      description: 'Generate text using a HuggingFace model.'
+    },
+    {
+      name: 'embedText',
+      signature: '(text, model?, options?) => Promise<number[]>',
+      description: 'Get embeddings for text using a HuggingFace model.'
+    },
+    {
+      name: 'getModelInfo',
+      signature: '(model) => Promise<Record<string, unknown>>',
+      description: 'Get model metadata from HuggingFace.'
+    },
+    {
+      name: 'health',
+      signature: '() => Promise<HealthStatus>',
+      description: 'Health check.'
+    },
+    {
+      name: 'describe',
+      signature: '() => CapabilityDescribe',
+      description: 'Describe this adapter.'
+    }
+  ],
+  usage: "import { HuggingFaceLLMAdapter } from 'nootropic/adapters/HuggingFaceLLMAdapter'; const adapter = new HuggingFaceLLMAdapter(); await adapter.generateText('Hello!');",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [ 'https://huggingface.co/docs/api-inference/index' ]
+}
+DEBUG: Passed schema validation HuggingFaceLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts
+DEBUG: About to deduplicate HuggingFaceLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts : function
+DEBUG: Passed health check, registering HuggingFaceLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts
+DEBUG: About to register HuggingFaceLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/HuggingFaceLLMAdapter.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts : {
+  name: 'KafkaEventBus',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation KafkaEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts
+DEBUG: About to deduplicate KafkaEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts : function
+DEBUG: Passed health check, registering KafkaEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts
+DEBUG: About to register KafkaEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/KafkaEventBus.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts : {
+  name: 'NatsEventBus',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation NatsEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts
+DEBUG: About to deduplicate NatsEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts : function
+DEBUG: Passed health check, registering NatsEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts
+DEBUG: About to register NatsEventBus /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/NatsEventBus.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts : {
+  name: 'OllamaLLMAdapter',
+  description: 'Adapter for Ollama local LLM server. Supports text generation, embeddings (if available), and model info. Registry/describe/health compliant.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/jmorganca/ollama',
+  methods: [
+    {
+      name: 'generateText',
+      signature: '(prompt, model?, options?) => Promise<string>',
+      description: 'Generate text using an Ollama model.'
+    },
+    {
+      name: 'embedText',
+      signature: '(text, model?, options?) => Promise<number[]>',
+      description: 'Get embeddings for text using an Ollama model (if supported).'
+    },
+    {
+      name: 'getModelInfo',
+      signature: '(model, options?) => Promise<Record<string, unknown>>',
+      description: 'Get model metadata from Ollama.'
+    },
+    {
+      name: 'health',
+      signature: '() => Promise<HealthStatus>',
+      description: 'Health check.'
+    },
+    {
+      name: 'describe',
+      signature: '() => CapabilityDescribe',
+      description: 'Describe this adapter.'
+    }
+  ],
+  usage: "import { OllamaLLMAdapter } from 'nootropic/adapters/OllamaLLMAdapter'; const adapter = new OllamaLLMAdapter(); await adapter.generateText('Hello!');",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [ 'https://github.com/jmorganca/ollama' ]
+}
+DEBUG: Passed schema validation OllamaLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts
+DEBUG: About to deduplicate OllamaLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts : function
+DEBUG: Passed health check, registering OllamaLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts
+DEBUG: About to register OllamaLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OllamaLLMAdapter.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts : {
+  name: 'OpenRouterLLMAdapter',
+  description: 'Adapter for OpenRouter API. Supports text generation, embeddings, and model info. Registry/describe/health compliant.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://openrouter.ai/docs',
+  methods: [
+    {
+      name: 'generateText',
+      signature: '(prompt, model?, options?) => Promise<string>',
+      description: 'Generate text using an OpenRouter model.'
+    },
+    {
+      name: 'embedText',
+      signature: '(text, model?, options?) => Promise<number[]>',
+      description: 'Get embeddings for text using an OpenRouter model.'
+    },
+    {
+      name: 'getModelInfo',
+      signature: '(model) => Promise<Record<string, unknown>>',
+      description: 'Get model metadata from OpenRouter.'
+    },
+    {
+      name: 'health',
+      signature: '() => Promise<HealthStatus>',
+      description: 'Health check.'
+    },
+    {
+      name: 'describe',
+      signature: '() => CapabilityDescribe',
+      description: 'Describe this adapter.'
+    }
+  ],
+  usage: "import { OpenRouterLLMAdapter } from 'nootropic/adapters/OpenRouterLLMAdapter'; const adapter = new OpenRouterLLMAdapter(); await adapter.generateText('Hello!');",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [ 'https://openrouter.ai/docs' ]
+}
+DEBUG: Passed schema validation OpenRouterLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts
+DEBUG: About to deduplicate OpenRouterLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts : function
+DEBUG: Passed health check, registering OpenRouterLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts
+DEBUG: About to register OpenRouterLLMAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/OpenRouterLLMAdapter.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts : {
+  name: 'CrewAIAdapter',
+  description: 'Adapter for CrewAI agent orchestration. Supports event-driven agent tasks and context management. Follows 2025 docs-first and LLM-friendly best practices.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/joaomdmoura/crewAI',
+  methods: [
+    {
+      name: 'runAgentTask',
+      signature: '(agentProfile, task, context?, logger?) => Promise<AgentResult>',
+      description: 'Runs a task using a CrewAI agent.'
+    },
+    {
+      name: 'getAgentContext',
+      signature: '(agentId: string) => Promise<AgentContext>',
+      description: 'Returns the agent context.'
+    },
+    {
+      name: 'listAgents',
+      signature: '() => Promise<AgentProfile[]>',
+      description: 'Lists available agents.'
+    }
+  ],
+  usage: "import { CrewAIAdapter } from 'nootropic/adapters/crewAIAdapter'; const adapter = new CrewAIAdapter(); await adapter.runAgentTask(profile, task);",
+  schema: {
+    runAgentTask: { input: [Object], output: [Object] },
+    getAgentContext: { input: [Object], output: [Object] },
+    listAgents: { input: [Object], output: [Object] }
+  },
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [
+    'https://crewai.com/docs/',
+    'https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3'
+  ]
+}
+DEBUG: Passed schema validation CrewAIAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts
+DEBUG: About to deduplicate CrewAIAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts : function
+DEBUG: Passed health check, registering CrewAIAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts
+DEBUG: About to register CrewAIAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/crewAIAdapter.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts : {
+  name: 'adapters',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation adapters /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts
+DEBUG: About to deduplicate adapters /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts : function
+DEBUG: Passed health check, registering adapters /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts
+DEBUG: About to register adapters /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/index.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/initEventBusBackends.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/initEventBusBackends.ts : null
+DEBUG: Passed schema validation initEventBusBackends /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/initEventBusBackends.ts
+DEBUG: About to deduplicate initEventBusBackends /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/initEventBusBackends.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/initEventBusBackends.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts : {
+  name: 'LangChainAdapter',
+  description: 'Adapter for LangChain agent orchestration. Supports event-driven agent tasks and context management. Follows 2025 docs-first and LLM-friendly best practices.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/langchain-ai/langchainjs',
+  methods: [
+    {
+      name: 'runAgentTask',
+      signature: '(agentProfile, task, context?, logger?) => Promise<AgentResult>',
+      description: 'Runs a task using a LangChain agent.'
+    },
+    {
+      name: 'getAgentContext',
+      signature: '(agentId: string) => Promise<AgentContext>',
+      description: 'Returns the agent context.'
+    },
+    {
+      name: 'listAgents',
+      signature: '() => Promise<AgentProfile[]>',
+      description: 'Lists available agents.'
+    }
+  ],
+  usage: "import { LangChainAdapter } from 'nootropic/adapters/langchainAdapter'; const adapter = new LangChainAdapter(); await adapter.runAgentTask(profile, task);",
+  schema: {
+    runAgentTask: { input: [Object], output: [Object] },
+    getAgentContext: { input: [Object], output: [Object] },
+    listAgents: { input: [Object], output: [Object] }
+  },
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [
+    'https://js.langchain.com/docs/',
+    'https://github.com/langchain-ai/langchainjs',
+    'https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3'
+  ]
+}
+DEBUG: Passed schema validation LangChainAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts
+DEBUG: About to deduplicate LangChainAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts : function
+DEBUG: Passed health check, registering LangChainAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts
+DEBUG: About to register LangChainAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/langchainAdapter.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts : {
+  name: 'SemanticKernelAdapter',
+  description: 'Adapter for Semantic Kernel agent orchestration. Supports event-driven agent tasks and context management. Follows 2025 docs-first and LLM-friendly best practices.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/microsoft/semantic-kernel',
+  methods: [
+    {
+      name: 'runAgentTask',
+      signature: '(agentProfile, task, context?, logger?) => Promise<AgentResult>',
+      description: 'Runs a task using a Semantic Kernel agent.'
+    },
+    {
+      name: 'getAgentContext',
+      signature: '(agentId: string) => Promise<AgentContext>',
+      description: 'Returns the agent context.'
+    },
+    {
+      name: 'listAgents',
+      signature: '() => Promise<AgentProfile[]>',
+      description: 'Lists available agents.'
+    }
+  ],
+  usage: "import { SemanticKernelAdapter } from 'nootropic/adapters/semanticKernelAdapter'; const adapter = new SemanticKernelAdapter(); await adapter.runAgentTask(profile, task);",
+  schema: {
+    runAgentTask: { input: [Object], output: [Object] },
+    getAgentContext: { input: [Object], output: [Object] },
+    listAgents: { input: [Object], output: [Object] }
+  },
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [
+    'https://github.com/microsoft/semantic-kernel',
+    'https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3'
+  ]
+}
+DEBUG: Passed schema validation SemanticKernelAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts
+DEBUG: About to deduplicate SemanticKernelAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts : function
+DEBUG: Passed health check, registering SemanticKernelAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts
+DEBUG: About to register SemanticKernelAdapter /Users/jonathanbotha/Projects/GitHub/nootropic/src/adapters/semanticKernelAdapter.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts : null
+DEBUG: Passed schema validation Capability /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts
+DEBUG: About to deduplicate Capability /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/Capability.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts : null
+DEBUG: Passed schema validation EmbeddingProvider /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts
+DEBUG: About to deduplicate EmbeddingProvider /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/EmbeddingProvider.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts : {
+  name: 'RAGPipelineUtility',
+  description: 'Hybrid retrieval, advanced chunking, reranking, and feedback loops for RAG pipelines. Delegates all core steps to modular, registry-compliant context utilities (ChunkingUtility, HybridRetrievalUtility, RerankUtility). Integrates with embedding providers and semantic index. Registry-compliant.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/jerryjliu/llama_index',
+  methods: [
+    {
+      name: 'runRAGPipeline',
+      signature: '(input: unknown) => Promise<{ output: unknown; logs: string[] }>',
+      description: 'Run a RAG pipeline: hybrid retrieval, chunking, reranking, feedback.'
+    },
+    {
+      name: 'health',
+      signature: '() => Promise<HealthStatus>',
+      description: 'Health check for RAGPipelineUtility.'
+    }
+  ],
+  usage: "import { RAGPipelineUtility } from 'nootropic/capabilities/RAGPipelineUtility'; const util = new RAGPipelineUtility(publishEvent); await util.runRAGPipeline(input);",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [
+    'https://github.com/jerryjliu/llama_index',
+    'https://weaviate.io/',
+    'https://github.com/explodinggradients/ragas',
+    'README.md#state-of-the-art-rag-pipelines-for-code--context-optimization',
+    'docs/ROADMAP.md#rag-pipeline-utility',
+    'RerankUtility.describe()'
+  ]
+}
+DEBUG: Passed schema validation RAGPipelineUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts
+DEBUG: About to deduplicate RAGPipelineUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/RAGPipelineUtility.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/ReasoningLoopUtility.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/ReasoningLoopUtility.ts : null
+DEBUG: Passed schema validation ReasoningLoopUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/ReasoningLoopUtility.ts
+DEBUG: About to deduplicate ReasoningLoopUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/ReasoningLoopUtility.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/agentRegistry.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/agentRegistry.ts : null
+DEBUG: Passed schema validation agentRegistry /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/agentRegistry.ts
+DEBUG: About to deduplicate agentRegistry /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/agentRegistry.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/agentRegistry.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/embeddingRegistry.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/embeddingRegistry.ts : [
+  {
+    name: 'hash-stub',
+    description: 'Stub hash-based embedding provider for offline/dev mode.',
+    license: 'MIT',
+    isOpenSource: true,
+    provenance: 'https://github.com/nootropic/nootropic',
+    methods: [ [Object], [Object] ],
+    usage: "import { getEmbeddingProvider } from 'nootropic/capabilities/embeddingRegistry'; const provider = getEmbeddingProvider(); await provider.embed('hello');",
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: []
+  },
+  {
+    name: 'huggingface',
+    description: 'HuggingFace Transformers.js local embedding provider (ONNX, runs in Node.js, no API key needed).',
+    license: 'MIT',
+    isOpenSource: true,
+    provenance: 'https://github.com/xenova/transformers.js',
+    methods: [ [Object], [Object] ],
+    usage: "Set HUGGINGFACE_MODEL env var to select model. Example: 'Xenova/all-MiniLM-L6-v2'.",
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: [ 'https://github.com/xenova/transformers.js' ]
+  },
+  {
+    name: 'ollama',
+    description: 'Ollama embedding provider (local REST API, supports open and HuggingFace models).',
+    license: 'MIT',
+    isOpenSource: true,
+    provenance: 'https://github.com/jmorganca/ollama',
+    methods: [ [Object], [Object] ],
+    usage: "Set OLLAMA_MODEL env var to select model. Example: 'mxbai-embed-large'. Ollama must be running locally.",
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: [
+      'https://ollama.com/blog/embedding-models',
+      'https://www.npmjs.com/package/ollama'
+    ]
+  },
+  {
+    name: 'custom',
+    description: 'Custom embedding provider stub. Extend this class to add your own provider.',
+    license: 'UNLICENSED',
+    isOpenSource: false,
+    provenance: 'User extension required',
+    methods: [ [Object], [Object] ],
+    usage: 'Extend CustomEmbeddingProvider and register in embeddingRegistry.ts.',
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: []
+  },
+  {
+    name: 'petals',
+    description: 'Petals distributed embedding provider (HTTP endpoint, supports large models).',
+    license: 'Apache-2.0',
+    isOpenSource: true,
+    provenance: 'https://github.com/bigscience-workshop/petals',
+    methods: [ [Object], [Object] ],
+    usage: 'Set PETALS_URL and PETALS_MODEL env vars. Default: http://localhost:8080/embed, bigscience/bloom-petals.',
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: [
+      'https://petals.ml/',
+      'https://github.com/bigscience-workshop/petals'
+    ]
+  },
+  {
+    name: 'lmstudio',
+    description: 'LM Studio embedding provider (OpenAI-compatible REST API, local server).',
+    license: 'AGPL-3.0',
+    isOpenSource: true,
+    provenance: 'https://github.com/lmstudio-ai',
+    methods: [ [Object], [Object] ],
+    usage: 'Set LMSTUDIO_URL and LMSTUDIO_MODEL env vars. Default: http://localhost:1234/v1/embeddings, all-MiniLM-L6-v2.',
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: [ 'https://lmstudio.ai/', 'https://github.com/lmstudio-ai' ]
+  },
+  {
+    name: 'http',
+    description: 'HTTP embedding provider (OpenAI-compatible REST API, generic).',
+    license: 'UNLICENSED',
+    isOpenSource: false,
+    provenance: 'User extension required',
+    methods: [ [Object], [Object] ],
+    usage: 'Set HTTP_EMBEDDING_URL and HTTP_EMBEDDING_MODEL env vars.',
+    docsFirst: true,
+    aiFriendlyDocs: true,
+    references: []
+  }
+]
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts : null
+DEBUG: Passed schema validation registry /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts
+DEBUG: About to deduplicate registry /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/capabilities/registry.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts : {
+  name: 'automationHelpers',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation automationHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts
+DEBUG: About to deduplicate automationHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts : function
+DEBUG: Passed health check, registering automationHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts
+DEBUG: About to register automationHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/automationHelpers.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts : {
+  name: 'cliHelpers',
+  description: 'Stub lifecycle hooks for registry compliance.'
+}
+DEBUG: Passed schema validation cliHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts
+DEBUG: About to deduplicate cliHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts : function
+DEBUG: Passed health check, registering cliHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts
+DEBUG: About to register cliHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/cliHelpers.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts : {
+  name: 'RerankUtility',
+  description: 'Bi-encoder + cross-encoder cascade reranking utility. Supports instruction-following reranking, registry/LLM/AI-friendly, pluggable adapters, and schema-validated.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://www.sbert.net/',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  usage: "import RerankUtility from 'nootropic/utils/context/RerankUtility'; const util = new RerankUtility(); await util.rerank('query', ['candidate1', 'candidate2'], { instruction: 'prefer code', topN: 5 });",
+  methods: [
+    {
+      name: 'rerank',
+      signature: '(query: string, candidates: string[], options?: { instruction?: string, topN?: number }) => Promise<string[]>',
+      description: 'Rerank candidates using bi-encoder and cross-encoder cascade, with optional instruction-following.'
+    }
+  ],
+  extensionPoints: [
+    'Pluggable bi-encoder/cross-encoder adapters',
+    'Instruction-following reranking',
+    'LLM/embedding backend selection',
+    'Advanced scoring/fusion logic (TODO)'
+  ],
+  features: [
+    'LLM/AI-friendly prompt templates',
+    'Instruction-following reranking',
+    'Pluggable adapters',
+    'Schema-validated input/output',
+    'Registry/describe/health compliance'
+  ],
+  promptTemplates: [
+    {
+      name: 'Rerank Candidates',
+      description: 'Rerank a list of candidates for a query using a specified strategy.',
+      template: 'rerank({ strategy, query, results, topK? })'
+    }
+  ],
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  }
+}
+DEBUG: Passed schema validation RerankUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts
+DEBUG: About to deduplicate RerankUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/RerankUtility.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts : {
+  name: 'cacheDir',
+  description: 'Cache directory helpers for nootropic. Ensures, lists, and manages cache files. Registry-compliant.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/nootropic/nootropic',
+  methods: [
+    {
+      name: 'ensureCacheDirExists',
+      signature: '() => Promise<void>',
+      description: 'Ensures the nootropic cache directory exists.'
+    },
+    {
+      name: 'getCacheDirPath',
+      signature: '() => string',
+      description: 'Returns the path to the nootropic cache directory.'
+    },
+    {
+      name: 'getCacheFilePath',
+      signature: '(name: string) => string',
+      description: 'Returns the path to a file in the cache directory.'
+    },
+    {
+      name: 'listCacheFiles',
+      signature: '() => Promise<string[]>',
+      description: 'Lists all files in the cache directory.'
+    }
+  ],
+  usage: "import cacheDirCapability, { getCacheDirPath } from 'nootropic/utils/context/cacheDir'; await cacheDirCapability.listCacheFiles();",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  references: [ 'utils/context/contextManager.js' ],
+  promptTemplates: [
+    {
+      name: 'List Cache Files',
+      description: 'List all files in the cache directory.',
+      template: 'listCacheFiles()'
+    },
+    {
+      name: 'Ensure Cache Directory Exists',
+      description: 'Ensure the cache directory exists.',
+      template: 'ensureCacheDirExists()'
+    },
+    {
+      name: 'Get Cache File Path',
+      description: 'Get the path to a file in the cache directory.',
+      template: 'getCacheFilePath(name)'
+    }
+  ]
+}
+DEBUG: Passed schema validation cacheDir /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts
+DEBUG: About to deduplicate cacheDir /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts : undefined
+DEBUG: Passed health check, registering cacheDir /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts
+DEBUG: About to register cacheDir /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/cacheDir.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextFileHelpers.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextFileHelpers.ts : null
+DEBUG: Passed schema validation contextFileHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextFileHelpers.ts
+DEBUG: About to deduplicate contextFileHelpers /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextFileHelpers.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextFileHelpers.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts : {
+  name: 'contextManager',
+  description: 'Context and file management utilities for nootropic. Includes directory, file, patch, and context helpers. All exports have TSDoc comments and are registry-compliant.',
+  functions: [
+    {
+      name: 'ensureDirExists',
+      signature: 'async (dirPath: string) => Promise<void>',
+      description: 'Ensures a directory exists (recursive, robust).'
+    },
+    {
+      name: 'listFilesInDir',
+      signature: 'async (dirPath: string) => Promise<string[]>',
+      description: 'Lists all files in a directory (non-recursive).'
+    },
+    {
+      name: 'writeFileSafe',
+      signature: 'async (filePath: string, data: string | object) => Promise<void>',
+      description: 'Writes a file safely with robust error handling.'
+    },
+    {
+      name: 'findFilePath',
+      signature: 'async (filename: string, dirs: string[]) => Promise<string | null>',
+      description: 'Recursively searches for a file by name in given directories.'
+    },
+    {
+      name: 'pathExists',
+      signature: 'async (pathToCheck: string) => Promise<boolean>',
+      description: 'Checks if a path exists.'
+    },
+    {
+      name: 'readJsonFile',
+      signature: 'async <T = unknown>(filePath: string) => Promise<T | null>',
+      description: 'Reads a JSON file, returns null on error.'
+    },
+    {
+      name: 'writeJsonFile',
+      signature: 'async <T = unknown>(filePath: string, data: T) => Promise<void>',
+      description: 'Writes a JSON file, robust to errors.'
+    },
+    {
+      name: 'generateTodoPatch',
+      signature: '(original: string, patched: string, file: string, line: number) => string',
+      description: 'Generates a patch for TODO/FIXME resolution.'
+    },
+    {
+      name: 'PatchInfo',
+      signature: 'interface',
+      description: 'Patch info type for patch generation utilities.'
+    }
+  ],
+  promptTemplates: [
+    {
+      name: 'Prune Context',
+      description: 'Prune context by age, size, or token budget.',
+      template: 'pruneContext({ maxAgeDays?, maxSizeBytes?, maxTokens? })'
+    },
+    {
+      name: 'Archive Context',
+      description: 'Archive the current context snapshot.',
+      template: 'archiveContext(tier?)'
+    },
+    {
+      name: 'Get Context Summaries',
+      description: 'Retrieve context summaries from SHIMI memory.',
+      template: 'getContextSummaries(query, topK?)'
+    }
+  ],
+  references: [ 'https://arxiv.org/abs/2504.06135' ],
+  schema: {}
+}
+DEBUG: Passed schema validation contextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts
+DEBUG: About to deduplicate contextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/contextManager.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/index.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/index.ts : {
+  name: 'contextManager',
+  description: 'Context and file management utilities for nootropic. Includes directory, file, patch, and context helpers. All exports have TSDoc comments and are registry-compliant.',
+  functions: [
+    {
+      name: 'ensureDirExists',
+      signature: 'async (dirPath: string) => Promise<void>',
+      description: 'Ensures a directory exists (recursive, robust).'
+    },
+    {
+      name: 'listFilesInDir',
+      signature: 'async (dirPath: string) => Promise<string[]>',
+      description: 'Lists all files in a directory (non-recursive).'
+    },
+    {
+      name: 'writeFileSafe',
+      signature: 'async (filePath: string, data: string | object) => Promise<void>',
+      description: 'Writes a file safely with robust error handling.'
+    },
+    {
+      name: 'findFilePath',
+      signature: 'async (filename: string, dirs: string[]) => Promise<string | null>',
+      description: 'Recursively searches for a file by name in given directories.'
+    },
+    {
+      name: 'pathExists',
+      signature: 'async (pathToCheck: string) => Promise<boolean>',
+      description: 'Checks if a path exists.'
+    },
+    {
+      name: 'readJsonFile',
+      signature: 'async <T = unknown>(filePath: string) => Promise<T | null>',
+      description: 'Reads a JSON file, returns null on error.'
+    },
+    {
+      name: 'writeJsonFile',
+      signature: 'async <T = unknown>(filePath: string, data: T) => Promise<void>',
+      description: 'Writes a JSON file, robust to errors.'
+    },
+    {
+      name: 'generateTodoPatch',
+      signature: '(original: string, patched: string, file: string, line: number) => string',
+      description: 'Generates a patch for TODO/FIXME resolution.'
+    },
+    {
+      name: 'PatchInfo',
+      signature: 'interface',
+      description: 'Patch info type for patch generation utilities.'
+    }
+  ],
+  promptTemplates: [
+    {
+      name: 'Prune Context',
+      description: 'Prune context by age, size, or token budget.',
+      template: 'pruneContext({ maxAgeDays?, maxSizeBytes?, maxTokens? })'
+    },
+    {
+      name: 'Archive Context',
+      description: 'Archive the current context snapshot.',
+      template: 'archiveContext(tier?)'
+    },
+    {
+      name: 'Get Context Summaries',
+      description: 'Retrieve context summaries from SHIMI memory.',
+      template: 'getContextSummaries(query, topK?)'
+    }
+  ],
+  references: [ 'https://arxiv.org/abs/2504.06135' ],
+  schema: {}
+}
+DEBUG: Passed schema validation contextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/index.ts
+DEBUG: About to deduplicate contextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/index.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/internal.ts typeof mod.describe: function typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/internal.ts : {
+  name: 'contextManager',
+  description: 'Context and file management utilities for nootropic. Includes directory, file, patch, and context helpers. All exports have TSDoc comments and are registry-compliant.',
+  functions: [
+    {
+      name: 'ensureDirExists',
+      signature: 'async (dirPath: string) => Promise<void>',
+      description: 'Ensures a directory exists (recursive, robust).'
+    },
+    {
+      name: 'listFilesInDir',
+      signature: 'async (dirPath: string) => Promise<string[]>',
+      description: 'Lists all files in a directory (non-recursive).'
+    },
+    {
+      name: 'writeFileSafe',
+      signature: 'async (filePath: string, data: string | object) => Promise<void>',
+      description: 'Writes a file safely with robust error handling.'
+    },
+    {
+      name: 'findFilePath',
+      signature: 'async (filename: string, dirs: string[]) => Promise<string | null>',
+      description: 'Recursively searches for a file by name in given directories.'
+    },
+    {
+      name: 'pathExists',
+      signature: 'async (pathToCheck: string) => Promise<boolean>',
+      description: 'Checks if a path exists.'
+    },
+    {
+      name: 'readJsonFile',
+      signature: 'async <T = unknown>(filePath: string) => Promise<T | null>',
+      description: 'Reads a JSON file, returns null on error.'
+    },
+    {
+      name: 'writeJsonFile',
+      signature: 'async <T = unknown>(filePath: string, data: T) => Promise<void>',
+      description: 'Writes a JSON file, robust to errors.'
+    },
+    {
+      name: 'generateTodoPatch',
+      signature: '(original: string, patched: string, file: string, line: number) => string',
+      description: 'Generates a patch for TODO/FIXME resolution.'
+    },
+    {
+      name: 'PatchInfo',
+      signature: 'interface',
+      description: 'Patch info type for patch generation utilities.'
+    }
+  ],
+  promptTemplates: [
+    {
+      name: 'Prune Context',
+      description: 'Prune context by age, size, or token budget.',
+      template: 'pruneContext({ maxAgeDays?, maxSizeBytes?, maxTokens? })'
+    },
+    {
+      name: 'Archive Context',
+      description: 'Archive the current context snapshot.',
+      template: 'archiveContext(tier?)'
+    },
+    {
+      name: 'Get Context Summaries',
+      description: 'Retrieve context summaries from SHIMI memory.',
+      template: 'getContextSummaries(query, topK?)'
+    }
+  ],
+  references: [ 'https://arxiv.org/abs/2504.06135' ],
+  schema: {}
+}
+DEBUG: Passed schema validation contextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/internal.ts
+DEBUG: About to deduplicate contextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/internal.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/rerank.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/rerank.ts : {
+  name: 'RerankUtility',
+  description: 'Modular reranking utility supporting embedding-based, LLM-based, cross-encoder, and MMR (diversity) reranking. Registry-driven, describe/health compliant. Stubs for pluggable backends.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://arxiv.org/html/2404.01037v1',
+  methods: [
+    {
+      name: 'rerank',
+      signature: '(options: RerankOptions) => Promise<string[]>',
+      description: 'Rerank results using the selected strategy.'
+    },
+    {
+      name: 'health',
+      signature: '() => Promise<HealthStatus>',
+      description: 'Health check.'
+    },
+    {
+      name: 'describe',
+      signature: '() => CapabilityDescribe',
+      description: 'Describe this utility.'
+    }
+  ],
+  usage: "import RerankUtility from 'nootropic/utils/context/rerank'; const util = new RerankUtility(); await util.rerank({ strategy: 'embedding', query: 'foo', results });",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  promptTemplates: [
+    {
+      name: 'Rerank Results',
+      description: 'Rerank a list of results for a query using a specified strategy.',
+      template: 'rerank({ strategy, query, results, topK? })'
+    }
+  ],
+  references: [
+    'https://arxiv.org/html/2404.01037v1',
+    'https://github.com/explodinggradients/ragas',
+    'https://www.pinecone.io/learn/series/rag/rerankers/'
+  ],
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  }
+}
+DEBUG: Passed schema validation RerankUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/rerank.ts
+DEBUG: About to deduplicate RerankUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/rerank.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts : {
+  name: 'ShimiMemory',
+  description: 'Semantic Hierarchical Memory Index (SHIMI) for decentralized agent reasoning. Supports entity insertion, retrieval, and decentralized sync. Registry/LLM/AI-friendly.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://arxiv.org/abs/2504.06135',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  usage: "import { ShimiMemory } from 'nootropic/utils/context/shimiMemory'; const shimi = new ShimiMemory(); await shimi.insertEntity({ concept: 'foo', explanation: 'bar' }); await shimi.retrieveEntities('foo');",
+  methods: [
+    {
+      name: 'insertEntity',
+      signature: '(entity: { concept: string; explanation: string; [key: string]: unknown }) => Promise<void>',
+      description: 'Insert an entity into the semantic memory graph.'
+    },
+    {
+      name: 'retrieveEntities',
+      signature: '(query: string, topK?: number) => Promise<unknown[]>',
+      description: 'Retrieve entities by semantic query.'
+    },
+    {
+      name: 'crdtMerge',
+      signature: '(remote: ShimiMemory) => Promise<void>',
+      description: 'Merge with a remote SHIMI memory using CRDT logic.'
+    }
+  ],
+  promptTemplates: [
+    {
+      name: 'Insert Entity',
+      description: 'Insert an entity into the semantic memory graph.',
+      template: 'insertEntity({ concept, explanation, ... })'
+    },
+    {
+      name: 'Retrieve Entities',
+      description: 'Retrieve entities by semantic query.',
+      template: 'retrieveEntities(query, topK?)'
+    },
+    {
+      name: 'CRDT Merge',
+      description: 'Merge with a remote SHIMI memory using CRDT logic.',
+      template: 'crdtMerge(remoteShimiMemory)'
+    }
+  ],
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  }
+}
+DEBUG: Passed schema validation ShimiMemory /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts
+DEBUG: About to deduplicate ShimiMemory /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/context/shimiMemory.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ContextManager.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ContextManager.ts : {
+  name: 'ContextManager',
+  description: 'Planned: ContextManager documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation ContextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ContextManager.ts
+DEBUG: About to deduplicate ContextManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ContextManager.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ContextManager.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_SecretsManager.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_SecretsManager.ts : {
+  name: 'SecretsManager',
+  description: 'Planned: SecretsManager documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation SecretsManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_SecretsManager.ts
+DEBUG: About to deduplicate SecretsManager /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_SecretsManager.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_SecretsManager.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_TypeScript_type_casting_note.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_TypeScript_type_casting_note.ts : {
+  name: 'TypeScript type-casting note (planned)',
+  description: 'Planned: TypeScript type-casting note documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation TypeScript type-casting note (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_TypeScript_type_casting_note.ts
+DEBUG: About to deduplicate TypeScript type-casting note (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_TypeScript_type_casting_note.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_TypeScript_type_casting_note.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_agent_discovery.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_agent_discovery.ts : {
+  name: 'agent discovery (planned)',
+  description: 'Planned: Agent discovery documentation and implementation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation agent discovery (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_agent_discovery.ts
+DEBUG: About to deduplicate agent discovery (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_agent_discovery.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_agent_discovery.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ajv_cli_validation_in_ci.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ajv_cli_validation_in_ci.ts : {
+  name: 'ajv-cli validation in ci (planned)',
+  description: 'Planned: ajv-cli validation in CI documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation ajv-cli validation in ci (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ajv_cli_validation_in_ci.ts
+DEBUG: About to deduplicate ajv-cli validation in ci (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ajv_cli_validation_in_ci.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ajv_cli_validation_in_ci.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_best_practices.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_best_practices.ts : {
+  name: 'api doc best practices (planned)',
+  description: 'Planned: API doc best practices documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation api doc best practices (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_best_practices.ts
+DEBUG: About to deduplicate api doc best practices (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_best_practices.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_best_practices.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_workflow.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_workflow.ts : {
+  name: 'api doc workflow (planned)',
+  description: 'Planned: API doc workflow documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation api doc workflow (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_workflow.ts
+DEBUG: About to deduplicate api doc workflow (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_workflow.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_api_doc_workflow.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_cache_management.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_cache_management.ts : {
+  name: 'cache management (planned)',
+  description: 'Planned: Cache management documentation and implementation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation cache management (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_cache_management.ts
+DEBUG: About to deduplicate cache management (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_cache_management.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_cache_management.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ci_cd_integration.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ci_cd_integration.ts : {
+  name: 'ci/cd integration (planned)',
+  description: 'Planned: CI/CD integration documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation ci/cd integration (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ci_cd_integration.ts
+DEBUG: About to deduplicate ci/cd integration (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ci_cd_integration.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_ci_cd_integration.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contextSnapshotHelper.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contextSnapshotHelper.ts : {
+  name: 'contextSnapshotHelper (planned)',
+  description: 'Planned: contextSnapshotHelper documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation contextSnapshotHelper (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contextSnapshotHelper.ts
+DEBUG: About to deduplicate contextSnapshotHelper (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contextSnapshotHelper.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contextSnapshotHelper.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_context_handover.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_context_handover.ts : {
+  name: 'context handover (planned)',
+  description: 'Planned: Context handover documentation and implementation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation context handover (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_context_handover.ts
+DEBUG: About to deduplicate context handover (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_context_handover.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_context_handover.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing.ts : null
+DEBUG: Passed schema validation planned_contributing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing.ts
+DEBUG: About to deduplicate planned_contributing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing_md.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing_md.ts : {
+  name: 'contributing.md (planned)',
+  description: 'Planned: Contributing.md documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation contributing.md (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing_md.ts
+DEBUG: About to deduplicate contributing.md (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing_md.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_contributing_md.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_editor_config_recommendations.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_editor_config_recommendations.ts : {
+  name: 'editor config recommendations (planned)',
+  description: 'Planned: Editor config recommendations documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation editor config recommendations (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_editor_config_recommendations.ts
+DEBUG: About to deduplicate editor config recommendations (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_editor_config_recommendations.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_editor_config_recommendations.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_liveMutationPRHelper.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_liveMutationPRHelper.ts : {
+  name: 'liveMutationPRHelper (planned)',
+  description: 'Planned: liveMutationPRHelper documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation liveMutationPRHelper (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_liveMutationPRHelper.ts
+DEBUG: About to deduplicate liveMutationPRHelper (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_liveMutationPRHelper.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_liveMutationPRHelper.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_monorepo_typescript_config.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_monorepo_typescript_config.ts : {
+  name: 'monorepo typescript config (planned)',
+  description: 'Planned: Monorepo TypeScript config documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation monorepo typescript config (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_monorepo_typescript_config.ts
+DEBUG: About to deduplicate monorepo typescript config (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_monorepo_typescript_config.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_monorepo_typescript_config.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_multi_agent_orchestration.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_multi_agent_orchestration.ts : {
+  name: 'multi-agent orchestration (planned)',
+  description: 'Planned: Multi-agent orchestration documentation and implementation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation multi-agent orchestration (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_multi_agent_orchestration.ts
+DEBUG: About to deduplicate multi-agent orchestration (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_multi_agent_orchestration.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_multi_agent_orchestration.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_guide.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_guide.ts : {
+  name: 'onboarding guide (planned)',
+  description: 'Planned: Onboarding guide documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation onboarding guide (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_guide.ts
+DEBUG: About to deduplicate onboarding guide (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_guide.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_guide.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_instructions.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_instructions.ts : {
+  name: 'onboarding instructions (planned)',
+  description: 'Planned: Onboarding instructions documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation onboarding instructions (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_instructions.ts
+DEBUG: About to deduplicate onboarding instructions (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_instructions.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_onboarding_instructions.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_sample_config_files.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_sample_config_files.ts : {
+  name: 'sample config files (planned)',
+  description: 'Planned: Sample config files documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation sample config files (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_sample_config_files.ts
+DEBUG: About to deduplicate sample config files (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_sample_config_files.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_sample_config_files.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_schema_validation_onboarding.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_schema_validation_onboarding.ts : {
+  name: 'schema validation onboarding (planned)',
+  description: 'Planned: Schema validation onboarding documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation schema validation onboarding (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_schema_validation_onboarding.ts
+DEBUG: About to deduplicate schema validation onboarding (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_schema_validation_onboarding.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_schema_validation_onboarding.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_streaming_backend_integration.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_streaming_backend_integration.ts : {
+  name: 'streaming backend integration (planned)',
+  description: 'Planned: Streaming backend integration documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation streaming backend integration (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_streaming_backend_integration.ts
+DEBUG: About to deduplicate streaming backend integration (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_streaming_backend_integration.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_streaming_backend_integration.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_tsdoc_style_enforcement.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_tsdoc_style_enforcement.ts : {
+  name: 'tsdoc style enforcement (planned)',
+  description: 'Planned: TSDoc style enforcement documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation tsdoc style enforcement (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_tsdoc_style_enforcement.ts
+DEBUG: About to deduplicate tsdoc style enforcement (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_tsdoc_style_enforcement.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_tsdoc_style_enforcement.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_updated_agent_event_interface.ts typeof mod.describe: function typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_updated_agent_event_interface.ts : {
+  name: 'updated agent event interface (planned)',
+  description: 'Planned: Updated agent event interface documentation.',
+  status: 'planned',
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  planned: true,
+  license: 'Apache-2.0',
+  isOpenSource: true,
+  schema: {}
+}
+DEBUG: Passed schema validation updated agent event interface (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_updated_agent_event_interface.ts
+DEBUG: About to deduplicate updated agent event interface (planned) /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_updated_agent_event_interface.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/planned_updated_agent_event_interface.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts : {
+  name: 'updateNotifier',
+  description: 'Notifies users of available package updates via CLI. Useful for keeping nootropic up to date.',
+  methods: [
+    {
+      name: 'checkForUpdates',
+      signature: '() => void',
+      description: 'Checks for updates and notifies the user via CLI.'
+    }
+  ],
+  schema: { checkForUpdates: { input: [Object], output: [Object] } },
+  license: 'MIT',
+  isOpenSource: true,
+  usage: "import updateNotifierCapability from 'nootropic/utils/describe/updateNotifier'; updateNotifierCapability.checkForUpdates();",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  promptTemplates: [
+    {
+      name: 'Check for Updates',
+      description: 'Prompt for instructing the agent or LLM to check for available package updates and notify the user.',
+      template: 'Check if there are any updates available for the nootropic package. If an update is found, notify the user with the new version and changelog.',
+      usage: 'Used by checkForUpdates to trigger an update check and notification.'
+    }
+  ],
+  references: [ 'https://www.npmjs.com/package/update-notifier' ]
+}
+DEBUG: Passed schema validation updateNotifier /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts
+DEBUG: About to deduplicate updateNotifier /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts : undefined
+DEBUG: Passed health check, registering updateNotifier /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts
+DEBUG: About to register updateNotifier /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/describe/updateNotifier.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts : null
+DEBUG: Passed schema validation BaseMemoryUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts
+DEBUG: About to deduplicate BaseMemoryUtility /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/BaseMemoryUtility.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/index.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/index.ts : null
+DEBUG: Passed schema validation index /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/index.ts
+DEBUG: About to deduplicate index /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/index.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/index.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts : {
+  name: 'pluginFeedback',
+  description: 'Feedback/memory utility (base class). Subclasses provide type-specific logic.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/nootropic/nootropic',
+  methods: [
+    {
+      name: 'add',
+      signature: '(memory: T) => Promise<void>',
+      description: 'Add a memory entry.'
+    },
+    {
+      name: 'list',
+      signature: '() => Promise<T[]>',
+      description: 'List all memory entries.'
+    },
+    {
+      name: 'deduplicate',
+      signature: '(memories: T[]) => T[]',
+      description: 'Deduplicate memory entries.'
+    }
+  ],
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  },
+  promptTemplates: [
+    {
+      name: 'Submit Plugin Feedback',
+      description: 'Submit feedback for a plugin (rating, review, user, timestamp).',
+      template: 'submitPluginFeedback({ pluginName, user, rating, review?, timestamp? })'
+    },
+    {
+      name: 'Aggregate Plugin Feedback',
+      description: 'Aggregate feedback for a plugin (average rating, review count, etc).',
+      template: 'aggregatePluginFeedback(pluginName)'
+    },
+    {
+      name: 'List Feedback for Plugin',
+      description: 'List all feedback for a given plugin.',
+      template: 'listFeedbackForPlugin(pluginName)'
+    }
+  ],
+  usage: "import pluginFeedbackCapability from 'nootropic/utils/feedback/pluginFeedback';\n" +
+    'const feedback = await pluginFeedbackCapability.run({ pluginName, user, rating, review });',
+  docs: 'See docs/capabilities/pluginFeedback.md for full API, schema, and event hook details.',
+  features: [
+    'Pluggable, event-driven deduplication',
+    'Generic aggregation (by key or custom logic)',
+    'Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility',
+    'Registry/describe/health compliance and LLM/AI-friendliness'
+  ]
+}
+DEBUG: Passed schema validation pluginFeedback /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts
+DEBUG: About to deduplicate pluginFeedback /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts : undefined
+DEBUG: Passed health check, registering pluginFeedback /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts
+DEBUG: About to register pluginFeedback /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/pluginFeedback.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts : {
+  name: 'sastMemories',
+  description: 'Feedback/memory utility (base class). Subclasses provide type-specific logic.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/nootropic/nootropic',
+  methods: [
+    {
+      name: 'add',
+      signature: '(memory: T) => Promise<void>',
+      description: 'Add a memory entry.'
+    },
+    {
+      name: 'list',
+      signature: '() => Promise<T[]>',
+      description: 'List all memory entries.'
+    },
+    {
+      name: 'deduplicate',
+      signature: '(memories: T[]) => T[]',
+      description: 'Deduplicate memory entries.'
+    }
+  ],
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  },
+  promptTemplates: [
+    {
+      name: 'List All SAST Memories',
+      description: 'List all deduplicated SAST feedback memories.',
+      template: 'listAllSastMemories()'
+    },
+    {
+      name: 'Get Memories for File',
+      description: 'Get all SAST memories for a given file.',
+      template: 'getMemoriesForFile(file)'
+    },
+    {
+      name: 'Get Memories for Rule',
+      description: 'Get all SAST memories for a given ruleId.',
+      template: 'getMemoriesForRule(ruleId)'
+    },
+    {
+      name: 'Sync with Remote',
+      description: 'Sync local SAST memories with a remote adapter.',
+      template: 'syncWithRemote(localMemories, remoteAdapter)'
+    },
+    {
+      name: 'Merge with Remote',
+      description: 'Merge local and remote SAST memories.',
+      template: 'mergeWithRemote(local, remote)'
+    }
+  ],
+  usage: "import sastMemoriesCapability from 'nootropic/utils/feedback/sastMemories';\n" +
+    'const memories = await sastMemoriesCapability.run({ id, tool, ... });',
+  docs: 'See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.',
+  features: [
+    'Pluggable, event-driven deduplication',
+    'Generic aggregation (by key or custom logic)',
+    'Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility',
+    'Registry/describe/health compliance and LLM/AI-friendliness'
+  ]
+}
+DEBUG: Passed schema validation sastMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts
+DEBUG: About to deduplicate sastMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts : undefined
+DEBUG: Passed health check, registering sastMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts
+DEBUG: About to register sastMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemories.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemoriesRemote.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemoriesRemote.ts : null
+DEBUG: Passed schema validation sastMemoriesRemote /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemoriesRemote.ts
+DEBUG: About to deduplicate sastMemoriesRemote /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemoriesRemote.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sastMemoriesRemote.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts : {
+  name: 'semgrepMemories',
+  description: 'Feedback/memory utility (base class). Subclasses provide type-specific logic.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/nootropic/nootropic',
+  methods: [
+    {
+      name: 'add',
+      signature: '(memory: T) => Promise<void>',
+      description: 'Add a memory entry.'
+    },
+    {
+      name: 'list',
+      signature: '() => Promise<T[]>',
+      description: 'List all memory entries.'
+    },
+    {
+      name: 'deduplicate',
+      signature: '(memories: T[]) => T[]',
+      description: 'Deduplicate memory entries.'
+    }
+  ],
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  },
+  promptTemplates: [
+    {
+      name: 'Add Semgrep Memory',
+      description: 'Add feedback/memory to a Semgrep finding.',
+      template: 'addSemgrepMemory(findingId, memory)'
+    },
+    {
+      name: 'List Semgrep Memories',
+      description: 'List all feedback/memories for a Semgrep finding.',
+      template: 'listSemgrepMemories(findingId)'
+    },
+    {
+      name: 'Apply Semgrep Memories',
+      description: 'Attach memories to findings for context-aware remediation.',
+      template: 'applySemgrepMemories(findings)'
+    },
+    {
+      name: 'LLM Triage Semgrep Finding',
+      description: 'LLM-powered triage for a Semgrep finding.',
+      template: 'llmTriageSemgrepFinding(finding, memories?)'
+    },
+    {
+      name: 'Context-Aware Triage',
+      description: 'Context-aware, agentic triage for a Semgrep finding.',
+      template: 'contextAwareTriageSemgrepFinding(finding, memories?)'
+    }
+  ],
+  usage: 'import { addSemgrepMemory, listSemgrepMemories } from "nootropic/utils/feedback/semgrepMemories";\n' +
+    'await addSemgrepMemory("semgrep:rule:file:42", { memoryType: "triage", rationale: "False positive", triage: "false_positive" });\n' +
+    'const memories = await listSemgrepMemories("semgrep:rule:file:42");',
+  docs: 'See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.',
+  features: [
+    'Pluggable, event-driven deduplication',
+    'Generic aggregation (by key or custom logic)',
+    'Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility',
+    'Registry/describe/health compliance and LLM/AI-friendliness'
+  ]
+}
+DEBUG: Passed schema validation semgrepMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts
+DEBUG: About to deduplicate semgrepMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts : undefined
+DEBUG: Passed health check, registering semgrepMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts
+DEBUG: About to register semgrepMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/semgrepMemories.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts : {
+  name: 'sonarQubeMemories',
+  description: 'Feedback/memory utility (base class). Subclasses provide type-specific logic.',
+  license: 'MIT',
+  isOpenSource: true,
+  provenance: 'https://github.com/nootropic/nootropic',
+  methods: [
+    {
+      name: 'add',
+      signature: '(memory: T) => Promise<void>',
+      description: 'Add a memory entry.'
+    },
+    {
+      name: 'list',
+      signature: '() => Promise<T[]>',
+      description: 'List all memory entries.'
+    },
+    {
+      name: 'deduplicate',
+      signature: '(memories: T[]) => T[]',
+      description: 'Deduplicate memory entries.'
+    }
+  ],
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  schema: ZodObject {
+    spa: [Function: bound safeParseAsync] AsyncFunction,
+    _def: {
+      shape: [Function: shape],
+      unknownKeys: 'strip',
+      catchall: [ZodNever],
+      typeName: 'ZodObject'
+    },
+    parse: [Function: bound parse],
+    safeParse: [Function: bound safeParse],
+    parseAsync: [Function: bound parseAsync] AsyncFunction,
+    safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+    refine: [Function: bound refine],
+    refinement: [Function: bound refinement],
+    superRefine: [Function: bound superRefine],
+    optional: [Function: bound optional],
+    nullable: [Function: bound nullable],
+    nullish: [Function: bound nullish],
+    array: [Function: bound array],
+    promise: [Function: bound promise],
+    or: [Function: bound or],
+    and: [Function: bound and],
+    transform: [Function: bound transform],
+    brand: [Function: bound brand],
+    default: [Function: bound default],
+    catch: [Function: bound catch],
+    describe: [Function: bound describe],
+    pipe: [Function: bound pipe],
+    readonly: [Function: bound readonly],
+    isNullable: [Function: bound isNullable],
+    isOptional: [Function: bound isOptional],
+    '~standard': { version: 1, vendor: 'zod', validate: [Function: validate] },
+    _cached: null,
+    nonstrict: [Function: passthrough],
+    augment: [Function: extend]
+  },
+  promptTemplates: [
+    {
+      name: 'Add SonarQube Memory',
+      description: 'Add feedback/memory to a SonarQube finding.',
+      template: 'addSonarQubeMemory(findingId, memory)'
+    },
+    {
+      name: 'List SonarQube Memories',
+      description: 'List all feedback/memories for a SonarQube finding.',
+      template: 'listSonarQubeMemories(findingId)'
+    },
+    {
+      name: 'Apply SonarQube Memories',
+      description: 'Attach memories to findings for context-aware remediation.',
+      template: 'applySonarQubeMemories(findings)'
+    }
+  ],
+  usage: 'import { addSonarQubeMemory, listSonarQubeMemories } from "nootropic/utils/feedback/sonarQubeMemories";\n' +
+    'await addSonarQubeMemory("sonarqube:rule:file:42", { memoryType: "triage", rationale: "False positive", triage: "false_positive" });\n' +
+    'const memories = await listSonarQubeMemories("sonarqube:rule:file:42");',
+  docs: 'See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.',
+  features: [
+    'Pluggable, event-driven deduplication',
+    'Generic aggregation (by key or custom logic)',
+    'Optional event hooks (onAdd, onDeduplicate, onAggregate) for automation and extensibility',
+    'Registry/describe/health compliance and LLM/AI-friendliness'
+  ]
+}
+DEBUG: Passed schema validation sonarQubeMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts
+DEBUG: About to deduplicate sonarQubeMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts : undefined
+DEBUG: Passed health check, registering sonarQubeMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts
+DEBUG: About to register sonarQubeMemories /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/feedback/sonarQubeMemories.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts : null
+DEBUG: Passed schema validation embeddingClient /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts
+DEBUG: About to deduplicate embeddingClient /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/embedding/embeddingClient.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts typeof mod.describe: undefined typeof mod.default?.describe: function
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts : {
+  name: 'adapterUtils',
+  description: 'Utility for dynamic ESM import with fallback and error formatting. Useful for plugin/adapter loading.',
+  methods: [
+    {
+      name: 'tryDynamicImport',
+      signature: '(moduleName: string) => Promise<unknown | null>',
+      description: 'Attempts to dynamically import a module, returns null on failure.'
+    }
+  ],
+  schema: { tryDynamicImport: { input: [Object], output: [Object] } },
+  license: 'MIT',
+  isOpenSource: true,
+  usage: "import adapterUtilsCapability from 'nootropic/utils/plugin/adapterUtils'; await adapterUtilsCapability.tryDynamicImport('module');",
+  docsFirst: true,
+  aiFriendlyDocs: true,
+  promptTemplates: [
+    {
+      name: 'Dynamic Import Module',
+      description: 'Prompt for instructing the agent or LLM to dynamically import a module by name, with fallback and error handling.',
+      template: 'Attempt to dynamically import the module named "{{moduleName}}". If the import fails, return null and log the error.',
+      usage: 'Used by tryDynamicImport to load modules at runtime for plugin/adapter loading.'
+    }
+  ],
+  references: [ 'https://nodejs.org/api/esm.html#esm_dynamic_imports' ]
+}
+DEBUG: Passed schema validation adapterUtils /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts
+DEBUG: About to deduplicate adapterUtils /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts : undefined
+DEBUG: Passed health check, registering adapterUtils /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts
+DEBUG: About to register adapterUtils /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/plugin/adapterUtils.ts
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts : null
+DEBUG: Passed schema validation toxicityCheck /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts
+DEBUG: About to deduplicate toxicityCheck /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/src/utils/testing/toxicityCheck.ts : undefined
+
+Checked 270 files, rewrote 0 files.
+Done.
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/audit-fix-esm-imports.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/audit-fix-esm-imports.ts : null
+DEBUG: Passed schema validation audit-fix-esm-imports /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/audit-fix-esm-imports.ts
+DEBUG: About to deduplicate audit-fix-esm-imports /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/audit-fix-esm-imports.ts
+DEBUG: typeof mod.health for /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/audit-fix-esm-imports.ts : undefined
+DEBUG: Processing /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/docs-check-sync.ts typeof mod.describe: undefined typeof mod.default?.describe: undefined
+DEBUG: Describe output for /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/docs-check-sync.ts : null
+DEBUG: Passed schema validation docs-check-sync /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/docs-check-sync.ts
+DEBUG: About to deduplicate docs-check-sync /Users/jonathanbotha/Projects/GitHub/nootropic/scripts/docs-check-sync.ts
+DEBUG: filteredManifestSections: [
+  'Capability',
+  'ChunkingUtility',
+  'CollectionAgent',
+  'ContentAgent',
+  'EnsembleAgent',
+  'ExplainabilityAgent',
+  'FeedbackAgent',
+  'HuggingFaceLLMAdapter',
+  'HumanInTheLoopAgent',
+  'HybridRetrievalUtility',
+  'MemoryAgent',
+  'MutationAgent',
+  'OllamaLLMAdapter',
+  'OpenRouterLLMAdapter',
+  'OrchestratorAgent',
+  'RAGPipelineUtility',
+  'ReasoningLoopUtility',
+  'RerankUtility',
+  'ReviewAgent',
+  'ShimiMemory',
+  'SupervisorAgent',
+  'VibeCodingAgent',
+  'adapterUtils',
+  'FormalVerifierAgent',
+  'MultimodalAgent',
+  'agents',
+  'contextMutationEngine',
+  'crewAIAdapter',
+  'embeddingRegistry',
+  'event-driven mutation suggestion traceability',
+  'examplePlugin',
+  'langchainAdapter',
+  'pluginFeedback',
+  'sastMemories',
+  'semanticIndexBuilder',
+  'semanticKernelAdapter',
+  'semgrepMemories',
+  'sonarQubeMemories',
+  'updateNotifier'
+]
+DEBUG: registrySections: [
+  'RAGPipelineUtility',   'RerankUtility',
+  'ShimiMemory',          'pluginFeedback',
+  'sastMemories',         'CollectionAgent',
+  'MemoryAgent',          'FeedbackAgent',
+  'ReviewAgent',          'SupervisorAgent',
+  'OrchestratorAgent',    'ExplainabilityAgent',
+  'HumanInTheLoopAgent',  'MutationAgent',
+  'VibeCodingAgent',      'EnsembleAgent',
+  'ReasoningLoopUtility'
+]
+Planned sections:
+  - CLI usage (planned)
+  - ContextManager
+  - OrchestrationEngine (planned)
+  - SecretsManager
+  - TypeScript type-casting note (planned)
+  - agent discovery (planned)
+  - agent event interface (planned)
+  - agentIntentRegistry (planned)
+  - agentProfileRegistry (planned)
+  - BaseAgent.js (planned)
+  - DataCollectorAgent.js (planned)
+  - HumanInTheLoopAgent
+  - ReviewerAgent.js (planned)
+  - WriterAgent.js (planned)
+  - ajv-cli validation in ci (planned)
+  - api doc best practices (planned)
+  - api doc workflow (planned)
+  - api documentation generation (planned)
+  - cache management (planned)
+  - cd integration (planned)
+  - cd troubleshooting (planned)
+  - coding standards (planned)
+  - context handover (planned)
+  - contextSnapshotHelper (planned)
+  - contributing.md (planned)
+  - docDiagramGenerator (planned)
+  - editor config recommendations (planned)
+  - event bus abstraction (planned)
+  - event-driven MAS patterns (planned)
+  - event-driven agent example (WriterAgent) (planned)
+  - event-driven agent pattern (planned)
+  - github actions workflow (planned)
+  - liveMutationPRHelper (planned)
+  - matrix validation strategy (planned)
+  - monorepo typescript config (planned)
+  - multi-agent orchestration (planned)
+  - onboarding guide (planned)
+  - onboarding instructions (planned)
+  - onboarding troubleshooting (planned)
+  - plugin architecture (planned)
+  - Husky hooks (planned)
+  - selfcheck (planned)
+  - quality system (planned)
+  - sample config files (planned)
+  - schema validation onboarding (planned)
+  - semanticIndexBuilder (planned)
+  - setup and environment requirements (planned)
+  - streaming backend integration (planned)
+  - supervisor agent pattern (planned)
+  - ci integration (planned)
+  - tsdoc style enforcement (planned)
+  - typedoc integration (planned)
+  - typedoc.json config (planned)
+  - updated agent event interface (planned)
+DEBUG: manifest.sections type: object true
+DEBUG: manifest.sections length: 305
+DEBUG: manifest.sections first 50: [
+  'Capability',
+  'ChunkingUtility',
+  'CollectionAgent',
+  'ContentAgent',
+  'EnsembleAgent',
+  'ExplainabilityAgent',
+  'FeedbackAgent',
+  'HuggingFaceLLMAdapter',
+  'HumanInTheLoopAgent',
+  'HybridRetrievalUtility',
+  'MemoryAgent',
+  'MutationAgent',
+  'OllamaLLMAdapter',
+  'OpenRouterLLMAdapter',
+  'OrchestratorAgent',
+  'RAGPipelineUtility',
+  'ReasoningLoopUtility',
+  'RerankUtility',
+  'ReviewAgent',
+  'ShimiMemory',
+  'SupervisorAgent',
+  'VibeCodingAgent',
+  'adapterUtils',
+  'EnsembleAgent',
+  'FeedbackAgent',
+  'FormalVerifierAgent',
+  'MemoryAgent',
+  'MultimodalAgent',
+  'MutationAgent',
+  'ReviewAgent',
+  'ShimiMemory',
+  'SupervisorAgent',
+  'VibeCodingAgent',
+  'agents',
+  'contextMutationEngine',
+  'crewAIAdapter',
+  'embeddingRegistry',
+  'event-driven mutation suggestion traceability',
+  'examplePlugin',
+  'langchainAdapter',
+  'pluginFeedback',
+  'sastMemories',
+  'semanticIndexBuilder',
+  'semanticKernelAdapter',
+  'semgrepMemories',
+  'sonarQubeMemories',
+  'updateNotifier',
+  'pluginFeedback',
+  'sastMemories',
+  'semgrepMemories'
+]
+DEBUG: isPlannedOrStub("RAGPipelineUtility"): false
+DEBUG: ignoreSlugs has RAGPipelineUtility: false
+DEBUG: Process exit event. Code: 1

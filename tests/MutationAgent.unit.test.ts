@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { MutationAgent } from '../agents/MutationAgent.js';
+import { MutationAgent } from '../src/agents/MutationAgent';
 
 describe('MutationAgent', () => {
   it('should run a mutation task and return a result', async () => {

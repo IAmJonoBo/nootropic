@@ -1,8 +1,6 @@
 // @ts-ignore
 import type { Capability, CapabilityDescribe, HealthStatus } from '../capabilities/Capability.js';
 // @ts-ignore
-import { publishEvent } from '../memoryLaneHelper.js';
-// @ts-ignore
 // import { ChunkingUtility } from '../utils/context/chunking.js';
 // @ts-ignore
 // import { HybridRetrievalUtility } from '../utils/context/HybridRetrievalUtility.js';
@@ -19,6 +17,12 @@ const rerankUtil = new RerankUtility();
  */
 export class RAGPipelineUtility implements Capability {
   public readonly name = 'RAGPipelineUtility';
+  private publishEvent: (event: unknown) => Promise<void>;
+
+  // Dependency injection for event publishing to break circular dependency
+  constructor(publishEvent: (event: unknown) => Promise<void>) {
+    this.publishEvent = publishEvent;
+  }
 
   /**
    * Run a RAG pipeline: hybrid retrieval, chunking, reranking, feedback.
@@ -32,24 +36,24 @@ export class RAGPipelineUtility implements Capability {
     // 1. Pre-retrieval: query rewriting/expansion (LLM or template)
     const rewrittenQuery = await this.queryRewrite(typeof input === 'string' ? input : JSON.stringify(input));
     logs.push(`Pre-retrieval: Query rewritten to: ${rewrittenQuery}`);
-    await publishEvent({ type: 'ragQueryRewrite', agentId: this.name, timestamp: new Date().toISOString(), payload: { original: input, rewritten: rewrittenQuery } });
+    await this.publishEvent({ type: 'ragQueryRewrite', agentId: this.name, timestamp: new Date().toISOString(), payload: { original: input, rewritten: rewrittenQuery } });
     // 2. Hybrid retrieval (TODO: delegate to modular utility)
     // const hybridResults = await hybridRetrievalUtil.retrieve(rewrittenQuery);
     const hybridResults = [rewrittenQuery]; // TODO: Replace with real hybrid retrieval
     logs.push(`Hybrid retrieval results: ${JSON.stringify(hybridResults)}`);
-    await publishEvent({ type: 'ragHybridRetrieve', agentId: this.name, timestamp: new Date().toISOString(), payload: { query: rewrittenQuery, results: hybridResults } });
+    await this.publishEvent({ type: 'ragHybridRetrieve', agentId: this.name, timestamp: new Date().toISOString(), payload: { query: rewrittenQuery, results: hybridResults } });
     // 3. Chunking (TODO: delegate to modular utility)
     // const chunks = await chunkingUtil.chunk(hybridResults.join(' '), { strategy: 'semantic' });
     const chunks = [hybridResults.join(' ')]; // TODO: Replace with real chunking
     logs.push(`Chunked context: ${JSON.stringify(chunks)}`);
-    await publishEvent({ type: 'ragChunking', agentId: this.name, timestamp: new Date().toISOString(), payload: { chunks } });
+    await this.publishEvent({ type: 'ragChunking', agentId: this.name, timestamp: new Date().toISOString(), payload: { chunks } });
     // 4. Reranking
     const reranked = await rerankUtil.rerank({ strategy: 'embedding', query: rewrittenQuery, results: chunks });
     logs.push(`Reranked results: ${JSON.stringify(reranked)}`);
-    await publishEvent({ type: 'ragRerank', agentId: this.name, timestamp: new Date().toISOString(), payload: { reranked } });
+    await this.publishEvent({ type: 'ragRerank', agentId: this.name, timestamp: new Date().toISOString(), payload: { reranked } });
     // 5. Feedback loop (stub)
     logs.push('Feedback loop: RAGAS/TruLens-style evaluation and feedback integration (stub).');
-    await publishEvent({ type: 'ragFeedbackLoop', agentId: this.name, timestamp: new Date().toISOString(), payload: { reranked } });
+    await this.publishEvent({ type: 'ragFeedbackLoop', agentId: this.name, timestamp: new Date().toISOString(), payload: { reranked } });
     // Integration points for embedding providers, semantic index, and feedback/mutation
     logs.push('Integration: Embedding providers, semantic index, and feedback/mutation (see README references).');
     return { output: reranked, logs };
@@ -62,7 +66,7 @@ export class RAGPipelineUtility implements Capability {
 
   async submitFeedback(feedback: string): Promise<void> {
     // TODO: Integrate feedback aggregation and continuous improvement
-    await publishEvent({ type: 'ragFeedback', agentId: this.name, timestamp: new Date().toISOString(), payload: { feedback } });
+    await this.publishEvent({ type: 'ragFeedback', agentId: this.name, timestamp: new Date().toISOString(), payload: { feedback } });
     return;
   }
 
@@ -81,7 +85,7 @@ export class RAGPipelineUtility implements Capability {
         { name: 'runRAGPipeline', signature: '(input: unknown) => Promise<{ output: unknown; logs: string[] }>', description: 'Run a RAG pipeline: hybrid retrieval, chunking, reranking, feedback.' },
         { name: 'health', signature: '() => Promise<HealthStatus>', description: 'Health check for RAGPipelineUtility.' }
       ],
-      usage: "import { RAGPipelineUtility } from 'nootropic/capabilities/RAGPipelineUtility'; const util = new RAGPipelineUtility(); await util.runRAGPipeline(input);",
+      usage: "import { RAGPipelineUtility } from 'nootropic/capabilities/RAGPipelineUtility'; const util = new RAGPipelineUtility(publishEvent); await util.runRAGPipeline(input);",
       docsFirst: true,
       aiFriendlyDocs: true,
       references: [
@@ -92,8 +96,11 @@ export class RAGPipelineUtility implements Capability {
         'docs/ROADMAP.md#rag-pipeline-utility',
         'RerankUtility.describe()'
       ]
+      // Best practices: Inject a publishEvent function when constructing RAGPipelineUtility (dependency injection pattern). Use modular utilities for chunking, retrieval, reranking. Emit events for all pipeline steps. Document event schemas and rationale in describe().
     };
   }
 }
 
-export default RAGPipelineUtility; 
+export default RAGPipelineUtility;
+
+export async function describe() { return new RAGPipelineUtility(async () => {}).describe(); } 

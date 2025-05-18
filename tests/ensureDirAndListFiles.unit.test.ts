@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // @ts-ignore
-import { ensureDirExists, listFilesInDir } from '../utils/context/contextManager.js';
+import { ensureDirExists, listFilesInDir } from '../src/utils/context/contextFileHelpers.js';
 import { promises as fsp, Dirent } from 'fs';
 
 describe('utils: ensureDirExists and listFilesInDir', () => {

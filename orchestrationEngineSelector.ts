@@ -1,9 +1,9 @@
 // @ts-ignore
-import { LangChainAdapter } from './adapters/langchainAdapter.js';
+import { LangChainAdapter } from './src/adapters/langchainAdapter.js';
 // @ts-ignore
-import { CrewAIAdapter } from './adapters/crewAIAdapter.js';
+import { CrewAIAdapter } from './src/adapters/crewAIAdapter.js';
 // @ts-ignore
-import { SemanticKernelAdapter } from './adapters/semanticKernelAdapter.js';
+import { SemanticKernelAdapter } from './src/adapters/semanticKernelAdapter.js';
 // @ts-ignore
 import type { AgentOrchestrationEngine } from './src/schemas/AgentOrchestrationEngineSchema.js';
 

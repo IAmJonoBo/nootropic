@@ -27,4 +27,4 @@ export const defaultOTelConfig: OTelConfig = {
   },
 };
 
-// Usage: import { defaultOTelConfig } from './otel.config'; 
+// Usage: import { defaultOTelConfig } from './otel.config.js'; 

@@ -1,21 +1,39 @@
-export * from './adapters/langchainAdapter.js';
-export * from './adapters/crewAIAdapter.js';
-export * from './adapters/semanticKernelAdapter.js';
-export * from './orchestrationEngineSelector.js';
-export * from './types/AgentOrchestrationEngine.js';
-export * from './utils/updateNotifier.js';
-export * from './utils/deprecationChecker.js';
-import { getPlugins } from './pluginRegistry.js';
-import { BaseAgent } from './agents/BaseAgent.js';
-import { DataCollectorAgent } from './agents/DataCollectorAgent.js';
-import { WriterAgent } from './agents/WriterAgent.js';
-import { ReviewerAgent } from './agents/ReviewerAgent.js';
-// CLI is available via the bin entry (see package.json)
-// Utilities (updateNotifier, deprecationChecker) will be added soon 
+// --- Explicit Named Exports (2025 Best Practices) ---
+export { LangChainAdapter } from './src/adapters/langchainAdapter.js';
+export { CrewAIAdapter } from './src/adapters/crewAIAdapter.js';
+export { SemanticKernelAdapter } from './src/adapters/semanticKernelAdapter.js';
+export { getOrchestrationEngine } from './orchestrationEngineSelector.js';
+// @ts-ignore
+import checkForUpdates from './src/utils/describe/updateNotifier.js';
+export { checkForUpdates };
+export { BaseAgent } from './src/agents/BaseAgent.js';
+export { ContentAgent } from './src/agents/ContentAgent.js';
+export { CollectionAgent } from './src/agents/CollectionAgent.js';
+export { ReviewAgent } from './src/agents/ReviewAgent.js';
+// --- Internal imports for runtime logic (not re-exported) ---
+// @ts-ignore
+import { getPlugins } from './pluginLoader.js';
+// @ts-ignore
+import { initTelemetry, shutdownTelemetry } from './telemetry.js';
+// @ts-ignore
+import { BaseAgent as _BaseAgent } from './src/agents/BaseAgent.js';
+// @ts-ignore
+import { ContentAgent as _ContentAgent } from './src/agents/ContentAgent.js';
+// @ts-ignore
+import { CollectionAgent as _CollectionAgent } from './src/agents/CollectionAgent.js';
+// @ts-ignore
+import { ReviewAgent as _ReviewAgent } from './src/agents/ReviewAgent.js';
+// @ts-ignore
+import registry from './src/capabilities/registry.js';
+// @ts-ignore
+import { registerAllAdapters } from './src/adapters/index.js';
+import { initEventBusBackends } from './src/adapters/initEventBusBackends.js';
+registerAllAdapters(registry);
+initEventBusBackends(registry);
+// --- Runtime Logic: Capability Listing and Description ---
 /**
  * Lists all available helpers, adapters, and plugins in nootropic by aggregating describe() from all core modules and plugins.
  * Returns an array of capability objects (see docs/llm-integration.md).
- * @returns {Promise<unknown[]>}
  */
 export async function listCapabilities() {
     const modules = [
@@ -25,9 +43,9 @@ export async function listCapabilities() {
         './contextSnapshotHelper.js',
         './semanticIndexBuilder.js',
         './agents/BaseAgent.js',
-        './agents/DataCollectorAgent.js',
-        './agents/WriterAgent.js',
-        './agents/ReviewerAgent.js'
+        './agents/ContentAgent.js',
+        './agents/CollectionAgent.js',
+        './agents/ReviewAgent.js'
     ];
     const results = [];
     for (const modPath of modules) {
@@ -68,22 +86,21 @@ export async function describeCapability(name) {
         return { name, error: 'No describe() export found.' };
     }
     if (name === 'BaseAgent')
-        return BaseAgent.describe();
-    if (name === 'DataCollectorAgent')
-        return DataCollectorAgent.describe();
-    if (name === 'WriterAgent')
-        return WriterAgent.describe();
-    if (name === 'ReviewerAgent')
-        return ReviewerAgent.describe();
+        return _BaseAgent.describe();
+    if (name === 'ContentAgent')
+        return _ContentAgent.describe();
+    if (name === 'CollectionAgent')
+        return _CollectionAgent.describe();
+    if (name === 'ReviewAgent')
+        return _ReviewAgent.describe();
     // Try plugins
     const plugins = await getPlugins();
-    const plugin = plugins.find(p => p.name === name);
+    const plugin = plugins.find((p) => p.name === name);
     if (plugin && typeof plugin.describe === 'function')
         return plugin.describe();
     return { name, error: 'Not found.' };
 }
-export { BaseAgent, DataCollectorAgent, WriterAgent, ReviewerAgent };
-// CLI entrypoint for list-capabilities
+// --- CLI Entrypoint for list-capabilities ---
 if (import.meta.url === `file://${process.argv[1]}`) {
     const args = process.argv.slice(2);
     if (args[0] === 'list-capabilities') {
@@ -94,3 +111,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         })();
     }
 }
+// --- Initialize OpenTelemetry (if enabled) ---
+initTelemetry('main-index');
+// --- Ensure graceful shutdown of telemetry on exit ---
+process.on('exit', shutdownTelemetry);
+process.on('SIGINT', async () => { await shutdownTelemetry(); process.exit(0); });

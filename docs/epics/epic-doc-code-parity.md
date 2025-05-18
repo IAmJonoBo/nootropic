@@ -8,7 +8,7 @@
 - id: epic-doc-code-parity
 - slug: epic-doc-code-parity
 - docPath: docs/epics/epic-doc-code-parity.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [backlog-missing-docmanifest-sections](docs/stories/backlog-missing-docmanifest-sections.md)

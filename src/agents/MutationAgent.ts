@@ -4,8 +4,6 @@ import type { AgentEvent, AgentResult } from '../types/AgentOrchestrationEngine.
 import { BaseAgent, BaseAgentOptions } from './BaseAgent.js';
 // @ts-ignore
 import { publishEvent } from '../memoryLaneHelper.js';
-// @ts-ignore
-import { getEmbeddingBackend, EmbeddingBackend } from '../utils/embedding/embeddingClient.js';
 
 /**
  * MutationAgent: Handles live patching, mutation testing, and rollback for agents/plugins.
@@ -36,7 +34,7 @@ export class MutationAgent extends BaseAgent {
    * LLM-Augmented Mutant Generation: Use LLMs to propose semantically relevant code mutants, guided by real-bug corpora (e.g., Defects4J).
    * Extension: Integrate real-bug corpora and advanced LLM mutation strategies.
    */
-  async generateMutants(_code: string): Promise<Mutant[]> {
+  async generateMutants(): Promise<Mutant[]> {
     // Implementation would go here
     return [];
   }
@@ -95,8 +93,7 @@ export class MutationAgent extends BaseAgent {
       await publishEvent(agentEvent);
     };
     // Generate mutants
-    const mutationTask = task as MutationTask;
-    const mutants = await this.generateMutants(mutationTask.code);
+    const mutants = await this.generateMutants();
     for (const mutant of mutants) {
       await emitEvent({ type: 'mutationSuggested', payload: { mutantId: mutant.id, code: mutant.code } });
       // Property-based fuzzing
@@ -157,7 +154,7 @@ export class MutationAgent extends BaseAgent {
       usage: "import { MutationAgent } from 'nootropic/agents'; const agent = new MutationAgent({ profile: { name: 'MutationAgent' }, backendName: 'nv-embed' }); await agent.runTask({ ... });",
       methods: [
         { name: 'runTask', signature: '(task) => Promise<AgentResult>', description: 'Runs a mutation/patching/repair task. Integrates LLM/embedding backend if available.' },
-        { name: 'generateMutants', signature: '(code: string) => Promise<unknown[]>', description: 'LLM-augmented mutant generation, guided by real-bug corpora.' },
+        { name: 'generateMutants', signature: '() => Promise<unknown[]>', description: 'LLM-augmented mutant generation, guided by real-bug corpora.' },
         { name: 'propertyBasedFuzz', signature: '(mutant: unknown) => Promise<{ passed: boolean; details?: string }>', description: 'Property-based fuzzing for boundary/edge-case validation.' },
         { name: 'patchEnsembleVoting', signature: '(candidates: unknown[]) => Promise<unknown>', description: 'Patch ensemble/voting (majority/semantic equivalence).' },
         { name: 'listTools', signature: '() => Promise<AgentTool[]>', description: 'Lists available tools/plugins.' },

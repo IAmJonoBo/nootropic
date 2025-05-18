@@ -8,5 +8,5 @@
 - id: todo:nootropic/quality/sonarqubeApi.ts:48
 - slug: todo-nootropic-quality-sonarqube-api-ts-48
 - docPath: docs/epics/todo-nootropic-quality-sonarqube-api-ts-48.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

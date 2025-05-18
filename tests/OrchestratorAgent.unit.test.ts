@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { OrchestratorAgent } from '../agents/OrchestratorAgent.js';
+import { OrchestratorAgent } from '../src/agents/OrchestratorAgent';
 
 describe('OrchestratorAgent', () => {
   it('should run an orchestration task and emit event-driven logs', async () => {

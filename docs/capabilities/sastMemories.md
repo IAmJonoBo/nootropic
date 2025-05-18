@@ -1,9 +1,11 @@
----
-status: implemented
----
 # sastMemories
 
 Feedback/memory utility (base class). Subclasses provide type-specific logic.
+
+**Usage:**
+
+`import sastMemoriesCapability from 'nootropic/utils/feedback/sastMemories';
+const memories = await sastMemoriesCapability.run({ id, tool, ... });`
 
 ## Methods/Functions
 

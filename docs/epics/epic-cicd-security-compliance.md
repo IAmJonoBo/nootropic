@@ -7,7 +7,7 @@
 - id: epic-cicd-security-compliance
 - slug: epic-cicd-security-compliance
 - docPath: docs/epics/epic-cicd-security-compliance.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [epic-security-compliance-audit](docs/stories/epic-security-compliance-audit.md)

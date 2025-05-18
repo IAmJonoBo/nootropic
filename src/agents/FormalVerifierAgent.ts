@@ -7,8 +7,6 @@ import type { Capability, CapabilityDescribe, HealthStatus } from '../capabiliti
 // @ts-ignore
 import { publishEvent } from '../memoryLaneHelper.js';
 import { z } from 'zod';
-// @ts-ignore
-import { getEmbeddingBackend, EmbeddingBackend } from '../utils/embedding/embeddingClient.js';
 
 /**
  * FormalVerifierAgent: Integrates LLM-driven spec generation and formal verification (TLA+, Coq, Lean).

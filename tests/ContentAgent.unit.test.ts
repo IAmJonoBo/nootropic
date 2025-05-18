@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { ContentAgent } from '../agents/ContentAgent.js';
+import { ContentAgent } from '../src/agents/ContentAgent';
 
 describe('ContentAgent', () => {
   it('should run a content task and return a result', async () => {

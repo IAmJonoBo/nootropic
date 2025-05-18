@@ -19,7 +19,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 
 const CACHE_DIR = path.resolve(process.cwd(), '.nootropic-cache');
 const MANIFEST_PATH = path.join(CACHE_DIR, 'cache-manifest.json');

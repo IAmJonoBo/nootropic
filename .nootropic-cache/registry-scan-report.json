@@ -1,0 +1,480 @@
+{
+  "registered": [
+    {
+      "name": "BaseAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "license": "MIT",
+      "isOpenSource": true,
+      "provenance": "https://github.com/nootropic/nootropic",
+      "usage": "import { BaseAgent } from 'nootropic/agents';",
+      "docsFirst": true,
+      "aiFriendlyDocs": true,
+      "methods": [
+        {
+          "name": "runTask",
+          "signature": "(task: unknown) => Promise<AgentResult>",
+          "description": "Run a task and return the result."
+        },
+        {
+          "name": "init",
+          "signature": "() => Promise<void>",
+          "description": "Initialize the agent."
+        },
+        {
+          "name": "shutdown",
+          "signature": "() => Promise<void>",
+          "description": "Shutdown the agent."
+        },
+        {
+          "name": "reload",
+          "signature": "() => Promise<void>",
+          "description": "Reload the agent."
+        },
+        {
+          "name": "health",
+          "signature": "() => Promise<HealthStatus>",
+          "description": "Health check for the agent."
+        }
+      ],
+      "schema": {
+        "runTask": {
+          "input": {
+            "type": "unknown",
+            "description": "Task input (problem, code, or prompt)"
+          },
+          "output": {
+            "type": "object",
+            "properties": {
+              "output": {
+                "type": "unknown"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "logs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "output",
+              "success",
+              "logs"
+            ]
+          }
+        }
+      },
+      "promptTemplates": [
+        {
+          "name": "Agent Task Execution",
+          "description": "Prompt for instructing the agent to execute a task and return the result.",
+          "template": "Execute the following task: {{taskDescription}}. Return the result as a structured object.",
+          "usage": "Used by runTask."
+        },
+        {
+          "name": "Context Handoff",
+          "description": "Prompt for instructing the agent to perform a context handoff when the context window is nearly full.",
+          "template": "When the context window is nearly full, generate an optimized handover payload using recent messages, relevant old context, and a summary. Prioritize critical information.",
+          "usage": "Used by getOptimizedHandoverPayload."
+        },
+        {
+          "name": "Error Handling",
+          "description": "Prompt for instructing the agent to handle errors gracefully and log them.",
+          "template": "If an error occurs during task execution, log the error and return a structured error object.",
+          "usage": "Used by error handling logic."
+        }
+      ],
+      "references": [
+        "https://benhouston3d.com/blog/crafting-readmes-for-ai",
+        "https://www.octopipe.com/blog/docs-first-engineering-workflow",
+        "https://medium.com/@nikhithsomasani/best-practices-for-using-typescript-in-2025-a-guide-for-experienced-developers-4fca1cfdf052",
+        "https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3"
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/BaseAgent.ts"
+    },
+    {
+      "name": "CollectionAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Collect Data",
+          "description": "Prompt for instructing the agent to collect data from a specified source.",
+          "template": "Collect data from the following source: {{source}}.",
+          "usage": "Used for data collection workflows."
+        },
+        {
+          "name": "Filter Data",
+          "description": "Prompt for instructing the agent to filter collected data by criteria.",
+          "template": "Filter the collected data by the following criteria: {{criteria}}.",
+          "usage": "Used for data filtering workflows."
+        },
+        {
+          "name": "Aggregate Data",
+          "description": "Prompt for instructing the agent to aggregate data by a specified method.",
+          "template": "Aggregate the data using the following method: {{method}}.",
+          "usage": "Used for data aggregation workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/CollectionAgent.ts"
+    },
+    {
+      "name": "ContentAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ContentAgent.ts"
+    },
+    {
+      "name": "EnsembleAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [],
+      "schema": {},
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/EnsembleAgent.ts"
+    },
+    {
+      "name": "ExplainabilityAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ExplainabilityAgent.ts"
+    },
+    {
+      "name": "FeedbackAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Collect Feedback",
+          "description": "Prompt for instructing the agent to collect feedback from a user or agent.",
+          "template": "Collect feedback from the following user/agent: {{userOrAgent}}.",
+          "usage": "Used for feedback collection workflows."
+        },
+        {
+          "name": "Submit Feedback",
+          "description": "Prompt for instructing the agent to submit feedback to a system or registry.",
+          "template": "Submit the following feedback to the registry: {{feedbackContent}}.",
+          "usage": "Used for feedback submission workflows."
+        },
+        {
+          "name": "Summarize Feedback",
+          "description": "Prompt for instructing the agent to summarize all collected feedback.",
+          "template": "Summarize all collected feedback for context: {{context}}.",
+          "usage": "Used for feedback summarization workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FeedbackAgent.ts"
+    },
+    {
+      "name": "FormalVerifierAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Verify Code",
+          "description": "Prompt for instructing the agent to formally verify a codebase or function.",
+          "template": "Formally verify the following code/function: {{codeOrFunction}}. Report any issues or proofs.",
+          "usage": "Used for formal verification workflows."
+        },
+        {
+          "name": "Explain Verification Result",
+          "description": "Prompt for instructing the agent to explain a formal verification result.",
+          "template": "Explain the following formal verification result: {{verificationResult}}.",
+          "usage": "Used for result explanation workflows."
+        },
+        {
+          "name": "Report Verification Summary",
+          "description": "Prompt for instructing the agent to summarize and report all verification results.",
+          "template": "Summarize and report all formal verification results for context: {{context}}.",
+          "usage": "Used for reporting workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/FormalVerifierAgent.ts"
+    },
+    {
+      "name": "HumanInTheLoopAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/HumanInTheLoopAgent.ts"
+    },
+    {
+      "name": "MemoryAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [],
+      "schema": {},
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MemoryAgent.ts"
+    },
+    {
+      "name": "MultimodalAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Process Multimodal Data",
+          "description": "Prompt for instructing the agent to process multimodal (text, image, audio) data.",
+          "template": "Process the following multimodal data: {{dataDescription}}.",
+          "usage": "Used for multimodal data processing workflows."
+        },
+        {
+          "name": "Generate Multimodal Output",
+          "description": "Prompt for instructing the agent to generate multimodal output.",
+          "template": "Generate a multimodal output (text, image, audio) for the following prompt: {{prompt}}.",
+          "usage": "Used for multimodal output generation workflows."
+        },
+        {
+          "name": "Describe Multimodal Content",
+          "description": "Prompt for instructing the agent to describe multimodal content.",
+          "template": "Describe the following multimodal content: {{contentDescription}}.",
+          "usage": "Used for multimodal content description workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MultimodalAgent.ts"
+    },
+    {
+      "name": "MutationAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Suggest Mutation",
+          "description": "Prompt for instructing the agent to suggest a code mutation for a given file or function.",
+          "template": "Suggest a mutation for the following file/function: {{target}}. Explain the rationale.",
+          "usage": "Used for mutation suggestion workflows."
+        },
+        {
+          "name": "Apply Mutation",
+          "description": "Prompt for instructing the agent to apply a code mutation.",
+          "template": "Apply the following mutation to the code: {{mutationDescription}}.",
+          "usage": "Used for mutation application workflows."
+        },
+        {
+          "name": "Review Mutation",
+          "description": "Prompt for instructing the agent to review a proposed code mutation.",
+          "template": "Review the following code mutation: {{mutationDescription}}. Provide feedback and improvement suggestions.",
+          "usage": "Used for mutation review workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/MutationAgent.ts"
+    },
+    {
+      "name": "OrchestratorAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [],
+      "schema": {},
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/OrchestratorAgent.ts"
+    },
+    {
+      "name": "ReasoningLoopUtility",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [],
+      "schema": {},
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReasoningLoopUtility.ts"
+    },
+    {
+      "name": "ReviewAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/ReviewAgent.ts"
+    },
+    {
+      "name": "SupervisorAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Supervise Agent Task",
+          "description": "Prompt for instructing the supervisor agent to oversee and review a delegated agent task.",
+          "template": "Supervise the execution of the following agent task: {{taskDescription}}. Review the result and provide feedback.",
+          "usage": "Used for agent supervision workflows."
+        },
+        {
+          "name": "Delegate Task",
+          "description": "Prompt for instructing the supervisor agent to delegate a task to a sub-agent.",
+          "template": "Delegate the following task to the most suitable sub-agent: {{taskDescription}}.",
+          "usage": "Used for task delegation workflows."
+        },
+        {
+          "name": "Review Agent Output",
+          "description": "Prompt for instructing the supervisor agent to review the output of a sub-agent.",
+          "template": "Review the output of the sub-agent for the following task: {{taskDescription}}. Provide a summary and improvement suggestions.",
+          "usage": "Used for output review workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/SupervisorAgent.ts"
+    },
+    {
+      "name": "VibeCodingAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/VibeCodingAgent.ts"
+    },
+    {
+      "name": "WriterAgent",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [
+        {
+          "name": "Write Text",
+          "description": "Prompt for instructing the agent to write text on a given topic.",
+          "template": "Write a detailed article about {{topic}}.",
+          "usage": "Used for content generation."
+        },
+        {
+          "name": "Edit Text",
+          "description": "Prompt for instructing the agent to edit or improve a given text.",
+          "template": "Edit the following text for clarity and conciseness: {{text}}.",
+          "usage": "Used for editing workflows."
+        },
+        {
+          "name": "Summarize Text",
+          "description": "Prompt for instructing the agent to summarize a given text.",
+          "template": "Summarize the following text: {{text}}.",
+          "usage": "Used for summarization workflows."
+        }
+      ],
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/WriterAgent.ts"
+    },
+    {
+      "name": "agents",
+      "description": "Stub lifecycle hooks for registry compliance.",
+      "promptTemplates": [],
+      "schema": {},
+      "tags": [
+        "auto-scanned"
+      ],
+      "version": "0.1.0",
+      "performanceHints": {
+        "maxLatencyMs": 1000,
+        "throughputQps": 10
+      },
+      "file": "/Users/jonathanbotha/Projects/GitHub/nootropic/src/agents/index.ts"
+    }
+  ],
+  "remediated": [],
+  "skipped": [],
+  "errored": []
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 import path from 'path';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 import fs from 'fs';
 
 const options = {

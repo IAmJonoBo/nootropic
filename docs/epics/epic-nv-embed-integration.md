@@ -8,7 +8,7 @@
 - id: epic-nv-embed-integration
 - slug: epic-nv-embed-integration
 - docPath: docs/epics/epic-nv-embed-integration.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [nv-embed-pipeline-ci-test](docs/stories/nv-embed-pipeline-ci-test.md)

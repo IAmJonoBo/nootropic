@@ -1,6 +1,6 @@
 // Adapter utilities for DRY dynamic import, stub fallback, and error formatting
 // @ts-ignore
-import type { AgentResult } from '../../types/AgentOrchestrationEngine';
+import type { AgentResult } from '../../types/AgentOrchestrationEngine.js';
 // @ts-ignore
 import type { Capability, HealthStatus, CapabilityDescribe } from '../../capabilities/Capability.js';
 
@@ -64,7 +64,7 @@ export default adapterUtilsCapability;
 
 export function stubResult(adapter: string, sdk: string): AgentResult {
   return {
-    output: null,
+    output: { stub: true, adapter, sdk },
     success: false,
     logs: [`[${adapter}] ${sdk} SDK not installed. Returning stub result.`],
   };

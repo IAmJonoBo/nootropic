@@ -7,7 +7,7 @@
  * - Supports human and machine-readable (JSON) output
  *
  * Example:
- *   import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers';
+ *   import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
  *   const { args, showHelp } = parseCliArgs({
  *     usage: 'Usage: myscript [options]',
  *     options: { foo: { desc: 'Foo option', type: 'string' } }

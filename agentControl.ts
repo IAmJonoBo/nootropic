@@ -4,7 +4,7 @@
 // @ts-ignore
 import { readJsonSafe, writeJsonSafe } from './utils.js';
 // @ts-ignore
-import { getCacheFilePath, ensureCacheDirExists } from './utils/context/cacheDir.js';
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { promises as fsp } from 'fs';

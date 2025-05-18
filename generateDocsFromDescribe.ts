@@ -5,6 +5,7 @@ import { parseCliArgs, printUsage, printResult, printError } from './src/utils/c
 import { readJsonFile, writeJsonFile, handleError } from './src/utils/automationHelpers.js';
 // @ts-ignore
 import type { CapabilityDescribe } from './src/capabilities/Capability.js';
+import capabilityRegistry from './src/capabilities/registry.js';
 
 const REGISTRY_PATH = '.nootropic-cache/describe-registry.json';
 const DOCS_DIR = 'docs/capabilities';
@@ -75,24 +76,22 @@ async function main() {
   const { args, showHelp } = parseCliArgs({ options });
   if (showHelp) return printUsage(usage, options);
   try {
-    if (!fs.existsSync(REGISTRY_PATH)) {
-      printError('Describe registry not found: ' + REGISTRY_PATH, Boolean(args['json']));
-      process.exit(1);
-    }
     if (!fs.existsSync(DOCS_DIR)) {
       fs.mkdirSync(DOCS_DIR, { recursive: true });
     }
-    const registryRaw = await readJsonFile(REGISTRY_PATH);
-    if (!Array.isArray(registryRaw)) throw new Error('Registry is not an array');
+    const registryDescribe = capabilityRegistry.aggregateDescribe();
+    fs.mkdirSync(path.dirname(REGISTRY_PATH), { recursive: true });
+    fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registryDescribe, null, 2), 'utf-8');
+    if (!Array.isArray(registryDescribe)) throw new Error('Registry is not an array');
     // Use type guard: only process entries with name and description
-    const registry: CapabilityDescribe[] = registryRaw.filter((c: unknown): c is CapabilityDescribe => {
+    const registryDescribeArr: CapabilityDescribe[] = registryDescribe.filter((c: unknown): c is CapabilityDescribe => {
       if (typeof c !== 'object' || c === null) return false;
       const obj = c as Record<string, unknown>;
       return 'name' in obj && typeof obj['name'] === 'string' && 'description' in obj && typeof obj['description'] === 'string';
     });
     const outFiles: string[] = [];
     const structuredDocs: CapabilityDescribe[] = [];
-    for (const cap of registry) {
+    for (const cap of registryDescribeArr) {
       let desc: CapabilityDescribe;
       try {
         desc = cap;

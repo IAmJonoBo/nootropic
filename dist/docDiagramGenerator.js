@@ -1,7 +1,19 @@
-// nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
-import { DOCS_DIR, CONTEXT_PATH, DOC_MANIFEST_PATH } from './paths.js';
-import { ensureDirExists, readJsonSafe, writeJsonSafe } from './utils.js';
+// CLI entrypoint and ad hoc helper for documentation and diagram generation. Intentionally excluded from main TSConfig/ESLint. May be flagged as unused by static analysis tools. Do not delete.
+import path from 'path';
+import { fileURLToPath } from 'url';
+// @ts-ignore
+import { ensureDirExists } from './utils/context/contextManager.js';
+// @ts-ignore
+import { readJsonSafe, writeJsonSafe } from './utils.js';
+// @ts-ignore
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
+// @ts-ignore
+import { initTelemetry, shutdownTelemetry } from './telemetry.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DOCS_DIR = path.resolve(__dirname, '../docs');
+const CONTEXT_PATH = path.resolve(__dirname, '../.nootropic-cache/context-snapshot.json');
+const DOC_MANIFEST_PATH = path.resolve(DOCS_DIR, 'manifest.json');
 // --- Load context snapshot ---
 async function loadContext() {
     await ensureDirExists(DOCS_DIR);
@@ -12,10 +24,10 @@ async function loadContext() {
 }
 // --- Generate agent contract docs ---
 async function generateAgentDocs(context) {
-    const agents = context.agents || [];
+    const agents = context.agents ?? [];
     const outFiles = [];
     for (const agent of agents) {
-        const md = `# Agent: ${agent.name}\n\n${agent.description || ''}\n\n## Contract\n\n\n${'```json\n' + JSON.stringify(agent.contract, null, 2) + '\n```'}\n`;
+        const md = `# Agent: ${agent.name}\n\n${agent.description ?? ''}\n\n## Contract\n\n\n${'```json\n' + JSON.stringify(agent.contract, null, 2) + '\n```'}\n`;
         const outPath = `${DOCS_DIR}/agent_${agent.name}.md`;
         await writeJsonSafe(outPath, md);
         outFiles.push(outPath);
@@ -77,11 +89,52 @@ if (import.meta.url === `file://${process.argv[1]}`) {
             process.exit(0);
         }
         try {
+            // Initialize OpenTelemetry (if enabled)
+            initTelemetry('doc-diagram-generator');
             await runDocDiagramGenerator();
         }
         catch (e) {
             handleCliError(e);
         }
+        finally {
+            // Ensure graceful shutdown of telemetry on exit
+            shutdownTelemetry();
+        }
     })();
+}
+/**
+ * Returns a description of the doc diagram generator plugin/capability.
+ */
+export function describe() {
+    return {
+        name: 'docDiagramGenerator',
+        description: 'Generates agent/workflow diagrams from live registry/context. Follows docs-first workflow and AI/LLM-friendly documentation best practices. All exports must have TSDoc comments, and all changes must be reflected in documentation and describe() output. The describe() registry is validated in CI.',
+        functions: [
+            { name: 'runDocDiagramGenerator', signature: '() => Promise<void>', description: 'Generate agent/workflow diagrams.' }
+        ],
+        usage: "pnpm tsx nootropic/docDiagramGenerator.ts",
+        schema: {
+            runDocDiagramGenerator: {
+                input: { type: 'null' },
+                output: { type: 'null' }
+            }
+        },
+        docsFirst: true,
+        aiFriendlyDocs: true,
+        describeRegistry: true,
+        bestPractices: [
+            'Strict TypeScript',
+            'Type-safe event-driven patterns',
+            'Automated documentation (TSDoc, TypeDoc, describe())',
+            'Docs-first engineering',
+            'CI enforcement of docs/code sync',
+        ],
+        references: [
+            'https://benhouston3d.com/blog/crafting-readmes-for-ai',
+            'https://www.octopipe.com/blog/docs-first-engineering-workflow',
+            'https://medium.com/@nikhithsomasani/best-practices-for-using-typescript-in-2025-a-guide-for-experienced-developers-4fca1cfdf052',
+            'https://dev.to/sovannaro/typescript-best-practices-2025-elevate-your-code-quality-1gh3'
+        ]
+    };
 }
 export { runDocDiagramGenerator };

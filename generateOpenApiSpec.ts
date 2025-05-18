@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 import fs from 'fs';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 
 const REGISTRY_PATH = '.nootropic-cache/describe-registry.json';
 const OUTPUT_PATH = '.nootropic-cache/openapi-spec.yaml';

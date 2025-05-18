@@ -8,5 +8,5 @@
 - id: context-handoff-memory-optimization
 - slug: context-handoff-memory-optimization
 - docPath: docs/stories/context-handoff-memory-optimization.md
-- lastSynced: 2025-05-17T16:25:55.537Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

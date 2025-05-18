@@ -1,6 +1,9 @@
 // nootropic is for Cursor agents only. This is the control/cleanup utility for all future agents and users.
 // NOTE: This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// @ts-ignore
 import { readJsonSafe, writeJsonSafe } from './utils.js';
+// @ts-ignore
+import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { promises as fsp } from 'fs';
@@ -9,20 +12,24 @@ const __dirname = path.dirname(__filename);
 const OUTPUT_DIR = path.resolve(__dirname);
 const PATCH_DIR = path.join(OUTPUT_DIR, 'patches');
 const LOG_DIR = path.join(OUTPUT_DIR, 'logs');
+const CONTEXT_JSON = getCacheFilePath('context.json');
+const MUTATION_PLAN_JSON = getCacheFilePath('mutationPlan.json');
+const SELF_HEAL_JSON = getCacheFilePath('selfHealingPlan.json');
+const AGENT_BACKLOG_JSON = getCacheFilePath('agentBacklog.json');
+const MEMORY_LANE_JSON = getCacheFilePath('memory.json');
 const FILES = [
-    'context-snapshot.json',
-    'mutationPlan.json',
-    'selfHealingPlan.json',
-    'agentBacklog.json',
-    'memoryLane.json'
+    CONTEXT_JSON,
+    MUTATION_PLAN_JSON,
+    SELF_HEAL_JSON,
+    AGENT_BACKLOG_JSON,
+    MEMORY_LANE_JSON
 ];
 // --- List all context, mutation, patch, and log files ---
 async function listFiles() {
     const files = await Promise.all(FILES.map(async (f) => {
-        const filePath = path.join(OUTPUT_DIR, f);
         try {
-            const stats = await fsp.stat(filePath);
-            return { file: f, size: stats.size, mtime: stats.mtime.toISOString() };
+            const stats = await fsp.stat(f);
+            return { file: f.replace(getCacheFilePath(''), ''), size: stats.size, mtime: stats.mtime.toISOString() };
         }
         catch {
             return null;
@@ -97,7 +104,7 @@ async function pruneJsonField(file, field, { maxItems = null, maxAgeDays = null 
         arr = arr.slice(-maxItems);
     if (maxAgeDays !== null) {
         const cutoff = Date.now() - maxAgeDays * 24 * 60 * 60 * 1000;
-        arr = arr.filter(item => new Date(item.timestamp || item.mtime || 0).getTime() >= cutoff);
+        arr = arr.filter(item => new Date((item.timestamp ?? item.mtime) || 0).getTime() >= cutoff);
     }
     data[field] = arr;
     await writeJsonSafe(filePath, data);
@@ -120,5 +127,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         if (args.includes('--prune'))
             await runAgentControl({ prune: true });
     })();
+}
+/**
+ * Initializes agentControl. Must be called before using cache-dependent features.
+ * This avoids ESM/circular import issues. See CONTRIBUTING.md.
+ */
+export async function initAgentControl() {
+    await ensureCacheDirExists();
 }
 export { listFiles, pruneFiles, pruneJsonField, runAgentControl };

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 // @ts-ignore
-import { semgrepMemoriesCapability } from '../utils/feedback/semgrepMemories.js';
+import { semgrepMemoriesCapability } from '../src/utils/feedback/semgrepMemories.js';
 import { promises as fs } from 'fs';
 import path from 'path';
 

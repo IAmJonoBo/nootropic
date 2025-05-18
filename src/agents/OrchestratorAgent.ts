@@ -22,8 +22,9 @@ export class OrchestratorAgent extends BaseAgent {
 
   override async runTask(task: unknown): Promise<AgentResult> {
     // Orchestrate RAG, reasoning, and feedback
-    const rag = new RAGPipelineUtility();
-    const reasoning = new ReasoningLoopUtility();
+    const eventAdapter = (event: unknown) => publishEvent(event as any);
+    const rag = new RAGPipelineUtility(eventAdapter);
+    const reasoning = new ReasoningLoopUtility(eventAdapter);
     const query = typeof task === 'string' ? task : JSON.stringify(task);
     const { output: retrievedChunks, logs: ragLogs } = await rag.runRAGPipeline(query);
     const context = Array.isArray(retrievedChunks) ? retrievedChunks.join('\n') : String(retrievedChunks);

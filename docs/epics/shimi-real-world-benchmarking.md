@@ -8,5 +8,5 @@
 - id: shimi-real-world-benchmarking
 - slug: shimi-real-world-benchmarking
 - docPath: docs/epics/shimi-real-world-benchmarking.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

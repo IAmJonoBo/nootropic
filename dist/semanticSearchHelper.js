@@ -1,23 +1,43 @@
 // nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
-import { SEMANTIC_INDEX_PATH } from './paths.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const SEMANTIC_INDEX_PATH = path.join(__dirname, 'semantic-index.json');
+// @ts-ignore
 import { readJsonSafe } from './utils.js';
-import { embed } from './semanticIndexBuilder.js';
+// @ts-ignore
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
+// @ts-ignore
+import { getEmbeddingProvider } from './capabilities/embeddingRegistry.js';
 // --- Compute L2 distance between two vectors ---
 function l2(a, b) {
     let sum = 0;
-    for (let i = 0; i < a.length; i++)
-        sum += (a[i] - b[i]) ** 2;
+    for (let i = 0; i < a.length; i++) {
+        const ai = a[i];
+        const bi = b[i];
+        if (typeof ai !== 'number' || typeof bi !== 'number')
+            continue;
+        sum += (ai - bi) ** 2;
+    }
     return Math.sqrt(sum);
 }
 // --- Search the semantic index ---
-async function semanticSearch(query, topN = 5) {
+// Add source/capability filtering
+async function semanticSearch(query, topN = 5, opts) {
     try {
         const index = await readJsonSafe(SEMANTIC_INDEX_PATH, []);
-        if (!index.length)
+        if (!index || !Array.isArray(index) || !index.length)
             throw new Error('semanticIndex.json not found or empty. Run semanticIndexBuilder first.');
-        const qEmbed = embed(query);
-        const scored = index.map((chunk) => ({ ...chunk, score: l2(chunk.embedding, qEmbed) }));
+        const provider = getEmbeddingProvider();
+        const [qEmbedRaw] = await provider.embed(query);
+        const qEmbed = qEmbedRaw ?? [];
+        let filtered = index;
+        if (opts?.source)
+            filtered = filtered.filter(chunk => chunk.source === opts.source);
+        if (opts?.capability)
+            filtered = filtered.filter(chunk => chunk.capability === opts.capability);
+        const scored = filtered.map((chunk) => ({ ...chunk, score: l2(chunk.embedding, qEmbed) }));
         scored.sort((a, b) => (a.score ?? 0) - (b.score ?? 0));
         return scored.slice(0, topN);
     }
@@ -32,18 +52,34 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         const { args } = parseArgs(process.argv);
         const cmd = args[0];
         if (cmd === 'help' || args.includes('--help')) {
-            printHelp('pnpm tsx nootropic/semanticSearchHelper.ts <query>', 'Semantic search for code, docs, and messages.');
+            printHelp('pnpm tsx nootropic/semanticSearchHelper.ts <query> [--source <source>] [--capability <capability>]', 'Semantic search for code, docs, and messages.');
             process.exit(0);
         }
-        const query = args.join(' ');
+        // Parse options
+        let query = '';
+        let source;
+        let capability;
+        for (let i = 0; i < args.length; i++) {
+            if (args[i] === '--source')
+                source = args[++i];
+            else if (args[i] === '--capability')
+                capability = args[++i];
+            else
+                query += (query ? ' ' : '') + args[i];
+        }
         if (!query) {
-            printHelp('pnpm tsx nootropic/semanticSearchHelper.ts <query>', 'Semantic search for code, docs, and messages.');
+            printHelp('pnpm tsx nootropic/semanticSearchHelper.ts <query> [--source <source>] [--capability <capability>]', 'Semantic search for code, docs, and messages.');
             process.exit(1);
         }
         try {
-            const results = await semanticSearch(query, 5);
+            const opts = {};
+            if (source !== undefined)
+                opts.source = source;
+            if (capability !== undefined)
+                opts.capability = capability;
+            const results = await semanticSearch(query, 5, opts);
             for (const r of results) {
-                console.log(`File: ${r.file} (line ${r.line})\nScore: ${r.score}\nText: ${r.text}\n---`);
+                console.log(`File: ${r.file} (line ${r.line})\nScore: ${r.score}\nSource: ${r.source ?? ''}\nCapability: ${r.capability ?? ''}\nText: ${r.text}\n---`);
             }
         }
         catch (e) {

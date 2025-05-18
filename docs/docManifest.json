@@ -79,46 +79,27 @@
     "docs/capabilities/utils/feedback/sonarQubeMemories.md",
     "docs/capabilities/contextMutationEngine.md",
     "docs/capabilities/semgrepMemories.md",
-    "docs/capabilities/sonarQubeMemories.md"
+    "docs/capabilities/sonarQubeMemories.md",
+    "docs/capabilities/RAGPipelineUtility.md",
+    "docs/capabilities/RerankUtility.md",
+    "docs/capabilities/ShimiMemory.md",
+    "docs/capabilities/ExperimentalChunkingUtility.md",
+    "docs/capabilities/KmsVaultSecretsManager.md",
+    "docs/capabilities/VaultSecretsManager.md",
+    "docs/capabilities/LocalSecretsManager.md",
+    "docs/capabilities/KanikoBuildManager.md"
   ],
-  "timestamp": "2025-05-17T17:38:38.702Z",
+  "timestamp": "2025-05-18T20:08:03.918Z",
   "sections": [
-    "Capability",
-    "ChunkingUtility",
-    "CollectionAgent",
-    "ContentAgent",
-    "ExplainabilityAgent",
-    "HuggingFaceLLMAdapter",
-    "HybridRetrievalUtility",
-    "OllamaLLMAdapter",
-    "OpenRouterLLMAdapter",
+    "ExperimentalChunkingUtility",
+    "KanikoBuildManager",
+    "KmsVaultSecretsManager",
+    "LocalSecretsManager",
+    "RAGPipelineUtility",
     "ReasoningLoopUtility",
     "RerankUtility",
-    "adapterUtils",
-    "EnsembleAgent",
-    "FeedbackAgent",
-    "FormalVerifierAgent",
-    "MemoryAgent",
-    "MultimodalAgent",
-    "MutationAgent",
-    "ReviewAgent",
     "ShimiMemory",
-    "SupervisorAgent",
-    "VibeCodingAgent",
-    "agents",
-    "contextMutationEngine",
-    "crewAIAdapter",
-    "embeddingRegistry",
-    "event-driven mutation suggestion traceability",
-    "examplePlugin",
-    "langchainAdapter",
-    "pluginFeedback",
-    "sastMemories",
-    "semanticIndexBuilder",
-    "semanticKernelAdapter",
-    "semgrepMemories",
-    "sonarQubeMemories",
-    "updateNotifier",
+    "VaultSecretsManager",
     "pluginFeedback",
     "sastMemories",
     "semgrepMemories",
@@ -164,6 +145,8 @@
     "automation-technical-debt-hotspot-ci-integration",
     "automation-technical-debt-hotspot-detection",
     "automation-tool-integration-orchestration",
+    "backlog-lint-type-nonagent-2024-05-18",
+    "backlog-lint-type-nonagent-dist-2024-05-18",
     "cache management (planned)",
     "chunkingutility-agentic-implementation",
     "chunkingutility-semantic-implementation",
@@ -188,6 +171,8 @@
     "epic-cli-script-standardization-discoverability",
     "epic-codebase-refactor-dry-yagni",
     "epic-context-rag-semantic",
+    "epic-context-registry-helper-circular-refactor-latest",
+    "epic-context-registry-helper-circular-refactor",
     "epic-doc-code-parity",
     "epic-docs-code-e2e-automation-plan-surfacing",
     "epic-documentation-onboarding",
@@ -195,6 +180,7 @@
     "epic-nv-embed-integration",
     "epic-quality-tools-feedback",
     "epic-utilities-refactor",
+    "eslint-flat-config-ignore-fix-2024-05-18",
     "event bus abstraction (planned)",
     "event payload convention (planned)",
     "event schema references (planned)",
@@ -203,8 +189,10 @@
     "event-driven agent pattern (planned)",
     "event-driven traceability (liveMutationPRHelper) (planned)",
     "github actions workflow (planned)",
+    "helper-script-validate-eslint-ignore-2024-05-18",
     "implement-bm25-dpr-adapters",
     "integrate-open-source-llm-apis",
+    "lint-type-safety-agents-2024-05-18",
     "liveMutationPRHelper (planned)",
     "matrix validation strategy (planned)",
     "monorepo typescript config (planned)",
@@ -425,14 +413,56 @@
     "liveMutationPRHelper": "orchestration.md"
   },
   "planned": [
-    "ContextManager",
-    "SecretsManager",
-    "HumanInTheLoopAgent",
-    "cd integration (planned)",
-    "cd troubleshooting (planned)",
-    "Husky hooks (planned)",
-    "selfcheck (planned)",
-    "ci integration (planned)"
+    "./agents/BaseAgent.js (planned)",
+    "./agents/DataCollectorAgent.js (planned)",
+    "./agents/ReviewerAgent.js (planned)",
+    "./agents/WriterAgent.js (planned)",
+    "CLI usage (planned)",
+    "agent discovery (planned)",
+    "agent event interface (planned)",
+    "agentIntentRegistry (planned)",
+    "agentProfileRegistry (planned)",
+    "ajv-cli validation in ci (planned)",
+    "api doc best practices (planned)",
+    "api doc workflow (planned)",
+    "api documentation generation (planned)",
+    "cache management (planned)",
+    "ci/cd integration (planned)",
+    "ci/cd troubleshooting (planned)",
+    "coding standards (planned)",
+    "context handover (planned)",
+    "contextSnapshotHelper (planned)",
+    "contributing.md (planned)",
+    "describe registry (in progress)",
+    "docDiagramGenerator (planned)",
+    "editor config recommendations (planned)",
+    "event bus abstraction (planned)",
+    "event-driven MAS patterns (planned)",
+    "event-driven agent example (WriterAgent) (planned)",
+    "event-driven agent pattern (planned)",
+    "github actions workflow (planned)",
+    "liveMutationPRHelper (planned)",
+    "matrix validation strategy (planned)",
+    "monorepo typescript config (planned)",
+    "multi-agent orchestration (planned)",
+    "onboarding guide (planned)",
+    "onboarding instructions (planned)",
+    "onboarding troubleshooting (planned)",
+    "plugin architecture (planned)",
+    "pre-commit/Husky hooks (planned)",
+    "quality system (planned)",
+    "quality/selfcheck (planned)",
+    "sample config files (planned)",
+    "schema validation onboarding (planned)",
+    "semanticIndexBuilder (planned)",
+    "setup and environment requirements (planned)",
+    "streaming backend integration (planned)",
+    "supervisor agent pattern (planned)",
+    "tsdoc style enforcement (planned)",
+    "tsdoc/typedoc/eslint/ci integration (planned)",
+    "typedoc integration (planned)",
+    "typedoc.json config (planned)",
+    "updated agent event interface (planned)"
   ],
   "epics": [
     {
@@ -600,6 +630,14 @@
       "docPath": "docs/epics/automation-tool-integration-orchestration.md"
     },
     {
+      "slug": "backlog-lint-type-nonagent-2024-05-18",
+      "docPath": "docs/epics/backlog-lint-type-nonagent-2024-05-18.md"
+    },
+    {
+      "slug": "backlog-lint-type-nonagent-dist-2024-05-18",
+      "docPath": "docs/epics/backlog-lint-type-nonagent-dist-2024-05-18.md"
+    },
+    {
       "slug": "cache management (planned)",
       "docPath": "docs/epics/cache management (planned).md"
     },
@@ -696,6 +734,14 @@
       "docPath": "docs/epics/epic-context-rag-semantic.md"
     },
     {
+      "slug": "epic-context-registry-helper-circular-refactor-latest",
+      "docPath": "docs/epics/epic-context-registry-helper-circular-refactor-latest.md"
+    },
+    {
+      "slug": "epic-context-registry-helper-circular-refactor",
+      "docPath": "docs/epics/epic-context-registry-helper-circular-refactor.md"
+    },
+    {
       "slug": "epic-doc-code-parity",
       "docPath": "docs/epics/epic-doc-code-parity.md"
     },
@@ -722,6 +768,10 @@
     {
       "slug": "epic-utilities-refactor",
       "docPath": "docs/epics/epic-utilities-refactor.md"
+    },
+    {
+      "slug": "eslint-flat-config-ignore-fix-2024-05-18",
+      "docPath": "docs/epics/eslint-flat-config-ignore-fix-2024-05-18.md"
     },
     {
       "slug": "event bus abstraction (planned)",
@@ -756,12 +806,20 @@
       "docPath": "docs/epics/github actions workflow (planned).md"
     },
     {
+      "slug": "helper-script-validate-eslint-ignore-2024-05-18",
+      "docPath": "docs/epics/helper-script-validate-eslint-ignore-2024-05-18.md"
+    },
+    {
       "slug": "implement-bm25-dpr-adapters",
       "docPath": "docs/epics/implement-bm25-dpr-adapters.md"
     },
     {
       "slug": "integrate-open-source-llm-apis",
       "docPath": "docs/epics/integrate-open-source-llm-apis.md"
+    },
+    {
+      "slug": "lint-type-safety-agents-2024-05-18",
+      "docPath": "docs/epics/lint-type-safety-agents-2024-05-18.md"
     },
     {
       "slug": "liveMutationPRHelper (planned)",
@@ -1702,6 +1760,10 @@
       "docPath": "docs/stories/integrate-vectorstore-js.md"
     },
     {
+      "slug": "lint-type-safety-agents",
+      "docPath": "docs/stories/lint-type-safety-agents.md"
+    },
+    {
       "slug": "llm-adapter-advanced-integration-tests",
       "docPath": "docs/stories/llm-adapter-advanced-integration-tests.md"
     },
@@ -1794,8 +1856,16 @@
       "docPath": "docs/stories/sastmemories-vectorstore-dedup.md"
     },
     {
+      "slug": "scaffold-event-helpers",
+      "docPath": "docs/stories/scaffold-event-helpers.md"
+    },
+    {
       "slug": "scaffold-marketplace-discovery-ui",
       "docPath": "docs/stories/scaffold-marketplace-discovery-ui.md"
+    },
+    {
+      "slug": "scaffold-security-helpers",
+      "docPath": "docs/stories/scaffold-security-helpers.md"
     },
     {
       "slug": "secretsmanager-vault-leasing",
@@ -1898,5 +1968,7 @@
       "docPath": "docs/stories/utils-testing.md"
     }
   ],
-  "inProgress": []
+  "inProgress": [
+    "describe registry (in progress)"
+  ]
 }

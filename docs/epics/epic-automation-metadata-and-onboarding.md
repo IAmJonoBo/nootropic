@@ -11,7 +11,7 @@
 - id: epic-automation-metadata-and-onboarding
 - slug: epic-automation-metadata-and-onboarding
 - docPath: docs/epics/epic-automation-metadata-and-onboarding.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [automation-llm-friendly-schema-output](docs/stories/automation-llm-friendly-schema-output.md)

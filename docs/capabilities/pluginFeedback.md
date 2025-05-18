@@ -1,9 +1,11 @@
----
-status: implemented
----
 # pluginFeedback
 
 Feedback/memory utility (base class). Subclasses provide type-specific logic.
+
+**Usage:**
+
+`import pluginFeedbackCapability from 'nootropic/utils/feedback/pluginFeedback';
+const feedback = await pluginFeedbackCapability.run({ pluginName, user, rating, review });`
 
 ## Methods/Functions
 

@@ -346,4 +346,20 @@ export function getEmbeddingProvider(): EmbeddingProvider {
   const provider = providers[selected];
   if (provider) return provider;
   return providers['hash-stub']!;
-} 
+}
+
+export async function describe() {
+  // Aggregate all provider describes
+  const providers = [
+    new HashEmbeddingProvider(),
+    new HuggingFaceEmbeddingProvider(),
+    new OllamaEmbeddingProvider(),
+    new CustomEmbeddingProvider(),
+    new PetalsEmbeddingProvider(),
+    new LMStudioEmbeddingProvider(),
+    new HttpEmbeddingProvider()
+  ];
+  return providers.map(p => p.describe());
+}
+
+export async function health() { return { status: 'ok', timestamp: new Date().toISOString() }; } 

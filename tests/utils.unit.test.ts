@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 // @ts-ignore
-import { readJsonSafe, writeJsonSafe, getOrInitJson, errorLogger, esmEntrypointCheck } from '../utils.js';
+import { readJsonSafe, writeJsonSafe, getOrInitJson, errorLogger, esmEntrypointCheck } from '../utils';
 import { promises as fsp } from 'fs';
 import path from 'path';
 
@@ -37,7 +37,7 @@ describe('Utils', () => {
 
   it.skip('esmEntrypointCheck returns true for matching url', () => {
     // Skipped: cannot reliably test process.argv and importMetaUrl in this environment
-    const fakeArgv = ['/path/to/file.js'];
+    const fakeArgv = ['/path/to/file'];
     const importMetaUrl = 'file:///path/to/file.js';
     global.process = { argv: fakeArgv } as unknown as NodeJS.Process;
     expect(esmEntrypointCheck(importMetaUrl)).toBe(true);

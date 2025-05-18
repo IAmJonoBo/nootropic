@@ -53,6 +53,10 @@ export class SonarQubeMemoriesUtility extends BaseMemoryUtility<SastFeedbackMemo
       return f;
     });
   }
+
+  override async health(): Promise<{ status: 'ok'; timestamp: string }> {
+    return { status: 'ok', timestamp: new Date().toISOString() };
+  }
 }
 
 const sonarQubeMemories = new SonarQubeMemoriesUtility();
@@ -82,7 +86,7 @@ export const sonarQubeMemoriesCapability = {
       'import { addSonarQubeMemory, listSonarQubeMemories } from "nootropic/utils/feedback/sonarQubeMemories";',
       'await addSonarQubeMemory("sonarqube:rule:file:42", { memoryType: "triage", rationale: "False positive", triage: "false_positive" });',
       'const memories = await listSonarQubeMemories("sonarqube:rule:file:42");'
-    ],
+    ].join('\n'),
     docs: 'See docs/quality.md and types/SastFeedbackMemory.ts for full API, schema, and event hook details.',
     features: [
       'Pluggable, event-driven deduplication',
@@ -96,7 +100,8 @@ export const sonarQubeMemoriesCapability = {
   listSonarQubeMemories: sonarQubeMemories.listSonarQubeMemories.bind(sonarQubeMemories),
   applySonarQubeMemories: sonarQubeMemories.applySonarQubeMemories.bind(sonarQubeMemories),
   init: async function() {},
-  reload: async function() {}
+  reload: async function() {},
+  health: sonarQubeMemories.health.bind(sonarQubeMemories)
 };
 
 export default sonarQubeMemoriesCapability; 

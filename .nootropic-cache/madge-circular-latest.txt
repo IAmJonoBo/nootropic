@@ -1,0 +1,5 @@
+Processed 100 files (1s) (5 warnings)
+
+1) capabilities/registry.ts > memoryLaneHelper.ts
+2) ../contextSnapshotHelper.ts > ../memoryLaneHelper.ts > capabilities/registry.ts > utils/context/index.ts > utils/context/internal.ts > utils/context/contextManager.ts
+

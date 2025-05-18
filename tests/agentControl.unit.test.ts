@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // @ts-ignore
 import * as agentControl from '../agentControl.js';
 // @ts-ignore
-import * as utils from '../utils.js';
+import * as utils from '../utils';
 import { promises as fsp, Stats, Dirent } from 'fs';
 
 // Mock path.join to just concatenate for simplicity

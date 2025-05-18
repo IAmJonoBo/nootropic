@@ -39,7 +39,7 @@
 
 import fs from 'fs';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 
 const options = {
   help: { desc: 'Show help', type: 'boolean' },

@@ -1,7 +1,5 @@
 // @ts-ignore
 import type { Capability, CapabilityDescribe, HealthStatus } from '../capabilities/Capability.js';
-// @ts-ignore
-import { publishEvent } from '../memoryLaneHelper.js';
 
 /**
  * ReasoningLoopUtility: Iterative code generation, explanation, and repair utility for agent workflows.
@@ -10,6 +8,12 @@ import { publishEvent } from '../memoryLaneHelper.js';
  */
 export class ReasoningLoopUtility implements Capability {
   public readonly name = 'ReasoningLoopUtility';
+  private publishEvent: (event: unknown) => Promise<void>;
+
+  // Dependency injection for event publishing to break circular dependency
+  constructor(publishEvent: (event: unknown) => Promise<void>) {
+    this.publishEvent = publishEvent;
+  }
 
   static eventSchemas = {
     reasoningStep: { type: 'object', properties: { step: { type: 'string' }, confidence: { type: 'number' }, iteration: { type: 'number' } }, required: ['step', 'confidence', 'iteration'] },
@@ -71,14 +75,14 @@ export class ReasoningLoopUtility implements Capability {
       log.push(step);
       // Emit step event
       const event = { type: 'reasoningStep', payload: { step, confidence, iteration: i + 1 } };
-      await publishEvent({ type: event.type, agentId: this.name, timestamp: new Date().toISOString(), payload: event.payload });
+      await this.publishEvent({ type: event.type, agentId: this.name, timestamp: new Date().toISOString(), payload: event.payload });
       if (options?.emitEvent) await options.emitEvent(event);
       // Uncertainty-aware CoT/backtracking
       if (confidence < uncertaintyThreshold) {
         log.push(`Uncertainty detected (confidence ${confidence.toFixed(2)} < threshold ${uncertaintyThreshold}). Triggering detailed reasoning.`);
         const explanation = llmExplain ? await llmExplain(step, history) : await this.explainStep(step);
         const explanationEvent = { type: 'explanation', payload: { step, explanation, iteration: i + 1 } };
-        await publishEvent({ type: explanationEvent.type, agentId: this.name, timestamp: new Date().toISOString(), payload: explanationEvent.payload });
+        await this.publishEvent({ type: explanationEvent.type, agentId: this.name, timestamp: new Date().toISOString(), payload: explanationEvent.payload });
         if (options?.emitEvent) await options.emitEvent(explanationEvent);
         log.push(`Explanation: ${explanation}`);
         if (allowBacktrack && i > 0 && backtrackCount < maxBacktrackSteps) {
@@ -103,7 +107,7 @@ export class ReasoningLoopUtility implements Capability {
           log.push('Attempting repair based on feedback.');
           const repaired = llmRepair ? await llmRepair(step, history) : await this.repairStep(step);
           const repairEvent = { type: 'repair', payload: { step, repaired, iteration: i + 1 } };
-          await publishEvent({ type: repairEvent.type, agentId: this.name, timestamp: new Date().toISOString(), payload: repairEvent.payload });
+          await this.publishEvent({ type: repairEvent.type, agentId: this.name, timestamp: new Date().toISOString(), payload: repairEvent.payload });
           if (options?.emitEvent) await options.emitEvent(repairEvent);
           log.push(`Repair: ${repaired}`);
           current = repaired;
@@ -114,7 +118,7 @@ export class ReasoningLoopUtility implements Capability {
         log.push('Detected issue in step 2, attempting repair...');
         const repaired = llmRepair ? await llmRepair(step, history) : await this.repairStep(step);
         const repairEvent = { type: 'repair', payload: { step, repaired, iteration: i + 1 } };
-        await publishEvent({ type: repairEvent.type, agentId: this.name, timestamp: new Date().toISOString(), payload: repairEvent.payload });
+        await this.publishEvent({ type: repairEvent.type, agentId: this.name, timestamp: new Date().toISOString(), payload: repairEvent.payload });
         if (options?.emitEvent) await options.emitEvent(repairEvent);
         log.push(`Repair: ${repaired}`);
         current = repaired;
@@ -214,6 +218,7 @@ export class ReasoningLoopUtility implements Capability {
           output: { type: 'object', properties: { status: { type: 'string' }, timestamp: { type: 'string' } }, required: ['status', 'timestamp'] }
         }
       },
+      usage: "import { ReasoningLoopUtility } from 'nootropic/capabilities/ReasoningLoopUtility'; const util = new ReasoningLoopUtility(publishEvent); await util.runLoop(input);",
       docsFirst: true,
       aiFriendlyDocs: true,
       references: [
@@ -221,13 +226,8 @@ export class ReasoningLoopUtility implements Capability {
         'https://arxiv.org/abs/2302.03494',
         'README.md#chain-of-thought-prompting--self-debugging-augmented-with-scot',
         'docs/ROADMAP.md#ensemble-llm-code-generation--voting-strategies'
-      ],
-      bestPractices: [
-        'Emit events for all reasoning, explanation, and repair steps',
-        'Support event-driven explainability and agent/LLM introspection',
-        'Document event schemas and rationale in describe()'
-      ],
-      eventSchemas: ReasoningLoopUtility.eventSchemas
+      ]
+      // Best practices: Inject a publishEvent function when constructing ReasoningLoopUtility (dependency injection pattern). Emit events for all reasoning, explanation, and repair steps. Support event-driven explainability and agent/LLM introspection. Document event schemas and rationale in describe().
     } as CapabilityDescribe & { eventSchemas: typeof ReasoningLoopUtility.eventSchemas };
   }
 }

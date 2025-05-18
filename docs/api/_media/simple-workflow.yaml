@@ -1,0 +1,54 @@
+# Example workflow demonstrating new step types: task, approval, parallel, loop
+name: AdvancedContentReviewWorkflow
+description: Example workflow with content creation, approval, parallel review, and loop steps.
+steps:
+  # Task step: content creation
+  - id: createContent
+    agent: ContentAgent
+    input:
+      prompt: "Write a short summary about AI agent frameworks."
+    dependsOn: []
+    type: task
+  # Approval step: human-in-the-loop approval after content creation
+  - id: approveContent
+    agent: HumanInTheLoopAgent
+    input:
+      contentRef: createContent
+    dependsOn:
+      - createContent
+    type: approval
+  # Parallel step: two review agents review in parallel
+  - id: parallelReview
+    agent: ReviewAgent
+    input:
+      contentRef: createContent
+    dependsOn:
+      - approveContent
+    type: parallel
+    metadata:
+      children: [reviewContentA, reviewContentB]
+  - id: reviewContentA
+    agent: ReviewAgent
+    input:
+      contentRef: createContent
+    dependsOn:
+      - approveContent
+    type: task
+  - id: reviewContentB
+    agent: ReviewAgent
+    input:
+      contentRef: createContent
+    dependsOn:
+      - approveContent
+    type: task
+  # Loop step: stub for repeated review (demonstration only)
+  - id: loopReview
+    agent: ReviewAgent
+    input:
+      contentRef: createContent
+    dependsOn:
+      - parallelReview
+    type: loop
+metadata:
+  author: "nootropic Example"
+  created: "2025-05-20" 

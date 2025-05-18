@@ -21,7 +21,8 @@
     "docs:check-sync": "tsx scripts/docs-check-sync.ts",
     "ts-migrate": "ts-migrate migrate",
     "watch:registry": "tsx scripts/watchRegistryAndDocs.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postbuild": "cp package.json dist/package.json"
   },
   "keywords": [
     "ai",
@@ -70,10 +71,13 @@
     "cpx2": "^8.0.0",
     "eslint": "^9.27.0",
     "eslint-plugin-tsdoc": "^0.4.0",
+    "fast-glob": "^3.3.3",
     "kafkajs": "^2.2.4",
     "knip": "^5.56.0",
+    "madge": "^8.0.0",
     "nats": "^2.29.3",
     "node-fetch": "^3.3.2",
+    "opossum": "^8.4.0",
     "rrdir": "^13.2.1",
     "ts-migrate": "^0.1.35",
     "tsx": "^4.19.4",
@@ -91,6 +95,7 @@
     "@xenova/transformers": "^2.17.2",
     "enquirer": "^2.4.1",
     "express": "^5.1.0",
+    "hnswlib-node": "^3.0.0",
     "js-yaml": "^4.1.0",
     "node-cron": "^4.0.5",
     "node-vault": "^0.10.2",

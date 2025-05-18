@@ -7,7 +7,7 @@
 - id: epic-utilities-refactor
 - slug: epic-utilities-refactor
 - docPath: docs/epics/epic-utilities-refactor.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---
 ## Subtasks
 - [utils-context](docs/stories/utils-context.md)
@@ -30,3 +30,5 @@
 - [integrate-vectorstore-js](docs/stories/integrate-vectorstore-js.md)
 - [test-coverage-hybrid-retrieval-adapters](docs/stories/test-coverage-hybrid-retrieval-adapters.md)
 - [document-hybrid-retrieval-adapters](docs/stories/document-hybrid-retrieval-adapters.md)
+- [scaffold-event-helpers](docs/stories/scaffold-event-helpers.md)
+- [scaffold-security-helpers](docs/stories/scaffold-security-helpers.md)

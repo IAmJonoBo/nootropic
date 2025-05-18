@@ -5,7 +5,7 @@ vi.mock('update-notifier', () => ({
 }));
 
 // @ts-ignore
-import { checkForUpdates } from '../utils/describe/updateNotifier.js';
+import { checkForUpdates } from '../src/utils/describe/updateNotifier';
 
 describe('updateNotifier', () => {
   it('calls notifier.notify', () => {

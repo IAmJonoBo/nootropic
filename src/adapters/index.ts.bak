@@ -1,0 +1,40 @@
+// @ts-ignore
+import { KafkaEventBus } from './KafkaEventBus';
+// @ts-ignore
+import { NatsEventBus } from './NatsEventBus';
+// @ts-ignore
+import { DaprEventBus } from './DaprEventBus';
+// @ts-ignore
+import { SemanticKernelAdapter } from './semanticKernelAdapter';
+// @ts-ignore
+import { CrewAIAdapter } from './crewAIAdapter';
+// @ts-ignore
+import { LangChainAdapter } from './langchainAdapter';
+
+// Provide required constructor args for Kafka and NATS
+const kafkaBrokers = (process.env['KAFKA_BROKERS']?.split(',') ?? ['localhost:9092']);
+const kafkaClientId = process.env['KAFKA_CLIENT_ID'] ?? 'nootropic';
+
+// Export a function to register all adapters
+export function registerAllAdapters(registry: typeof import('../capabilities/registry').default) {
+  registry.register(new KafkaEventBus(kafkaBrokers, kafkaClientId));
+  registry.register(new NatsEventBus());
+  registry.register(new DaprEventBus());
+  registry.register(new SemanticKernelAdapter());
+  registry.register(new CrewAIAdapter());
+  registry.register(new LangChainAdapter());
+}
+
+// Only export concrete classes and values, not interfaces or types
+export { KafkaEventBus } from './KafkaEventBus';
+export * from './NatsEventBus';
+export * from './DaprEventBus';
+export * from './semanticKernelAdapter';
+export * from './crewAIAdapter';
+export * from './langchainAdapter';
+
+export async function init() {}
+export async function shutdown() {}
+export async function reload() {}
+export async function health() { return { status: 'ok', timestamp: new Date().toISOString() }; }
+export async function describe() { return { name: 'adapters', description: 'Stub lifecycle hooks for registry compliance.' }; } 

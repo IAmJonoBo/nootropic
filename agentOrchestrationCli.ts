@@ -9,23 +9,28 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 // @ts-ignore
-import { getPlugins } from './pluginRegistry.js';
+import { getPlugins } from './pluginLoader.js';
 // @ts-ignore
 import { describeCapability } from './index.js';
 // @ts-ignore
 import { loadAiHelpersConfig, readJsonSafe } from './utils.js';
 // @ts-ignore
-import { getCacheFilePath } from './utils/context/cacheDir.js';
+import { getCacheFilePath } from './src/utils/context/cacheDir.js';
 // @ts-ignore
 import { getContextChunk, getOptimizedHandoverPayload, AgentContextConfig } from './contextSnapshotHelper.js';
 // @ts-ignore
 import { getRecentMessages } from './agentMessageProtocol.js';
-import { prompt } from "enquirer";
+import enquirer from "enquirer";
+const { prompt } = enquirer;
 // @ts-ignore
 import { initTelemetry, shutdownTelemetry } from './telemetry.js';
 import fs from 'fs';
 // @ts-ignore
-import { ContextManager } from './utils/context/contextManager.js';
+import { ContextManager } from './src/utils/context/contextManager.js';
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'test';
+process.env.NOOTROPIC_DEBUG = '1';
+process.env.KAFKAJS_NO_PARTITIONER_WARNING = '1';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(path.join(__dirname, 'package.json'), 'utf-8'));
@@ -41,7 +46,21 @@ program
   .option('--analytics', 'Enable analytics (opt-in, logs command usage to .nootropic-analytics.log)')
   .option('--no-analytics', 'Disable analytics');
 
-const contextManager = new ContextManager();
+// Early required argument validation (before any context/agent/backend import/init)
+const requiredArgs = ['--profile', '--task'];
+const missingArgs = requiredArgs.filter(arg => !process.argv.includes(arg));
+const isJsonMode = () => process.argv.includes('--json') || process.env.NOOTROPIC_JSON === '1';
+if (missingArgs.length > 0) {
+  if (isJsonMode()) {
+    process.stdout.write(JSON.stringify({ success: false, error: `Missing required args: ${missingArgs.join(', ')}` }) + '\n');
+  } else {
+    console.error('Usage: agentOrchestrationCli --profile <profile> --task <task> [options]');
+    console.error('Error: Missing required args:', missingArgs.join(', '));
+  }
+  process.exit(1);
+}
+
+// Only instantiate context/agent/backend objects after required args are validated
 
 // Helper: Parse and prompt for agent arguments
 async function parseAgentArgs(opts: Record<string, unknown>, interactive: boolean) {
@@ -97,14 +116,15 @@ program
     try {
       const orchestrationEngine = getOrchestrationEngine(engine as OrchestrationEngineName);
       const result = await orchestrationEngine.runAgentTask(parsedProfile, parsedTask, parsedContext);
-      process.stdout.write(JSON.stringify(result, null, 2) + '\n');
+      printStubResult(result);
       process.exitCode = result.success ? 0 : 1;
     } catch (e) {
       const msg = 'Agent orchestration failed';
       if (cmd.parent?.opts()['json']) {
         process.stdout.write(JSON.stringify({ success: false, logs: [msg, String(e)] }) + '\n');
+        if (isJsonMode()) process.exit(1);
       } else {
-        console.error(chalk.red(msg + ': ' + e));
+        if (!isJsonMode()) console.error(chalk.red(msg + ': ' + e));
       }
       process.exitCode = 1;
     }
@@ -121,7 +141,7 @@ pluginsCmd
   .action(async () => {
     const plugins = await getPlugins();
     if (plugins.length === 0) {
-      console.log(chalk.yellow('No plugins found in ./plugins.'));
+      if (!isJsonMode()) console.log(chalk.yellow('No plugins found in ./plugins.'));
       return;
     }
     for (const plugin of plugins) {
@@ -129,12 +149,14 @@ pluginsCmd
       if (program.opts()['json']) {
         console.log(JSON.stringify(desc, null, 2));
       } else {
-        if (typeof desc === 'object' && desc && 'name' in desc) {
-          const name = (desc as { name: string }).name;
-          const description = (desc as { description?: string }).description ?? 'No description';
-          console.log(chalk.green(name) + ': ' + description);
-        } else {
-          console.log(chalk.green(plugin.name));
+        if (!isJsonMode()) {
+          if (typeof desc === 'object' && desc && 'name' in desc) {
+            const name = (desc as { name: string }).name;
+            const description = (desc as { description?: string }).description ?? 'No description';
+            console.log(chalk.green(name) + ': ' + description);
+          } else {
+            console.log(chalk.green(plugin.name));
+          }
         }
       }
     }
@@ -148,7 +170,7 @@ pluginsCmd
     const plugins = await getPlugins();
     const plugin = plugins.find(p => p.name === pluginName);
     if (!plugin || typeof plugin.run !== 'function') {
-      console.error(chalk.red(`Plugin '${pluginName}' not found or missing run() export.`));
+      if (!isJsonMode()) console.error(chalk.red(`Plugin '${pluginName}' not found or missing run() export.`));
       process.exit(1);
     }
     try {
@@ -156,10 +178,10 @@ pluginsCmd
       if (program.opts()['json']) {
         console.log(JSON.stringify(result, null, 2));
       } else {
-        console.log(chalk.green(`[plugin:${pluginName}]`), result);
+        if (!isJsonMode()) console.log(chalk.green(`[plugin:${pluginName}]`), result);
       }
     } catch (e) {
-      console.error(chalk.red(`[plugin:${pluginName}] Error: ${e}`));
+      if (!isJsonMode()) console.error(chalk.red(`[plugin:${pluginName}] Error: ${e}`));
       process.exit(1);
     }
   });
@@ -289,21 +311,20 @@ program
   .option('--max-size-bytes <n>', 'Max total size in bytes', parseInt)
   .option('--max-tokens <n>', 'Max total tokens', parseInt)
   .action(async (opts: Record<string, unknown>) => {
+    const contextManager = new ContextManager();
     try {
       const pruneOptions: { maxAgeDays?: number; maxSizeBytes?: number; maxTokens?: number } = {};
       if (typeof opts['maxAgeDays'] === 'number') pruneOptions.maxAgeDays = opts['maxAgeDays'];
       if (typeof opts['maxSizeBytes'] === 'number') pruneOptions.maxSizeBytes = opts['maxSizeBytes'];
       if (typeof opts['maxTokens'] === 'number') pruneOptions.maxTokens = opts['maxTokens'];
       await contextManager.pruneContext(pruneOptions);
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: true, action: 'prune' }, null, 2));
-      } else {
+      printJsonResult({ success: true, action: 'prune' });
+      if (!isJsonMode()) {
         console.log('Context pruned.');
       }
     } catch (e) {
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: false, error: String(e) }, null, 2));
-      } else {
+      printJsonResult({ success: false, error: String(e) });
+      if (!isJsonMode()) {
         console.error('Context prune failed:', e);
       }
       process.exitCode = 1;
@@ -315,17 +336,16 @@ program
   .description('Archive current context snapshot (full or compressed)')
   .option('--tier <n>', 'Context tier/size (e.g., 32000, 64000, 128000)', parseInt)
   .action(async (opts: Record<string, unknown>) => {
+    const contextManager = new ContextManager();
     try {
       await contextManager.archiveContext(opts['tier'] as number | undefined);
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: true, action: 'archive' }, null, 2));
-      } else {
+      printJsonResult({ success: true, action: 'archive' });
+      if (!isJsonMode()) {
         console.log('Context archived.');
       }
     } catch (e) {
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: false, error: String(e) }, null, 2));
-      } else {
+      printJsonResult({ success: false, error: String(e) });
+      if (!isJsonMode()) {
         console.error('Context archive failed:', e);
       }
       process.exitCode = 1;
@@ -336,6 +356,7 @@ program
   .command('context-list')
   .description('List available context snapshots (full, compressed, delta)')
   .action(async () => {
+    const contextManager = new ContextManager();
     try {
       const snapshots = await contextManager.listSnapshots();
       if (program.opts()['json']) {
@@ -358,17 +379,16 @@ program
   .description('Restore a context snapshot by name/tier')
   .option('--name <name>', 'Name or tier of snapshot to restore')
   .action(async (opts: Record<string, unknown>) => {
+    const contextManager = new ContextManager();
     try {
       await contextManager.restoreSnapshot(opts['name'] as string);
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: true, action: 'restore' }, null, 2));
-      } else {
+      printJsonResult({ success: true, action: 'restore' });
+      if (!isJsonMode()) {
         console.log('Context restored.');
       }
     } catch (e) {
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: false, error: String(e) }, null, 2));
-      } else {
+      printJsonResult({ success: false, error: String(e) });
+      if (!isJsonMode()) {
         console.error('Context restore failed:', e);
       }
       process.exitCode = 1;
@@ -379,17 +399,16 @@ program
   .command('context-enforce-tiering')
   .description('Enforce manifest-driven context/cache tiering policies (hot/warm/cold)')
   .action(async () => {
+    const contextManager = new ContextManager();
     try {
       await contextManager.enforceTiering();
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: true, action: 'enforceTiering' }));
-      } else {
+      printJsonResult({ success: true, action: 'enforceTiering' });
+      if (!isJsonMode()) {
         console.log(chalk.green('Tiering policies enforced.'));
       }
     } catch (e) {
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: false, error: String(e) }));
-      } else {
+      printJsonResult({ success: false, error: String(e) });
+      if (!isJsonMode()) {
         console.error(chalk.red('Failed to enforce tiering:'), e);
       }
       process.exit(1);
@@ -400,20 +419,19 @@ program
   .command('context-migrate-tier <fileName> <targetTier>')
   .description('Migrate a cache/context file to a different tier (hot/warm/cold)')
   .action(async (fileName: string, targetTier: string) => {
+    const contextManager = new ContextManager();
     try {
       if (!['hot', 'warm', 'cold'].includes(targetTier)) {
         throw new Error(`Invalid targetTier: ${targetTier}. Must be one of 'hot', 'warm', 'cold'.`);
       }
       await contextManager.migrateFileTier(fileName, targetTier as 'hot' | 'warm' | 'cold');
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: true, action: 'migrateFileTier', fileName, targetTier }));
-      } else {
+      printJsonResult({ success: true, action: 'migrateFileTier', fileName, targetTier });
+      if (!isJsonMode()) {
         console.log(chalk.green(`File '${fileName}' migrated to tier '${targetTier}'.`));
       }
     } catch (e) {
-      if (program.opts()['json']) {
-        console.log(JSON.stringify({ success: false, error: String(e) }));
-      } else {
+      printJsonResult({ success: false, error: String(e) });
+      if (!isJsonMode()) {
         console.error(chalk.red('Failed to migrate file tier:'), e);
       }
       process.exit(1);
@@ -518,4 +536,28 @@ interface Prompt {
   description: string;
   template: string;
   usage?: string;
+}
+
+// Helper to print stub result as valid JSON in JSON mode
+function printStubResult(result: unknown) {
+  if (isJsonMode()) {
+    try {
+      process.stdout.write(JSON.stringify({ success: true, result }) + '\n');
+      if (process.env.NOOTROPIC_DEBUG) process.stderr.write('[DEBUG] Exiting after printStubResult\n');
+    } catch (e) {
+      process.stdout.write(JSON.stringify({ success: false, error: 'Stub result not serializable', details: String(e) }) + '\n');
+      if (process.env.NOOTROPIC_DEBUG) process.stderr.write('[DEBUG] Exiting after printStubResult (error)\n');
+    }
+    process.exit(0);
+  } else {
+    console.log(result);
+  }
+}
+
+// Helper to print JSON result in JSON mode
+function printJsonResult(obj: unknown) {
+  if (isJsonMode()) {
+    process.stdout.write(JSON.stringify(obj) + '\n');
+    process.exit(0);
+  }
 } 

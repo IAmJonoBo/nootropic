@@ -5,12 +5,10 @@ import type { AgentResult, AgentLogger } from '../schemas/AgentOrchestrationEngi
 // @ts-ignore
 import { publishEvent, subscribeToTopic } from '../memoryLaneHelper.js';
 // @ts-ignore
-import { AgentResultSchema } from '../src/schemas/AgentOrchestrationEngineSchema.js';
+import { AgentResultSchema } from '../schemas/AgentOrchestrationEngineSchema.js';
 import { z } from 'zod';
 // @ts-ignore
 import type { CapabilityDescribe } from '../capabilities/Capability.js';
-// @ts-ignore
-import { getEmbeddingBackend, EmbeddingBackend } from '../utils/embedding/embeddingClient.js';
 
 const ReviewerTaskSchema = z.object({
   id: z.string(),

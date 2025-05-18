@@ -9,18 +9,13 @@ export default [
     files: [
       '*.ts',
       '*.tsx',
+      'src/agents/**/*.ts',
+      'src/agents/**/*.tsx',
       'utils/**/*.ts',
       'utils/**/*.tsx',
       'web/**/*.ts',
       'web/**/*.tsx',
       'scripts/**/*.ts',
-    ],
-    ignores: [
-      'dist/',
-      'node_modules/',
-      '.nootropic-cache/archive/',
-      '**/*.d.ts',
-      'web/src/vite-env.d.ts',
     ],
     languageOptions: {
       parser: tsParser,
@@ -41,4 +36,23 @@ export default [
       'tsdoc/syntax': 'warn',
     },
   },
+  {
+    ignores: [
+      'dist/',
+      '**/dist/**',
+      'node_modules/',
+      '.nootropic-cache/archive/',
+      '**/*.d.ts',
+      'web/src/vite-env.d.ts',
+    ],
+  },
+];
+
+export const ignores = [
+  'dist/',
+  '**/dist/**',
+  'node_modules/',
+  '.nootropic-cache/archive/',
+  '**/*.d.ts',
+  'web/src/vite-env.d.ts',
 ]; 

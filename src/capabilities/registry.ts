@@ -5,8 +5,12 @@ import { RAGPipelineUtility } from './RAGPipelineUtility.js';
 // @ts-ignore
 import { RerankUtility, ShimiMemory } from '../utils/context/index.js';
 // @ts-ignore
-import { pluginFeedbackCapability, sastMemoriesCapability } from '../utils/feedback/index.js';
+import { pluginFeedbackCapability, sastMemoriesCapability, semgrepMemoriesCapability, sonarQubeMemoriesCapability } from '../utils/feedback/index.js';
 import { z } from 'zod';
+import { ReasoningLoopUtility } from './ReasoningLoopUtility.js';
+import ExperimentalChunkingUtilityCapability from '../../ChunkingUtility.js';
+import { KmsVaultSecretsManager, VaultSecretsManager, LocalSecretsManager, KanikoBuildManager } from '../../secretsManager.js';
+import { publishEvent } from '../memoryLaneHelper.js';
 
 // Canonical Zod schema for Capability objects
 export const CapabilitySchema = z.object({
@@ -21,7 +25,7 @@ export const CapabilitySchema = z.object({
  * Enforces describe() compliance and provides aggregation for LLM/agent discovery.
  */
 class CapabilityRegistry {
-  private capabilities: Map<string, Capability> = new Map();
+  private readonly capabilities: Map<string, Capability> = new Map();
 
   /**
    * Register a new capability. Throws if name is not unique or schema is invalid.
@@ -39,6 +43,13 @@ class CapabilityRegistry {
       throw new Error('Only Capability-compliant objects can be registered');
     }
     if (this.capabilities.has(cap.name)) {
+      // In any non-production environment, skip duplicate registration instead of throwing
+      if (process.env.NODE_ENV !== 'production') {
+        if (process.env['NOOTROPIC_DEBUG']) {
+          console.warn(`[CapabilityRegistry] Duplicate registration for '${cap.name}' (skipped)`);
+        }
+        return;
+      }
       throw new Error(`Capability with name '${cap.name}' is already registered`);
     }
     this.capabilities.set(cap.name, cap);
@@ -69,11 +80,22 @@ class CapabilityRegistry {
 const registry = new CapabilityRegistry();
 export default registry;
 
-registry.register(new RAGPipelineUtility());
-registry.register(new RerankUtility());
-registry.register(new ShimiMemory({ backendName: 'nv-embed' }));
+// Register only utilities, adapters, and plugins here
 registry.register(pluginFeedbackCapability);
 registry.register(sastMemoriesCapability);
+registry.register(semgrepMemoriesCapability);
+registry.register(sonarQubeMemoriesCapability);
+registry.register(new ShimiMemory({ backendName: 'nv-embed' }));
+// Dependency injection for event publishing to break circular dependency
+// Type cast is safe due to event schema validation in memoryLaneHelper
+registry.register(new RAGPipelineUtility(publishEvent as (event: unknown) => Promise<void>));
+registry.register(new RerankUtility());
+registry.register(new ReasoningLoopUtility(publishEvent as (event: unknown) => Promise<void>));
+registry.register(ExperimentalChunkingUtilityCapability);
+registry.register(new KmsVaultSecretsManager({ provider: 'aws', keyId: 'dummy-key-id' }));
+registry.register(new VaultSecretsManager({ endpoint: 'http://localhost:8200', token: 'dummy-token' }));
+registry.register(new LocalSecretsManager());
+registry.register(new KanikoBuildManager({}));
 
 // --- Planned/in-progress docManifest stubs for registry/discoverability ---
 const plannedSections = [

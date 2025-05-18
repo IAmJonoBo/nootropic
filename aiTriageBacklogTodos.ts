@@ -84,7 +84,7 @@ async function main() {
     } catch {}
     const staleItems: TodoItem[] = [];
     // Type guard for backlog entries
-    for (const item of Array.isArray(backlogJson.backlog) ? backlogJson.backlog.filter((i: unknown): i is TodoItem => typeof i === 'object' && i !== null && typeof (i as any).id === 'string' && (i as any).id.startsWith('todo:')) : []) {
+    for (const item of Array.isArray(backlogJson.backlog) ? backlogJson.backlog.filter((i: unknown): i is TodoItem => typeof i === 'object' && i !== null && 'id' in i && typeof (i as { id: unknown }).id === 'string' && ((i as { id: string }).id).startsWith('todo:')) : []) {
       if (isDocComment(item)) {
         item.aiSuggestedTriage = 'ignored';
       } else if (isCoreFile(item)) {

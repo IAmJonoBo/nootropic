@@ -1,20 +1,23 @@
 import { describe, it, expect, vi } from 'vitest';
 // @ts-ignore
-// import { ChunkingUtility, SemanticChunkingStrategy, LLMChunkRelevanceScorer } from '../../utils/context/ChunkingUtility.js';
+// import { ChunkingUtility, SemanticChunkingStrategy, LLMChunkRelevanceScorer } from '../../utils/context/ChunkingUtility';
 // @ts-ignore
-// import { HybridRetrievalUtility, DenseRetriever } from '../../utils/context/HybridRetrievalUtility.js';
+// import { HybridRetrievalUtility, DenseRetriever } from '../../utils/context/HybridRetrievalUtility';
 // @ts-ignore
-import { RerankUtility, BiEncoderReranker, CrossEncoderReranker } from '../../utils/context/RerankUtility.js';
+import { RerankUtility, BiEncoderReranker, CrossEncoderReranker } from '../../src/utils/context/RerankUtility';
 // @ts-ignore
-import { ShimiMemory } from '../../utils/context/shimiMemory.js';
+import { ShimiMemory } from '../../src/utils/context/shimiMemory';
 // @ts-ignore
-import { HuggingFaceLLMAdapter } from '../../adapters/HuggingFaceLLMAdapter.js';
+// import { HuggingFaceLLMAdapter } from '../../adapters/HuggingFaceLLMAdapter';
+import { HuggingFaceLLMAdapter } from '../../src/adapters/HuggingFaceLLMAdapter';
 // @ts-ignore
-import { OpenRouterLLMAdapter } from '../../adapters/OpenRouterLLMAdapter.js';
+// import { OpenRouterLLMAdapter } from '../../adapters/OpenRouterLLMAdapter';
+import { OpenRouterLLMAdapter } from '../../src/adapters/OpenRouterLLMAdapter';
 // @ts-ignore
-import { OllamaLLMAdapter } from '../../adapters/OllamaLLMAdapter.js';
+// import { OllamaLLMAdapter } from '../../adapters/OllamaLLMAdapter';
+import { OllamaLLMAdapter } from '../../src/adapters/OllamaLLMAdapter';
 // @ts-ignore
-import { checkToxicity } from '../../utils/testing/toxicityCheck.js';
+import { checkToxicity } from '../../src/utils/testing/toxicityCheck';
 
 describe('LLM Adapter Integration', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

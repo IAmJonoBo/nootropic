@@ -65,7 +65,7 @@ export class CollectionAgent extends BaseAgent {
         logs: ['Invalid task input', JSON.stringify(parsed.error.issues)]
       };
     }
-    const tools = await this.listTools();
+    const tools = this.listTools ? await this.listTools() : [];
     const results: Record<string, unknown> = {};
     const logs: string[] = [];
     for (const tool of tools) {

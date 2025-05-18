@@ -2,7 +2,6 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { readProtocolMessages } from './agentMessageProtocol.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const SESSIONS_PATH = path.resolve(__dirname, 'agentSessions.json');
@@ -22,8 +21,7 @@ function upsertSession(sessionId, { participants, plan, status }) {
         plan,
         status,
         updated: new Date().toISOString(),
-        negotiationLog: readProtocolMessages({})
-            .filter(m => (participants && m.agent && participants.includes(m.agent)) || (m.message && m.message.to && participants && participants.includes(m.message.to)))
+        negotiationLog: []
     };
     fs.writeFileSync(SESSIONS_PATH, JSON.stringify(sessions, null, 2));
 }
@@ -38,10 +36,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const [cmd, ...args] = process.argv.slice(2);
     if (cmd === 'upsert') {
         const [sessionId, participants, plan, status] = args;
-        upsertSession(sessionId, {
-            participants: JSON.parse(participants),
-            plan: JSON.parse(plan),
-            status
+        upsertSession(sessionId ?? '', {
+            participants: participants ? JSON.parse(participants) : [],
+            plan: plan ? JSON.parse(plan) : {},
+            status: status ?? ''
         });
         console.log('Session upserted.');
     }

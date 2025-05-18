@@ -1,6 +1,9 @@
-import { LangChainAdapter } from './adapters/langchainAdapter.js';
-import { CrewAIAdapter } from './adapters/crewAIAdapter.js';
-import { SemanticKernelAdapter } from './adapters/semanticKernelAdapter.js';
+// @ts-ignore
+import { LangChainAdapter } from './src/adapters/langchainAdapter.js';
+// @ts-ignore
+import { CrewAIAdapter } from './src/adapters/crewAIAdapter.js';
+// @ts-ignore
+import { SemanticKernelAdapter } from './src/adapters/semanticKernelAdapter.js';
 /**
  * Returns an instance of the requested orchestration engine adapter.
  * Extend this function to support additional engines.

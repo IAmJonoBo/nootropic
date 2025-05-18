@@ -2,10 +2,10 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 // @ts-nocheck
 // This test expects to be run with Jest or a compatible test runner. Type errors for test globals (describe, it, expect, beforeAll, afterAll) can be ignored if the runner is configured.
 // @ts-ignore
-import { NatsEventBus, TraceContext } from '../adapters/NatsEventBus.js';
+import { NatsEventBus, TraceContext } from '../src/adapters/NatsEventBus.js';
 import { randomUUID } from 'crypto';
 // @ts-ignore
-import type { AgentEvent } from '../types/AgentOrchestrationEngine.js';
+import type { AgentEvent } from '../types/AgentOrchestrationEngine';
 
 describe('NatsEventBus Context Propagation', () => {
   const subject = process.env['NATS_SUBJECT'] ?? 'aihelpers.events';

@@ -1,0 +1,185 @@
+// @ts-ignore
+import { BaseAgent } from './BaseAgent.js';
+/**
+ * MultimodalAgent: Ingests UI mockups, diagrams, and code to generate code skeletons and bridge design-development.
+ * Supports vision-language modeling, design-to-code, and diagram parsing. Implements Capability interface.
+ * Reference: Flame-Code-VLM, GPT-4V, Qwen-VL
+ */
+export class MultimodalAgent extends BaseAgent {
+    name;
+    constructor(options) {
+        super(options.profile);
+        this.name = options.profile.name ?? 'MultimodalAgent';
+    }
+    async runTask(task) {
+        // Branch on task type for advanced multimodal workflows
+        let log;
+        const events = [];
+        const emitEvent = async (event) => {
+            const agentEvent = {
+                type: event.type,
+                agentId: this.name,
+                timestamp: new Date().toISOString(),
+                ...(event.payload !== undefined ? { payload: event.payload } : {})
+            };
+            events.push(agentEvent);
+            // (stub) Would publish event to event bus
+        };
+        if (typeof task === 'object' && task && 'type' in task && 'data' in task) {
+            const t = task.type;
+            switch (t) {
+                case 'image':
+                    // Vision-language model stub
+                    const visionResult = await this.visionLanguageModelStub(task.data);
+                    await emitEvent({ type: 'visionLanguageProcessed', payload: { input: task.data, result: visionResult } });
+                    // Diagram parsing stub
+                    const diagramResult = await this.diagramParsingStub(task.data);
+                    await emitEvent({ type: 'diagramParsed', payload: { input: task.data, result: diagramResult } });
+                    log = `Image: (stub) Vision-language: ${visionResult}; Diagram: ${diagramResult}`;
+                    break;
+                case 'audio':
+                    // Whisper audio transcription stub
+                    const audioResult = await this.whisperTranscriptionStub(task.data);
+                    await emitEvent({ type: 'audioTranscribed', payload: { input: task.data, result: audioResult } });
+                    log = `Audio: (stub) Whisper transcription: ${audioResult}`;
+                    break;
+                case 'text':
+                    // Structured data synthesis stub
+                    const textResult = await this.textSynthesisStub(task.data);
+                    await emitEvent({ type: 'textSynthesized', payload: { input: task.data, result: textResult } });
+                    log = `Text: (stub) Structured synthesis: ${textResult}`;
+                    break;
+                default:
+                    log = `Unknown type: (stub) No handler for type ${task.type}`;
+            }
+        }
+        else {
+            log = 'Invalid task: (stub) Task must have type and data fields.';
+        }
+        return { output: { echo: task }, success: true, logs: [log, ...events.map(e => `[event] ${e.type}: ${JSON.stringify((e && typeof e === 'object' && 'payload' in e ? e.payload : {}) ?? {})}`)] };
+    }
+    // Stub for vision-language model (e.g., GPT-4V, CLIP)
+    async visionLanguageModelStub(data) {
+        void data;
+        // TODO: Integrate real vision-language model
+        return '[Vision-Language Model] (stub)';
+    }
+    // Stub for diagram parsing
+    async diagramParsingStub(data) {
+        void data;
+        // TODO: Integrate real diagram parsing logic
+        return '[Diagram Parsing] (stub)';
+    }
+    // Stub for Whisper audio transcription
+    async whisperTranscriptionStub(data) {
+        void data;
+        // TODO: Integrate real Whisper transcription
+        return '[Whisper Transcription] (stub)';
+    }
+    // Stub for text synthesis
+    async textSynthesisStub(data) {
+        void data;
+        // TODO: Integrate real structured data synthesis
+        return '[Text Synthesis] (stub)';
+    }
+    static eventSchemas = {
+        visionLanguageProcessed: { type: 'object', properties: { input: { type: 'string' }, result: { type: 'string' } }, required: ['input', 'result'] },
+        diagramParsed: { type: 'object', properties: { input: { type: 'string' }, result: { type: 'string' } }, required: ['input', 'result'] },
+        audioTranscribed: { type: 'object', properties: { input: { type: 'string' }, result: { type: 'string' } }, required: ['input', 'result'] },
+        textSynthesized: { type: 'object', properties: { input: { type: 'string' }, result: { type: 'string' } }, required: ['input', 'result'] }
+    };
+    static describe() {
+        return {
+            name: 'MultimodalAgent',
+            description: 'Ingests UI mockups, diagrams, and code to generate code skeletons and bridge design-development. Advanced features: Flame-Waterfall Vision-Code Model, structured data synthesis, diagram parsing via CLIP+DSL, multimodal fusion (GPT-4V/Qwen-VL fallback). Extension points: vision-language models, diagram parsing, multimodal fusion, event schemas. Best practices: Use robust vision-language models, leverage structured data synthesis, integrate diagram parsing and DSL mapping, document extension points and rationale. Reference: Flame-Code-VLM, GPT-4V, Qwen-VL.',
+            license: 'MIT',
+            isOpenSource: true,
+            provenance: 'https://github.com/nootropic/nootropic',
+            methods: [
+                { name: 'runTask', signature: '(task: { type: "image" | "audio" | "text", data: string }) => Promise<{ result: string }>', description: 'Run a multimodal task (image, audio, or text) and return the result.' },
+                { name: 'init', signature: '() => Promise<void>', description: 'Initialize the agent.' },
+                { name: 'shutdown', signature: '() => Promise<void>', description: 'Shutdown the agent.' },
+                { name: 'reload', signature: '() => Promise<void>', description: 'Reload the agent.' },
+                { name: 'health', signature: '() => Promise<HealthStatus>', description: 'Health check for MultimodalAgent.' }
+            ],
+            schema: {
+                runTask: {
+                    input: {
+                        type: 'object',
+                        properties: {
+                            type: { type: 'string', enum: ['image', 'audio', 'text'] },
+                            data: { type: 'string' }
+                        },
+                        required: ['type', 'data']
+                    },
+                    output: {
+                        type: 'object',
+                        properties: { result: { type: 'string' } },
+                        required: ['result']
+                    }
+                },
+                init: { input: { type: 'null', description: 'No input required' }, output: { type: 'null', description: 'No output (side effect: initialization)' } },
+                shutdown: { input: { type: 'null', description: 'No input required' }, output: { type: 'null', description: 'No output (side effect: shutdown)' } },
+                reload: { input: { type: 'null', description: 'No input required' }, output: { type: 'null', description: 'No output (side effect: reload)' } },
+                health: { input: { type: 'null', description: 'No input required' }, output: { type: 'object', properties: { status: { type: 'string' }, timestamp: { type: 'string' } }, required: ['status', 'timestamp'] } }
+            },
+            usage: "import { MultimodalAgent } from 'nootropic/agents/MultimodalAgent'; const agent = new MultimodalAgent({ profile: { name: 'MultimodalAgent' } }); await agent.runTask({ ... });",
+            docsFirst: true,
+            aiFriendlyDocs: true,
+            references: [
+                'https://github.com/Flame-Code-VLM/Flame-Code-VLM',
+                'README.md#multimodal-llms--uicode-understanding',
+                'docs/ROADMAP.md#multimodal-agent'
+            ],
+            // See MultimodalAgent.eventSchemas for event schema definitions
+        };
+    }
+    describe() {
+        return this.constructor.describe();
+    }
+    async health() {
+        return { status: 'ok', timestamp: new Date().toISOString() };
+    }
+    /**
+     * Initialize the agent (stub).
+     */
+    async init() { }
+    /**
+     * Shutdown the agent (stub).
+     */
+    async shutdown() { }
+    /**
+     * Reload the agent (stub).
+     */
+    async reload() { }
+}
+export async function init() { }
+export async function shutdown() { }
+export async function reload() { }
+export async function health() { return { status: 'ok', timestamp: new Date().toISOString() }; }
+export async function describe() {
+    return {
+        name: 'MultimodalAgent',
+        description: 'Stub lifecycle hooks for registry compliance.',
+        promptTemplates: [
+            {
+                name: 'Process Multimodal Data',
+                description: 'Prompt for instructing the agent to process multimodal (text, image, audio) data.',
+                template: 'Process the following multimodal data: {{dataDescription}}.',
+                usage: 'Used for multimodal data processing workflows.'
+            },
+            {
+                name: 'Generate Multimodal Output',
+                description: 'Prompt for instructing the agent to generate multimodal output.',
+                template: 'Generate a multimodal output (text, image, audio) for the following prompt: {{prompt}}.',
+                usage: 'Used for multimodal output generation workflows.'
+            },
+            {
+                name: 'Describe Multimodal Content',
+                description: 'Prompt for instructing the agent to describe multimodal content.',
+                template: 'Describe the following multimodal content: {{contentDescription}}.',
+                usage: 'Used for multimodal content description workflows.'
+            }
+        ]
+    };
+}

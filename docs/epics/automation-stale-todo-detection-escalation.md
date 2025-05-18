@@ -7,5 +7,5 @@
 - id: automation-stale-todo-detection-escalation
 - slug: automation-stale-todo-detection-escalation
 - docPath: docs/epics/automation-stale-todo-detection-escalation.md
-- lastSynced: 2025-05-17T16:25:55.538Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

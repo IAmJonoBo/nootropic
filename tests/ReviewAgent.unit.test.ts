@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { ReviewAgent } from '../agents/ReviewAgent.js';
+import { ReviewAgent } from '../src/agents/ReviewAgent';
 
 describe('ReviewAgent', () => {
   it('should run a review task and emit event-driven logs', async () => {

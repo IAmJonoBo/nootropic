@@ -9,5 +9,5 @@
 - id: integrate-openrouter-llm-adapter
 - slug: integrate-openrouter-llm-adapter
 - docPath: docs/stories/integrate-openrouter-llm-adapter.md
-- lastSynced: 2025-05-17T16:25:55.537Z
+- lastSynced: 2025-05-18T20:01:43.282Z
 ---

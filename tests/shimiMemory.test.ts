@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { ShimiMemory } from '../utils/context/shimiMemory.js';
+import { ShimiMemory } from '../src/utils/context/shimiMemory.js';
 
 describe('ShimiMemory', () => {
   class MockBackend {

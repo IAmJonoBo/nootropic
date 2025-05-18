@@ -1,9 +1,17 @@
 // Node.js globals for CLI context
 // Use process and console directly (no need to declare)
 // nootropic is for Cursor agents only. This file is intentionally excluded from main TSConfig/ESLint as an ad hoc helper. See Rocketship conventions.
+// @ts-ignore
 import { readJsonSafe, writeJsonSafe } from './utils.js';
+// @ts-ignore
 import { appendMemoryEvent } from './memoryLaneHelper.js';
-import { AGENT_INTENT_PATH, AGENT_FEEDBACK_PATH } from './paths.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const AGENT_INTENT_PATH = path.join(__dirname, 'agent-intents.json');
+const AGENT_FEEDBACK_PATH = path.join(__dirname, 'agent-feedback.json');
+// @ts-ignore
 import { parseArgs, printHelp, handleCliError } from './cliHandler.js';
 // --- Register or update agent intent/plan ---
 async function registerIntent(agent, intent, plan, context = {}) {
@@ -58,7 +66,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         try {
             if (cmd === 'register') {
                 const [agent, intent, ...plan] = args;
-                await registerIntent(agent, intent, plan.length ? JSON.parse(plan.join(' ')) : [], {});
+                await registerIntent(agent ?? '', intent ?? '', plan.length ? JSON.parse(plan.join(' ')) : [], {});
                 console.log('Intent registered.');
             }
             else if (cmd === 'list') {
@@ -66,7 +74,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
             }
             else if (cmd === 'feedback') {
                 const [agent, ...feedback] = args;
-                await submitFeedback(agent, feedback.join(' '));
+                await submitFeedback(agent ?? '', feedback ? feedback.join(' ') : '');
                 console.log('Feedback submitted.');
             }
             else if (cmd === 'get-feedback') {
@@ -81,5 +89,57 @@ if (import.meta.url === `file://${process.argv[1]}`) {
             handleCliError(e);
         }
     })();
+}
+/**
+ * Returns a description of the agent intent registry plugin/capability.
+ */
+export function describe() {
+    return {
+        name: 'agentIntentRegistry',
+        description: 'Registry for agent intents, plans, and feedback. Supports CLI, HTTP, and WebSocket APIs. Planned: plugin/capability integration, event hooks, and memory lane logging.',
+        functions: [
+            { name: 'registerIntent', signature: '(agent, intent, plan, context) => void', description: 'Register an agent intent and plan.' },
+            { name: 'submitFeedback', signature: '(agent, suggestion, rating, comment) => void', description: 'Submit feedback on a suggestion.' },
+            { name: 'getIntents', signature: '() => Intent[]', description: 'Get all registered intents.' },
+            { name: 'getFeedback', signature: '() => Feedback[]', description: 'Get all feedback.' }
+        ],
+        usage: "pnpm tsx nootropic/agentIntentRegistry.ts register <agent> <intent> <planStep1> ...",
+        schema: {
+            registerIntent: {
+                input: {
+                    type: 'object',
+                    properties: {
+                        agent: { type: 'string' },
+                        intent: { type: 'string' },
+                        plan: { type: 'array', items: { type: 'string' } },
+                        context: { type: 'object' }
+                    },
+                    required: ['agent', 'intent', 'plan']
+                },
+                output: { type: 'null' }
+            },
+            submitFeedback: {
+                input: {
+                    type: 'object',
+                    properties: {
+                        agent: { type: 'string' },
+                        suggestion: { type: 'string' },
+                        rating: { type: 'number' },
+                        comment: { type: 'string' }
+                    },
+                    required: ['agent', 'suggestion', 'rating']
+                },
+                output: { type: 'null' }
+            },
+            getIntents: {
+                input: { type: 'null' },
+                output: { type: 'array', items: { type: 'object' } }
+            },
+            getFeedback: {
+                input: { type: 'null' },
+                output: { type: 'array', items: { type: 'object' } }
+            }
+        }
+    };
 }
 export { registerIntent, getIntents, submitFeedback, getFeedback };

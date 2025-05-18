@@ -4,7 +4,7 @@ import path from 'path';
 // @ts-ignore
 import { readJsonSafe, writeJsonSafe, listFilesRecursive } from './utils.js';
 // @ts-ignore
-import { ensureDirExists } from './src/utils/context/contextManager.js';
+import { ensureDirExists } from './src/utils/context/contextFileHelpers.js';
 // @ts-ignore
 import { getCacheFilePath, ensureCacheDirExists } from './src/utils/context/cacheDir.js';
 import { fileURLToPath } from 'url';

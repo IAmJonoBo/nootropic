@@ -32,9 +32,9 @@
 import fs from 'fs/promises';
 import path from 'path';
 // @ts-ignore
-import { parseCliArgs, printUsage, printResult, printError } from '../utils/cliHelpers.js';
+import { parseCliArgs, printUsage, printResult, printError } from '../src/utils/cliHelpers.js';
 // @ts-ignore
-import { writeJsonFile, handleError } from '../utils/automationHelpers.js';
+import { writeJsonFile, handleError } from '../src/utils/automationHelpers.js';
 
 const ROOT = path.resolve('.');
 const CACHE_PATH = path.resolve('.nootropic-cache/code-dependency-graph.json');

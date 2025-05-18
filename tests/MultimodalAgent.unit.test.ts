@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { MultimodalAgent } from '../agents/MultimodalAgent.js';
+import { MultimodalAgent } from '../src/agents/MultimodalAgent';
 
 describe('MultimodalAgent', () => {
   it('should run a multimodal task and emit event-driven logs', async () => {

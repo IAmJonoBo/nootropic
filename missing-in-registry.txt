@@ -1,0 +1,14 @@
+Capability
+ChunkingUtility
+contextMutationEngine
+crewAIAdapter
+embeddingRegistry
+event-driven mutation suggestion traceability
+examplePlugin
+HybridRetrievalUtility
+langchainAdapter
+RAGPipelineUtility
+RerankUtility
+semanticIndexBuilder
+semanticKernelAdapter
+ShimiMemory

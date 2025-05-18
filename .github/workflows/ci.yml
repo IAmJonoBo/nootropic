@@ -26,4 +26,55 @@ jobs:
       - name: Type Check
         run: pnpm tsc --noEmit
       - name: Test
-        run: pnpm test 
+        run: pnpm test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Lint
+        run: pnpm lint
+      - name: Type Check
+        run: pnpm tsc --noEmit
+      - name: Test
+        run: pnpm test
+
+  circular-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install
+      - name: Check for circular dependencies
+        run: npx madge --circular --extensions ts src/
+
+  registry-health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run registry scan
+        run: pnpm tsx scripts/scanAndHealRegistry.ts
+      - name: Check registry scan report for errors
+        run: |
+          if grep -q '"errored": \[\]' .nootropic-cache/registry-scan-report.json; then
+            echo "Registry scan passed: no errors."
+          else
+            echo "Registry scan failed: errors found." && exit 1 

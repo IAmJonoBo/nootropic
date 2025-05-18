@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // @ts-ignore
-import { ExplainabilityAgent } from '../agents/ExplainabilityAgent.js';
+import { ExplainabilityAgent } from '../src/agents/ExplainabilityAgent';
 
 describe('ExplainabilityAgent', () => {
   it('should run an explainability task and return a result', async () => {
