@@ -1,19 +1,17 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:recommended"],
   "labels": ["dependencies"],
   "prHourlyLimit": 4,
   "prConcurrentLimit": 8,
   "packageRules": [
     {
-      "updateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "branch",
       "labels": ["automerge", "safe-update"]
     },
     {
-      "updateTypes": ["major"],
+      "matchUpdateTypes": ["major"],
       "automerge": false,
       "labels": ["major", "needs-review"]
     },
