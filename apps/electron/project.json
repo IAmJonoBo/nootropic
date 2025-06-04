@@ -1,0 +1,10 @@
+{
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"apps/electron/src/**/*.ts\" --no-ignore"
+      }
+    }
+  }
+} 

@@ -1,0 +1,27 @@
+{
+  "name": "observability-adapter",
+  "root": "libs/adapters/observability-adapter",
+  "sourceRoot": "libs/adapters/observability-adapter/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/adapters/observability-adapter/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/adapters/observability-adapter/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/adapters/observability-adapter"
+      }
+    }
+  },
+  "tags": []
+} 

@@ -1,0 +1,27 @@
+{
+  "name": "critic-agent",
+  "root": "libs/agents/critic-agent",
+  "sourceRoot": "libs/agents/critic-agent/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/agents/critic-agent/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/agents/critic-agent/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/agents/critic-agent"
+      }
+    }
+  },
+  "tags": []
+} 

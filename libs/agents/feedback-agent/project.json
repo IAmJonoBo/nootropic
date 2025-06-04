@@ -1,0 +1,27 @@
+{
+  "name": "feedback-agent",
+  "root": "libs/agents/feedback-agent",
+  "sourceRoot": "libs/agents/feedback-agent/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/agents/feedback-agent/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/agents/feedback-agent/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/agents/feedback-agent"
+      }
+    }
+  },
+  "tags": []
+} 

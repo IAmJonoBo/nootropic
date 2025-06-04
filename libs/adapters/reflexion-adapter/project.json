@@ -1,0 +1,27 @@
+{
+  "name": "reflexion-adapter",
+  "root": "libs/adapters/reflexion-adapter",
+  "sourceRoot": "libs/adapters/reflexion-adapter/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/adapters/reflexion-adapter/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/adapters/reflexion-adapter/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/adapters/reflexion-adapter"
+      }
+    }
+  },
+  "tags": []
+} 

@@ -1,0 +1,27 @@
+{
+  "name": "plugin-loader-adapter",
+  "root": "libs/adapters/plugin-loader-adapter",
+  "sourceRoot": "libs/adapters/plugin-loader-adapter/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/adapters/plugin-loader-adapter/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/adapters/plugin-loader-adapter/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/adapters/plugin-loader-adapter"
+      }
+    }
+  },
+  "tags": []
+} 

@@ -1,0 +1,5 @@
+{
+  "default": true,
+  "MD013": false, // Disable line length rule (optional for docs-as-code)
+  "MD033": false  // Allow inline HTML (optional for embedded diagrams)
+} 

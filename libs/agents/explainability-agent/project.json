@@ -1,0 +1,27 @@
+{
+  "name": "explainability-agent",
+  "root": "libs/agents/explainability-agent",
+  "sourceRoot": "libs/agents/explainability-agent/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/agents/explainability-agent/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/agents/explainability-agent/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/agents/explainability-agent"
+      }
+    }
+  },
+  "tags": []
+} 

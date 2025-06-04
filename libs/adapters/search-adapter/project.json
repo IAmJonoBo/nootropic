@@ -1,0 +1,27 @@
+{
+  "name": "search-adapter",
+  "root": "libs/adapters/search-adapter",
+  "sourceRoot": "libs/adapters/search-adapter/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/adapters/search-adapter/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/adapters/search-adapter/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/adapters/search-adapter"
+      }
+    }
+  },
+  "tags": []
+} 

@@ -1,0 +1,153 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run lint
+        run: |
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            pnpm nx affected --target=lint --parallel=3
+          else
+            pnpm nx run-many --target=lint --all --parallel=3
+          fi
+
+      - name: Lint Markdown
+        run: pnpm run lint:md
+      - name: Format Markdown
+        run: pnpm run format:md
+      - name: Fix Markdown (remark-lint)
+        run: pnpm run fix:md
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run type-check
+        run: |
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            pnpm nx affected --target=type-check --parallel=3
+          else
+            pnpm nx run-many --target=type-check --all --parallel=3
+          fi
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck]
+    strategy:
+      matrix:
+        group: [1, 2, 3]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run tests
+        run: |
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            pnpm nx affected --target=test --parallel=3 --ci --group=${{ matrix.group }}/3
+          else
+            pnpm nx run-many --target=test --all --parallel=3
+          fi
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck, test]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run build
+        run: |
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            pnpm nx affected --target=build --parallel=3
+          else
+            pnpm nx run-many --target=build --all --parallel=3
+          fi
+
+  e2e:
+    name: E2E
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run E2E
+        run: |
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            pnpm nx affected --target=e2e --parallel=3
+          else
+            pnpm nx run-many --target=e2e --all --parallel=3
+          fi

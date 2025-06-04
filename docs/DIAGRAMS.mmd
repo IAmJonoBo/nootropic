@@ -1,0 +1,383 @@
+# Nootropic Architecture Diagrams
+
+%% Table of Contents
+%% 1. High-Level Architecture Overview
+%% 2. CLI → Agent Interaction
+%% 3. VS Code Extension (Continue) Flow
+%% 4. Electron Dashboard Subsystem
+%% 5. Temporal Workflow: Planning & Code Loop
+%% 6. Vector Retrieval & Memory Subsystem
+%% 7. Self-Healing CI/CD Subsystem
+%% 8. Plugin Discovery & Registry Subsystem
+
+---
+
+%% 1. High-Level Architecture Overview
+%% Developer Environment: CLI, VS Code, Electron
+%% Agents & Adapters: Core libraries
+%% Core Services: Inference, storage, orchestration, observability
+%% CI/CD & Infra: Build, deploy, infra
+
+```mermaid
+flowchart TB
+  subgraph Developer Environment
+    CLI["nootropic CLI"]
+    VSCodeExt["VS Code Extension"]
+    ElectronUI["Electron Dashboard"]
+  end
+
+  subgraph Agents & Adapters Layer
+    RA[ReasoningAgent]
+    CA[CoderAgent]
+    CriA[CriticAgent]
+    PA[PlannerAgent]
+    FA[FeedbackAgent]
+    MA[MemoryAgent]
+    ExA[ExplainabilityAgent]
+    ModA[ModelAdapter]
+    SA[SearchAdapter]
+    StoA[StorageAdapter]
+    ObsA[ObservabilityAdapter]
+    RefA[ReflexionAdapter]
+    PLD[PluginLoaderAdapter]
+  end
+
+  subgraph Core Services
+    Tabby["Tabby ML / Ollama / vLLM / Exllama / llama.cpp / GPT4All / Local.AI"]
+    VecDB["LanceDB / ChromaDB / Milvus / Weaviate / Qdrant / FAISS"]
+    KVStore["MinIO (S3) / PostgreSQL (+pgvector) / SQLite"]
+    Temporal["Temporal Server"]
+    Keptn["Keptn + LitmusChaos"]
+    Grafana["Prometheus + Grafana + Jaeger"]
+    Vault["Vault + OPA + Data-Leak Guard"]
+  end
+
+  subgraph CI/CD & Infra
+    GitHub["GitHub Actions"]
+    Docker["Docker / Docker Compose"]
+    Helm["Helm / Argo CD"]
+    Terraform["Terraform / Pulumi"]
+  end
+
+  CLI -->|"plan, code, search"| RA
+  CLI -->|"wizard, scaffold"| PA
+  CLI -->|"fix-tests"| CriA
+  CLI -->|"monitor"| ObsA
+  CLI -->|"plugin:list/install"| PLD
+
+  VSCodeExt -->|Slash commands| RA
+  VSCodeExt -->|AI edits| CA
+
+  ElectronUI -->|Visualize DAG, timelines| PA
+  ElectronUI -->|Show CoT logs| ExA
+  ElectronUI -->|Metrics & Alerts| Grafana
+
+  RA --> ModA
+  CA --> CriA
+  CriA --> RA
+  PA --> RA
+
+  RA --> SQLDB[("MemoryAgent / Episodic Store")]
+  SA --> VecDB
+  MA --> VecDB
+  RA --> SA
+  RA --> MA
+  CriA --> StoA
+  RA --> RefA
+  RefA --> ObsA
+
+  PLD --> RA
+  PLD --> CA
+  PLD --> CriA
+  PLD --> PA
+  PLD --> FA
+  PLD --> MA
+  PLD --> ExA
+  PLD --> ModA
+  PLD --> SA
+  PLD --> StoA
+  PLD --> ObsA
+  PLD --> RefA
+
+  ModA --> Tabby
+  ModA --> Ollama[("Ollama / Llama.cpp / GPT4All / Local.AI / LM Studio")]
+  ModA --> OpenAI[("OpenAI / Anthropic (Cloud)")]
+
+  SA --> Chroma[("ChromaDB")]
+  SA --> Lance[("LanceDB")]
+  SA --> Milvus
+  SA --> Weaviate
+
+  StoA --> MinIO
+  StoA --> PostgreSQL
+  StoA --> SQLite
+
+  RA -->|"Workflows"| Temporal
+  PA -->|"Workflows"| Temporal
+
+  RefA -->|"Triggers"| Keptn
+  Keptn -->|"Chaos Tests"| LitmusChaos[("LitmusChaos")]
+
+  ObsA --> Grafana
+  Grafana ---- Prometheus
+  Grafana ---- Jaeger
+
+  GitHub -->|"CI jobs"| GitHubCI{"GitHub Actions"}
+  GitHubCI --> Docker
+  GitHubCI --> Helm
+  Helm --> ArgoCD[("Argo CD")]
+
+  Terraform -->|"Infra Provision"| Kubernetes[("K8s Cluster")]
+  Helm --> Kubernetes
+
+  Vault -->|"Secrets"| allAgents[("Agents/Adapters")]
+```
+
+%% 2. CLI → Agent Interaction
+
+```mermaid
+flowchart LR
+  subgraph CLI Layer
+    CLI["nootropic CLI"]
+  end
+  subgraph Agents
+    PA[PlannerAgent]
+    RA[ReasoningAgent]
+    CA[CoderAgent]
+    CriA[CriticAgent]
+    FA[FeedbackAgent]
+  end
+  subgraph Adapters
+    ModA[ModelAdapter]
+    SA[SearchAdapter]
+    MA[MemoryAgent]
+    RefA[ReflexionAdapter]
+    ObsA[ObservabilityAdapter]
+    PLD[PluginLoaderAdapter]
+    StorA[StorageAdapter]
+  end
+  subgraph Core Services
+    Tabby[("Tabby ML")]
+    Chroma[("ChromaDB")]
+    Lance[("LanceDB")]
+    OpenAI[("OpenAI / Anthropic")]
+  end
+  CLI -->|"nootropic wizard"| PA
+  CLI -->|"nootropic plan"| PA
+  CLI -->|"nootropic code <task>"| RA
+  CLI -->|"nootropic fix-tests"| CriA
+  CLI -->|"nootropic feedback"| FA
+  PA --> PLD
+  RA --> PLD
+  CA --> PLD
+  CriA --> PLD
+  FA --> PLD
+  PLD -->|load| PA
+  PLD -->|load| RA
+  PLD -->|load| CA
+  PLD -->|load| CriA
+  PLD -->|load| FA
+  PLD -->|load| ModA
+  PLD -->|load| SA
+  PLD -->|load| MA
+  PLD -->|load| RefA
+  PLD -->|load| ObsA
+  RA -->|query| SA
+  RA -->|retrieve memory| MA
+  RA -->|generate code| ModA
+  CA -->|apply patch| StorA
+  CriA -->|analyze code| SA
+  CriA -->|produce feedback| FA
+  FA -->|store feedback| MA
+  ModA --> Tabby
+  ModA --> OpenAI
+  SA --> Chroma
+  SA --> Lance
+```
+
+%% 3. VS Code Extension (Continue) Flow
+
+```mermaid
+flowchart TB
+  subgraph VSCode
+    Ext["Extension activate()"]
+    ChatView["Chat / Slash UI"]
+    Editor[Editor Document]
+  end
+  subgraph LSP & Adapters
+    LS["Language Server (LSP)"]
+    RA[ReasoningAgent]
+    CA[CoderAgent]
+    SA[SearchAdapter]
+    ModA[ModelAdapter]
+    StoA[StorageAdapter]
+  end
+  subgraph Core Services
+    Tabby["Tabby ML"]
+    Chroma["ChromaDB"]
+    OpenAI["OpenAI API"]
+  end
+  Ext --> LS
+  ChatView --> LS
+  Editor --> LS
+  LS -->|"/plan <desc>"| RA
+  LS -->|"/code <cursor>"| RA
+  RA --> SA
+  RA --> ModA
+  RA --> StoA
+  ModA --> Tabby
+  ModA --> OpenAI
+  SA --> Chroma
+  LS -->|edits| Editor
+```
+
+%% 4. Electron Dashboard Subsystem
+
+```mermaid
+flowchart LR
+  subgraph "Electron Main"
+    Main["main.ts"]
+    IPC["IPC / Context Bridge"]
+  end
+  subgraph "Renderer (React)"
+    UI["App.tsx"]
+    ExplainPanel["ExplainabilityPanel"]
+    Timeline["TimelineView"]
+    PluginMgr["PluginManager"]
+  end
+  subgraph "Agents & Adapters"
+    RefA[ReflexionAdapter]
+    ObsA[ObservabilityAdapter]
+    PLD[PluginLoaderAdapter]
+    ExA[ExplainabilityAgent]
+    PA[PlannerAgent]
+  end
+  subgraph "Services"
+    Grafana[("Prometheus + Grafana")]
+    Temporal[("Temporal Server")]
+  end
+  Main --> IPC
+  IPC --> UI
+  UI --> ExplainPanel
+  UI --> Timeline
+  UI --> PluginMgr
+  ExplainPanel --> RefA
+  Timeline --> PA
+  PluginMgr --> PLD
+  RefA --> ObsA
+  PA --> Temporal
+  ObsA --> Grafana
+```
+
+%% 5. Temporal Workflow: Planning & Code Loop
+
+```mermaid
+flowchart TD
+  Inputs(("Issue or Task Desc."))
+  PlanWF["PlannerAgent Workflow"]
+  Decision{"Plan Generated?"}
+  CodeWF["ReasoningAgent Workflow"]
+  CriticWF["CriticAgent Sub-Workflow"]
+  Feedback{"Feedback Positive?"}
+  End(("Done"))
+  Retry(("Loop"))
+  Inputs --> PlanWF
+  PlanWF --> Decision
+  Decision -- Yes --> CodeWF
+  Decision -- No --> End
+  CodeWF --> CriticWF
+  CriticWF --> Feedback
+  Feedback -- Yes --> End
+  Feedback -- No --> Retry
+  Retry --> CodeWF
+```
+
+%% 6. Vector Retrieval & Memory Subsystem
+
+```mermaid
+flowchart LR
+  subgraph Memory Layer
+    MemoryDB[("ChromaDB / LanceDB")]
+  end
+  subgraph Retrieval Agents
+    SearchAgent
+    MemoryAgent
+  end
+  subgraph Reasoning Flow
+    InputPrompt(("Current Prompt"))
+    Embedding["Embedding Service"]
+    RAGQuery["RAG Query"]
+    RAGResults(("Top-K Context"))
+    FewShot(("Few-Shot Examples"))
+    CoTPrompt["Compose CoT Prompt"]
+  end
+  InputPrompt --> Embedding
+  Embedding --> MemoryAgent
+  MemoryAgent --> FewShot
+  InputPrompt --> SearchAgent
+  SearchAgent --> RAGQuery
+  RAGQuery --> MemoryDB
+  MemoryDB --> RAGResults
+  RAGResults --> CoTPrompt
+  FewShot --> CoTPrompt
+```
+
+%% 7. Self-Healing CI/CD Subsystem
+
+```mermaid
+flowchart TD
+  subgraph CI/CD Pipeline
+    Commit(("Git Commit / PR"))
+    CI["GitHub Actions"]
+    LintCheck(("ESLint/Prettier"))
+    UnitTest(("Vitest / Legacy Tests"))
+    SecurityScan(("Semgrep / Trivy / Snyk"))
+    BuildDocker(("Docker Build"))
+    PushArtifact(("Push to Registry"))
+    HelmDeploy(("Deploy Helm Chart"))
+  end
+  subgraph Monitoring & Remediation
+    Prometheus["Prometheus Metrics"]
+    Grafana["Grafana Dashboard"]
+    Keptn["Keptn Operator"]
+    Chaos["LitmusChaos Experiments"]
+    Rollback(("Rollback"))
+  end
+  Commit --> CI
+  CI --> LintCheck
+  LintCheck --> UnitTest
+  UnitTest --> SecurityScan
+  SecurityScan --> BuildDocker
+  BuildDocker --> PushArtifact
+  PushArtifact --> HelmDeploy
+  HelmDeploy --> Prometheus
+  Prometheus --> Grafana
+  Grafana --> Keptn
+  Keptn --> Chaos
+  Chaos -->|SLO Breach| Rollback
+```
+
+%% 8. Plugin Discovery & Registry Subsystem
+
+```mermaid
+flowchart LR
+  subgraph Plugin Directory
+    LocalPlugins["plugins/ folder (npm or local)"]
+  end
+  subgraph PluginLoaderAdapter
+    Watcher["Chokidar Watcher"]
+    Validate["Zod Validator"]
+    Describe["describe() method"]
+    Registry["~/.nootropic/describe-registry.json"]
+  end
+  subgraph CLI/Docs Generation
+    CLIHelp["nootropic --help (Commander)"]
+    DocsGen["Docs GitHub Action"]
+  end
+  LocalPlugins --> Watcher
+  Watcher --> Validate
+  Validate --> Describe
+  Describe --> Registry
+  Registry --> CLIHelp
+  Registry --> DocsGen
+```

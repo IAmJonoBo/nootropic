@@ -1,0 +1,21 @@
+{
+  "name": "shared",
+  "root": "libs/shared",
+  "sourceRoot": "libs/shared",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/shared/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/shared/tsconfig.json"
+      }
+    }
+  },
+  "tags": []
+} 

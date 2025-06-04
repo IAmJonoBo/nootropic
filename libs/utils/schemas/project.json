@@ -1,0 +1,21 @@
+{
+  "name": "schemas",
+  "root": "libs/utils/schemas",
+  "sourceRoot": "libs/utils/schemas",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/utils/schemas/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/utils/schemas/tsconfig.json"
+      }
+    }
+  },
+  "tags": []
+} 

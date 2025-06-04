@@ -1,0 +1,27 @@
+{
+  "name": "storage-adapter",
+  "root": "libs/adapters/storage-adapter",
+  "sourceRoot": "libs/adapters/storage-adapter/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/adapters/storage-adapter/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/adapters/storage-adapter/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/adapters/storage-adapter"
+      }
+    }
+  },
+  "tags": []
+} 

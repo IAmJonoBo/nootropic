@@ -1,0 +1,21 @@
+{
+  "name": "logger",
+  "root": "libs/utils/logger",
+  "sourceRoot": "libs/utils/logger",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/utils/logger/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/utils/logger/tsconfig.json"
+      }
+    }
+  },
+  "tags": []
+} 

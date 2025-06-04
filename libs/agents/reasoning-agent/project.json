@@ -1,0 +1,27 @@
+{
+  "name": "reasoning-agent",
+  "root": "libs/agents/reasoning-agent",
+  "sourceRoot": "libs/agents/reasoning-agent/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/agents/reasoning-agent/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/agents/reasoning-agent/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/agents/reasoning-agent"
+      }
+    }
+  },
+  "tags": []
+} 

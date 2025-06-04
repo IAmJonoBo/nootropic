@@ -1,0 +1,27 @@
+{
+  "name": "planner-agent",
+  "root": "libs/agents/planner-agent",
+  "sourceRoot": "libs/agents/planner-agent/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/agents/planner-agent/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/agents/planner-agent/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/agents/planner-agent"
+      }
+    }
+  },
+  "tags": []
+} 

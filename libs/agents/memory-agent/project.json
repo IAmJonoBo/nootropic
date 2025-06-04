@@ -1,0 +1,27 @@
+{
+  "name": "memory-agent",
+  "root": "libs/agents/memory-agent",
+  "sourceRoot": "libs/agents/memory-agent/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"libs/agents/memory-agent/src/**/*.ts\" --no-ignore"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project libs/agents/memory-agent/tsconfig.json"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec vitest run --dir libs/agents/memory-agent"
+      }
+    }
+  },
+  "tags": []
+} 

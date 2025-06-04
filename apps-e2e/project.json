@@ -1,0 +1,16 @@
+{
+  "name": "apps-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps-e2e/src",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project apps-e2e --web",
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec eslint \"apps-e2e/src/**/*.ts\" --no-ignore"
+      }
+    }
+  }
+}

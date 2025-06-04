@@ -1,0 +1,83 @@
+{
+  "name": "nootropic",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "nx": "nx",
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test",
+    "lint": "nx lint",
+    "lint:md": "markdownlint-cli2 'docs/**/*.md' '!docs/**/._*'",
+    "format:md": "prettier --write 'docs/**/*.md' '!docs/**/._*'",
+    "fix:md": "remark docs --output --use remark-preset-lint-recommended --quiet --frail --ignore-pattern '**/._*'",
+    "clean:md": "pnpm run format:md && pnpm run fix:md && pnpm run lint:md",
+    "clean:appledouble": "find . -name '._*' -type f -delete"
+  },
+  "devDependencies": {
+    "@nx/devkit": "21.1.2",
+    "@nx/esbuild": "21.1.2",
+    "@nx/jest": "21.1.2",
+    "@nx/js": "^21.1.2",
+    "@nx/node": "^21.1.2",
+    "@nx/playwright": "21.1.2",
+    "@nx/react": "^21.1.2",
+    "@nx/vite": "21.1.2",
+    "@nx/web": "21.1.2",
+    "@playwright/test": "^1.36.0",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.0.0",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/ui": "^3.0.0",
+    "esbuild": "^0.19.2",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.4.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "generator-code": "^1.11.9",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "jiti": "2.4.2",
+    "jsdom": "~22.1.0",
+    "jsonc-eslint-parser": "^2.1.0",
+    "markdownlint": "^0.38.0",
+    "markdownlint-cli2": "^0.18.1",
+    "nx": "21.1.2",
+    "prettier": "^3.5.3",
+    "remark-cli": "^12.0.1",
+    "remark-preset-lint-recommended": "^7.0.1",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0",
+    "yo": "^5.1.0"
+  },
+  "dependencies": {
+    "@nx/workspace": "^21.1.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "tslib": "^2.3.0"
+  },
+  "lint-staged": {
+    "docs/**/*.md": [
+      "prettier --write",
+      "markdownlint-cli2"
+    ]
+  }
+}
