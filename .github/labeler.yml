@@ -1,0 +1,10 @@
+# Labeler configuration for PRs
+
+# Label all Dependabot PRs for npm/pnpm dependencies
+'dependencies':
+  - 'package.json'
+  - 'pnpm-lock.yaml'
+
+# Label Dependabot PRs for GitHub Actions updates
+'github-actions':
+  - '.github/workflows/*.yml' 
