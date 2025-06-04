@@ -1037,7 +1037,232 @@ Medium
 
 _**Assistant**_
 
+The **“Workflow does not contain permissions”** warnings from CodeQL are related to GitHub Actions security best practices. GitHub recommends explicitly specifying the `permissions` key in your workflow YAML files to control what the workflow can access, even if you use the default permissions.
 
+### Why This Matters
+- By default, workflows get a set of permissions that may be broader than needed.
+- Explicitly setting `permissions` helps reduce the risk of privilege escalation or accidental exposure.
+
+---
+
+## How to Fix
+
+You should add a `permissions` block to the top level of each workflow file (under `on:` but before `jobs:`).  
+For most workflows, you can use the least privilege principle. For example, if your workflow only needs to read contents:
+
+```yaml
+permissions:
+  contents: read
+```
+
+If your workflow needs to write to issues, pull requests, or other resources, specify those explicitly:
+
+```yaml
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+```
+
+### Example Fix
+
+**Before:**
+```yaml
+name: CI
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # ...
+```
+
+**After:**
+```yaml
+name: CI
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # ...
+```
+
+---
+
+## What You Should Do
+
+1. **Edit each workflow file listed in the warnings:**
+   - `.github/workflows/ci.yml`
+   - `.github/workflows/dependabot-auto-merge.yml`
+   - `.github/workflows/labeler.yml`
+
+2. **Add a `permissions:` block** after the `on:` section and before `jobs:`.
+
+3. **Choose the minimum permissions needed** for each workflow.  
+   - For most CI jobs, `contents: read` is enough.
+   - For workflows that create or update PRs/issues, add `pull-requests: write` or `issues: write` as needed.
+
+---
+
+Would you like me to automatically update your workflow files to include a safe default `permissions` block? If so, do you want the strictest (`contents: read`) or do you need write access for PRs/issues in any workflow?
+
+---
+
+_**User**_
+
+This is my personal repo, so we can be less strict. But yes, continue automatically
+
+---
+
+_**Assistant**_
+
+<details>
+            <summary>Listed directory .github/workflows • **5** results</summary>
+        
+| Name |
+|-------|
+| 📄 `dependabot-auto-merge.yml` |
+| 📄 `ci.yml` |
+| 📄 `labeler.yml` |
+| 📄 `docs-sync.yml` |
+| 📄 `release.yml` |
+
+</details>
+
+---
+
+```diff
+    pull_request:
+  
++ permissions:
++   contents: write
++   issues: write
++   pull-requests: write
++ 
+  jobs:
+    lint:
+```
+
+---
+
+```diff
+        - reopened
+  
++ permissions:
++   contents: write
++   issues: write
++   pull-requests: write
++ 
+  jobs:
+    automerge:
+```
+
+---
+
+```diff
+      types: [opened, synchronize, reopened]
+  
++ permissions:
++   contents: write
++   issues: write
++   pull-requests: write
++ 
+  jobs:
+    label:
+```
+
+---
+
+```bash
+git add .github/workflows/ci.yml .github/workflows/dependabot-auto-merge.yml .github/workflows/labeler.yml && git commit -m "chore: add permissions block to GitHub Actions workflows (less strict for personal repo)" && git push origin main
+```
+
+```
+<ions workflows (less strict for personal repo)" && git push origin main
+[main 006882f] chore: add permissions block to GitHub Actions workflows (less strict for personal repo)
+ 3 files changed, 15 insertions(+)
+To https://github.com/IAmJonoBo/nootropic.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/IAmJonoBo/nootropic.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+(base) Jonathan-MacBook-Pro:nootropic jonathanbotha$
+```
+
+---
+
+```bash
+git pull --rebase && git push origin main
+```
+
+```
+(base) Jonathan-MacBook-Pro:nootropic jonathanbotha$ git pull --rebase && git push origin main
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+(base) Jonathan-MacBook-Pro:nootropic jonathanbotha$
+```
+
+---
+
+```bash
+git status
+```
+
+```
+(base) Jonathan-MacBook-Pro:nootropic jonathanbotha$ git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .specstory/history/2025-06-04_20-11-push-code-to-github.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+(base) Jonathan-MacBook-Pro:nootropic jonathanbotha$
+```
+
+---
+
+```bash
+git add .specstory/history/2025-06-04_20-11-push-code-to-github.md && git commit -m "chore: update story log" && git pull --rebase && git push origin main
+```
+
+```
+< "chore: update story log" && git pull --rebase && git push origin main
+[main 13194fa] chore: update story log
+ 1 file changed, 253 insertions(+)
+Successfully rebased and updated refs/heads/main.
+Enumerating objects: 21, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 3.75 KiB | 3.75 MiB/s, done.
+Total 12 (delta 8), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (8/8), completed with 7 local objects.
+To https://github.com/IAmJonoBo/nootropic.git
+   eed51fe..7e8d938  main -> main
+(base) Jonathan-MacBook-Pro:nootropic jonathanbotha$
+```
+
+---
+
+All changes—including the updated workflow permissions and your story log—have now been committed, rebased, and pushed to GitHub successfully!
+
+Your workflows now include a `permissions` block with write access, which should resolve the CodeQL warnings about missing permissions.
+
+If you have any more workflow/security warnings, want to review your CI, or need help with anything else, just let me know!
 
 ---
 
