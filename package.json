@@ -34,8 +34,8 @@
     "@swc/helpers": "~0.5.11",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.0.0",
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.6",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
     "@vitejs/plugin-react": "^4.2.0",
@@ -70,8 +70,8 @@
   },
   "dependencies": {
     "@nx/workspace": "^21.1.2",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "tslib": "^2.3.0"
   },
   "lint-staged": {
