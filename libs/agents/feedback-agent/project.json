@@ -1,27 +1,29 @@
 {
   "name": "feedback-agent",
-  "root": "libs/agents/feedback-agent",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/agents/feedback-agent/src",
   "projectType": "library",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm exec eslint \"libs/agents/feedback-agent/src/**/*.ts\" --no-ignore"
+        "outputPath": "dist/libs/agents/feedback-agent",
+        "main": "libs/agents/feedback-agent/src/index.ts",
+        "tsConfig": "libs/agents/feedback-agent/tsconfig.json",
+        "assets": ["libs/agents/feedback-agent/*.md"]
       }
     },
-    "type-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsc --noEmit --project libs/agents/feedback-agent/tsconfig.json"
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint"
     },
     "test": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "command": "pnpm exec vitest run --dir libs/agents/feedback-agent"
+        "jestConfig": "libs/agents/feedback-agent/jest.config.ts"
       }
     }
   },
-  "tags": []
+  "tags": ["scope:agents", "type:agent"]
 } 

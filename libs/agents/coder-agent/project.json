@@ -1,27 +1,30 @@
 {
   "name": "coder-agent",
-  "root": "libs/agents/coder-agent",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/agents/coder-agent/src",
   "projectType": "library",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm exec eslint \"libs/agents/coder-agent/src/**/*.ts\" --no-ignore"
+        "outputPath": "dist/libs/agents/coder-agent",
+        "main": "libs/agents/coder-agent/src/index.ts",
+        "tsConfig": "libs/agents/coder-agent/tsconfig.lib.json",
+        "assets": ["libs/agents/coder-agent/*.md"]
       }
     },
-    "type-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsc --noEmit --project libs/agents/coder-agent/tsconfig.json"
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "command": "pnpm exec vitest run --dir libs/agents/coder-agent"
+        "jestConfig": "libs/agents/coder-agent/jest.config.ts"
       }
     }
   },
-  "tags": []
+  "tags": ["scope:agents", "type:agent"]
 } 

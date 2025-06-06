@@ -1,206 +1,346 @@
-# nootropic
+# Nootropic
 
-***
+<div align="center">
+
+![Nootropic Logo](assets/logo.png)
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](docs/)
+
+**AI-Powered Development Environment**
+
+[Overview](#overview) • [Quick Start](#quick-start) • [Architecture](#architecture) • [Development](#development)
+
+</div>
 
 ## Table of Contents
 
-* [nootropic](#nootropic)
-  * [Table of Contents](#table-of-contents)
-  * [Project Overview](#project-overview)
-  * [Quick Links](#quick-links)
-  * [Getting Started (At a Glance)](#getting-started-at-a-glance)
-  * [Key Features](#key-features)
-  * [How to Use This Documentation](#how-to-use-this-documentation)
-  * [Getting Help](#getting-help)
-  * [License](#license)
+- [Overview](#overview)
+  - [Key Features](#key-features)
+  - [Technology Stack](#technology-stack)
+  - [Core Design Principles](#core-design-principles)
+- [Quick Start](#quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Basic Usage](#basic-usage)
+- [Architecture](#architecture)
+  - [Core Components](#core-components)
+  - [Data Flow](#data-flow)
+  - [Security Model](#security-model)
+  - [Registry-Driven Discovery](#registry-driven-discovery)
+  - [Durable Orchestration](#durable-orchestration)
+  - [Task Graph Planning](#task-graph-planning)
+  - [Adaptive Intelligence](#adaptive-intelligence)
+- [Development](#development)
+  - [Local Development](#local-development)
+  - [Testing](#testing)
+  - [Documentation](#documentation)
+  - [Performance](#performance)
+  - [Error Handling](#error-handling)
+  - [Integration](#integration)
+- [License](#license)
 
-***
+## Overview
 
-## Project Overview
+Nootropic is a free-first, open-source AI development platform that unifies planning, coding, testing, and deployment into a single, self-healing, and self-teaching environment. It prioritizes local inference, durable orchestration, and registry-driven capability discovery while maintaining enterprise-grade security and performance.
 
-**nootropic** is an open-source, self-healing, self-teaching AI development environment intended to run entirely (or primarily) on users' machines. It unifies project planning, code generation, static analysis, continuous integration, deployment, and ongoing learning into a single, cohesive platform. By default, all code, telemetry, and embeddings stay on-premises, and inference happens locally (via Tabby ML, Ollama, `llama.cpp`, or `vLLM`). Paid cloud APIs (OpenAI, Anthropic, Hugging Face, Petals) are opt-in only when local hardware cannot meet specified SLAs.
+### Key Features
 
-**Key design principles include:**
+- **Local-First Inference**: Run models on your machine using Tabby ML, Ollama, llama.cpp, or vLLM
+- **Durable Orchestration**: Single workflow engine (Temporal.io) with reactive event streams (RxJS)
+- **Registry-Driven Architecture**: Dynamic capability discovery without hand-coded wiring
+- **Hybrid RAG**: Local vector store with optional scale-out capabilities
+- **Self-Healing**: OpenTelemetry-driven ReflexionEngine for automatic error recovery
+- **Continuous Learning**: Nightly LoRA-based fine-tuning on accepted diffs
+- **Unified UX**: VS Code extension + Electron dashboard for seamless development
+- **Cost-Aware**: OpenCost integration for budget-aware task scheduling
+- **Single Source of Truth**: Everything in Temporal, vector stores, or Git
 
-* **Free-first, local-first inference:** All essential LLM capabilities run offline.
-* **Declarative, agent-driven workflows:** Users state high-level goals; agents (Planner, Coder, Critic, etc.) coordinate via Temporal workflows and RxJS streams.
-* **Self-healing & Reflexion loops:** OpenTelemetry traces and OpenCost data feed a ReflexionEngine that automatically repairs or reroutes failing tasks.
-* **Continuous learning:** Nightly LoRA fine-tuning on accepted diffs keeps local models improving over time, at zero cloud cost.
-* **Registry-driven, plugin-based extensibility:** Core functionality is minimal; optional plugins (FuzzTesting, DesignSync, etc.) can be added without touching core code.
+### Technology Stack
 
-***
+* **Build System**: Nx 21.1.2 + Vite for ultra-fast builds
+* **Runtime**: Node.js 20+ with TypeScript
+* **Orchestration**: Temporal.io + RxJS
+* **Storage**: Chroma/LanceDB/Weaviate
+* **Monitoring**: OpenTelemetry + OpenCost
+* **Security**: Semgrep + OpenRewrite
+* **Testing**: Vitest 1.3.1 + Playwright
+* **UI**: VS Code Extension + Electron
+* **Package Manager**: pnpm 10.11.1+
 
-## Quick Links
+### Core Design Principles
 
-* [`GETTING_STARTED.md`](GETTING_STARTED.md): Step-by-step installation and first run
-* [`TUTORIALS/`](TUTORIALS/): Hands-on walkthroughs for common tasks
-* [`ARCHITECTURE.md`](ARCHITECTURE.md): High-level system design and rationale
-* [`COMPONENTS/`](COMPONENTS/): In-depth design for each agent and adapter
-* [`API_REFERENCE.md`](API_REFERENCE.md): All public endpoints, data schemas, and examples
-* [`CLI_REFERENCE.md`](CLI_REFERENCE.md): Detailed CLI commands and usage
-* [`DEPLOYMENT.md`](DEPLOYMENT.md): Local and production deployment
-* [`CI_CD.md`](CI_CD.md): CI/CD pipeline and configuration
-* [`SECURITY.md`](SECURITY.md): Security policy and vulnerability reporting
-* [`OPERATIONS.md`](OPERATIONS.md): Monitoring, backup, and maintenance
-* [`ROADMAP.md`](ROADMAP.md): Milestones and governance
-* [`GLOSSARY.md`](GLOSSARY.md): Definitions and acronyms
-* [`CHANGELOG.md`](CHANGELOG.md): Notable changes and releases
-* [`CONTRIBUTING.md`](CONTRIBUTING.md): How to contribute
-* [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md): Community expectations
+1. **Free-First, Local-First Inference**
+   - Prioritize local model execution
+   - Cloud APIs as opt-in fallbacks
+   - Privacy-preserving by default
 
-***
+2. **Minimal Core Orchestration**
+   - Single durable workflow engine
+   - Reactive event streams
+   - Composable agent workflows
 
-## Getting Started (At a Glance)
+3. **Registry-Driven Capability Discovery**
+   - Dynamic plugin loading
+   - Automatic CLI/UI integration
+   - Zero-config capability addition
 
-1. **Prerequisites**
+4. **Hybrid RAG without Heavy Servers**
+   - Local vector store by default
+   - Optional scale-out capabilities
+   - No external dependencies
 
-   * `Node.js` (v18 or later)
-   * `Python` (v3.9 or later)
-   * `Docker` (for optional services)
-   * `Git`
-   * Optional: GPU and up-to-date drivers
+5. **Self-Healing & Reflexion-In-the-Loop**
+   - OpenTelemetry instrumentation
+   - Automatic error recovery
+   - SLA-driven remediation
 
-2. **Clone the Repository**
+6. **Nightly LoRA Fine-Tuning**
+   - Incremental model improvement
+   - No cloud GPU requirements
+   - Continuous learning
 
-   ```bash
-   git clone https://github.com/your-org/nootropic.git
-   cd nootropic
-   ```
+7. **Unified UX**
+   - VS Code integration
+   - Electron dashboard
+   - Zero context switching
 
-3. **Install Dependencies**
+8. **Cost-Aware Scheduling**
+   - Budget enforcement
+   - Resource optimization
+   - Cost attribution
 
-   ```bash
-   # At the repo root (Nx monorepo)
-   npm install
-   # Python dependencies for Tabby ML
-   pip install tabby-ml
-   ```
+9. **Single Source of Truth**
+   - Unified state management
+   - No external dependencies
+   - Simplified operations
 
-4. **Start Local Services**
+## Quick Start
 
-   * **Tabby ML (local LLM gateway):**
+### Prerequisites
 
-     ```bash
-     tabby serve --host 0.0.0.0 --port 8000 --config tabby.config.json
-     ```
+- Node.js 20+
+- pnpm 10.11.1+
+- Python 3.9+ (for local models)
+- VS Code (recommended)
+- Git
 
-   * **Temporal Server (durable workflow engine):**
+### Installation
 
-     ```bash
-     docker-compose -f infrastructure/temporal/docker-compose.yml up -d
-     ```
+```bash
+# Install the CLI
+pnpm add -g nootropic
 
-   * **Chroma Vector Store:** (automatic after first run)
+# Initialize a new project
+nootropic init
 
-5. **Run the Onboarding Wizard**
+# Start the development server
+nootropic dev
+```
 
-   ```bash
-   npx nootropic wizard
-   ```
+### Basic Usage
 
-   Answer prompts to generate an initial `project-spec.md`, scaffold a skeleton, and create a task graph.
+```bash
+# Start a coding session
+nootropic code
 
-6. **Open VS Code Extension**
+# Run tests
+nootropic test
 
-   * Install the VSIX from `apps/nootropic-vscode-ext/` or run in dev mode:
+# Deploy changes
+nootropic deploy
+```
 
-     ```bash
-     cd apps/nootropic-vscode-ext
-     npm install
-     npm run build
-     code --extensionDevelopmentPath="${PWD}"
-     ```
+## Architecture
 
-   * In VS Code, invoke slash commands (`/nootropic`) in the chat pane or use inline diff previews.
+### Core Components
 
-> **Note:** This monorepo uses ESM/NodeNext everywhere. All `tsconfig.json` files use `"module": "NodeNext"` and `"moduleResolution": "NodeNext"`. All `package.json` files set `"type": "module"`. All local imports must use explicit `.js` extensions. Use `pnpm` for all dependency management and Nx for all scripts. See troubleshooting below for ESM/NodeNext and Mac resource fork file issues.
+1. **User Interface Layer**
+   - VS Code Extension (Continue + Roo Code)
+   - CLI Client (`npx nootropic …`)
+   - Electron Dashboard
 
-***
+2. **Orchestration & Core Agents**
+   - Temporal.io Workflows
+   - Core Agent Families
+   - Task Graph Service
 
-## Key Features
+3. **Utility & Adapter Layer**
+   - ModelAdapter & Intelligent Model Matcher
+   - StorageAdapter
+   - ObservabilityAdapter
+   - PluginLoaderAdapter
+   - ReflexionAdapter
 
-1. **Intelligent, On-Prem Inference**
+4. **Inference & Data Layer**
+   - Local Quantized Model Integration
+   - Hybrid RAG & Sourcegraph-Style Index
+   - Vector Store Management
 
-   * Hardware-aware Model Matcher: Probes CPU/GPU and scores quantized models (StarCoder2 3B, Llama 2 7B, Gemma 3 1B, etc.) for throughput, accuracy, memory, and cost. Falls back to cloud APIs only if needed.
-   * Fully Local by Default: All embedding, generation, and retrieval happen locally. Only routes to cloud if local models can't meet requirements.
-   * Nightly LoRA Fine-Tuning: User-approved diffs are used for nightly LoRA jobs, improving local models incrementally.
+5. **Infrastructure & Operations**
+   - Monorepo & Build System
+   - Self-Healing & Resilience
+   - Security & Compliance
+   - Cost Attribution & Scheduling
 
-2. **Declarative Planning & Self-Healing**
+### Registry-Driven Discovery
 
-   * Goal → DAG Planning: `PlannerAgent` turns high-level specs into a DAG of epics, stories, and tasks.
-   * Autonomous Workflows: Each task spawns a Temporal sub-workflow (`CoderAgent`, `CriticAgent`, `ReasoningAgent`, `ProjectMgrAgent`).
-   * ReflexionEngine & Auto-Repair: Monitors OpenTelemetry spans for errors/SLA breaches and triggers auto-repair or model switches.
+The capability registry (`.nootropic-cache/describe-registry.json`) enables:
+- Dynamic capability loading
+- CLI autocompletion
+- UI wizard flows
+- AI-driven suggestions
 
-3. **Hybrid RAG & Episodic Memory**
+### Durable Orchestration
 
-   * Chroma Vector Store: Stores code, docs, and "episodes" for semantic search and retrieval.
-   * Optional Weaviate Integration: For large/multi-repo setups, use Weaviate (hybrid dense + BM25).
-   * Few-Shot Priming: `MemoryAgent` fetches relevant "successful episodes" for few-shot context.
+- **Temporal.io Workflows**
+  - Auto-persist state
+  - Resume after failures
+  - Time-travel debugging
 
-4. **Unified UX (VS Code & Electron)**
+- **RxJS Event Streams**
+  - Observable pipelines
+  - Backpressure handling
+  - Error recovery
+  - Dynamic multicasting
 
-   * Continue VS Code Extension: Chat pane, slash commands, inline diff previews, explainability sidebar.
-   * Electron Dashboard: Kanban board, Temporal Timeline, Mermaid/UML canvas, Trace Explorer.
+### Task Graph Planning
 
-5. **Security, Compliance & Observability**
-   * In-Process `SecurityScannerAgent`: Runs Semgrep rules and applies AI autofix.
-   * OpenTelemetry + OpenCost: All LLM calls and workflow activities emit OTEL spans with cost tags.
-   * Keptn & LitmusChaos: SLO-driven remediation and chaos testing.
-   * Supply-Chain Security: Docker images signed via Sigstore, CI pipelines include Trivy scans, SLSA Level 2 provenance.
+| Component | Purpose | Implementation |
+|-----------|---------|----------------|
+| TaskGraphService | Durable DAG management | Temporal KV + Redis |
+| Symbolic Planner | Goal-to-DAG conversion | PDDL/HTN solver |
+| LLM Task Idealiser | Task drafting & estimation | GPT-4 + validation |
+| CriticalPathGuardRail | DAG enforcement | OTEL span tagging |
+| Delta-planner | Impacted subtree replanning | Reactive updates |
 
-***
+### Adaptive Intelligence
 
-## How to Use This Documentation
+- **Live Re-planning**
+  - Dynamic task adjustment
+  - Telemetry integration
+  - Schema validation
 
-* **New Users:**
-  1. Read [`GETTING_STARTED.md`](GETTING_STARTED.md) for installation and first run.
-  2. Work through [`TUTORIALS/`](TUTORIALS/) for hands-on guides.
-* **Developers & Contributors:**
-  1. See [`ARCHITECTURE.md`](ARCHITECTURE.md) and [`COMPONENTS/`](COMPONENTS/) for design details.
-  2. Use [`API_REFERENCE.md`](API_REFERENCE.md) and [`CLI_REFERENCE.md`](CLI_REFERENCE.md) for integration.
-  3. Follow [`CONTRIBUTING.md`](CONTRIBUTING.md) for coding/testing standards.
-* **Operators & Maintainers:**
-  1. Read [`DEPLOYMENT.md`](DEPLOYMENT.md) and [`OPERATIONS.md`](OPERATIONS.md) for deployment and monitoring.
-  2. Set up CI/CD with [`CI_CD.md`](CI_CD.md).
-  3. Reference [`SECURITY.md`](SECURITY.md) for vulnerability reporting and compliance.
-* **Community & Roadmap:**
-  * See [`ROADMAP.md`](ROADMAP.md) for milestones and governance.
-  * Consult [`GLOSSARY.md`](GLOSSARY.md) for terminology.
-  * Track changes in [`CHANGELOG.md`](CHANGELOG.md).
-  * Adhere to [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+- **Critical-Path Drift Detection**
+  - SLA monitoring
+  - Micro-replanning
+  - Performance optimization
 
-***
+- **Reflexion-Driven Self-Repair**
+  - Automatic error recovery
+  - Policy-based repair
+  - Human escalation
 
-## Getting Help
+## Development
 
-* **Discussions & Support:**
-  * Open an issue in GitHub Issues for bugs or features.
-  * Join the Discord/Slack channel (see [`CONTRIBUTING.md`](CONTRIBUTING.md)).
-* **Reporting Vulnerabilities:**
-  * Follow [`SECURITY.md`](SECURITY.md) for confidential reporting.
+### Local Development
 
-### Troubleshooting
+* **Setup**
+  ```bash
+  git clone https://github.com/yourusername/nootropic.git
+  cd nootropic
+  pnpm install
+  pnpm nx run-many --target=build --all
+  ```
 
-* If you see errors about missing `describe`/`it` in tests, ensure each lib/app has a `vitest.config.ts` with `globals: true` and at least one test suite per file.
-* If you see ESM/NodeNext import errors, check that all local imports use explicit `.js` extensions and all `package.json` files set `"type": "module"`.
-* If you see errors about `._*` files or `Unexpected \x00`, delete Mac resource fork files from your test directories: `find . -name '._*' -delete`.
+* **Development Server**
+  ```bash
+  pnpm nx serve cli
+  pnpm nx serve electron
+  pnpm nx serve vscode
+  ```
 
-***
+* **Testing**
+  ```bash
+  pnpm nx test --all
+  pnpm nx e2e --all
+  ```
+
+### Testing
+
+* **Unit Tests**
+  - Vitest for fast execution
+  - Coverage reporting
+  - Snapshot testing
+
+* **Integration Tests**
+  - Playwright for UI
+  - API contract tests
+  - End-to-end flows
+
+* **Performance Tests**
+  - Load testing
+  - Memory profiling
+  - CPU profiling
+
+### Documentation
+
+* **Code Documentation**
+  - JSDoc comments
+  - TypeScript types
+  - API documentation
+
+* **User Documentation**
+  - Getting started guides
+  - Architecture overview
+  - API reference
+
+* **Development Guides**
+  - Contributing guidelines
+  - Development setup
+  - Testing strategy
+
+### Performance
+
+* **Build Performance**
+  - Nx caching
+  - SWC compilation
+  - Parallel execution
+
+* **Runtime Performance**
+  - Memory management
+  - CPU optimization
+  - Network efficiency
+
+* **Monitoring**
+  - OpenTelemetry
+  - Performance metrics
+  - Error tracking
+
+### Error Handling
+
+* **Error Types**
+  - User errors
+  - System errors
+  - Network errors
+
+* **Recovery Strategies**
+  - Automatic retry
+  - Fallback options
+  - User notification
+
+* **Logging**
+  - Error logging
+  - Debug logging
+  - Audit logging
+
+### Integration
+
+* **Version Control**
+  - Git integration
+  - Branch management
+  - Commit hooks
+
+* **CI/CD**
+  - GitHub Actions
+  - Build pipeline
+  - Deployment
+
+* **External Services**
+  - LLM providers
+  - Vector stores
+  - Monitoring
 
 ## License
 
-nootropic is released under the Apache 2.0 License. See the `LICENSE` file for full terms and conditions.
-
-***
-
-Thank you for exploring nootropic—let's build smarter, self-repairing, and continuously improving AI-driven projects!
-
-## Documentation Linting
-
-All Markdown documentation is checked using a two-phase process: auto-fix (Prettier, remark-lint) and manual review (markdownlint-cli2). For full automation, run:
-
-```bash
-pnpm run clean:md
-```
-
-This script runs Prettier, remark-lint, and markdownlint-cli2 in sequence. See [GETTING\_STARTED.md#markdown-linting-and-formatting](./GETTING_STARTED.md#markdown-linting-and-formatting) for details and commands.
+MIT License - see [LICENSE](LICENSE) for details.

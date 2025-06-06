@@ -1,27 +1,30 @@
 {
   "name": "planner-agent",
-  "root": "libs/agents/planner-agent",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/agents/planner-agent/src",
   "projectType": "library",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm exec eslint \"libs/agents/planner-agent/src/**/*.ts\" --no-ignore"
+        "outputPath": "dist/libs/agents/planner-agent",
+        "main": "libs/agents/planner-agent/src/index.ts",
+        "tsConfig": "libs/agents/planner-agent/tsconfig.lib.json",
+        "assets": ["libs/agents/planner-agent/*.md"]
       }
     },
-    "type-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsc --noEmit --project libs/agents/planner-agent/tsconfig.json"
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "command": "pnpm exec vitest run --dir libs/agents/planner-agent"
+        "jestConfig": "libs/agents/planner-agent/jest.config.ts"
       }
     }
   },
-  "tags": []
+  "tags": ["scope:agents", "type:agent"]
 } 

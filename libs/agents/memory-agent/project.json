@@ -1,27 +1,30 @@
 {
   "name": "memory-agent",
-  "root": "libs/agents/memory-agent",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/agents/memory-agent/src",
   "projectType": "library",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm exec eslint \"libs/agents/memory-agent/src/**/*.ts\" --no-ignore"
+        "outputPath": "dist/libs/agents/memory-agent",
+        "main": "libs/agents/memory-agent/src/index.ts",
+        "tsConfig": "libs/agents/memory-agent/tsconfig.lib.json",
+        "assets": ["libs/agents/memory-agent/*.md"]
       }
     },
-    "type-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsc --noEmit --project libs/agents/memory-agent/tsconfig.json"
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "command": "pnpm exec vitest run --dir libs/agents/memory-agent"
+        "jestConfig": "libs/agents/memory-agent/jest.config.ts"
       }
     }
   },
-  "tags": []
+  "tags": ["scope:agents", "type:agent"]
 } 

@@ -1,94 +1,220 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "nxCloudId": "683f9f93319ab95d8a811a6a",
+  "npmScope": "nootropic",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "typecheck",
+          "format",
+          "bundle",
+          "docker-build",
+          "docker-push"
+        ],
+        "parallel": 3
+      }
+    }
+  },
   "targetDefaults": {
-    "@nx/esbuild:esbuild": {
-      "cache": true,
+    "build": {
       "dependsOn": [
         "^build"
       ],
       "inputs": [
-        "default",
-        "^default"
+        "production",
+        "^production"
       ]
     },
-    "@nx/js:tsc": {
-      "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
+    "test": {
       "inputs": [
         "default",
-        "^default"
+        "^production",
+        "{workspaceRoot}/config/jest/jest.preset.ts",
+        "{workspaceRoot}/config/vitest/vitest.config.ts"
+      ],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/config/eslint/.eslintrc.json",
+        "{workspaceRoot}/.prettierrc"
+      ]
+    },
+    "e2e": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
+    "typecheck": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
+    "format": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.prettierrc"
       ]
     }
   },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/vitest.config.[jt]s",
+      "!{projectRoot}/playwright.config.[jt]s",
+      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/._*"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/nx.json"
+    ]
+  },
   "plugins": [
     {
-      "plugin": "@nx/jest/plugin",
+      "plugin": "@nx/js/typescript",
       "options": {
-        "targetName": "test"
+        "typecheck": {
+          "targetName": "typecheck"
+        },
+        "build": {
+          "targetName": "build",
+          "configName": "tsconfig.lib.json",
+          "buildDepsName": "build-deps",
+          "watchDepsName": "watch-deps"
+        }
       }
     },
     {
-      "plugin": "@nx/react/router-plugin",
+      "plugin": "@nx/vitest/plugin",
       "options": {
-        "buildTargetName": "build",
-        "devTargetName": "dev",
-        "startTargetName": "start",
-        "watchDepsTargetName": "watch-deps",
-        "buildDepsTargetName": "build-deps",
-        "typecheckTargetName": "typecheck"
-      }
-    },
-    {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "buildTargetName": "build",
         "testTargetName": "test",
-        "serveTargetName": "serve",
-        "devTargetName": "dev",
-        "previewTargetName": "preview",
-        "serveStaticTargetName": "serve-static",
-        "typecheckTargetName": "typecheck",
-        "buildDepsTargetName": "build-deps",
-        "watchDepsTargetName": "watch-deps"
+        "coverageTargetName": "coverage"
       }
     },
     {
       "plugin": "@nx/playwright/plugin",
       "options": {
-        "targetName": "e2e"
+        "testTargetName": "e2e"
       }
     }
   ],
-  "generators": {
-    "@nx/react": {
-      "application": {
-        "babel": true,
-        "style": "css",
-        "linter": "none",
-        "bundler": "vite"
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "none"
-      }
+  "projects": {
+    "cli": {
+      "tags": []
+    },
+    "electron": {
+      "tags": []
+    },
+    "vscode": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "temporal": {
+      "tags": []
+    },
+    "planner-agent": {
+      "tags": []
+    },
+    "coder-agent": {
+      "tags": []
+    },
+    "critic-agent": {
+      "tags": []
+    },
+    "reasoning-agent": {
+      "tags": []
+    },
+    "search-agent": {
+      "tags": []
+    },
+    "feedback-agent": {
+      "tags": []
+    },
+    "project-mgr-agent": {
+      "tags": []
+    },
+    "explainability-agent": {
+      "tags": []
+    },
+    "memory-agent": {
+      "tags": []
+    },
+    "observability-agent": {
+      "tags": []
+    },
+    "model-adapter": {
+      "tags": []
+    },
+    "storage-adapter": {
+      "tags": []
+    },
+    "observability-adapter": {
+      "tags": []
+    },
+    "plugin-loader-adapter": {
+      "tags": []
+    },
+    "reflexion-adapter": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "runtime": {
+      "tags": []
+    },
+    "context": {
+      "tags": []
+    },
+    "benchmark": {
+      "tags": []
+    },
+    "migrations": {
+      "tags": []
+    },
+    "cache-warm": {
+      "tags": []
+    },
+    "rotate-keys": {
+      "tags": []
+    },
+    "snapshot-chroma": {
+      "tags": []
+    },
+    "example-plugin": {
+      "tags": []
+    },
+    "another-plugin": {
+      "tags": []
     }
   },
-  "extension": {
-    "tags": []
-  },
-  "defaultBase": "main",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
-    }
-  }
+  "nxCloudId": "6842911aed72b27ef7dafc36"
 }

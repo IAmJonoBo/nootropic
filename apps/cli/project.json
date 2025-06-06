@@ -1,10 +1,55 @@
 {
+  "name": "cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/cli/src",
+  "projectType": "application",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "command": "pnpm exec eslint \"apps/cli/src/**/*.ts\" --no-ignore"
+        "outputPath": "dist/apps/cli"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "sourcemap": true
+        }
       }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "cli:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "cli:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "cli:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/cli"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
-  }
+  },
+  "tags": ["scope:app", "type:cli"]
 } 

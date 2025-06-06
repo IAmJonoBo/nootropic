@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Capability Registry",
+  "description": "Schema for capability discovery and registration",
+  
+  "type": "object",
+  "required": ["capabilities"],
+  
+  "properties": {
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "description"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Capability name"
+          },
+          "version": {
+            "type": "string",
+            "description": "Capability version"
+          },
+          "description": {
+            "type": "string",
+            "description": "Capability description"
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Capability parameters"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required dependencies"
+          }
+        }
+      }
+    }
+  }
+}

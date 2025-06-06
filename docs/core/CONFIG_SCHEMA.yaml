@@ -1,0 +1,542 @@
+# nootropic Configuration Schema
+# Version: 1.0.0
+# Last Updated: 2025-01-01
+
+openapi: 3.1.0
+info:
+  title: nootropic Configuration Schema
+  version: 1.0.0
+  description: |
+    Configuration schema for nootropic, defining all configurable aspects of the system.
+    This schema is used to validate configuration files and generate documentation.
+
+components:
+  schemas:
+    Config:
+      type: object
+      required:
+        - version
+        - inference
+        - storage
+        - agents
+      properties:
+        version:
+          type: string
+          pattern: ^\d+\.\d+\.\d+$
+          description: Configuration schema version
+
+        inference:
+          $ref: "#/components/schemas/InferenceConfig"
+
+        storage:
+          $ref: "#/components/schemas/StorageConfig"
+
+        agents:
+          $ref: "#/components/schemas/AgentsConfig"
+
+        observability:
+          $ref: "#/components/schemas/ObservabilityConfig"
+
+        security:
+          $ref: "#/components/schemas/SecurityConfig"
+
+        deployment:
+          $ref: "#/components/schemas/DeploymentConfig"
+
+    InferenceConfig:
+      type: object
+      required:
+        - default_provider
+        - models
+      properties:
+        default_provider:
+          type: string
+          enum: [tabby, ollama, vllm, openai, anthropic, huggingface]
+          description: Default model provider to use
+
+        local_first:
+          type: boolean
+          default: true
+          description: Whether to prefer local models over cloud APIs
+
+        models:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModelConfig"
+          description: List of available models
+
+        fallback:
+          $ref: "#/components/schemas/FallbackConfig"
+
+    ModelConfig:
+      type: object
+      required:
+        - name
+        - provider
+        - format
+      properties:
+        name:
+          type: string
+          description: Model name/identifier
+
+        provider:
+          type: string
+          enum: [tabby, ollama, vllm, openai, anthropic, huggingface]
+          description: Model provider
+
+        format:
+          type: string
+          enum: [gguf, mlx, onnx, pytorch]
+          description: Model format
+
+        quantization:
+          type: string
+          enum: [4bit, 8bit, 16bit, 32bit]
+          description: Model quantization level
+
+        context_window:
+          type: integer
+          minimum: 1024
+          maximum: 131072
+          description: Maximum context window size
+
+        parameters:
+          type: object
+          properties:
+            temperature:
+              type: number
+              minimum: 0
+              maximum: 2
+              default: 0.7
+            top_p:
+              type: number
+              minimum: 0
+              maximum: 1
+              default: 0.9
+            max_tokens:
+              type: integer
+              minimum: 1
+              maximum: 32768
+              default: 2048
+
+    FallbackConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          default: false
+          description: Whether to allow fallback to cloud APIs
+
+        providers:
+          type: array
+          items:
+            type: string
+            enum: [openai, anthropic, huggingface]
+          description: List of fallback providers
+
+        conditions:
+          type: object
+          properties:
+            max_latency:
+              type: integer
+              description: Maximum acceptable latency in milliseconds
+            min_accuracy:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: Minimum acceptable accuracy
+            max_cost:
+              type: number
+              description: Maximum cost per request in USD
+
+    StorageConfig:
+      type: object
+      required:
+        - vector_store
+        - object_store
+      properties:
+        vector_store:
+          $ref: "#/components/schemas/VectorStoreConfig"
+
+        object_store:
+          $ref: "#/components/schemas/ObjectStoreConfig"
+
+        cache:
+          $ref: "#/components/schemas/CacheConfig"
+
+    VectorStoreConfig:
+      type: object
+      required:
+        - provider
+      properties:
+        provider:
+          type: string
+          enum: [chroma, lancedb, weaviate]
+          description: Vector store provider
+
+        config:
+          type: object
+          properties:
+            dimension:
+              type: integer
+              description: Vector dimension
+            similarity:
+              type: string
+              enum: [cosine, euclidean, dot]
+              default: cosine
+            index_type:
+              type: string
+              enum: [flat, ivf, hnsw]
+              default: hnsw
+
+    ObjectStoreConfig:
+      type: object
+      required:
+        - provider
+      properties:
+        provider:
+          type: string
+          enum: [minio, s3, local]
+          description: Object store provider
+
+        config:
+          type: object
+          properties:
+            endpoint:
+              type: string
+              description: Storage endpoint
+            bucket:
+              type: string
+              description: Default bucket name
+            region:
+              type: string
+              description: Storage region
+
+    CacheConfig:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum: [redis, memory, file]
+          default: memory
+          description: Cache provider
+
+        config:
+          type: object
+          properties:
+            ttl:
+              type: integer
+              description: Time-to-live in seconds
+            max_size:
+              type: string
+              description: Maximum cache size
+            eviction_policy:
+              type: string
+              enum: [lru, lfu, fifo]
+              default: lru
+
+    AgentsConfig:
+      type: object
+      required:
+        - planner
+        - coder
+        - critic
+      properties:
+        planner:
+          $ref: "#/components/schemas/AgentConfig"
+
+        coder:
+          $ref: "#/components/schemas/AgentConfig"
+
+        critic:
+          $ref: "#/components/schemas/AgentConfig"
+
+        reasoning:
+          $ref: "#/components/schemas/AgentConfig"
+
+        memory:
+          $ref: "#/components/schemas/AgentConfig"
+
+        search:
+          $ref: "#/components/schemas/AgentConfig"
+
+        feedback:
+          $ref: "#/components/schemas/AgentConfig"
+
+        project_mgr:
+          $ref: "#/components/schemas/AgentConfig"
+
+    AgentConfig:
+      type: object
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+          description: Whether the agent is enabled
+
+        model:
+          type: string
+          description: Model to use for this agent
+
+        parameters:
+          type: object
+          description: Agent-specific parameters
+
+        resources:
+          type: object
+          properties:
+            cpu:
+              type: number
+              description: CPU allocation
+            memory:
+              type: string
+              description: Memory allocation
+            gpu:
+              type: boolean
+              description: Whether to use GPU
+
+    ObservabilityConfig:
+      type: object
+      required:
+        - provider
+      properties:
+        provider:
+          type: string
+          enum: [opentelemetry, prometheus, datadog]
+          description: Observability provider
+
+        config:
+          type: object
+          properties:
+            endpoint:
+              type: string
+              description: Collector endpoint
+            sampling_rate:
+              type: number
+              minimum: 0
+              maximum: 1
+              default: 1.0
+            attributes:
+              type: object
+              description: Additional attributes
+
+        metrics:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              default: true
+            interval:
+              type: integer
+              description: Collection interval in seconds
+
+        tracing:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              default: true
+            sampling_rate:
+              type: number
+              minimum: 0
+              maximum: 1
+              default: 1.0
+
+    SecurityConfig:
+      type: object
+      required:
+        - authentication
+        - encryption
+      properties:
+        authentication:
+          type: object
+          required:
+            - provider
+          properties:
+            provider:
+              type: string
+              enum: [oauth, oidc, webauthn]
+              description: Authentication provider
+
+            config:
+              type: object
+              properties:
+                issuer:
+                  type: string
+                  description: OAuth/OIDC issuer
+                client_id:
+                  type: string
+                  description: OAuth client ID
+                client_secret:
+                  type: string
+                  description: OAuth client secret
+
+        encryption:
+          type: object
+          required:
+            - algorithm
+          properties:
+            algorithm:
+              type: string
+              enum: [aes-256-gcm, chacha20-poly1305]
+              description: Encryption algorithm
+
+            key_rotation:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  default: true
+                interval:
+                  type: integer
+                  description: Rotation interval in days
+
+        compliance:
+          type: object
+          properties:
+            standards:
+              type: array
+              items:
+                type: string
+                enum: [soc2, iso27001, gdpr, ccpa]
+              description: Compliance standards
+
+            audit:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  default: true
+                retention:
+                  type: integer
+                  description: Audit log retention in days
+
+    DeploymentConfig:
+      type: object
+      required:
+        - environment
+      properties:
+        environment:
+          type: string
+          enum: [development, staging, production]
+          description: Deployment environment
+
+        scaling:
+          type: object
+          properties:
+            min_replicas:
+              type: integer
+              minimum: 1
+              default: 1
+            max_replicas:
+              type: integer
+              minimum: 1
+              default: 10
+            target_cpu:
+              type: number
+              minimum: 0
+              maximum: 100
+              default: 80
+            target_memory:
+              type: number
+              minimum: 0
+              maximum: 100
+              default: 80
+
+        resources:
+          type: object
+          properties:
+            requests:
+              type: object
+              properties:
+                cpu:
+                  type: string
+                  default: 500m
+                memory:
+                  type: string
+                  default: 512Mi
+            limits:
+              type: object
+              properties:
+                cpu:
+                  type: string
+                  default: 1000m
+                memory:
+                  type: string
+                  default: 1Gi
+
+        networking:
+          type: object
+          properties:
+            ingress:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  default: true
+                host:
+                  type: string
+                tls:
+                  type: boolean
+                  default: true
+
+            service:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [ClusterIP, NodePort, LoadBalancer]
+                  default: ClusterIP
+                port:
+                  type: integer
+                  default: 80
+
+        monitoring:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              default: true
+            prometheus:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  default: true
+                path:
+                  type: string
+                  default: /metrics
+            grafana:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  default: true
+                dashboard:
+                  type: string
+                  default: nootropic
+
+        backup:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              default: true
+            schedule:
+              type: string
+              default: 0 0 * * *
+            retention:
+              type: integer
+              default: 30
+            storage:
+              type: object
+              properties:
+                provider:
+                  type: string
+                  enum: [s3, gcs, azure]
+                bucket:
+                  type: string
+                path:
+                  type: string
+                  default: backups

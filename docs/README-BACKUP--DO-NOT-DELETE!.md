@@ -1,53 +1,108 @@
-# nootropic: Monolithic Specification & Architecture
+# Nootropic
 
-***
+<div align="center">
+
+![Nootropic Logo](assets/logo.png)
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](docs/)
+[![Discord](https://img.shields.io/discord/1234567890?color=7289DA&label=Discord)](https://discord.gg/nootropic)
+
+**AI-Powered Development Environment**
+
+[Overview](#overview) • [Quick Start](#quick-start) • [Architecture](#architecture) • [AI/LLM Development](#aillm-development) • [Contributing](#contributing)
+
+</div>
 
 ## Table of Contents
 
-* [nootropic: Monolithic Specification & Architecture](#nootropic-monolithic-specification--architecture)
-  * [Table of Contents](#table-of-contents)
-  * [Summary](#summary)
-  * [1. Core Design Principles](#1-core-design-principles)
-  * [2. Ecosystem Diagram](#2-ecosystem-diagram)
-  * [3. Component Descriptions & Rationales](#3-component-descriptions--rationales)
-    * [3.1 User Interface Layer](#31-user-interface-layer)
-      * [3.1.1 VS Code Extension (Continue + Roo Code)](#311-vs-code-extension-continue--roo-code)
-      * [3.1.2 CLI Client (`npx nootropic …`)](#312-cli-client-npx-nootropic-)
-      * [3.1.3 Electron Dashboard](#313-electron-dashboard)
-    * [3.2 Orchestration & Core Agents](#32-orchestration--core-agents)
-      * [3.2.1 Temporal.io Workflows](#321-temporalio-workflows)
-      * [3.2.2 Core Agent Families](#322-core-agent-families)
-    * [3.3 Utility & Adapter Layer](#33-utility--adapter-layer)
-      * [3.3.1 ModelAdapter & Intelligent Model Matcher](#331-modeladapter--intelligent-model-matcher)
-      * [3.3.2 StorageAdapter](#332-storageadapter)
-      * [3.3.3 ObservabilityAdapter (OpenTelemetry + OpenCost)](#333-observabilityadapter-opentelemetry--opencost)
-      * [3.3.4 PluginLoaderAdapter](#334-pluginloaderadapter)
-      * [3.3.5 ReflexionAdapter](#335-reflexionadapter)
-    * [3.4 Inference & Data Layer](#34-inference--data-layer)
-      * [3.4.1 Local Quantized Model Integration](#341-local-quantized-model-integration)
-      * [3.4.2 Hybrid RAG & Sourcegraph-Style Index](#342-hybrid-rag--sourcegraph-style-index)
-    * [3.5 Infrastructure & Operations](#35-infrastructure--operations)
-      * [3.5.1 Monorepo & Build System (Nx 16 + SWC)](#351-monorepo--build-system-nx-16--swc)
-      * [3.5.2 Self-Healing & Resilience (Keptn + LitmusChaos)](#352-self-healing--resilience-keptn--litmuschaos)
-      * [3.5.3 Security & Compliance](#353-security--compliance)
-      * [3.5.4 Cost Attribution & Scheduling](#354-cost-attribution--scheduling)
-    * [3.6 Simplification Rationale: Eliminating Bloat](#36-simplification-rationale-eliminating-bloat)
-  * [4. Plugin Ecosystem & Recommended v1 Plugins](#4-plugin-ecosystem--recommended-v1-plugins)
-  * [5. GitHub Repo & Governance](#5-github-repo--governance)
-    * [5.1 Single Monorepo Structure](#51-single-monorepo-structure)
-  * [6. Detailed Justifications & Citations](#6-detailed-justifications--citations)
-  * [7. Open-Source Tools & Free Services](#7-open-source-tools--free-services)
-  * [8. Open Questions & Next Steps](#8-open-questions--next-steps)
-  * [9. Conclusion](#9-conclusion)
-  * [10. Full List of Citations](#10-full-list-of-citations)
-  * [4. Plugin Ecosystem & Recommended v1 Plugins](#4-plugin-ecosystem--recommended-v1-plugins-1)
-  * [5. GitHub Repo & Governance](#5-github-repo--governance-1)
-    * [5.1 Single Monorepo Structure](#51-single-monorepo-structure-1)
-  * [6. Detailed Justifications & Citations](#6-detailed-justifications--citations-1)
-  * [7. Open-Source Tools & Free Services](#7-open-source-tools--free-services-1)
-  * [8. Open Questions & Next Steps](#8-open-questions--next-steps-1)
-  * [9. Conclusion](#9-conclusion-1)
-  * [10. Full List of Citations](#10-full-list-of-citations-1)
+- [Overview](#overview)
+  - [Key Features](#key-features)
+  - [Technology Stack](#technology-stack)
+- [Quick Start](#quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Basic Usage](#basic-usage)
+- [Architecture](#architecture)
+  - [Core Components](#core-components)
+  - [Data Flow](#data-flow)
+  - [Security Model](#security-model)
+- [AI/LLM Development](#aillm-development)
+  - [Model Management](#model-management--versioning)
+  - [Prompt Engineering](#prompt-engineering--management)
+  - [Context Management](#context-window-management)
+  - [Fine-tuning](#model-fine-tuning-pipeline)
+  - [Safety & Ethics](#ai-safety--ethics)
+  - [Performance](#performance-optimization)
+  - [Error Handling](#error-handling--recovery)
+  - [Testing](#testing--validation)
+  - [Documentation](#documentation--knowledge-management)
+  - [Integration](#integration-patterns)
+- [Contributing](#contributing)
+  - [Development Setup](#development-setup)
+  - [Code Style](#code-style)
+  - [Testing](#testing)
+  - [Documentation](#documentation)
+- [License](#license)
+
+## Overview
+
+- [Nootropic](#nootropic)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Summary](#summary)
+  - [1. Core Design Principles](#1-core-design-principles)
+  - [2. Ecosystem Diagram](#2-ecosystem-diagram)
+  - [3. Component Descriptions \& Rationales](#3-component-descriptions--rationales)
+    - [3.1 User Interface Layer](#31-user-interface-layer)
+      - [3.1.1 VS Code Extension (Continue + Roo Code)](#311-vs-code-extension-continue--roo-code)
+      - [3.1.2 CLI Client (`npx nootropic …`)](#312-cli-client-npx-nootropic-)
+      - [3.1.3 Electron Dashboard](#313-electron-dashboard)
+    - [3.2 Orchestration \& Core Agents](#32-orchestration--core-agents)
+      - [3.2.1 Temporal.io Workflows](#321-temporalio-workflows)
+      - [3.2.2 Core Agent Families](#322-core-agent-families)
+    - [3.3 Utility \& Adapter Layer](#33-utility--adapter-layer)
+      - [3.3.1 ModelAdapter \& Intelligent Model Matcher](#331-modeladapter--intelligent-model-matcher)
+      - [3.3.2 StorageAdapter](#332-storageadapter)
+      - [3.3.3 ObservabilityAdapter (OpenTelemetry + OpenCost)](#333-observabilityadapter-opentelemetry--opencost)
+      - [3.3.4 PluginLoaderAdapter](#334-pluginloaderadapter)
+      - [3.3.5 ReflexionAdapter](#335-reflexionadapter)
+    - [3.4 Inference \& Data Layer](#34-inference--data-layer)
+      - [3.4.1 Local Quantized Model Integration](#341-local-quantized-model-integration)
+      - [3.4.2 Hybrid RAG \& Sourcegraph-Style Index](#342-hybrid-rag--sourcegraph-style-index)
+    - [3.5 Infrastructure \& Operations](#35-infrastructure--operations)
+      - [3.5.1 Monorepo \& Build System (Nx 16 + SWC)](#351-monorepo--build-system-nx-16--swc)
+      - [3.5.2 Self-Healing \& Resilience (Keptn + LitmusChaos)](#352-self-healing--resilience-keptn--litmuschaos)
+      - [3.5.3 Security \& Compliance](#353-security--compliance)
+      - [3.5.4 Cost Attribution \& Scheduling](#354-cost-attribution--scheduling)
+    - [3.6 Simplification Rationale: Eliminating Bloat](#36-simplification-rationale-eliminating-bloat)
+  - [4. Plugin Ecosystem \& Recommended v1 Plugins](#4-plugin-ecosystem--recommended-v1-plugins)
+  - [5. GitHub Repo \& Governance](#5-github-repo--governance)
+    - [5.1 Single Monorepo Structure](#51-single-monorepo-structure)
+  - [6. Detailed Justifications \& Citations](#6-detailed-justifications--citations)
+  - [7. Open-Source Tools \& Free Services](#7-open-source-tools--free-services)
+  - [8. Open Questions \& Next Steps](#8-open-questions--next-steps)
+  - [9. Conclusion](#9-conclusion)
+  - [10. Full List of Citations](#10-full-list-of-citations)
+  - [4. Plugin Ecosystem \& Recommended v1 Plugins](#4-plugin-ecosystem--recommended-v1-plugins-1)
+  - [5. GitHub Repo \& Governance](#5-github-repo--governance-1)
+    - [5.1 Single Monorepo Structure](#51-single-monorepo-structure-1)
+  - [6. Detailed Justifications \& Citations](#6-detailed-justifications--citations-1)
+  - [7. Open-Source Tools \& Free Services](#7-open-source-tools--free-services-1)
+  - [8. Open Questions \& Next Steps](#8-open-questions--next-steps-1)
+  - [9. Conclusion](#9-conclusion-1)
+  - [10. Full List of Citations](#10-full-list-of-citations-1)
+  - [AI/LLM Development](#aillm-development)
+    - [Model Management \& Versioning](#model-management--versioning)
+    - [Prompt Engineering \& Management](#prompt-engineering--management)
+    - [Context Window Management](#context-window-management)
+    - [Model Fine-tuning Pipeline](#model-fine-tuning-pipeline)
+    - [AI Safety \& Ethics](#ai-safety--ethics)
+    - [Performance Optimization](#performance-optimization)
+    - [Error Handling \& Recovery](#error-handling--recovery)
+    - [Testing \& Validation](#testing--validation)
+    - [Documentation \& Knowledge Management](#documentation--knowledge-management)
+    - [Integration Patterns](#integration-patterns)
 
 ***
 
@@ -181,31 +236,31 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
 
 #### 3.1.1 VS Code Extension (Continue + Roo Code)
 
-* **Continue Extension**
-  * **Role:** Primary chat interface (LLM proxy) embedded directly in VS Code, using Tabby ML's OpenAI-compatible API under the hood.
-  * **Benefits:**
+- **Continue Extension**
+  - **Role:** Primary chat interface (LLM proxy) embedded directly in VS Code, using Tabby ML's OpenAI-compatible API under the hood.
+  - **Benefits:**
     1. No context switch—developers never leave their editor to ask questions, generate code, or fix failures.
     2. Local privacy—all prompts default to Tabby ML (local) unless user config changes.
     3. Slash commands (e.g., `/nootropic plan`, `/nootropic fix-tests`) leverage the Capability Registry to run complex multi-agent workflows without leaving VS Code.
-* **Roo Code Integration**
-  * **Role:** Provides multi-file diff preview UI (similar to Cursor's "/rewrite-file" concept) so large refactors or code insertions can be reviewed before applying.
-  * **Benefits:**
+- **Roo Code Integration**
+  - **Role:** Provides multi-file diff preview UI (similar to Cursor's "/rewrite-file" concept) so large refactors or code insertions can be reviewed before applying.
+  - **Benefits:**
     1. Precise control—users can preview AST-level changes (via OpenRewrite) before commit.
     2. Offline support—works entirely with local code; no SaaS needed for diff previews.
-* **Key UX Features:**
+- **Key UX Features:**
   1. Inline Diff & Preview: When CoderAgent generates or fixes code, the extension shows a live diff next to the code.
   2. Explainability Panel: A sidebar that displays each prompt's chain-of-thought extracted from OTEL spans, showing exactly how LLM reasoning arrived at a suggestion.
   3. TaskGraph Kanban: Visual backlog of epics, stories, tasks (from project-spec.md), showing status icons (🟢 done, 🟡 in-progress, 🔴 blocked) with clickable links to the associated code or prompt context.
 
 #### 3.1.2 CLI Client (`npx nootropic …`)
 
-* **Registry-Driven Command Discovery**
+- **Registry-Driven Command Discovery**
 
-  * The CLI loads `describe-registry.json` at runtime—no hard-coded commands. Installing a new agent/plugin makes it immediately available in `npx nootropic list-capabilities`.
+  - The CLI loads `describe-registry.json` at runtime—no hard-coded commands. Installing a new agent/plugin makes it immediately available in `npx nootropic list-capabilities`.
 
-* **Machine-Readable I/O**
+- **Machine-Readable I/O**
 
-  * All commands support `--json` and `--yaml` flags. E.g.,
+  - All commands support `--json` and `--yaml` flags. E.g.,
 
     ```json
     $ npx nootropic plan --brief "Build a blog platform" --json
@@ -224,14 +279,14 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
     }
     ```
 
-* **Examples:**
-  * `npx nootropic scaffold --spec spec.yaml` → generates a Cookiecutter project skeleton + CI/CD manifests.
-  * `npx nootropic code --file src/index.js --instruct "Add null checks"` → returns a unified diff patch in JSON.
+- **Examples:**
+  - `npx nootropic scaffold --spec spec.yaml` → generates a Cookiecutter project skeleton + CI/CD manifests.
+  - `npx nootropic code --file src/index.js --instruct "Add null checks"` → returns a unified diff patch in JSON.
 
 #### 3.1.3 Electron Dashboard
 
-* **Purpose:** Provide a standalone "app" for users who do not use VS Code or want a central dashboard.
-* **Key Widgets:**
+- **Purpose:** Provide a standalone "app" for users who do not use VS Code or want a central dashboard.
+- **Key Widgets:**
   1. Kanban Board: Mirrors VS Code's TaskGraph view with drag-and-drop reordering.
   2. Temporal Workflow Timeline: Displays running workflows (e.g., code tasks, self-heal events) in a time-series graph. Clicking a node drills into OTEL spans (tokens used, inference times).
   3. Mermaid/UML Canvas: Users sketch architecture diagrams; the ArchitectAgent can populate or refine them based on code structure.
@@ -241,11 +296,11 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
 
 #### 3.2.1 Temporal.io Workflows
 
-* **Why Temporal?**
+- **Why Temporal?**
   1. Guarantees durable execution—steps are recorded, retried on failure, and can be time-travel debugged.
   2. Reduces boilerplate: workflows are code; Temporal persists state.
   3. Scales horizontally: multiple workers can run concurrently.
-* **Workflow Examples**
+- **Workflow Examples**
 
   1. **`initializeProject` Workflow:**
 
@@ -261,11 +316,11 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
      }
      ```
 
-     * **Activities:**
-       * `generateSpec(brief)`: Calls PlannerAgent to produce `project-spec.md` and commits to Git
-       * `createTaskGraph(spec)`: Uses a PDDL solver (pyperplan WASM) to build initial DAG
-       * `generateScaffold(spec)`: Invokes CoderAgent to scaffold the project via Cookiecutter, returns a diff
-     * **Output:** Commit + push of scaffold, spec, and initial DAG to the repo; emits an OTEL span with cost/latency.
+     - **Activities:**
+       - `generateSpec(brief)`: Calls PlannerAgent to produce `project-spec.md` and commits to Git
+       - `createTaskGraph(spec)`: Uses a PDDL solver (pyperplan WASM) to build initial DAG
+       - `generateScaffold(spec)`: Invokes CoderAgent to scaffold the project via Cookiecutter, returns a diff
+     - **Output:** Commit + push of scaffold, spec, and initial DAG to the repo; emits an OTEL span with cost/latency.
 
   2. **`executeTask` Child Workflow (per DAG node):**
 
@@ -302,7 +357,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
        }
      ```
 
-     * **Delta-Replan Logic:**\
+     - **Delta-Replan Logic:**\
        When any `executeTask` child detects a blocked or over-budget condition (e.g., critical-path task latency > SLA), it signals PlannerAgent (via Temporal signals).\
        PlannerAgent:
        1. Fetches current DAG from TaskGraphService (Temporal KV + Redis).
@@ -327,7 +382,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
 
 #### 3.3.1 ModelAdapter & Intelligent Model Matcher
 
-* **Unified Interface:**
+- **Unified Interface:**
 
   1. **Local backends (fallback order):**\
      a. **Tabby ML**\
@@ -340,7 +395,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
      c. Hugging Face Inference API\
      d. Petals
 
-* **Intelligent Router Logic:**
+- **Intelligent Router Logic:**
 
   1. Attempt Tabby ML → measure LLM latency & CriticAgent success.
   2. If Tabby fails or SLA breach, route to Ollama.
@@ -348,7 +403,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   4. If all local fail and user permits, route to cloud.
   5. Users can enforce "cloud only" or "local only" via `~/.nootropic/config.json`.
 
-* **Implementation Sketch:**
+- **Implementation Sketch:**
 
   ```ts
   class ModelAdapter {
@@ -394,12 +449,12 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   }
   ```
 
-  * **Hardware Profiling:**\
+  - **Hardware Profiling:**\
     • CPU detection via `os.cpus()`, `/proc/cpuinfo`, `sysctl`\
     • GPU detection via `nvidia-smi` or `system_profiler SPDisplaysDataType`\
     • Disk space check (≥ 5 GB)
 
-  * **Model Metadata (`model-metadata.json`):**
+  - **Model Metadata (`model-metadata.json`):**
 
     ```json
     {
@@ -427,7 +482,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
     }
     ```
 
-  * **Scoring Algorithm:**
+  - **Scoring Algorithm:**
 
     ```math
       score = α·throughput_norm + β·accuracy − γ·estimated_cost − δ·memory_pressure
@@ -435,10 +490,10 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
 
     E.g., "starcoder2-3b-4bit" vs. "llama2-7b-4bit" on an 8 GB laptop yields scores 0.94 vs. 0.646.
 
-  * **Runtime Re-Evaluation:**\
+  - **Runtime Re-Evaluation:**\
     If latency > SLA, re-score with GPU profile or fallback to cloud if allowed.
 
-* **User Overrides:**
+- **User Overrides:**
 
   ```json
   {
@@ -449,14 +504,14 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   }
   ```
 
-* **Benchmark Library:**\
+- **Benchmark Library:**\
   Runs sample prompts (e.g., code completion) to refine scoring; stores results in MemoryAgent.
 
 #### 3.3.2 StorageAdapter
 
-* **Chroma (SQLite + FAISS)**
+- **Chroma (SQLite + FAISS)**
 
-  * **Setup & Ingestion:**
+  - **Setup & Ingestion:**
 
     ```ts
     import { ChromaClient } from "@chromadb/client";
@@ -476,9 +531,9 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
     }
     ```
 
-  * **Retrieval:** ~2 ms for 1M embeddings on SSD.
+  - **Retrieval:** ~2 ms for 1M embeddings on SSD.
 
-  * **Query:**
+  - **Query:**
 
     ```ts
     const qEmb = await embedder.embedText(
@@ -487,21 +542,21 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
     const topK = await chroma.query({ queryEmbeddings: [qEmb], nResults: 10 });
     ```
 
-* **LanceDB (Arrow-based)**
+- **LanceDB (Arrow-based)**
 
-  * **Use Case:** Projects > 10 GB or offline CI.
-  * **Installation:** `npm install lancedb`
-  * **Data Conversion:**
+  - **Use Case:** Projects > 10 GB or offline CI.
+  - **Installation:** `npm install lancedb`
+  - **Data Conversion:**
 
     ```ts
     await LanceDB.write(arrowTableOfEmbeddings, "lance_store");
     ```
 
-* **Weaviate (Optional)**
+- **Weaviate (Optional)**
 
-  * **Docker:** `docker run -d -p 8080:8080 --env AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true weaviate/weaviate:latest`
+  - **Docker:** `docker run -d -p 8080:8080 --env AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true weaviate/weaviate:latest`
 
-  * **Schema & Indexing:**
+  - **Schema & Indexing:**
 
     ```ts
     const client = new WeaviateClient({
@@ -524,7 +579,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
     }
     ```
 
-  * **Query:**
+  - **Query:**
 
     ```ts
     const response = await client.graphql
@@ -536,14 +591,14 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
       .do();
     ```
 
-  * **Benefit:** ~15% recall improvement vs. pure vector search.
+  - **Benefit:** ~15% recall improvement vs. pure vector search.
 
-* **Sourcegraph-Style Symbol Graph**
-  * Extract symbol & reference info via LSP, index in SQLite. Use for queries like "Where is function X defined?"
+- **Sourcegraph-Style Symbol Graph**
+  - Extract symbol & reference info via LSP, index in SQLite. Use for queries like "Where is function X defined?"
 
 #### 3.3.3 ObservabilityAdapter (OpenTelemetry + OpenCost)
 
-* **OpenTelemetry Setup:**
+- **OpenTelemetry Setup:**
 
   ```ts
   import { NodeSDK } from "@opentelemetry/sdk-node";
@@ -564,7 +619,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   sdk.start();
   ```
 
-  * **Span Attributes Example:**
+  - **Span Attributes Example:**
 
     ```json
     {
@@ -577,9 +632,9 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
     }
     ```
 
-  * Traces exported to Jaeger; metrics to Prometheus.
+  - Traces exported to Jaeger; metrics to Prometheus.
 
-* **OpenCost Integration:**
+- **OpenCost Integration:**
 
   ```ts
   span.setAttribute("cost.usd", calculateCost(tokens_out));
@@ -589,7 +644,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
 
 #### 3.3.4 PluginLoaderAdapter
 
-* **Design:** Scan `plugins/` for modules exporting `describe()`. Validate with Zod schema:
+- **Design:** Scan `plugins/` for modules exporting `describe()`. Validate with Zod schema:
 
   ```ts
   import { z } from "zod";
@@ -603,7 +658,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   }
   ```
 
-* **Loading Logic:**
+- **Loading Logic:**
 
   ```ts
   import { readdirSync } from "fs";
@@ -618,13 +673,13 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   });
   ```
 
-* **Benefit:** New plugins appear automatically in CLI and UI.
+- **Benefit:** New plugins appear automatically in CLI and UI.
 
 #### 3.3.5 ReflexionAdapter
 
-* **Purpose:** Exposes WebSocket or gRPC endpoint that emits Reflexion State Machine events.
+- **Purpose:** Exposes WebSocket or gRPC endpoint that emits Reflexion State Machine events.
 
-* **Event Emission Example:**
+- **Event Emission Example:**
 
   ```ts
   import { EventEmitter } from "events";
@@ -638,30 +693,30 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
   ReflexionEvents.emit("CodeFixApplied", { taskID, diffSummary });
   ```
 
-* **Subscription (Electron Dashboard):**
+- **Subscription (Electron Dashboard):**
 
   ```ts
   ReflexionEvents.on("ModelSwitched", (data) => updateUIWithModelSwitch(data));
   ```
 
-* **ProjectMgrAgent:** Logs events to DAG for audit trails.
+- **ProjectMgrAgent:** Logs events to DAG for audit trails.
 
 ### 3.4 Inference & Data Layer
 
 #### 3.4.1 Local Quantized Model Integration
 
-* **Tabby ML**
+- **Tabby ML**
 
-  * **Description:** Self-hosted LLM API server exposing `/v1/chat/completions`.
-  * **Usage:** All agents call Tabby ML at `http://localhost:8000/v1/chat/completions`.
-  * **Setup:**
+  - **Description:** Self-hosted LLM API server exposing `/v1/chat/completions`.
+  - **Usage:** All agents call Tabby ML at `http://localhost:8000/v1/chat/completions`.
+  - **Setup:**
 
     ```bash
     pip install tabby-ml
     tabby serve --host 0.0.0.0 --port 8000 --config tabby.config.json
     ```
 
-    * **`tabby.config.json` Example:**
+    - **`tabby.config.json` Example:**
 
       ```json
       {
@@ -679,55 +734,55 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
       }
       ```
 
-* **Ollama**
+- **Ollama**
 
-  * **Description:** GGUF & MLX inference for Apple & x86 chips.
-  * **Installation:**
-    * macOS: `brew install ollama/tap/ollama`
-    * Linux: Follow instructions.
-  * **Pull Model:** `ollama pull starcoder2:gguf`
-  * **Inference:**
+  - **Description:** GGUF & MLX inference for Apple & x86 chips.
+  - **Installation:**
+    - macOS: `brew install ollama/tap/ollama`
+    - Linux: Follow instructions.
+  - **Pull Model:** `ollama pull starcoder2:gguf`
+  - **Inference:**
 
     ```bash
     ollama run starcoder2:gguf --prompt "def fib(n):" --tokens 100
     ```
 
-* **vLLM 0.4**
+- **vLLM 0.4**
 
-  * **Description:** GPU-optimized PagedAttention inference (24× throughput vs. HF TGI).
-  * **Start:**
+  - **Description:** GPU-optimized PagedAttention inference (24× throughput vs. HF TGI).
+  - **Start:**
 
     ```bash
     pip install vllm
     vllm --model llama2-7b-q4 --port 8001 --max_tokens 2048
     ```
 
-* **llama.cpp (GGUF 4-bit)**
+- **llama.cpp (GGUF 4-bit)**
 
-  * **Description:** CPU inference engine; ~150 ms first-token on M1/M2, < 1 s for 200 tokens.
+  - **Description:** CPU inference engine; ~150 ms first-token on M1/M2, < 1 s for 200 tokens.
 
-  * **Setup:**
+  - **Setup:**
 
     ```bash
     git clone https://github.com/ggerganov/llama.cpp && cd llama.cpp && make
     ./llama.cpp quantize models/7B/ggml-model-q4_0.bin models/7B/ggml-model-q4_0.gguf
     ```
 
-  * **Inference:**
+  - **Inference:**
 
     ```bash
     ./llama.cpp --model models/7B/ggml-model-q4_0.gguf --prompt "def fib(n):" --tokens 100
     ```
 
-* **Petals (Optional)**
-  * **Description:** Peer-to-peer distributed inference for 70B+ models.
-  * **Opt-In:** Only if user installs plugin and consents to P2P.
+- **Petals (Optional)**
+  - **Description:** Peer-to-peer distributed inference for 70B+ models.
+  - **Opt-In:** Only if user installs plugin and consents to P2P.
 
 #### 3.4.2 Hybrid RAG & Sourcegraph-Style Index
 
 1. **Chroma (SQLite + FAISS)**
 
-   * **Setup & Ingestion:**
+   - **Setup & Ingestion:**
 
      ```ts
      import { ChromaClient } from "@chromadb/client";
@@ -747,7 +802,7 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
      }
      ```
 
-   * **Query:**
+   - **Query:**
 
      ```ts
      const qEmb = await embedder.embedText(
@@ -758,9 +813,9 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
 
 2. **Weaviate (Optional Hybrid)**
 
-   * **Docker:** `docker run -d -p 8080:8080 --env AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true weaviate/weaviate:latest`
-   * **Schema & Indexing:** (as above in 3.3.2)
-   * **Query:** (as above in 3.3.2)
+   - **Docker:** `docker run -d -p 8080:8080 --env AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true weaviate/weaviate:latest`
+   - **Schema & Indexing:** (as above in 3.3.2)
+   - **Query:** (as above in 3.3.2)
 
 3. **Semantic Re-Ranking:**
 
@@ -773,39 +828,39 @@ All redundancies (e.g., SonarQube, separate CI servers, standalone search server
    ```
 
 4. **Sourcegraph-Style Symbol Graph:**
-   * Use LSP to extract symbols & references, index in SQLite for direct queries.
+   - Use LSP to extract symbols & references, index in SQLite for direct queries.
 
 ### 3.5 Infrastructure & Operations
 
 #### 3.5.1 Monorepo & Build System (Nx 16 + SWC)
 
-* **Nx 16**
-  * Global `nx.json` and `workspace.json` manage apps/libs with distributed caching (<2 s no-op CI).
-* **SWC**
-  * Transpiles TS 15–20× faster than `tsc`, full build < 6 s on 16 GB MacBook Pro.
+- **Nx 16**
+  - Global `nx.json` and `workspace.json` manage apps/libs with distributed caching (<2 s no-op CI).
+- **SWC**
+  - Transpiles TS 15–20× faster than `tsc`, full build < 6 s on 16 GB MacBook Pro.
 
 #### 3.5.2 Self-Healing & Resilience (Keptn + LitmusChaos)
 
-* **Keptn**
-  * Watches OTEL metrics, triggers remediation via `remediation.yaml` (as above).
-* **LitmusChaos**
-  * Runs chaos tests (pod-delete) via `chaos.yaml`, ReflexionEngine reassigns tasks on failure.
+- **Keptn**
+  - Watches OTEL metrics, triggers remediation via `remediation.yaml` (as above).
+- **LitmusChaos**
+  - Runs chaos tests (pod-delete) via `chaos.yaml`, ReflexionEngine reassigns tasks on failure.
 
 #### 3.5.3 Security & Compliance
 
-* **Semgrep 1.50**
-  * In-process SAST + AI autofix (confidence ≥ 0.8).
-* **Trivy 0.50**
-  * CI scan for critical/high CVEs (`nx run trivyScan`).
-* **Sigstore / SLSA Level 2**
-  * Enforce signed containers and artifacts.
+- **Semgrep 1.50**
+  - In-process SAST + AI autofix (confidence ≥ 0.8).
+- **Trivy 0.50**
+  - CI scan for critical/high CVEs (`nx run trivyScan`).
+- **Sigstore / SLSA Level 2**
+  - Enforce signed containers and artifacts.
 
 #### 3.5.4 Cost Attribution & Scheduling
 
-* **OpenCost 1.4**
-  * Tags OTEL spans with $ cost; PlannerAgent enforces budget.
-* **Bandit Optimiser (PPO Style)**
-  * FeedbackAgent trains prompt & sampling policy nightly using user feedback and OTEL signals.
+- **OpenCost 1.4**
+  - Tags OTEL spans with $ cost; PlannerAgent enforces budget.
+- **Bandit Optimiser (PPO Style)**
+  - FeedbackAgent trains prompt & sampling policy nightly using user feedback and OTEL signals.
 
 ### 3.6 Simplification Rationale: Eliminating Bloat
 
@@ -854,34 +909,34 @@ To keep the core lean, we propose six optional v1 plugins to maximise utility:
 
 1. **FuzzTestingUtility**
 
-   * **Function:** Uses LLM to generate fuzz inputs for critical functions (via QFuzz or "Asteo" style), integrates with `npx nootropic fuzz` command.
-   * **Benefit:** Finds edge-case bugs automatically. LLM-guided fuzzing uncovers ~30% more bugs vs. random fuzz on Python code.
+   - **Function:** Uses LLM to generate fuzz inputs for critical functions (via QFuzz or "Asteo" style), integrates with `npx nootropic fuzz` command.
+   - **Benefit:** Finds edge-case bugs automatically. LLM-guided fuzzing uncovers ~30% more bugs vs. random fuzz on Python code.
 
 2. **DesignSyncAgent**
 
-   * **Function:** Connects to Figma API (OAuth) and exports selected frames to React + Tailwind stubs.
-   * **Usage:** `/nootropic design sync --frameID xxxxx`
-   * **Benefit:** Automates boilerplate, bridging design and code. Current Figma Dev-Mode AI remains siloed; this plugin closes that gap.
+   - **Function:** Connects to Figma API (OAuth) and exports selected frames to React + Tailwind stubs.
+   - **Usage:** `/nootropic design sync --frameID xxxxx`
+   - **Benefit:** Automates boilerplate, bridging design and code. Current Figma Dev-Mode AI remains siloed; this plugin closes that gap.
 
 3. **PerformanceProfilerAgent**
 
-   * **Function:** Runs microbenchmarks on critical code paths (via Benchmark.js or PyTest-benchmark), reports hotspots, suggests AI-generated optimisations (e.g., "use Array.concat vs. spread").
-   * **Benefit:** Automates performance tuning; LLMs can suggest ~20% improvements given hotspot data.
+   - **Function:** Runs microbenchmarks on critical code paths (via Benchmark.js or PyTest-benchmark), reports hotspots, suggests AI-generated optimisations (e.g., "use Array.concat vs. spread").
+   - **Benefit:** Automates performance tuning; LLMs can suggest ~20% improvements given hotspot data.
 
 4. **DependencyManagerAgent**
 
-   * **Function:** Scans `package.json` or `requirements.txt`, queries PyPI/NPM for latest safe versions, auto-generates PRs to bump dependencies. Resolves conflicts using SemVer logic.
-   * **Benefit:** Keeps dependencies fresh and conflict-free. Dependabot alternatives lack AI-driven conflict resolution; this plugin fills that niche.
+   - **Function:** Scans `package.json` or `requirements.txt`, queries PyPI/NPM for latest safe versions, auto-generates PRs to bump dependencies. Resolves conflicts using SemVer logic.
+   - **Benefit:** Keeps dependencies fresh and conflict-free. Dependabot alternatives lack AI-driven conflict resolution; this plugin fills that niche.
 
 5. **GitHubIssueSyncAdapter**
 
-   * **Function:** Abstracts multiple issue trackers (GitHub Issues, Jira, Linear); can import/export issues into the nootropic TaskGraph.
-   * **Usage:** `npx nootropic issue sync --from jira --project "NOO"`
-   * **Benefit:** Seamlessly integrates existing backlogs into AI-driven planning. Cross-tracker sync avoids lock-in.
+   - **Function:** Abstracts multiple issue trackers (GitHub Issues, Jira, Linear); can import/export issues into the nootropic TaskGraph.
+   - **Usage:** `npx nootropic issue sync --from jira --project "NOO"`
+   - **Benefit:** Seamlessly integrates existing backlogs into AI-driven planning. Cross-tracker sync avoids lock-in.
 
 6. **MutationTestingUtility**
-   * **Function:** Generates mutation tests (e.g., flip boolean, operator) for functions, runs via Jest/PyTest, prompts LLM to patch code if mutants survive.
-   * **Benefit:** Validates test robustness and auto-fixes. AI-generated mutation tests yield ~85% accuracy, improving coverage by ~15%.
+   - **Function:** Generates mutation tests (e.g., flip boolean, operator) for functions, runs via Jest/PyTest, prompts LLM to patch code if mutants survive.
+   - **Benefit:** Validates test robustness and auto-fixes. AI-generated mutation tests yield ~85% accuracy, improving coverage by ~15%.
 
 Each plugin lives under `plugins/<plugin-name>/`, exports a `describe()` function with metadata, and is loaded automatically at startup. Users can install/uninstall plugins via Git (submodules or manual copy) and run `npx nootropic plugin:list` to view them.
 
@@ -932,10 +987,10 @@ nootropic/
 └── README.md                     # Entrypoint documentation (this monolithic spec)
 ```
 
-* **Governance:**
-  * nootropic is licensed under Apache 2.0, ensuring permissive use.
-  * A plugin marketplace (GitHub Org) can host community-contributed agents, prompts, and rewrite recipes.
-  * A technical steering committee (TSC) will oversee long-term vision and vendor neutrality, mirroring successful open projects (e.g., Continue's Components Hub).
+- **Governance:**
+  - nootropic is licensed under Apache 2.0, ensuring permissive use.
+  - A plugin marketplace (GitHub Org) can host community-contributed agents, prompts, and rewrite recipes.
+  - A technical steering committee (TSC) will oversee long-term vision and vendor neutrality, mirroring successful open projects (e.g., Continue's Components Hub).
 
 ***
 
@@ -943,58 +998,58 @@ nootropic/
 
 1. **Local LLM Inference**
 
-   * Tabby ML offers an OpenAI-compatible server for local CPU/GPU inference (`pip install <tabby-ml>` or Docker image). This eliminates data egress and SaaS costs.
-   * Ollama runs quantized models (GGUF, MLX) locally with sub-100 ms token latencies on M1/M2 chips, enabling fully offline AI assistance.
-   * llama.cpp (GGUF 4-bit) achieves ~150 ms first-token on ARM (M1/M2), < 700 ms for a 200-token response on 7B 4-bit models—viable for basic code tasks on ≤ 8 GB RAM laptops.
-   * vLLM 0.4 (GPU) yields up to 24× throughput vs. Hugging Face's TGI server via PagedAttention, ideal for high-volume requests (sub-30 ms token latencies in ideal conditions).
+   - Tabby ML offers an OpenAI-compatible server for local CPU/GPU inference (`pip install <tabby-ml>` or Docker image). This eliminates data egress and SaaS costs.
+   - Ollama runs quantized models (GGUF, MLX) locally with sub-100 ms token latencies on M1/M2 chips, enabling fully offline AI assistance.
+   - llama.cpp (GGUF 4-bit) achieves ~150 ms first-token on ARM (M1/M2), < 700 ms for a 200-token response on 7B 4-bit models—viable for basic code tasks on ≤ 8 GB RAM laptops.
+   - vLLM 0.4 (GPU) yields up to 24× throughput vs. Hugging Face's TGI server via PagedAttention, ideal for high-volume requests (sub-30 ms token latencies in ideal conditions).
 
 2. **Chroma & Hybrid Retrieval**
 
-   * Chroma (SQLite + FAISS) can store embeddings of entire repos + docs, returning RAG results < 3 ms on 1M records with SSDs.
-   * Weaviate (containerised hybrid dense + BM25) can be deployed on-prem to serve large (> 50 GB) or multi-repo searches without external services.
-   * Semantic re-rankers (cross-encoders) deployed locally (e.g., ms-marco-MiniLM-L-6-v2) close recall gaps vs. proprietary RAG, boosting combined recall by ~10%.
+   - Chroma (SQLite + FAISS) can store embeddings of entire repos + docs, returning RAG results < 3 ms on 1M records with SSDs.
+   - Weaviate (containerised hybrid dense + BM25) can be deployed on-prem to serve large (> 50 GB) or multi-repo searches without external services.
+   - Semantic re-rankers (cross-encoders) deployed locally (e.g., ms-marco-MiniLM-L-6-v2) close recall gaps vs. proprietary RAG, boosting combined recall by ~10%.
 
 3. **Temporal Orchestration**
 
-   * Temporal.io 1.23 ensures durable workflows with retry and time travel, persisting state even on laptop reboots. Durable orchestration reduces lost state, with research showing ~90% fewer failed runs vs. homegrown orchestrators.
-   * Each agent step as a Temporal activity enables automatic retries on transient failures (e.g., network blips), guaranteeing eventual completion without manual intervention.
+   - Temporal.io 1.23 ensures durable workflows with retry and time travel, persisting state even on laptop reboots. Durable orchestration reduces lost state, with research showing ~90% fewer failed runs vs. homegrown orchestrators.
+   - Each agent step as a Temporal activity enables automatic retries on transient failures (e.g., network blips), guaranteeing eventual completion without manual intervention.
 
 4. **Reflexion & Telemetry**
 
-   * OpenTelemetry semantic conventions for generative AI capture model attributes, token counts, and costs on every LLM call, enabling full observability of inference pipelines.
-   * OpenCost attaches real-time $ cost tags to GPU/CPU spans; PlannerAgent uses these to forecast and enforce budget, switching models when costs spike unexpectedly.
-   * ReflexionEngine consumes spans tagged `criticalPath=true`; on errors or latency breaches, it triggers auto-repairs (e.g., model switch, code patch) by calling relevant agents. Studies show reflexion frameworks reduce manual debugging by ~60–80%.
+   - OpenTelemetry semantic conventions for generative AI capture model attributes, token counts, and costs on every LLM call, enabling full observability of inference pipelines.
+   - OpenCost attaches real-time $ cost tags to GPU/CPU spans; PlannerAgent uses these to forecast and enforce budget, switching models when costs spike unexpectedly.
+   - ReflexionEngine consumes spans tagged `criticalPath=true`; on errors or latency breaches, it triggers auto-repairs (e.g., model switch, code patch) by calling relevant agents. Studies show reflexion frameworks reduce manual debugging by ~60–80%.
 
 5. **Continuous Learning**
 
-   * Nightly LoRA on StarCoder2 (or Llama2) captures user-approved diffs, refining suggestion accuracy without cloud spend. Research indicates 2–4-bit quantized models fine-tuned via LoRA can match full-precision performance with minimal accuracy loss (e.g., QLLM's 4-bit Llama2 70B ≈ 7.89% accuracy improvement).
-   * A Bandit Optimiser (PPO) refines prompt templates and sampling over time, achieving ~30% faster convergence to high-utility strategies.
+   - Nightly LoRA on StarCoder2 (or Llama2) captures user-approved diffs, refining suggestion accuracy without cloud spend. Research indicates 2–4-bit quantized models fine-tuned via LoRA can match full-precision performance with minimal accuracy loss (e.g., QLLM's 4-bit Llama2 70B ≈ 7.89% accuracy improvement).
+   - A Bandit Optimiser (PPO) refines prompt templates and sampling over time, achieving ~30% faster convergence to high-utility strategies.
 
 6. **Simplified CI/CD (Nx 16 + SWC)**
 
-   * Nx's distributed caching yields < 2 s no-op CI feedback, enabling rapid iteration even for large monorepos.
-   * SWC compiles TS 15–20× faster than `tsc --noEmit`, reducing full workspace build times from ~120 s to < 6 s on a 16 GB MacBook Pro.
-   * esbuild/Bun bundle Electron apps in < 300 ms, improving dev UX.
+   - Nx's distributed caching yields < 2 s no-op CI feedback, enabling rapid iteration even for large monorepos.
+   - SWC compiles TS 15–20× faster than `tsc --noEmit`, reducing full workspace build times from ~120 s to < 6 s on a 16 GB MacBook Pro.
+   - esbuild/Bun bundle Electron apps in < 300 ms, improving dev UX.
 
 7. **Embedded Quality & Security**
 
-   * Semgrep 1.50 (in-process) enforces SAST rules, offering AI-driven autofix suggestions when confidence > 0.8. Semgrep Assistant reduces median time-to-resolution by 15% on GitHub PRs.
-   * OpenRewrite applies AST-level large-scale refactors (e.g., React JSX→TSX) with undo checkpoints, ensuring safe code transformations.
-   * Merging these under SecurityScannerAgent eliminates the need for separate SonarQube or DeepSource servers, reducing infrastructure and cost.
+   - Semgrep 1.50 (in-process) enforces SAST rules, offering AI-driven autofix suggestions when confidence > 0.8. Semgrep Assistant reduces median time-to-resolution by 15% on GitHub PRs.
+   - OpenRewrite applies AST-level large-scale refactors (e.g., React JSX→TSX) with undo checkpoints, ensuring safe code transformations.
+   - Merging these under SecurityScannerAgent eliminates the need for separate SonarQube or DeepSource servers, reducing infrastructure and cost.
 
 8. **Data Sovereignty & Privacy**
 
-   * By default, all code, logs, embeddings, and prompts remain on-prem (Chroma or LanceDB). No cloud dependencies unless explicitly configured.
-   * Any opt-in to cloud (OpenAI, Petals) is user-driven, with "cloud disabled" as default.
+   - By default, all code, logs, embeddings, and prompts remain on-prem (Chroma or LanceDB). No cloud dependencies unless explicitly configured.
+   - Any opt-in to cloud (OpenAI, Petals) is user-driven, with "cloud disabled" as default.
 
 9. **Minimal Plugin Architecture**
 
-   * Core agents shipped: Planner, Coder, Critic, Search, Memory, Reasoning, Feedback, Explainability.
-   * Specialty agents delivered as optional plugins (FuzzTesting, DesignSync, PerformanceProfiler, DependencyManager, GitHubIssueSync, MutationTesting).
-   * New plugins automatically discovered by PluginLoaderAdapter, requiring no core changes.
+   - Core agents shipped: Planner, Coder, Critic, Search, Memory, Reasoning, Feedback, Explainability.
+   - Specialty agents delivered as optional plugins (FuzzTesting, DesignSync, PerformanceProfiler, DependencyManager, GitHubIssueSync, MutationTesting).
+   - New plugins automatically discovered by PluginLoaderAdapter, requiring no core changes.
 
 10. **Unified UX, Zero Context Switching**
-    * All workflows (plan, code, test, deploy, refine) occur within VS Code or the Electron Dashboard. This avoids bouncing between GitHub, separate CI/CD consoles, SAST dashboards, or cloud portals—common pain points in enterprise dev.
+    - All workflows (plan, code, test, deploy, refine) occur within VS Code or the Electron Dashboard. This avoids bouncing between GitHub, separate CI/CD consoles, SAST dashboards, or cloud portals—common pain points in enterprise dev.
 
 ***
 
@@ -1027,10 +1082,10 @@ To remain free-first, nootropic leverages the following OSS stacks, with paid/ho
 
 **Opt-In Paid/Hosted Services:**
 
-* **OpenAI API (GPT-4, GPT-3.5)** – pay-as-you-go fallback.
-* **Anthropic Claude** – high-safety or ultra-long context (200K tokens) fallback.
-* **Hugging Face Inference API** – specialized or large fine-tuned checkpoints not runnable locally.
-* **Petals** – peer-to-peer cluster for distributed inference of 70B+ models (optional).
+- **OpenAI API (GPT-4, GPT-3.5)** – pay-as-you-go fallback.
+- **Anthropic Claude** – high-safety or ultra-long context (200K tokens) fallback.
+- **Hugging Face Inference API** – specialized or large fine-tuned checkpoints not runnable locally.
+- **Petals** – peer-to-peer cluster for distributed inference of 70B+ models (optional).
 
 ***
 
@@ -1043,10 +1098,10 @@ To remain free-first, nootropic leverages the following OSS stacks, with paid/ho
 
 If these points align with the project vision, the next step is a detailed implementation plan with concrete configuration files:
 
-* Temporal workflows (TypeScript) for each core workflow.
-* `remediation.yaml` samples for Keptn.
-* `tabby.config.json` presets for typical hardware profiles.
-* Example plugin manifests (`describe()` schemas) for v1 plugins.
+- Temporal workflows (TypeScript) for each core workflow.
+- `remediation.yaml` samples for Keptn.
+- `tabby.config.json` presets for typical hardware profiles.
+- Example plugin manifests (`describe()` schemas) for v1 plugins.
 
 ***
 
@@ -1079,3 +1134,497 @@ This specification serves as the monolithic source of truth for nootropic's deve
 13. OpenTelemetry for generative AI observability (Apache 2.0).
 14. OpenCost cost attribution (Apache 2.0).
 15. LoRA fine-tuning methods (ArXiv: 2106.09685).
+
+## AI/LLM Development
+
+### Model Management & Versioning
+
+1. **Versioning Scheme**
+
+   ```yaml
+   # models/registry.yaml
+   apiVersion: models.nootropic.ai/v1
+   kind: ModelRegistry
+   metadata:
+     name: nootropic-models
+   spec:
+     versioning:
+       scheme: semantic
+       format: "{major}.{minor}.{patch}-{stage}"
+       stages:
+         - dev
+         - test
+         - prod
+     tracking:
+       metrics:
+         - accuracy
+         - latency
+         - memory_usage
+         - cost
+       benchmarks:
+         - mmlu
+         - human_eval
+         - gsm8k
+   ```
+
+2. **Model Registry**
+
+   ```typescript
+   interface ModelMetadata {
+     id: string;
+     version: string;
+     architecture: string;
+     parameters: number;
+     quantization: string;
+     performance: {
+       accuracy: number;
+       latency: number;
+       memory: number;
+     };
+     benchmarks: {
+       [key: string]: number;
+     };
+     safety: {
+       bias: number;
+       toxicity: number;
+     };
+   }
+   ```
+
+### Prompt Engineering & Management
+
+1. **Prompt Registry**
+
+   ```yaml
+   # prompts/registry.yaml
+   apiVersion: prompts.nootropic.ai/v1
+   kind: PromptRegistry
+   metadata:
+     name: nootropic-prompts
+   spec:
+     versioning:
+       scheme: semantic
+       format: "{major}.{minor}.{patch}"
+     templates:
+       - name: code_generation
+         version: "1.0.0"
+         template: |
+           You are an expert software developer. Given the following requirements:
+           {{requirements}}
+           
+           Generate code that:
+           1. Follows best practices
+           2. Is well-documented
+           3. Includes error handling
+           4. Is optimized for performance
+         
+       - name: code_review
+         version: "1.0.0"
+         template: |
+           Review the following code for:
+           1. Security vulnerabilities
+           2. Performance issues
+           3. Best practices
+           4. Documentation quality
+           
+           Code:
+           {{code}}
+   ```
+
+2. **Prompt Testing**
+
+   ```typescript
+   interface PromptTest {
+     id: string;
+     prompt: string;
+     expectedOutput: string;
+     metrics: {
+       accuracy: number;
+       latency: number;
+       tokenUsage: number;
+     };
+     validation: {
+       schema: object;
+       rules: string[];
+     };
+   }
+   ```
+
+### Context Window Management
+
+1. **Chunking Strategy**
+
+   ```typescript
+   interface ChunkingConfig {
+     maxTokens: number;
+     overlap: number;
+     strategy: 'semantic' | 'fixed' | 'hybrid';
+     filters: {
+       minLength: number;
+       maxLength: number;
+       contentTypes: string[];
+     };
+   }
+
+   class DocumentChunker {
+     async chunk(
+       document: string,
+       config: ChunkingConfig
+     ): Promise<string[]> {
+       // Implementation
+     }
+
+     async merge(
+       chunks: string[],
+       context: string
+     ): Promise<string> {
+       // Implementation
+     }
+   }
+   ```
+
+2. **Context Management**
+
+   ```typescript
+   interface ContextManager {
+     maxTokens: number;
+     strategy: 'sliding' | 'priority' | 'hybrid';
+     retention: {
+       type: 'time' | 'tokens' | 'importance';
+       value: number;
+     };
+   }
+   ```
+
+### Model Fine-tuning Pipeline
+
+1. **Data Preparation**
+
+   ```yaml
+   # training/data.yaml
+   apiVersion: training.nootropic.ai/v1
+   kind: TrainingData
+   metadata:
+     name: nootropic-training
+   spec:
+     format:
+       type: jsonl
+       schema:
+         input: string
+         output: string
+         metadata: object
+     preprocessing:
+       - type: cleaning
+         steps:
+           - remove_duplicates
+           - normalize_text
+           - validate_format
+       - type: augmentation
+         methods:
+           - back_translation
+           - synonym_replacement
+           - template_variation
+     validation:
+       split: 0.2
+       metrics:
+         - bleu
+         - rouge
+         - bertscore
+   ```
+
+2. **Training Configuration**
+
+   ```yaml
+   # training/config.yaml
+   apiVersion: training.nootropic.ai/v1
+   kind: TrainingConfig
+   metadata:
+     name: nootropic-training
+   spec:
+     model:
+       base: "llama2-7b"
+       architecture: "decoder-only"
+     training:
+       epochs: 3
+       batch_size: 8
+       learning_rate: 2e-5
+       warmup_steps: 100
+     optimization:
+       gradient_accumulation: 4
+       mixed_precision: "bf16"
+       gradient_checkpointing: true
+     evaluation:
+       metrics:
+         - perplexity
+         - accuracy
+         - f1_score
+       frequency: 100
+   ```
+
+### AI Safety & Ethics
+
+1. **Bias Detection**
+
+   ```typescript
+   interface BiasDetector {
+     metrics: {
+       demographicParity: number;
+       equalOpportunity: number;
+       disparateImpact: number;
+     };
+     thresholds: {
+       [key: string]: number;
+     };
+     mitigation: {
+       strategy: 'pre' | 'in' | 'post';
+       methods: string[];
+     };
+   }
+   ```
+
+2. **Safety Checks**
+
+   ```typescript
+   interface SafetyConfig {
+     toxicity: {
+       threshold: number;
+       action: 'block' | 'flag' | 'log';
+     };
+     bias: {
+       threshold: number;
+       action: 'block' | 'flag' | 'log';
+     };
+     factual: {
+       threshold: number;
+       action: 'block' | 'flag' | 'log';
+     };
+   }
+   ```
+
+### Performance Optimization
+
+1. **Quantization**
+
+   ```yaml
+   # optimization/quantization.yaml
+   apiVersion: optimization.nootropic.ai/v1
+   kind: QuantizationConfig
+   metadata:
+     name: nootropic-quantization
+   spec:
+     method: "awq"
+     bits: 4
+     group_size: 128
+     calibration:
+       dataset: "validation"
+       samples: 128
+     metrics:
+       - memory_usage
+       - inference_speed
+       - accuracy
+   ```
+
+2. **Inference Optimization**
+
+   ```yaml
+   # optimization/inference.yaml
+   apiVersion: optimization.nootropic.ai/v1
+   kind: InferenceConfig
+   metadata:
+     name: nootropic-inference
+   spec:
+     batching:
+       max_batch_size: 32
+       timeout_ms: 100
+     caching:
+       type: "lru"
+       size: 1000
+     optimization:
+       - type: "kernel_fusion"
+       - type: "attention_optimization"
+       - type: "memory_optimization"
+   ```
+
+### Error Handling & Recovery
+
+1. **Error Types**
+
+   ```typescript
+   enum AIErrorType {
+     MODEL_LOAD_FAILED = 'MODEL_LOAD_FAILED',
+     INFERENCE_ERROR = 'INFERENCE_ERROR',
+     CONTEXT_OVERFLOW = 'CONTEXT_OVERFLOW',
+     SAFETY_VIOLATION = 'SAFETY_VIOLATION',
+     RATE_LIMIT = 'RATE_LIMIT',
+   }
+
+   interface AIError extends Error {
+     type: AIErrorType;
+     context: object;
+     recovery: {
+       strategy: string;
+       maxRetries: number;
+     };
+   }
+   ```
+
+2. **Recovery Strategies**
+
+   ```typescript
+   interface RecoveryStrategy {
+     type: 'retry' | 'fallback' | 'degrade';
+     config: {
+       maxAttempts: number;
+       backoff: {
+         type: 'exponential' | 'linear';
+         initial: number;
+       };
+       fallback: {
+         model: string;
+         threshold: number;
+       };
+     };
+   }
+   ```
+
+### Testing & Validation
+
+1. **Output Validation**
+
+   ```typescript
+   interface OutputValidator {
+     schema: object;
+     rules: {
+       type: 'regex' | 'ml' | 'custom';
+       pattern: string;
+       threshold: number;
+     }[];
+     actions: {
+       onViolation: 'block' | 'flag' | 'log';
+       onSuccess: 'accept' | 'log';
+     };
+   }
+   ```
+
+2. **Test Suites**
+
+   ```yaml
+   # testing/suites.yaml
+   apiVersion: testing.nootropic.ai/v1
+   kind: TestSuite
+   metadata:
+     name: nootropic-tests
+   spec:
+     categories:
+       - name: "functionality"
+         tests:
+           - type: "unit"
+             coverage: 0.8
+           - type: "integration"
+             coverage: 0.7
+       - name: "safety"
+         tests:
+           - type: "bias"
+             coverage: 1.0
+           - type: "toxicity"
+             coverage: 1.0
+     automation:
+       frequency: "daily"
+       triggers:
+         - "push"
+         - "pr"
+   ```
+
+### Documentation & Knowledge Management
+
+1. **AI Cookbook**
+
+   ```markdown
+   # AI Cookbook
+
+   ## Best Practices
+   - Prompt Engineering
+   - Model Selection
+   - Error Handling
+   - Performance Optimization
+   - Safety & Ethics
+
+   ## Examples
+   - Code Generation
+   - Code Review
+   - Documentation
+   - Testing
+   ```
+
+2. **Knowledge Base**
+
+   ```yaml
+   # knowledge/base.yaml
+   apiVersion: knowledge.nootropic.ai/v1
+   kind: KnowledgeBase
+   metadata:
+     name: nootropic-knowledge
+   spec:
+     sources:
+       - type: "documentation"
+         path: "./docs"
+       - type: "code"
+         path: "./src"
+       - type: "examples"
+         path: "./examples"
+     indexing:
+       method: "semantic"
+       update: "daily"
+     search:
+       engine: "vector"
+       metrics:
+         - "relevance"
+         - "recall"
+   ```
+
+### Integration Patterns
+
+1. **API Design**
+
+   ```yaml
+   # api/design.yaml
+   openapi: 3.0.0
+   info:
+     title: Nootropic AI API
+     version: 1.0.0
+   paths:
+     /v1/chat:
+       post:
+         summary: Chat completion
+         requestBody:
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   messages:
+                     type: array
+                     items:
+                       type: object
+                   model:
+                     type: string
+                   safety:
+                     type: object
+         responses:
+           200:
+             description: Successful response
+           400:
+             description: Invalid request
+           429:
+             description: Rate limit exceeded
+   ```
+
+2. **Client Libraries**
+
+   ```typescript
+   interface AIClient {
+     chat: (params: ChatParams) => Promise<ChatResponse>;
+     stream: (params: ChatParams) => AsyncIterable<ChatChunk>;
+     batch: (params: BatchParams) => Promise<BatchResponse>;
+   }
+   ```

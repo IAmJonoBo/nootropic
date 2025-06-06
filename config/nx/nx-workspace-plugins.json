@@ -1,0 +1,38 @@
+{
+  "plugins": [
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/js/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test"
+      }
+    },
+    {
+      "plugin": "@nx/react/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve",
+        "testTargetName": "test"
+      }
+    },
+    {
+      "plugin": "@nx/next/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "serve",
+        "startTargetName": "serve",
+        "testTargetName": "test"
+      }
+    }
+  ]
+}

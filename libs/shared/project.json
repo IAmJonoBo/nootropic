@@ -1,21 +1,31 @@
 {
   "name": "shared",
-  "root": "libs/shared",
-  "sourceRoot": "libs/shared",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/src",
   "projectType": "library",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm exec eslint \"libs/shared/**/*.ts\" --no-ignore"
+        "outputPath": "dist/libs/shared",
+        "main": "libs/shared/src/index.ts",
+        "tsConfig": "libs/shared/tsconfig.lib.json",
+        "assets": ["libs/shared/*.md"]
       }
     },
-    "type-check": {
-      "executor": "nx:run-commands",
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "command": "tsc --noEmit --project libs/shared/tsconfig.json"
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/libs/shared"
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
-  "tags": []
+  "tags": ["scope:lib", "type:shared"]
 } 

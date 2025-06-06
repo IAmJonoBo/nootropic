@@ -1,27 +1,30 @@
 {
   "name": "storage-adapter",
-  "root": "libs/adapters/storage-adapter",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/adapters/storage-adapter/src",
   "projectType": "library",
   "targets": {
-    "lint": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "command": "pnpm exec eslint \"libs/adapters/storage-adapter/src/**/*.ts\" --no-ignore"
+        "outputPath": "dist/libs/adapters/storage-adapter",
+        "main": "libs/adapters/storage-adapter/src/index.ts",
+        "tsConfig": "libs/adapters/storage-adapter/tsconfig.lib.json",
+        "assets": ["libs/adapters/storage-adapter/*.md"]
       }
     },
-    "type-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsc --noEmit --project libs/adapters/storage-adapter/tsconfig.json"
-      }
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "command": "pnpm exec vitest run --dir libs/adapters/storage-adapter"
+        "jestConfig": "libs/adapters/storage-adapter/jest.config.ts"
       }
     }
   },
-  "tags": []
+  "tags": ["scope:adapters", "type:adapter"]
 } 

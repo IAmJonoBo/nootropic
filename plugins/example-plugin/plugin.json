@@ -1,0 +1,20 @@
+{
+  "name": "example-plugin",
+  "version": "0.0.1",
+  "description": "Example plugin for Nootropic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "nx build example-plugin",
+    "test": "nx test example-plugin",
+    "lint": "nx lint example-plugin"
+  },
+  "dependencies": {
+    "@nootropic/shared": "*",
+    "@nootropic/runtime": "*"
+  },
+  "devDependencies": {
+    "@nx/js": "^17.0.0",
+    "typescript": "~5.3.0"
+  }
+} 

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@nootropic/shared": ["libs/shared/src/index.ts"],
+      "@nootropic/core": ["libs/core/src/index.ts"],
+      "@nootropic/adapters": ["libs/adapters/src/index.ts"],
+      "@nootropic/ai": ["libs/ai/src/index.ts"],
+      "@nootropic/ui": ["libs/ui/src/index.ts"],
+      "@nootropic/runtime": ["libs/runtime/src/index.ts"],
+      "@nootropic/context": ["libs/context/src/index.ts"],
+      "@nootropic/agents/*": ["libs/agents/*/src/index.ts"],
+      "@nootropic/adapters/*": ["libs/adapters/*/src/index.ts"]
+    }
+  }
+}
