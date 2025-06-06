@@ -1,0 +1,29 @@
+name: AppleDouble File Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  check-apple-double:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for AppleDouble files
+        run: |
+          if git ls-files | grep -q "^\._"; then
+            echo "Error: AppleDouble files found in the repository"
+            git ls-files | grep "^\._"
+            exit 1
+          fi
+          
+      - name: Check for .DS_Store files
+        run: |
+          if git ls-files | grep -q "\.DS_Store"; then
+            echo "Error: .DS_Store files found in the repository"
+            git ls-files | grep "\.DS_Store"
+            exit 1
+          fi 

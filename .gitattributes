@@ -1,0 +1,15 @@
+# Prevent AppleDouble files from being created
+* -text
+* text=auto
+
+# Prevent .DS_Store files from being created
+.DS_Store -text
+.DS_Store binary
+
+# Prevent AppleDouble files from being created
+._* -text
+._* binary
+
+# Prevent resource forks from being created
+__MACOSX -text
+__MACOSX binary 

@@ -1,0 +1,16 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Check for AppleDouble files in the entire repository
+if git ls-files | grep -q "^\._"; then
+  echo "Error: AppleDouble files (._*) found in the repository."
+  echo "Please run 'npm run clean:apple-double' to remove them."
+  exit 1
+fi
+
+# Check for .DS_Store files
+if git ls-files | grep -q "\.DS_Store"; then
+  echo "Error: .DS_Store files found in the repository."
+  echo "Please run 'npm run clean:apple-double' to remove them."
+  exit 1
+fi 
