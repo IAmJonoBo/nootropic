@@ -4,12 +4,22 @@ This guide outlines the process of migrating to Nx-centric tooling and best prac
 
 ## Table of Contents
 
-1. [Prerequisites](#prerequisites)
-2. [Migration Steps](#migration-steps)
-3. [Package Replacements](#package-replacements)
-4. [Configuration Updates](#configuration-updates)
-5. [Testing & Validation](#testing--validation)
-6. [Troubleshooting](#troubleshooting)
+- [Nx Migration Guide](#nx-migration-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Migration Steps](#migration-steps)
+    - [1. Update Core Dependencies](#1-update-core-dependencies)
+    - [2. Update Project Configuration](#2-update-project-configuration)
+    - [3. Replace Standalone Tools](#3-replace-standalone-tools)
+  - [Package Replacements](#package-replacements)
+  - [Configuration Updates](#configuration-updates)
+    - [ESLint Configuration](#eslint-configuration)
+    - [Jest Configuration](#jest-configuration)
+  - [Testing \& Validation](#testing--validation)
+  - [Troubleshooting](#troubleshooting)
+    - [Common Issues](#common-issues)
+    - [Getting Help](#getting-help)
+  - [Next Steps](#next-steps)
 
 ## Prerequisites
 
@@ -39,6 +49,7 @@ pnpm add -D @nx-tools/esbuild@latest
 ### 2. Update Project Configuration
 
 1. Update `nx.json`:
+
 ```json
 {
   "extends": "@nx/workspace/presets/npm.json",
@@ -69,6 +80,7 @@ pnpm add -D @nx-tools/esbuild@latest
 ```
 
 2. Update `tsconfig.base.json`:
+
 ```json
 {
   "compileOnSave": false,
@@ -97,22 +109,26 @@ pnpm add -D @nx-tools/esbuild@latest
 ### 3. Replace Standalone Tools
 
 1. **Build Tools**:
+
    - Replace `tsc` with `@nx/js:tsc`
    - Replace custom rollup/esbuild with `@nx/js:rollup` or `@nx-tools/esbuild`
    - Replace ts-node scripts with `@nx/node:execute`
 
 2. **Testing**:
+
    - Migrate Jest configs to `@nx/jest:jest-project`
    - Update Vitest to use `@nx/vitest:configuration`
    - Configure Playwright with `@nx/playwright:configuration`
    - Set up Cypress with `@nx/cypress:cypress-project`
 
 3. **Linting**:
+
    - Use `@nx/lint:eslint` for ESLint
    - Integrate Prettier via ESLint plugin
    - Use `@nx/workspace:affected` for smart linting
 
 4. **CLI & Scripting**:
+
    - Replace commander.js with Nx generators
    - Use `@nx/workspace:run-commands` for scripts
    - Replace inquirer.js with built-in prompts
@@ -124,16 +140,16 @@ pnpm add -D @nx-tools/esbuild@latest
 
 ## Package Replacements
 
-| Current Package | Nx Alternative | Migration Notes |
-|----------------|----------------|----------------|
-| typescript + tsc | @nx/js:tsc | Update build targets |
-| rollup/esbuild | @nx/js:rollup or @nx-tools/esbuild | Update bundling config |
-| jest | @nx/jest:jest-project | Migrate test configs |
-| vitest | @nx/vitest:configuration | Update test setup |
-| eslint | @nx/lint:eslint | Use Nx ESLint config |
-| prettier | ESLint Prettier plugin | Remove standalone config |
-| commander.js | Nx generators | Create custom generators |
-| inquirer.js | @nx/workspace:run-commands | Use built-in prompts |
+| Current Package  | Nx Alternative                     | Migration Notes          |
+| ---------------- | ---------------------------------- | ------------------------ |
+| typescript + tsc | @nx/js:tsc                         | Update build targets     |
+| rollup/esbuild   | @nx/js:rollup or @nx-tools/esbuild | Update bundling config   |
+| jest             | @nx/jest:jest-project              | Migrate test configs     |
+| vitest           | @nx/vitest:configuration           | Update test setup        |
+| eslint           | @nx/lint:eslint                    | Use Nx ESLint config     |
+| prettier         | ESLint Prettier plugin             | Remove standalone config |
+| commander.js     | Nx generators                      | Create custom generators |
+| inquirer.js      | @nx/workspace:run-commands         | Use built-in prompts     |
 
 ## Configuration Updates
 
@@ -164,20 +180,21 @@ pnpm add -D @nx-tools/esbuild@latest
 
 ```javascript
 module.exports = {
-  displayName: 'project-name',
-  preset: '@nx/jest/presets/js',
-  testEnvironment: 'node',
+  displayName: "project-name",
+  preset: "@nx/jest/presets/js",
+  testEnvironment: "node",
   transform: {
-    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+    "^.+\\.[tj]s$": ["ts-jest", { tsconfig: "<rootDir>/tsconfig.spec.json" }],
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: './coverage'
+  moduleFileExtensions: ["ts", "js", "html"],
+  coverageDirectory: "./coverage",
 };
 ```
 
 ## Testing & Validation
 
 1. **Build Validation**:
+
 ```bash
 # Test build process
 pnpm nx run-many --target=build --all
@@ -187,6 +204,7 @@ pnpm nx affected:build
 ```
 
 2. **Test Validation**:
+
 ```bash
 # Run all tests
 pnpm nx run-many --target=test --all
@@ -196,6 +214,7 @@ pnpm nx affected:test
 ```
 
 3. **Lint Validation**:
+
 ```bash
 # Run all linting
 pnpm nx run-many --target=lint --all
@@ -209,11 +228,13 @@ pnpm nx affected:lint
 ### Common Issues
 
 1. **Build Failures**:
+
    - Check `tsconfig.json` paths
    - Verify project dependencies
    - Check for circular dependencies
 
 2. **Test Failures**:
+
    - Verify Jest/Vitest configuration
    - Check test environment setup
    - Validate test dependencies
@@ -232,11 +253,13 @@ pnpm nx affected:lint
 ## Next Steps
 
 1. **Performance Optimization**:
+
    - Configure distributed caching
    - Set up affected commands
    - Optimize build times
 
 2. **CI/CD Integration**:
+
    - Set up GitHub Actions
    - Configure caching
    - Add status checks
@@ -244,4 +267,4 @@ pnpm nx affected:lint
 3. **Documentation**:
    - Update project docs
    - Add migration notes
-   - Document new workflows 
+   - Document new workflows

@@ -1,5 +1,8 @@
 {
-  "name": "observability-adapter",
+  "name": "@nootropic/observability-adapter",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@nootropic/shared": "workspace:*"
+  }
 }

@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { defineConfig } from "vite";
+// sonarlint-disable-next-line typescript:S1128
+import { resolve } from "path";
+import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite',
+  cacheDir: "../../node_modules/.vite",
 
   plugins: [nxViteTsPaths()],
 
@@ -16,20 +17,20 @@ export default defineConfig({
   test: {
     globals: true,
     cache: {
-      dir: '../../node_modules/.vitest',
+      dir: "../../node_modules/.vitest",
     },
-    environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    environment: "node",
+    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
   },
 
   // Shared build options
   build: {
-    target: 'esnext',
+    target: "esnext",
     sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
+          vendor: ["react", "react-dom"],
         },
       },
     },
@@ -38,16 +39,16 @@ export default defineConfig({
   // Shared server options
   server: {
     port: 4200,
-    host: 'localhost',
+    host: "localhost",
     fs: {
       // Allow serving files from one level up to the project root
-      allow: ['..'],
+      allow: [".."],
     },
   },
 
   // Shared preview options
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: "localhost",
   },
-}); 
+});

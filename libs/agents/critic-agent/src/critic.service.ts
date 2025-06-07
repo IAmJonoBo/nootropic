@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Logger } from '@nootropic/runtime';
-import { AgentError } from '@nootropic/runtime';
+import { Logger, AgentError } from '@nootropic/shared';
 import { ModelAdapter } from '@nootropic/adapters/model-adapter';
 import { StorageAdapter } from '@nootropic/adapters/storage-adapter';
 import { CriticService, TestSuite, FixResult } from './interfaces';
@@ -76,7 +75,7 @@ export class CriticServiceImpl implements CriticService {
 
       return result;
     } catch (error) {
-      throw new AgentError('Failed to review code', { cause: error });
+      throw new AgentError('Failed to review code');
     }
   }
 
@@ -162,7 +161,7 @@ export class CriticServiceImpl implements CriticService {
         issues
       };
     } catch (error) {
-      throw new AgentError('Failed to parse review response', { cause: error });
+      throw new AgentError('Failed to parse review response');
     }
   }
 } 

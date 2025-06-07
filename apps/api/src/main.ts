@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { Logger } from '@nootropic/runtime';
+import { Logger } from '@nootropic/shared';
 import { AppModule } from './app.module';
 
 /**

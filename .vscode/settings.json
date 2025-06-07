@@ -1,18 +1,7 @@
 {
-    "npm.packageManager": "pnpm",
     "nxConsole.generateAiAgentRules": true,
     "sonarlint.connectedMode.project": {
         "connectionId": "",
         "projectKey": ""
-    },
-    "files.exclude": {
-        "**/.DS_Store": true,
-        "**/._*": true,
-        "**/__MACOSX": true
-    },
-    "files.watcherExclude": {
-        "**/.DS_Store": true,
-        "**/._*": true,
-        "**/__MACOSX": true
     }
 }

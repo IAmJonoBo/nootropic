@@ -4,6 +4,16 @@
   "sourceRoot": "libs/adapters/observability-adapter/src",
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/adapters/observability-adapter",
+        "main": "libs/adapters/observability-adapter/src/index.ts",
+        "tsConfig": "libs/adapters/observability-adapter/tsconfig.json",
+        "assets": ["libs/adapters/observability-adapter/*.md"]
+      }
+    },
     "lint": {
       "executor": "nx:run-commands",
       "options": {

@@ -793,7 +793,7 @@ Explanation of Key Directories & Files
 Root-Level Files
 • README.md\*: High-level introduction, install instructions, and quick commands.
 • LICENSE\*: Apache-2.0 license (or chosen OSS license).
-• package.json\*: Defines workspaces ("workspaces": \["apps/*", "libs/*"]), common scripts, and shared devDependencies.
+• package.json\*: Defines workspaces ("workspaces": ["apps/*", "libs/*"]), common scripts, and shared devDependencies. Always use pnpm as the package manager.
 • nx.json\*: Nx workspace configuration, default tags, and implicit dependencies.
 • tsconfig.base.json\*: Base TS config (no project references, no declarations, moduleResolution: NodeNext, module: NodeNext, ESM/explicit .js imports, no outDir/rootDir here; set per-project).
 • .eslintrc.json\* & .prettierrc\*: Shared lint/format settings.

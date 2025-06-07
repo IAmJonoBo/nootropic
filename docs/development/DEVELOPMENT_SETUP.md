@@ -35,6 +35,7 @@ This guide provides comprehensive instructions for setting up the development en
 ### Required Tools
 
 1. **Node.js and pnpm**
+
    ```bash
    # Install Node.js (using nvm)
    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -49,6 +50,7 @@ This guide provides comprehensive instructions for setting up the development en
    ```
 
 2. **Git**
+
    ```bash
    # macOS
    brew install git
@@ -61,6 +63,7 @@ This guide provides comprehensive instructions for setting up the development en
    ```
 
 3. **Docker** (optional, for local services)
+
    ```bash
    # macOS
    brew install --cask docker
@@ -88,6 +91,7 @@ pnpm install
 ### Environment Configuration
 
 1. **Create Environment Files**
+
    ```bash
    # Copy example environment files
    cp .env.example .env
@@ -103,6 +107,7 @@ pnpm install
 ### 1. Workspace Configuration
 
 1. **Initialize Nx Workspace**
+
    ```bash
    # If starting from scratch
    pnpm dlx create-nx-workspace@21.2.0 nootropic --preset=empty --packageManager=pnpm
@@ -112,6 +117,7 @@ pnpm install
    ```
 
 2. **Configure Nx**
+
    ```json
    {
      "extends": "@nx/workspace/presets/npm.json",
@@ -142,6 +148,7 @@ pnpm install
    ```
 
 3. **Configure Project Tags**
+
    ```json
    {
      "tags": {
@@ -162,6 +169,7 @@ pnpm install
 ### 2. Project Configuration
 
 1. **Application Projects**
+
    ```json
    {
      "name": "nootropic-cli",
@@ -218,6 +226,7 @@ pnpm install
    ```
 
 2. **Library Projects**
+
    ```json
    {
      "name": "shared-utils",
@@ -381,11 +390,13 @@ pnpm nx serve <project> --inspect
 ### 1. Common Issues
 
 - **Build Failures**
+
   - Check `tsconfig.json` paths
   - Verify project dependencies
   - Check for circular dependencies
 
 - **Test Failures**
+
   - Verify Jest/Vitest configuration
   - Check test environment setup
   - Validate test dependencies
@@ -404,16 +415,19 @@ pnpm nx serve <project> --inspect
 ## Best Practices
 
 1. **Local Development**
+
    - Use local cache by default
    - Run services locally
    - Keep data on-premises
 
 2. **Dependency Management**
+
    - Use strict module boundaries
    - Enforce architectural constraints
    - Prefer implicit dependencies
 
 3. **Build Optimization**
+
    - Enable parallel builds
    - Use incremental builds
    - Leverage caching

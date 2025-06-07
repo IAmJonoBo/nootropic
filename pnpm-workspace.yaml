@@ -1,5 +1,29 @@
 packages:
-  - 'apps/*'
-  - 'libs/*'
-  - 'plugins/*'
-  - 'tools/*'
+  - apps/*
+  - libs/*
+  - plugins/*
+  - tools/*
+ignoredBuiltDependencies:
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@swc/core'
+  - '@temporalio/core-bridge'
+  - 'core-js'
+  - 'electron'
+  - 'esbuild'
+  - 'nx'
+  - 'protobufjs'
+  - 'sharp'
+  - 'spawn-sync'
+  - 'yo'
+  - '@temporalio/activity'
+  - '@temporalio/client'
+  - '@temporalio/worker'
+  - '@temporalio/workflow'
+  - '@nx/cypress'
+  - '@nx/js'
+  - '@nx/next'
+  - '@nx/playwright'
+  - '@nx/react'
+  - '@nx/vite'
+  - '@nx/workspace'

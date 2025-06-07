@@ -1,4 +1,5 @@
-import pino from 'pino';
+import pinoModule from "pino";
+const pino = pinoModule.default;
 
 export interface LoggerOptions {
   level?: string;
@@ -6,26 +7,32 @@ export interface LoggerOptions {
 }
 
 export class Logger {
-  private static instance: pino.Logger;
+  private instance: any;
 
-  static initialize(options: LoggerOptions = {}): void {
-    const { level = 'info', pretty = false } = options;
-
+  constructor(context?: string) {
     this.instance = pino({
-      level,
-      transport: pretty ? {
-        target: 'pino-pretty',
-        options: {
-          colorize: true
-        }
-      } : undefined
+      name: context || "runtime",
+      level: process.env["LOG_LEVEL"] || "info",
     });
   }
 
-  static getLogger(): pino.Logger {
-    if (!this.instance) {
-      this.initialize();
+  info(message: string, ...args: unknown[]): void {
+    this.instance.info(message, ...args);
+  }
+
+  error(message: string, error?: Error | unknown, ...args: unknown[]): void {
+    if (error instanceof Error) {
+      this.instance.error({ err: error }, message, ...args);
+    } else {
+      this.instance.error(message, error, ...args);
     }
-    return this.instance;
+  }
+
+  warn(message: string, ...args: unknown[]): void {
+    this.instance.warn(message, ...args);
+  }
+
+  debug(message: string, ...args: unknown[]): void {
+    this.instance.debug(message, ...args);
   }
 } 

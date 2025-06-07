@@ -20,6 +20,7 @@
 ## Overview
 
 Nx is our monorepo management system, providing:
+
 - Distributed task caching
 - Incremental builds
 - Project graph visualization
@@ -32,22 +33,26 @@ Nx is our monorepo management system, providing:
 ## Core Concepts
 
 ### 1. Build & Compilation
+
 - `@nx/js:tsc` executor for TypeScript libraries
 - `@nx/vite:build` for application and UI library builds
 - `@nx/vite:dev-server` for development server
 - `@nx/node:execute` for script execution
 
 ### 2. Testing Framework
+
 - `@nx/vite:test` for unit and integration testing
 - `@nx/playwright:configuration` for E2E testing
 - `@nx/cypress:cypress-project` for component testing
 
 ### 3. Linting & Formatting
+
 - Built-in ESLint support via `@nx/eslint:lint`
 - Integrated Prettier via ESLint plugin
 - `@nx/workspace:affected` for smart linting
 
 ### 4. CLI & Scripting
+
 - Custom Nx generators for scaffolding
 - `@nx/workspace:run-commands` for scripts
 - Built-in prompt support for wizards
@@ -55,6 +60,7 @@ Nx is our monorepo management system, providing:
 ## Project Structure
 
 ### 1. Workspace Configuration
+
 ```json
 {
   "extends": "@nx/workspace/presets/npm.json",
@@ -85,6 +91,7 @@ Nx is our monorepo management system, providing:
 ```
 
 ### 2. Application Configuration
+
 ```json
 {
   "name": "my-app",
@@ -143,6 +150,7 @@ Nx is our monorepo management system, providing:
 ```
 
 ### 3. Library Configuration
+
 ```json
 {
   "name": "my-lib",
@@ -179,6 +187,7 @@ Nx is our monorepo management system, providing:
 ## Build System
 
 ### 1. TypeScript Configuration
+
 ```json
 {
   "compileOnSave": false,
@@ -205,6 +214,7 @@ Nx is our monorepo management system, providing:
 ```
 
 ### 2. ESLint Configuration
+
 ```json
 {
   "extends": ["@nx/eslint/plugin"],
@@ -229,31 +239,33 @@ Nx is our monorepo management system, providing:
 ## Testing
 
 ### 1. Vitest Configuration
+
 ```typescript
-import { defineConfig } from 'vitest/config';
-import { resolve } from 'path';
+import { defineConfig } from "vitest/config";
+import { resolve } from "path";
 
 export default defineConfig({
   test: {
     globals: true,
-    environment: 'node',
-    include: ['**/*.test.ts'],
+    environment: "node",
+    include: ["**/*.test.ts"],
     coverage: {
-      reporter: ['text', 'lcov'],
-      exclude: ['**/*.test.ts']
-    }
+      reporter: ["text", "lcov"],
+      exclude: ["**/*.test.ts"],
+    },
   },
   resolve: {
     alias: {
-      '@nootropic': resolve(__dirname, '../../libs')
-    }
-  }
+      "@nootropic": resolve(__dirname, "../../libs"),
+    },
+  },
 });
 ```
 
 ## Development Workflow
 
 ### 1. Common Commands
+
 ```bash
 # Build all projects
 pnpm nx run-many --target=build --all
@@ -275,6 +287,7 @@ pnpm nx affected:lint
 ```
 
 ### 2. Project Graph
+
 ```bash
 # Generate project graph
 pnpm nx graph
@@ -286,17 +299,20 @@ pnpm nx dep-graph
 ## Performance Optimization
 
 ### 1. Caching
+
 - Use `nx.json` to configure cacheable operations
 - Enable distributed caching for CI/CD
 - Configure cache size limits
 
 ### 2. Build Optimization
+
 - Use `@nx/js:tsc` for TypeScript libraries
 - Use `@nx/vite:build` for applications and UI libraries
 - Enable source maps in production
 - Configure HMR for development
 
 ### 3. Test Optimization
+
 - Use `@nx/vite:test` for fast test execution
 - Configure test coverage reporting
 - Enable parallel test execution
@@ -304,13 +320,15 @@ pnpm nx dep-graph
 ## Troubleshooting
 
 ### 1. Common Issues
+
 - Build failures
 - Test failures
 - Lint errors
 - Cache issues
 
 ### 2. Solutions
+
 - Clear Nx cache
 - Update dependencies
 - Check configuration
-- Review logs 
+- Review logs

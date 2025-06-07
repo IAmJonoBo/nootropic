@@ -1,5 +1,8 @@
 {
-  "name": "storage-adapter",
+  "name": "@nootropic/adapters/storage-adapter",
   "version": "0.0.1",
-  "private": true
+  "type": "module",
+  "dependencies": {
+    "@nootropic/shared": "*"
+  }
 }

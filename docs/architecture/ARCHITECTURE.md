@@ -21,6 +21,7 @@ This document outlines the system architecture of the nootropic project, focusin
 ## Design Principles
 
 ### Local-First Architecture
+
 - Local model inference (llama.cpp, Ollama, vLLM, Exllama, GPT4All, Local.AI)
 - Local data storage (ChromaDB, LanceDB, Milvus, Weaviate, Qdrant, FAISS)
 - Local development environment (CLI, Electron, VS Code extension)
@@ -28,6 +29,7 @@ This document outlines the system architecture of the nootropic project, focusin
 - Local build caching and incremental builds (Nx)
 
 ### Data Sovereignty
+
 - All data processed and stored locally
 - No cloud dependencies for core functionality
 - Optional cloud sync for backup and collaboration
@@ -35,6 +37,7 @@ This document outlines the system architecture of the nootropic project, focusin
 - Local Nx cache for build artifacts
 
 ### Solo Developer Focus
+
 - Single-machine deployment
 - Resource-aware scheduling
 - Progressive enhancement
@@ -44,27 +47,30 @@ This document outlines the system architecture of the nootropic project, focusin
 ## System Components
 
 ### Application Layer
+
 - CLI: Command-line interface for local development
 - Electron: Desktop application for local management
 - VS Code extension: IDE integration for local development
 - Nx Workspace: Build system and project management
 
 ### Library Layer
+
 - Shared libraries: Core functionality and utilities
 - Runtime components: Local execution environment
 - Adapters: Local service integration
-  * ModelAdapter: Local model inference
-  * SearchAdapter: Vector search
-  * StorageAdapter: Local storage
-  * ObservabilityAdapter: Local monitoring
-  * ReflexionAdapter: Self-healing
-  * PluginLoaderAdapter: Plugin management
+  - ModelAdapter: Local model inference
+  - SearchAdapter: Vector search
+  - StorageAdapter: Local storage
+  - ObservabilityAdapter: Local monitoring
+  - ReflexionAdapter: Self-healing
+  - PluginLoaderAdapter: Plugin management
 - Nx Libraries: Reusable components and utilities
 
 ## Nx Integration
 
 ### Project Structure
-```
+
+```text
 nootropic/
 ├── apps/
 │   ├── desktop/           # Desktop application
@@ -83,6 +89,7 @@ nootropic/
 ```
 
 ### Nx Workspace Architecture
+
 - Project Organization
   - Library Projects
     - Feature libraries
@@ -109,6 +116,7 @@ nootropic/
     - Prettier.config.js
 
 ### Nx Build System
+
 - Build Executors
   - Vite executor (primary)
   - SWC executor
@@ -135,6 +143,7 @@ nootropic/
   - Build alerts
 
 ### Nx Test System
+
 - Test Executors
   - Vitest executor (primary)
   - Jest executor
@@ -154,6 +163,7 @@ nootropic/
   - Test alerts
 
 ### Nx Project Graph
+
 - Graph Generation
   - Static analysis
   - Dynamic analysis
@@ -176,6 +186,7 @@ nootropic/
   - Graph alerts
 
 ### Nx Task Execution
+
 - Task Scheduling
   - Parallel execution
   - Sequential execution
@@ -193,6 +204,7 @@ nootropic/
   - Error handling
 
 ### Nx Workspace Plugins
+
 - Plugin System
   - Generator plugins
   - Executor plugins
@@ -210,6 +222,7 @@ nootropic/
   - Plugin updates
 
 ### Nx Workspace Analytics
+
 - Analytics Collection
   - Build analytics
   - Test analytics
@@ -232,6 +245,7 @@ nootropic/
   - Performance alerts
 
 ### Nx Development Tools
+
 - IDE Integration
   - VS Code extension
   - JetBrains plugin
@@ -249,6 +263,7 @@ nootropic/
   - Custom builders
 
 ### Nx Resource Management
+
 - Memory Management
   - Build memory
   - Test memory
@@ -271,6 +286,7 @@ nootropic/
   - Worker network
 
 ### Nx Security
+
 - Access Control
   - User permissions
   - Project access
@@ -295,242 +311,256 @@ nootropic/
 ## Local-First Design
 
 ### Model Management
+
 - Local model inference
-  * llama.cpp for CPU inference
-  * Ollama for containerized models
-  * vLLM for GPU acceleration
-  * Exllama for efficient inference
-  * GPT4All for cross-platform support
-  * Local.AI for unified interface
+  - llama.cpp for CPU inference
+  - Ollama for containerized models
+  - vLLM for GPU acceleration
+  - Exllama for efficient inference
+  - GPT4All for cross-platform support
+  - Local.AI for unified interface
 - Model quantization
-  * 4-bit quantization for memory efficiency
-  * 8-bit quantization for balanced performance
-  * Mixed precision for optimal results
+  - 4-bit quantization for memory efficiency
+  - 8-bit quantization for balanced performance
+  - Mixed precision for optimal results
 - Model caching
-  * Local disk cache
-  * Memory-mapped files
-  * LRU eviction policy
-  * Nx build cache
+  - Local disk cache
+  - Memory-mapped files
+  - LRU eviction policy
+  - Nx build cache
 
 ### Resource Management
+
 - Memory management
-  * Local memory allocation
-  * Memory pressure monitoring
-  * OOM prevention
-  * Nx memory optimization
+  - Local memory allocation
+  - Memory pressure monitoring
+  - OOM prevention
+  - Nx memory optimization
 - CPU management
-  * Core allocation
-  * Thread management
-  * Load balancing
-  * Parallel builds
+  - Core allocation
+  - Thread management
+  - Load balancing
+  - Parallel builds
 - GPU management
-  * VRAM allocation
-  * CUDA optimization
-  * Fallback strategies
-  * Build acceleration
+  - VRAM allocation
+  - CUDA optimization
+  - Fallback strategies
+  - Build acceleration
 
 ### Performance Optimization
+
 - Local caching
-  * Model weights
-  * Vector embeddings
-  * Query results
-  * Build artifacts
+  - Model weights
+  - Vector embeddings
+  - Query results
+  - Build artifacts
 - Batch processing
-  * Request batching
-  * Response streaming
-  * Parallel execution
-  * Parallel builds
+  - Request batching
+  - Response streaming
+  - Parallel execution
+  - Parallel builds
 - Resource scheduling
-  * Priority queues
-  * Fair sharing
-  * Deadline scheduling
-  * Build scheduling
+  - Priority queues
+  - Fair sharing
+  - Deadline scheduling
+  - Build scheduling
 
 ## Development Workflow
 
 ### Local Development
+
 - Development environment
-  * Local IDE setup
-  * Debug configuration
-  * Test environment
-  * Nx workspace
+  - Local IDE setup
+  - Debug configuration
+  - Test environment
+  - Nx workspace
 - Build process
-  * Local compilation
-  * Asset bundling
-  * Package management
-  * Incremental builds
+  - Local compilation
+  - Asset bundling
+  - Package management
+  - Incremental builds
 - Testing process
-  * Unit testing
-  * Integration testing
-  * Performance testing
-  * Affected tests
+  - Unit testing
+  - Integration testing
+  - Performance testing
+  - Affected tests
 
 ### Testing Strategy
+
 - Unit testing
-  * Component isolation
-  * Mock dependencies
-  * Coverage reporting
-  * Nx test runners
+  - Component isolation
+  - Mock dependencies
+  - Coverage reporting
+  - Nx test runners
 - Integration testing
-  * Service integration
-  * End-to-end flows
-  * Performance benchmarks
-  * Test caching
+  - Service integration
+  - End-to-end flows
+  - Performance benchmarks
+  - Test caching
 - Performance testing
-  * Load testing
-  * Stress testing
-  * Resource monitoring
-  * Build profiling
+  - Load testing
+  - Stress testing
+  - Resource monitoring
+  - Build profiling
 
 ### Monitoring
+
 - Local monitoring
-  * Resource usage
-  * Performance metrics
-  * Error tracking
-  * Build metrics
+  - Resource usage
+  - Performance metrics
+  - Error tracking
+  - Build metrics
 - Logging
-  * Structured logging
-  * Log rotation
-  * Log analysis
-  * Build logs
+  - Structured logging
+  - Log rotation
+  - Log analysis
+  - Build logs
 - Metrics
-  * Prometheus integration
-  * Grafana dashboards
-  * Alert rules
-  * Build analytics
+  - Prometheus integration
+  - Grafana dashboards
+  - Alert rules
+  - Build analytics
 
 ## Error Handling
 
 ### Error Types
+
 - Resource errors
-  * Memory exhaustion
-  * CPU overload
-  * GPU out of memory
-  * Build failures
+  - Memory exhaustion
+  - CPU overload
+  - GPU out of memory
+  - Build failures
 - Model errors
-  * Inference failures
-  * Quantization errors
-  * Download failures
-  * Cache errors
+  - Inference failures
+  - Quantization errors
+  - Download failures
+  - Cache errors
 - System errors
-  * File system errors
-  * Network errors
-  * Configuration errors
-  * Build errors
+  - File system errors
+  - Network errors
+  - Configuration errors
+  - Build errors
 
 ### Recovery Strategies
+
 - Automatic recovery
-  * Resource cleanup
-  * Model reloading
-  * Service restart
-  * Cache cleanup
+  - Resource cleanup
+  - Model reloading
+  - Service restart
+  - Cache cleanup
 - Manual intervention
-  * Error reporting
-  * Debug information
-  * Recovery steps
-  * Build reset
+  - Error reporting
+  - Debug information
+  - Recovery steps
+  - Build reset
 - Prevention
-  * Resource limits
-  * Health checks
-  * Circuit breakers
-  * Build validation
+  - Resource limits
+  - Health checks
+  - Circuit breakers
+  - Build validation
 
 ## Security
 
 ### Data Security
+
 - Local encryption
-  * At-rest encryption
-  * In-transit encryption
-  * Key management
-  * Cache encryption
+  - At-rest encryption
+  - In-transit encryption
+  - Key management
+  - Cache encryption
 - Access control
-  * User authentication
-  * Permission management
-  * Audit logging
-  * Build access
+  - User authentication
+  - Permission management
+  - Audit logging
+  - Build access
 - Data integrity
-  * Checksums
-  * Signatures
-  * Validation
-  * Cache validation
+  - Checksums
+  - Signatures
+  - Validation
+  - Cache validation
 
 ### System Security
+
 - Code security
-  * Static analysis
-  * Dynamic analysis
-  * Dependency scanning
-  * Build security
+  - Static analysis
+  - Dynamic analysis
+  - Dependency scanning
+  - Build security
 - Runtime security
-  * Memory protection
-  * Process isolation
-  * Resource limits
-  * Build isolation
+  - Memory protection
+  - Process isolation
+  - Resource limits
+  - Build isolation
 - Network security
-  * Local firewall
-  * TLS encryption
-  * Rate limiting
-  * Cache security
+  - Local firewall
+  - TLS encryption
+  - Rate limiting
+  - Cache security
 
 ## Deployment
 
 ### Local Deployment
+
 - Installation
-  * Package management
-  * Dependency resolution
-  * Configuration
-  * Nx setup
+  - Package management
+  - Dependency resolution
+  - Configuration
+  - Nx setup
 - Updates
-  * Version management
-  * Rollback support
-  * Delta updates
-  * Cache updates
+  - Version management
+  - Rollback support
+  - Delta updates
+  - Cache updates
 - Maintenance
-  * Backup
-  * Cleanup
-  * Monitoring
-  * Cache maintenance
+  - Backup
+  - Cleanup
+  - Monitoring
+  - Cache maintenance
 
 ### Resource Requirements
+
 - Hardware
-  * CPU: 4+ cores
-  * RAM: 8+ GB
-  * Storage: 20+ GB
-  * GPU: Optional
+  - CPU: 4+ cores
+  - RAM: 8+ GB
+  - Storage: 20+ GB
+  - GPU: Optional
 - Software
-  * OS: Linux/macOS/Windows
-  * Runtime: Node.js
-  * Dependencies: Local packages
-  * Nx: Latest version
+  - OS: Linux/macOS/Windows
+  - Runtime: Node.js
+  - Dependencies: Local packages
+  - Nx: Latest version
 - Network
-  * Local network
-  * Optional internet
-  * Firewall rules
-  * Cache network
+  - Local network
+  - Optional internet
+  - Firewall rules
+  - Cache network
 
 ## Future Enhancements
 
 ### Planned Features
+
 - Enhanced local inference
-  * More model support
-  * Better quantization
-  * Faster inference
-  * Build acceleration
+  - More model support
+  - Better quantization
+  - Faster inference
+  - Build acceleration
 - Improved resource management
-  * Smarter scheduling
-  * Better caching
-  * More efficient memory use
-  * Build optimization
+  - Smarter scheduling
+  - Better caching
+  - More efficient memory use
+  - Build optimization
 
 ### Research Areas
+
 - Model optimization
-  * Novel quantization
-  * Architecture search
-  * Pruning techniques
+  - Novel quantization
+  - Architecture search
+  - Pruning techniques
 - Resource optimization
-  * Memory management
-  * Cache strategies
-  * Scheduling algorithms
+  - Memory management
+  - Cache strategies
+  - Scheduling algorithms
 - Security enhancements
-  * Encryption methods
-  * Access control
-  * Audit systems
+  - Encryption methods
+  - Access control
+  - Audit systems

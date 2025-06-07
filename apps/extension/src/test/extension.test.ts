@@ -1,15 +1,22 @@
-import * as assert from 'assert';
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
+import { describe, it, expect } from 'vitest';
 import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
 
-suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+describe('Extension', () => {
+	it('should be activated', async () => {
+		// The extension should be activated when the test runs
+		const extension = await vscode.extensions.getExtension('nootropic.extension');
+		expect(extension).toBeDefined();
+		expect(extension?.isActive).toBe(true);
+	});
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+	it('should register commands', async () => {
+		// Get all registered commands
+		const commands = await vscode.commands.getCommands();
+		
+		// Check for our extension's commands
+		expect(commands).toContain('nootropic.plan');
+		expect(commands).toContain('nootropic.code');
+		expect(commands).toContain('nootropic.search');
+		expect(commands).toContain('nootropic.explain');
 	});
 });

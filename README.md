@@ -1,4 +1,10 @@
-# Nootropic
+# Nootropic Monorepo
+
+**Important: This project enforces the use of [pnpm](https://pnpm.io/) as the package manager.**
+
+- All contributors and CI must use pnpm for installing dependencies and running scripts.
+- Using npm or yarn is not supported and may result in broken builds or dependency issues.
+- See [pnpm documentation](https://pnpm.io/) for installation and usage instructions.
 
 Nootropic is an AI-powered development environment that helps developers write better code, faster.
 
@@ -22,6 +28,7 @@ The project follows a monorepo structure using Nx:
    - Git
 
 2. **Installation**
+
    ```bash
    git clone https://github.com/yourusername/nootropic.git
    cd nootropic
@@ -33,6 +40,7 @@ The project follows a monorepo structure using Nx:
    - Update environment variables as needed
 
 4. **Development**
+
    ```bash
    # Start development server
    pnpm start
@@ -48,6 +56,7 @@ The project follows a monorepo structure using Nx:
    ```
 
 5. **Cache Management**
+
    ```bash
    # Clear cache
    pnpm clean
@@ -56,6 +65,7 @@ The project follows a monorepo structure using Nx:
 ## Project Structure
 
 ### Apps
+
 - `cli/`: Command-line interface
 - `electron/`: Desktop application
 - `vscode/`: VS Code extension
@@ -63,6 +73,7 @@ The project follows a monorepo structure using Nx:
 - `temporal/`: Temporal worker
 
 ### Libraries
+
 - `agents/`: AI agents (planner, coder, critic, etc.)
 - `adapters/`: External service adapters
 - `shared/`: Shared schemas and utilities
@@ -71,6 +82,7 @@ The project follows a monorepo structure using Nx:
 - `context/`: Cross-cutting context
 
 ### Tools
+
 - `benchmark/`: Performance testing
 - `migrations/`: Data migrations
 - `cache-warm/`: Cache warming

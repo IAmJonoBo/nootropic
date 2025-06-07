@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Logger } from '@nootropic/runtime';
+import { Logger } from '@nootropic/shared';
 import { AgentError } from '@nootropic/runtime';
 import { ProjectContextService } from '@nootropic/context';
 import { ModelAdapter } from '@nootropic/adapters/model-adapter';

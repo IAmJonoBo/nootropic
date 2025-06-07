@@ -1,0 +1,19 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@nootropic/runtime": ["../../runtime/src/index.ts"],
+      "@nootropic/shared": ["../../shared/src/index.ts"]
+    }
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+} 

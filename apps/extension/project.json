@@ -5,20 +5,13 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/vite:build",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/extension"
-      },
-      "configurations": {
-        "development": {
-          "mode": "development"
-        },
-        "production": {
-          "mode": "production",
-          "sourcemap": true
-        }
+        "outputPath": "dist/apps/extension",
+        "main": "apps/extension/src/extension.ts",
+        "tsConfig": "apps/extension/tsconfig.json",
+        "assets": ["apps/extension/*.md"]
       }
     },
     "serve": {
@@ -40,10 +33,12 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
+        "configFile": "apps/extension/vitest.config.ts",
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/extension"
+        "coverageReporters": ["text", "lcov", "html"],
+        "coverageDirectory": "coverage"
       }
     },
     "lint": {

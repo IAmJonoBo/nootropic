@@ -187,7 +187,7 @@ Common options for all executors:
 
 ### Executor Structure
 
-```
+```typescript
 tools/
   executors/
     my-executor/

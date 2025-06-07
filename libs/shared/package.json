@@ -1,0 +1,18 @@
+{
+  "name": "@nootropic/shared",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "../../dist/libs/shared/src/index.js",
+  "types": "../../dist/libs/shared/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "../../dist/libs/shared/src/index.d.ts",
+      "import": "../../dist/libs/shared/src/index.js"
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}

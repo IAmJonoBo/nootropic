@@ -5,7 +5,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "../../../dist/out-tsc",
-    "rootDir": "."
+    "composite": true,
+    "declaration": true
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]

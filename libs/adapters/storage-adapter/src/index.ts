@@ -1,2 +1,3 @@
-export * from './vector.store';
-export * from './relational.store';
+export * from './vector.store.js';
+export * from './relational.store.js';
+export * from './storage-adapter.js';

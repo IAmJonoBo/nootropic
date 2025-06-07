@@ -274,3 +274,5 @@ nootropic/                          # Nx workspace root
    - Both directories should be gitignored
 
 # Note: Extra files and directories such as public/, src/, utils/, tests/, vite.config.ts, and tsconfig.json are common in Nx/monorepo setups for development, testing, and build configuration. Their presence is allowed and should be documented for clarity. Only remove them if strict compliance with a minimal structure is required.
+
+• package.json*: Defines workspaces ("workspaces": ["apps/*", "libs/*"]), common scripts, and shared devDependencies. Always use pnpm as the package manager.

@@ -3,49 +3,80 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
+    "declaration": true,
+    "moduleResolution": "NodeNext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
+    "target": "es2020",
+    "module": "NodeNext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@nootropic/cli": ["apps/cli/src/index.ts"],
-      "@nootropic/electron": ["apps/electron/src/index.ts"],
-      "@nootropic/vscode": ["apps/vscode/src/index.ts"],
+      "@nootropic/another-plugin": ["plugins/another-plugin/src/index.ts"],
       "@nootropic/api": ["apps/api/src/index.ts"],
-      "@nootropic/temporal": ["apps/temporal/src/index.ts"],
-      "@nootropic/planner-agent": ["libs/agents/planner-agent/src/index.ts"],
-      "@nootropic/coder-agent": ["libs/agents/coder-agent/src/index.ts"],
-      "@nootropic/critic-agent": ["libs/agents/critic-agent/src/index.ts"],
-      "@nootropic/reasoning-agent": ["libs/agents/reasoning-agent/src/index.ts"],
-      "@nootropic/search-agent": ["libs/agents/search-agent/src/index.ts"],
-      "@nootropic/feedback-agent": ["libs/agents/feedback-agent/src/index.ts"],
-      "@nootropic/project-mgr-agent": ["libs/agents/project-mgr-agent/src/index.ts"],
-      "@nootropic/explainability-agent": ["libs/agents/explainability-agent/src/index.ts"],
-      "@nootropic/memory-agent": ["libs/agents/memory-agent/src/index.ts"],
-      "@nootropic/observability-agent": ["libs/agents/observability-agent/src/index.ts"],
-      "@nootropic/model-adapter": ["libs/adapters/model-adapter/src/index.ts"],
-      "@nootropic/storage-adapter": ["libs/adapters/storage-adapter/src/index.ts"],
-      "@nootropic/observability-adapter": ["libs/adapters/observability-adapter/src/index.ts"],
-      "@nootropic/plugin-loader-adapter": ["libs/adapters/plugin-loader-adapter/src/index.ts"],
-      "@nootropic/reflexion-adapter": ["libs/adapters/reflexion-adapter/src/index.ts"],
-      "@nootropic/shared": ["libs/shared/src/index.ts"],
-      "@nootropic/ui": ["libs/ui/src/index.ts"],
-      "@nootropic/runtime": ["libs/runtime/src/index.ts"],
-      "@nootropic/context": ["libs/context/src/index.ts"],
       "@nootropic/benchmark": ["tools/benchmark/src/index.ts"],
-      "@nootropic/migrations": ["tools/migrations/src/index.ts"],
       "@nootropic/cache-warm": ["tools/cache-warm/src/index.ts"],
-      "@nootropic/rotate-keys": ["tools/rotate-keys/src/index.ts"],
-      "@nootropic/snapshot-chroma": ["tools/snapshot-chroma/src/index.ts"],
+      "@nootropic/cli": ["apps/cli/src/index.ts"],
+      "@nootropic/coder-agent": ["libs/agents/coder-agent/src/index.ts"],
+      "@nootropic/context": ["libs/context/src/index.ts"],
+      "@nootropic/critic-agent": ["libs/agents/critic-agent/src/index.ts"],
+      "@nootropic/electron": ["apps/electron/src/index.ts"],
       "@nootropic/example-plugin": ["plugins/example-plugin/src/index.ts"],
-      "@nootropic/another-plugin": ["plugins/another-plugin/src/index.ts"]
+      "@nootropic/explainability-agent": [
+        "libs/agents/explainability-agent/src/index.ts"
+      ],
+      "@nootropic/feedback-agent": ["libs/agents/feedback-agent/src/index.ts"],
+      "@nootropic/memory-agent": ["libs/agents/memory-agent/src/index.ts"],
+      "@nootropic/migrations": ["tools/migrations/src/index.ts"],
+      "@nootropic/model-adapter": ["libs/adapters/model-adapter/src/index.ts"],
+      "@nootropic/observability-adapter": [
+        "libs/adapters/observability-adapter/src/index.ts"
+      ],
+      "@nootropic/observability-agent": [
+        "libs/agents/observability-agent/src/index.ts"
+      ],
+      "@nootropic/planner-agent": ["libs/agents/planner-agent/src/index.ts"],
+      "@nootropic/plugin-loader-adapter": [
+        "libs/adapters/plugin-loader-adapter/src/index.ts"
+      ],
+      "@nootropic/project-mgr-agent": [
+        "libs/agents/project-mgr-agent/src/index.ts"
+      ],
+      "@nootropic/reasoning-agent": [
+        "libs/agents/reasoning-agent/src/index.ts"
+      ],
+      "@nootropic/reflexion-adapter": [
+        "libs/adapters/reflexion-adapter/src/index.ts"
+      ],
+      "@nootropic/rotate-keys": ["tools/rotate-keys/src/index.ts"],
+      "@nootropic/runtime": ["libs/runtime/src/index.ts"],
+      "@nootropic/search-agent": ["libs/agents/search-agent/src/index.ts"],
+      "@nootropic/shared": ["libs/shared/src/index.ts"],
+      "@nootropic/snapshot-chroma": ["tools/snapshot-chroma/src/index.ts"],
+      "@nootropic/storage-adapter": [
+        "libs/adapters/storage-adapter/src/index.ts"
+      ],
+      "@nootropic/temporal": ["apps/temporal/src/index.ts"],
+      "@nootropic/ui": ["libs/ui/src/index.ts"],
+      "@nootropic/vscode": ["apps/vscode/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

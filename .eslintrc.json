@@ -1,0 +1,72 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:runtime",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:runtime"]
+              },
+              {
+                "sourceTag": "scope:ui",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:ui"]
+              },
+              {
+                "sourceTag": "scope:context",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:context"]
+              },
+              {
+                "sourceTag": "scope:agents",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:agents",
+                  "scope:runtime"
+                ]
+              },
+              {
+                "sourceTag": "scope:adapters",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:adapters",
+                  "scope:runtime"
+                ]
+              },
+              {
+                "sourceTag": "scope:apps",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:runtime",
+                  "scope:ui",
+                  "scope:context",
+                  "scope:agents",
+                  "scope:adapters"
+                ]
+              },
+              {
+                "sourceTag": "scope:tools",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:runtime"]
+              },
+              {
+                "sourceTag": "scope:plugins",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:runtime"]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

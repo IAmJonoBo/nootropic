@@ -1,0 +1,280 @@
+var ObservabilityService_1;
+var _a, _b, _c, _d;
+import { __decorate, __metadata } from "tslib";
+import { Injectable } from "@nestjs/common";
+import { Logger } from "@nootropic/runtime";
+import { AgentError } from "@nootropic/runtime";
+import { ModelAdapter } from "@nootropic/adapters/model-adapter";
+import { StorageAdapter } from "@nootropic/adapters/storage-adapter";
+import { ProjectContextService } from "@nootropic/context";
+import { ObservabilityAdapter } from "@nootropic/adapters/observability-adapter";
+let ObservabilityService =
+  (ObservabilityService_1 = class ObservabilityService {
+    constructor(
+      modelAdapter,
+      storageAdapter,
+      projectContext,
+      observabilityAdapter,
+    ) {
+      this.modelAdapter = modelAdapter;
+      this.storageAdapter = storageAdapter;
+      this.projectContext = projectContext;
+      this.observabilityAdapter = observabilityAdapter;
+      this.logger = new Logger(ObservabilityService_1.name);
+    }
+    async recordMetric(metric) {
+      try {
+        this.logger.debug("Recording metric", { name: metric.name });
+        await this.observabilityAdapter.recordMetric({
+          ...metric,
+          timestamp: new Date(),
+        });
+      } catch (error) {
+        throw new AgentError("Failed to record metric", { cause: error });
+      }
+    }
+    async startTrace(name, metadata = {}) {
+      try {
+        this.logger.debug("Starting trace", { name });
+        const trace = await this.observabilityAdapter.startTrace(
+          name,
+          metadata,
+        );
+        return trace;
+      } catch (error) {
+        throw new AgentError("Failed to start trace", { cause: error });
+      }
+    }
+    async endTrace(traceId, status = "success") {
+      try {
+        this.logger.debug("Ending trace", { traceId, status });
+        await this.observabilityAdapter.endTrace(traceId, status);
+      } catch (error) {
+        throw new AgentError("Failed to end trace", { cause: error });
+      }
+    }
+    async startSpan(traceId, name, metadata = {}) {
+      try {
+        this.logger.debug("Starting span", { traceId, name });
+        const span = await this.observabilityAdapter.startSpan(
+          traceId,
+          name,
+          metadata,
+        );
+        return span;
+      } catch (error) {
+        throw new AgentError("Failed to start span", { cause: error });
+      }
+    }
+    async endSpan(spanId, status = "success") {
+      try {
+        this.logger.debug("Ending span", { spanId, status });
+        await this.observabilityAdapter.endSpan(spanId, status);
+      } catch (error) {
+        throw new AgentError("Failed to end span", { cause: error });
+      }
+    }
+    async createAlert(alert) {
+      try {
+        this.logger.info("Creating alert", {
+          name: alert.name,
+          severity: alert.severity,
+        });
+        const newAlert = await this.observabilityAdapter.createAlert({
+          ...alert,
+          id: `alert_${Date.now()}`,
+          timestamp: new Date(),
+        });
+        // Store alert in storage for persistence
+        await this.storageAdapter.storeDocument({
+          id: newAlert.id,
+          content: JSON.stringify(newAlert),
+          metadata: {
+            type: "alert",
+            severity: newAlert.severity,
+            status: newAlert.status,
+            timestamp: newAlert.timestamp,
+          },
+        });
+        return newAlert;
+      } catch (error) {
+        throw new AgentError("Failed to create alert", { cause: error });
+      }
+    }
+    async resolveAlert(alertId) {
+      try {
+        this.logger.info("Resolving alert", { alertId });
+        await this.observabilityAdapter.resolveAlert(alertId);
+        // Update alert status in storage
+        const alert = await this.storageAdapter.getDocument(alertId);
+        if (alert) {
+          const updatedAlert = {
+            ...JSON.parse(alert.content),
+            status: "resolved",
+          };
+          await this.storageAdapter.updateDocument(alertId, {
+            content: JSON.stringify(updatedAlert),
+            metadata: {
+              ...alert.metadata,
+              status: "resolved",
+            },
+          });
+        }
+      } catch (error) {
+        throw new AgentError("Failed to resolve alert", { cause: error });
+      }
+    }
+    async getMetrics(query) {
+      try {
+        this.logger.debug("Getting metrics", { query });
+        return await this.observabilityAdapter.getMetrics(query);
+      } catch (error) {
+        throw new AgentError("Failed to get metrics", { cause: error });
+      }
+    }
+    async getTraces(query) {
+      try {
+        this.logger.debug("Getting traces", { query });
+        return await this.observabilityAdapter.getTraces(query);
+      } catch (error) {
+        throw new AgentError("Failed to get traces", { cause: error });
+      }
+    }
+    async getAlerts(params) {
+      try {
+        this.logger.debug("Getting alerts", { params });
+        return await this.observabilityAdapter.getAlerts(params);
+      } catch (error) {
+        throw new AgentError("Failed to get alerts", { cause: error });
+      }
+    }
+    async analyzePerformance(params) {
+      try {
+        this.logger.info("Analyzing performance", { params });
+        // Get relevant metrics
+        const metrics = await this.getMetrics({
+          startTime: params.startTime,
+          endTime: params.endTime,
+          name: params.metrics ? { $in: params.metrics } : undefined,
+        });
+        // Get relevant traces
+        const traces = await this.getTraces({
+          startTime: params.startTime,
+          endTime: params.endTime,
+        });
+        // Generate analysis using model
+        const prompt = this.buildAnalysisPrompt(metrics, traces);
+        const response = await this.modelAdapter.generateText(prompt, {
+          provider: "ollama",
+          model: "mistral",
+          temperature: 0.3,
+        });
+        // Parse analysis results
+        const analysis = this.parseAnalysisResponse(response.text);
+        return analysis;
+      } catch (error) {
+        throw new AgentError("Failed to analyze performance", { cause: error });
+      }
+    }
+    buildAnalysisPrompt(metrics, traces) {
+      return `
+      Analyze the following performance data:
+      
+      Metrics:
+      ${metrics
+        .map(
+          (m) => `
+        Name: ${m.name}
+        Value: ${m.value}
+        Type: ${m.type}
+        Labels: ${JSON.stringify(m.labels)}
+      `,
+        )
+        .join("\n")}
+      
+      Traces:
+      ${traces
+        .map(
+          (t) => `
+        Name: ${t.name}
+        Duration: ${t.duration}ms
+        Status: ${t.status}
+        Spans: ${t.spans.length}
+      `,
+        )
+        .join("\n")}
+      
+      Please provide:
+      1. A summary of the performance
+      2. Key insights
+      3. Specific recommendations
+      
+      Format the response as:
+      SUMMARY:
+      // Summary here
+      
+      INSIGHTS:
+      // List of insights
+      
+      RECOMMENDATIONS:
+      // List of recommendations
+    `;
+    }
+    parseAnalysisResponse(response) {
+      try {
+        const summaryMatch = response.match(
+          /SUMMARY:\s*([\s\S]*?)(?=INSIGHTS:|RECOMMENDATIONS:|$)/,
+        );
+        const insightsMatch = response.match(
+          /INSIGHTS:\s*([\s\S]*?)(?=RECOMMENDATIONS:|$)/,
+        );
+        const recommendationsMatch = response.match(
+          /RECOMMENDATIONS:\s*([\s\S]*?)$/,
+        );
+        const summary = summaryMatch ? summaryMatch[1].trim() : "";
+        const insights = insightsMatch
+          ? insightsMatch[1].trim().split("\n").filter(Boolean)
+          : [];
+        const recommendations = recommendationsMatch
+          ? recommendationsMatch[1].trim().split("\n").filter(Boolean)
+          : [];
+        return {
+          summary,
+          insights,
+          recommendations,
+        };
+      } catch (error) {
+        throw new AgentError("Failed to parse analysis response", {
+          cause: error,
+        });
+      }
+    }
+  });
+ObservabilityService = ObservabilityService_1 = __decorate(
+  [
+    Injectable(),
+    __metadata("design:paramtypes", [
+      typeof (_a = typeof ModelAdapter !== "undefined" && ModelAdapter) ===
+      "function"
+        ? _a
+        : Object,
+      typeof (_b = typeof StorageAdapter !== "undefined" && StorageAdapter) ===
+      "function"
+        ? _b
+        : Object,
+      typeof (_c =
+        typeof ProjectContextService !== "undefined" &&
+        ProjectContextService) === "function"
+        ? _c
+        : Object,
+      typeof (_d =
+        typeof ObservabilityAdapter !== "undefined" && ObservabilityAdapter) ===
+      "function"
+        ? _d
+        : Object,
+    ]),
+  ],
+  ObservabilityService,
+);
+export { ObservabilityService };
+//# sourceMappingURL=observability.service.js.map

@@ -1,2 +1,3 @@
 // Stub for shared types
-export type ExampleType = any; 
+export * from "./types/adapter.interface.js";
+export * from "./types/agent.interface.js";

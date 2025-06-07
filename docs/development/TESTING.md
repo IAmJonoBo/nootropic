@@ -1,61 +1,39 @@
-# Local Testing Guidelines
+# Testing Guidelines (Vitest-First)
 
 [![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://docs.nootropic.dev)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Table of Contents
 
-- [Local Testing Overview](#local-testing-overview)
+- [Core Principles](#core-principles)
+- [Testing Architecture](#testing-architecture)
 - [Nx Testing Integration](#nx-testing-integration)
-  - [Nx Test Configuration](#nx-test-configuration)
-  - [Nx Test Execution](#nx-test-execution)
-  - [Nx Test Caching](#nx-test-caching)
-  - [Nx Test Parallelization](#nx-test-parallelization)
-  - [Nx Test Coverage](#nx-test-coverage)
-  - [Nx Test Reporting](#nx-test-reporting)
-  - [Nx Test Affected](#nx-test-affected)
-  - [Nx Test Performance](#nx-test-performance)
-  - [Nx Test Debugging](#nx-test-debugging)
-  - [Nx Test Maintenance](#nx-test-maintenance)
-- [Local Testing Types](#local-testing-types)
-  - [Local Unit Testing](#1-local-unit-testing)
-  - [Local Integration Testing](#2-local-integration-testing)
-  - [Local End-to-End Testing](#3-local-end-to-end-testing)
-  - [Local Performance Testing](#4-local-performance-testing)
-  - [Local Security Testing](#5-local-security-testing)
-- [Local Testing Tools](#local-testing-tools)
-- [Local Testing Environment](#local-testing-environment)
-- [Local Testing Workflow](#local-testing-workflow)
-- [Local Testing Best Practices](#local-testing-best-practices)
-- [Local Testing Metrics](#local-testing-metrics)
-- [Local Testing Documentation](#local-testing-documentation)
+- [Types of Testing](#types-of-testing)
+- [Best Practices](#best-practices)
+- [Metrics](#metrics)
+- [Documentation](#documentation)
 
-## Local Testing Overview
+## Core Principles
 
-### Core Principles
+- **Fast Feedback**: Prioritize rapid test execution and feedback.
+- **Comprehensive Coverage**: Strive for high code and scenario coverage.
+- **Vitest First**: Use [Vitest](https://vitest.dev/) for all unit and integration tests.
 
-- **Local-First Testing**: All tests run locally without external dependencies
-- **Privacy-Preserving**: Test data remains local and is not shared
-- **Resource-Aware**: Tests optimize local resource usage
-- **Reproducible**: Tests are deterministic and reproducible
-- **Fast Feedback**: Quick test execution for rapid development
-- **Nx Integration**: Efficient test execution with Nx caching and affected detection
-
-### Local Testing Architecture
+## Testing Architecture
 
 ```mermaid
 graph TD
-    A[Local Test Runner] --> B[Unit Tests]
+    A[Test Runner] --> B[Unit Tests]
     A --> C[Integration Tests]
     A --> D[E2E Tests]
     A --> E[Performance Tests]
     A --> F[Security Tests]
-    B --> G[Local Test Results]
+    B --> G[Test Results]
     C --> G
     D --> G
     E --> G
     F --> G
-    G --> H[Local Test Reports]
+    G --> H[Test Reports]
     I[Nx Test Runner] --> A
     I --> J[Nx Cache]
     I --> K[Affected Detection]
@@ -63,475 +41,175 @@ graph TD
 
 ## Nx Testing Integration
 
-### Nx Test Configuration
+- Use Nx to run, cache, and parallelize tests:
+  - `npx nx test <project>`: Run tests for a specific project.
+  - `npx nx test --all`: Run all tests.
+  - `npx nx affected:test`: Run tests for affected projects.
+- Vitest configuration is in `vitest.config.ts` or `vitest.config.mjs` per project.
+- Coverage: `npx nx test <project> -- --coverage`.
 
-```json
-// nx.json
-{
-  "targetDefaults": {
-    "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.config.ts"
-      ],
-      "dependsOn": ["^build"],
-      "cache": true,
-      "parallel": 3,
-      "maxParallel": 5,
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "passWithNoTests": true,
-        "coverageReporters": ["text", "lcov", "html"],
-        "coverageDirectory": "coverage",
-        "testTimeout": 30000,
-        "maxWorkers": 2
-      }
-    }
-  },
-  "plugins": [
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "testTarget": "test",
-        "coverageTarget": "test:coverage"
-      }
-    }
-  ]
-}
-```
+## Types of Testing
 
-### Nx Test Execution
+- **Unit**: Isolate and test individual functions/classes.
+- **Integration**: Test interactions between modules.
+- **E2E**: Use Playwright for end-to-end flows.
+- **Performance/Security**: Use Vitest plugins or custom scripts.
 
-```bash
-# Run all tests with Nx
-pnpm nx run-many --target=test --all
+## Best Practices
 
-# Run affected tests
-pnpm nx affected:test
+- Use `vi.mock` and `vi.fn` for mocking.
+- Prefer `describe`, `it`, and `expect` from Vitest.
+- Keep tests deterministic and fast.
+- Avoid global state between tests.
+- Use Nx caching for efficient CI.
 
-# Run tests for specific projects
-pnpm nx test <project-name>
+## Metrics
 
-# Run tests in parallel
-pnpm nx run-many --target=test --all --parallel=3
+- Track code coverage and test pass rates in CI.
+- Use Vitest's built-in coverage reporters.
 
-# Run tests with coverage
-pnpm nx test <project-name> --coverage
+## Documentation
 
-# Run tests with watch mode
-pnpm nx test <project-name> --watch
+- Document test structure and coverage in code and READMEs.
+- Keep this guide up to date with any changes to the test strategy.
 
-# Run tests with specific configuration
-pnpm nx test <project-name> --config=jest.config.ci.ts
+## Testing Types
 
-# Run tests with specific test pattern
-pnpm nx test <project-name> --testPathPattern=unit
+### 1. Unit Testing
 
-# Run tests with specific test file
-pnpm nx test <project-name> --testFile=my-test.spec.ts
+- Use Vitest for unit tests
+- Place unit tests in `*.spec.ts` or `*.test.ts` files next to the code they test
+- Follow the AAA pattern (Arrange, Act, Assert)
+- Use test doubles (mocks, stubs, spies) when needed
+- Keep tests focused and isolated
 
-# Run tests with debug mode
-pnpm nx test <project-name> --debug
-
-# Run tests with verbose output
-pnpm nx test <project-name> --verbose
-
-# Run tests with specific environment
-pnpm nx test <project-name> --env=node
-
-# Run tests with specific test suite
-pnpm nx test <project-name> --testNamePattern="my test suite"
-```
-
-### Nx Test Caching
-
-```json
-// project.json
-{
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/my-lib/jest.config.ts",
-        "passWithNoTests": true,
-        "coverageReporters": ["text", "lcov", "html"],
-        "coverageDirectory": "coverage",
-        "cache": true,
-        "cacheDirectory": ".nx-cache/jest",
-        "maxWorkers": 2
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true,
-          "maxWorkers": 2
-        },
-        "debug": {
-          "verbose": true,
-          "maxWorkers": 1
-        }
-      }
-    }
-  }
-}
-```
-
-### Nx Test Parallelization
-
-```json
-// nx.json
-{
-  "targetDefaults": {
-    "test": {
-      "parallel": 3,
-      "maxParallel": 5,
-      "options": {
-        "maxWorkers": 2,
-        "runInBand": false
-      }
-    }
-  }
-}
-```
-
-### Nx Test Coverage
-
-```json
-// project.json
-{
-  "targets": {
-    "test:coverage": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/my-lib/jest.config.ts",
-        "passWithNoTests": true,
-        "coverageReporters": ["text", "lcov", "html"],
-        "coverageDirectory": "coverage",
-        "collectCoverage": true,
-        "coverageThreshold": {
-          "global": {
-            "branches": 80,
-            "functions": 80,
-            "lines": 80,
-            "statements": 80
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-### Nx Test Reporting
-
-```json
-// project.json
-{
-  "targets": {
-    "test:report": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/reports/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/my-lib/jest.config.ts",
-        "passWithNoTests": true,
-        "reporters": [
-          "default",
-          ["jest-junit", {
-            "outputDirectory": "reports/junit",
-            "outputName": "junit.xml",
-            "ancestorSeparator": " › ",
-            "uniqueOutputName": "false",
-            "suiteNameTemplate": "{filepath}",
-            "classNameTemplate": "{classname}",
-            "titleTemplate": "{title}"
-          }]
-        ]
-      }
-    }
-  }
-}
-```
-
-### Nx Test Affected
-
-```json
-// nx.json
-{
-  "targetDefaults": {
-    "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.config.ts"
-      ],
-      "dependsOn": ["^build"],
-      "cache": true
-    }
-  }
-}
-```
-
-### Nx Test Performance
-
-```json
-// project.json
-{
-  "targets": {
-    "test:performance": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/reports/performance/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/my-lib/jest.config.ts",
-        "passWithNoTests": true,
-        "reporters": [
-          "default",
-          ["jest-performance-reporter", {
-            "outputDirectory": "reports/performance",
-            "outputName": "performance.json"
-          }]
-        ]
-      }
-    }
-  }
-}
-```
-
-### Nx Test Debugging
-
-```json
-// project.json
-{
-  "targets": {
-    "test:debug": {
-      "executor": "@nx/jest:jest",
-      "options": {
-        "jestConfig": "libs/my-lib/jest.config.ts",
-        "passWithNoTests": true,
-        "verbose": true,
-        "maxWorkers": 1,
-        "runInBand": true,
-        "detectOpenHandles": true,
-        "forceExit": true
-      }
-    }
-  }
-}
-```
-
-### Nx Test Maintenance
-
-```json
-// project.json
-{
-  "targets": {
-    "test:maintenance": {
-      "executor": "@nx/jest:jest",
-      "options": {
-        "jestConfig": "libs/my-lib/jest.config.ts",
-        "passWithNoTests": true,
-        "updateSnapshot": true,
-        "clearCache": true,
-        "resetMocks": true,
-        "restoreMocks": true
-      }
-    }
-  }
-}
-```
-
-## Local Testing Types
-
-### 1. Local Unit Testing
-
-#### Agent Testing with Nx
-
+Example:
 ```typescript
-// Example of local agent testing with Nx
-describe('LocalAgent', () => {
-  it('should process local data correctly', async () => {
-    const agent = new LocalAgent();
-    const result = await agent.process(localTestData);
-    expect(result).toMatchLocalExpectations();
-  });
+import { describe, it, expect } from 'vitest';
+import { MyService } from './my.service';
 
-  it('should handle local errors gracefully', async () => {
-    const agent = new LocalAgent();
-    await expect(agent.process(invalidLocalData))
-      .rejects
-      .toThrow(LocalError);
-  });
-});
-
-// nx.json configuration for agent tests
-{
-  "targetDefaults": {
-    "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.config.ts"
-      ],
-      "dependsOn": ["^build"],
-      "cache": true
-    }
-  }
-}
-```
-
-#### Model Testing with Nx
-
-```typescript
-// Example of local model testing with Nx
-describe('LocalModel', () => {
-  it('should make local predictions', async () => {
-    const model = new LocalModel();
-    const prediction = await model.predict(localInput);
-    expect(prediction).toBeValidLocalPrediction();
-  });
-
-  it('should respect local resource limits', async () => {
-    const model = new LocalModel();
-    const resourceUsage = await model.getResourceUsage();
-    expect(resourceUsage).toBeWithinLocalLimits();
-  });
-});
-
-// project.json configuration for model tests
-{
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/model/jest.config.ts",
-        "passWithNoTests": true,
-        "coverageReporters": ["text", "lcov"],
-        "coverageDirectory": "coverage"
-      }
-    }
-  }
-}
-```
-
-### 2. Local Integration Testing
-
-#### Workflow Testing with Nx
-
-```typescript
-// Example of local workflow testing with Nx
-describe('LocalWorkflow', () => {
-  it('should execute local workflow steps', async () => {
-    const workflow = new LocalWorkflow();
-    const result = await workflow.execute(localSteps);
-    expect(result).toMatchLocalWorkflowExpectations();
-  });
-
-  it('should maintain local data consistency', async () => {
-    const workflow = new LocalWorkflow();
-    await workflow.execute(localSteps);
-    expect(workflow.getLocalState()).toBeConsistent();
-  });
-});
-
-// nx.json configuration for workflow tests
-{
-  "targetDefaults": {
-    "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.config.ts"
-      ],
-      "dependsOn": ["^build"],
-      "cache": true
-    }
-  }
-}
-```
-
-### 3. Local End-to-End Testing
-
-#### User Flow Testing with Nx
-
-```typescript
-// Example of local user flow testing with Nx
-describe('LocalUserFlow', () => {
-  it('should complete local user journey', async () => {
-    const flow = new LocalUserFlow();
-    const result = await flow.execute(localUserJourney);
-    expect(result).toMatchLocalUserExpectations();
-  });
-
-  it('should handle local user errors', async () => {
-    const flow = new LocalUserFlow();
-    await expect(flow.execute(invalidLocalJourney))
-      .rejects
-      .toThrow(LocalUserError);
-  });
-});
-
-// project.json configuration for E2E tests
-{
-  "targets": {
-    "e2e": {
-      "executor": "@nx/playwright:playwright",
-      "outputs": ["{workspaceRoot}/dist/.playwright"],
-      "options": {
-        "config": "apps/my-app/playwright.config.ts",
-        "headed": false
-      }
-    }
-  }
-}
-```
-
-### 4. Local Performance Testing
-
-#### Resource Testing
-
-```typescript
-// Example of local performance testing
-describe('LocalPerformance', () => {
-  it('should meet local performance targets', async () => {
-    const performance = new LocalPerformance();
-    const metrics = await performance.measure(localOperation);
-    expect(metrics).toMeetLocalTargets();
-  });
-
-  it('should optimize local resource usage', async () => {
-    const performance = new LocalPerformance();
-    const optimization = await performance.optimize(localResources);
-    expect(optimization).toImproveLocalEfficiency();
+describe('MyService', () => {
+  it('should do something', () => {
+    // Arrange
+    const service = new MyService();
+    
+    // Act
+    const result = service.doSomething();
+    
+    // Assert
+    expect(result).toBeDefined();
   });
 });
 ```
 
-### 5. Local Security Testing
+### 2. Integration Testing
 
-#### Privacy Testing
+- Use Vitest for integration tests
+- Place integration tests in `*.integration.spec.ts` files
+- Test interactions between components
+- Use real dependencies when possible
+- Mock external services
 
+Example:
 ```typescript
-// Example of local security testing
-describe('LocalSecurity', () => {
-  it('should protect local data', async () => {
-    const security = new LocalSecurity();
-    const protection = await security.verify(localData);
-    expect(protection).toMeetLocalSecurityStandards();
-  });
+import { describe, it, expect } from 'vitest';
+import { MyService } from './my.service';
+import { Database } from './database';
 
-  it('should prevent local data leaks', async () => {
-    const security = new LocalSecurity();
-    await expect(security.handleSensitiveData(invalidLocalData))
-      .rejects
-      .toThrow(LocalSecurityError);
+describe('MyService Integration', () => {
+  it('should interact with database', async () => {
+    // Arrange
+    const db = new Database();
+    const service = new MyService(db);
+    
+    // Act
+    const result = await service.saveData({ id: 1, name: 'test' });
+    
+    // Assert
+    expect(result).toBeDefined();
+    const saved = await db.findById(1);
+    expect(saved.name).toBe('test');
   });
 });
 ```
 
-## Local Testing Tools
+### 3. End-to-End Testing
+
+- Use Playwright for E2E tests
+- Place E2E tests in `e2e` directory
+- Test complete user flows
+- Use realistic test data
+- Handle async operations properly
+
+Example:
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('user can complete workflow', async ({ page }) => {
+  // Navigate to app
+  await page.goto('/');
+  
+  // Perform actions
+  await page.click('button#start');
+  await page.fill('input#name', 'Test User');
+  await page.click('button#submit');
+  
+  // Verify results
+  await expect(page.locator('.success-message')).toBeVisible();
+});
+```
+
+### 4. Performance Testing
+
+- Use Vitest for performance tests
+- Place performance tests in `*.perf.spec.ts` files
+- Measure execution time and resource usage
+- Set performance budgets
+- Run in CI/CD pipeline
+
+Example:
+```typescript
+import { describe, it, expect } from 'vitest';
+import { MyService } from './my.service';
+
+describe('MyService Performance', () => {
+  it('should process data within time limit', async () => {
+    const service = new MyService();
+    const start = performance.now();
+    
+    await service.processLargeDataset();
+    
+    const duration = performance.now() - start;
+    expect(duration).toBeLessThan(1000); // 1 second limit
+  });
+});
+```
+
+### 5. Security Testing
+
+- Use Vitest for security tests
+- Place security tests in `*.security.spec.ts` files
+- Test authentication and authorization
+- Test input validation
+- Test error handling
+
+Example:
+```typescript
+import { describe, it, expect } from 'vitest';
+import { AuthService } from './auth.service';
+
+describe('AuthService Security', () => {
+  it('should prevent SQL injection', async () => {
+    const service = new AuthService();
+    const maliciousInput = "'; DROP TABLE users; --";
+    
+    await expect(service.login(maliciousInput, 'password'))
+      .rejects.toThrow('Invalid input');
+  });
+});
+```
+
+## Testing Tools
 
 ### Test Runners
 
@@ -549,7 +227,7 @@ describe('LocalSecurity', () => {
 - **Local Test Reporter**
 - **Nx Test Cache Manager**
 
-## Local Testing Environment
+## Testing Environment
 
 ### Setup
 
@@ -582,7 +260,7 @@ module.exports = {
 };
 ```
 
-## Local Testing Workflow
+## Testing Workflow
 
 1. **Local Development**
    - Write tests locally
@@ -599,69 +277,44 @@ module.exports = {
    - Generate coverage reports
    - Cache test results
 
-## Local Testing Best Practices
+## Testing Metrics
 
-1. **Test Organization**
-   - Group tests by feature
-   - Use descriptive test names
-   - Follow AAA pattern (Arrange, Act, Assert)
-   - Keep tests independent
-   - Use appropriate test types
-
-2. **Test Performance**
-   - Use Nx caching effectively
-   - Run tests in parallel when possible
-   - Optimize test execution time
-   - Monitor test performance
-   - Clean up test resources
-
-3. **Test Maintenance**
-   - Keep tests up to date
-   - Remove obsolete tests
-   - Update test data
-   - Maintain test documentation
-   - Review test coverage
-
-4. **Test Quality**
-   - Write meaningful assertions
-   - Test edge cases
-   - Handle errors properly
-   - Use appropriate mocks
-   - Follow testing best practices
-
-## Local Testing Metrics
-
-1. **Test Coverage**
+1. **Coverage Metrics**
    - Line coverage
    - Branch coverage
    - Function coverage
    - Statement coverage
 
-2. **Test Performance**
+2. **Performance Metrics**
    - Test execution time
-   - Test parallelization
-   - Cache hit rate
-   - Resource usage
-
-3. **Test Quality**
+   - Test suite size
+   - Test maintenance effort
    - Test reliability
-   - Test maintainability
-   - Test readability
+
+3. **Quality Metrics**
+   - Test failure rate
+   - Test flakiness
+   - Test complexity
    - Test documentation
 
-## Local Testing Documentation
+## Testing Documentation
 
 1. **Test Documentation**
-   - Test purpose
-   - Test setup
-   - Test data
-   - Test results
-   - Test maintenance
+   - Document test setup requirements
+   - Document test data requirements
+   - Document test environment setup
+   - Document test execution instructions
 
 2. **Test Reports**
-   - Test coverage reports
-   - Test performance reports
-   - Test quality reports
-   - Test maintenance reports
+   - Generate test execution reports
+   - Generate coverage reports
+   - Generate performance reports
+   - Generate security reports
+
+3. **Test Maintenance**
+   - Document test maintenance procedures
+   - Document test troubleshooting
+   - Document test best practices
+   - Document test tools and utilities
 
 > **See Also**: [Testing Tutorial](../TUTORIALS/tutorial_testing.md) for detailed testing examples. 

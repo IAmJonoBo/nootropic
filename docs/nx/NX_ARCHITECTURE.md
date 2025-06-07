@@ -16,7 +16,7 @@ This guide explains how to use Nx to enforce architectural boundaries and mainta
 
 ### Directory Layout
 
-```
+```text
 nootropic/
 ├── apps/
 │   ├── cli/              # Command-line interface
@@ -304,4 +304,4 @@ nootropic/
 
 - [Nx Guide](./NX_GUIDE.md): General Nx documentation
 - [Project Structure](./PROJECT_STRUCTURE.md): Understanding project organization
-- [Development Setup](./DEVELOPMENT_SETUP.md): Setting up for development 
+- [Development Setup](./DEVELOPMENT_SETUP.md): Setting up for development

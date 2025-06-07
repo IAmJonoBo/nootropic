@@ -1,4 +1,4 @@
-import { Logger } from '@nootropic/runtime';
+import { Logger } from '@nootropic/shared';
 
 /**
  * @todo Implement model comparison tool

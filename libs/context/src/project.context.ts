@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Logger } from '@nootropic/runtime';
+import { Injectable } from "@nestjs/common";
+import { Logger } from "@nootropic/shared";
 
 /**
  * @todo Implement project context
@@ -11,7 +11,7 @@ import { Logger } from '@nootropic/runtime';
 
 @Injectable()
 export class ProjectContext {
-  private readonly logger = new Logger('project-context');
+  private readonly logger = new Logger("project-context");
   private state: Record<string, unknown> = {};
 
   async initialize(): Promise<void> {
@@ -26,8 +26,6 @@ export class ProjectContext {
   }
 
   async updateState(updates: Record<string, unknown>): Promise<void> {
-    // TODO: Implement state updates
-    // TODO: Add validation
-    // TODO: Add persistence
+    // Implementation
   }
-} 
+}

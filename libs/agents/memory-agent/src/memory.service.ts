@@ -45,7 +45,7 @@ export class MemoryServiceImpl implements MemoryService {
       const startTime = Date.now();
 
       // Get all episodes
-      const episodes = await this.chromaClient.collection(this.collectionName).get();
+      const episodes = await this.chromaClient.getCollection({ name: this.collectionName }).get();
 
       // Group by project
       const projectGroups = episodes.metadatas.reduce((acc, metadata, i) => {
@@ -79,7 +79,7 @@ export class MemoryServiceImpl implements MemoryService {
 
         // Remove archived episodes from ChromaDB
         if (report.episodesArchived.length > 0) {
-          await this.chromaClient.collection(this.collectionName)
+          await this.chromaClient.getCollection({ name: this.collectionName })
             .delete({ ids: report.episodesArchived });
         }
       }

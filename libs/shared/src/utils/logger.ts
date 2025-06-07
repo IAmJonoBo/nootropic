@@ -1,4 +1,5 @@
-import { Logger as BaseLogger } from '@nootropic/runtime';
+import pinoModule from "pino";
+const pino = pinoModule.default;
 
 /**
  * @todo Implement logger utility
@@ -8,9 +9,29 @@ import { Logger as BaseLogger } from '@nootropic/runtime';
  * - Add file rotation
  */
 
-export class Logger extends BaseLogger {
-  constructor(context: string) {
-    super(context);
+export interface LoggerOptions {
+  level?: string;
+  pretty?: boolean;
+}
+
+export class Logger {
+  private logger: any;
+
+  constructor(context: string, options: LoggerOptions = {}) {
+    const { level = "info", pretty = false } = options;
+
+    this.logger = pino({
+      name: context || "nootropic",
+      level,
+      transport: pretty
+        ? {
+            target: "pino-pretty",
+            options: {
+              colorize: true,
+            },
+          }
+        : undefined,
+    });
   }
 
   /**
@@ -19,24 +40,24 @@ export class Logger extends BaseLogger {
    * - Add telemetry hooks
    * - Add log rotation
    */
-  
+
   info(message: string, ...args: unknown[]): void {
-    // TODO: Implement info logging
-    super.info(message, ...args);
+    this.logger.info(message, ...args);
   }
 
-  error(message: string, error?: Error): void {
-    // TODO: Implement error logging
-    super.error(message, error);
+  error(message: string, error?: Error | unknown, ...args: unknown[]): void {
+    if (error instanceof Error) {
+      this.logger.error({ err: error }, message, ...args);
+    } else {
+      this.logger.error(message, error, ...args);
+    }
   }
 
   warn(message: string, ...args: unknown[]): void {
-    // TODO: Implement warning logging
-    super.warn(message, ...args);
+    this.logger.warn(message, ...args);
   }
 
   debug(message: string, ...args: unknown[]): void {
-    // TODO: Implement debug logging
-    super.debug(message, ...args);
+    this.logger.debug(message, ...args);
   }
 }

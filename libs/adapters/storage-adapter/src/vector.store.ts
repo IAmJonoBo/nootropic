@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Logger } from '@nootropic/runtime';
-import { AgentError } from '@nootropic/runtime';
+import { Logger, AgentError } from '../../shared/src/logger.js';
 import { ChromaClient } from 'chromadb';
+import { StorageAdapter } from './storage-adapter.js';
 
 export interface VectorDocument {
   id: string;
@@ -11,12 +11,13 @@ export interface VectorDocument {
 }
 
 @Injectable()
-export class VectorStore {
+export class VectorStore extends StorageAdapter {
   private readonly logger = new Logger(VectorStore.name);
   private readonly client: ChromaClient;
   private readonly collection: any;
 
   constructor() {
+    super();
     const url = process.env.CHROMA_URL || 'http://localhost:8000';
     this.client = new ChromaClient({ path: url });
     this.collection = this.client.getOrCreateCollection({
@@ -28,7 +29,6 @@ export class VectorStore {
   async storeDocument(document: VectorDocument): Promise<void> {
     try {
       this.logger.info('Storing document', { id: document.id });
-
       await this.collection.add({
         ids: [document.id],
         documents: [document.content],
@@ -36,7 +36,46 @@ export class VectorStore {
         embeddings: document.embedding ? [document.embedding] : undefined
       });
     } catch (error) {
-      throw new AgentError('Failed to store document', { cause: error });
+      throw new AgentError('Failed to store document');
+    }
+  }
+
+  async getDocument(id: string): Promise<VectorDocument | null> {
+    try {
+      this.logger.info('Getting document', { id });
+      const result = await this.collection.get({ ids: [id] });
+      if (!result || !result.documents.length) return null;
+      return {
+        id,
+        content: result.documents[0],
+        metadata: result.metadatas[0],
+        embedding: result.embeddings?.[0]
+      };
+    } catch (error) {
+      throw new AgentError('Failed to get document');
+    }
+  }
+
+  async updateDocument(document: VectorDocument): Promise<void> {
+    try {
+      this.logger.info('Updating document', { id: document.id });
+      await this.collection.update({
+        ids: [document.id],
+        documents: [document.content],
+        metadatas: [document.metadata || {}],
+        embeddings: document.embedding ? [document.embedding] : undefined
+      });
+    } catch (error) {
+      throw new AgentError('Failed to update document');
+    }
+  }
+
+  async deleteDocument(id: string): Promise<void> {
+    try {
+      this.logger.info('Deleting document', { id });
+      await this.collection.delete({ ids: [id] });
+    } catch (error) {
+      throw new AgentError('Failed to delete document');
     }
   }
 
@@ -60,57 +99,7 @@ export class VectorStore {
         embedding: results.embeddings?.[0][index]
       }));
     } catch (error) {
-      throw new AgentError('Failed to search documents', { cause: error });
-    }
-  }
-
-  async deleteDocument(id: string): Promise<void> {
-    try {
-      this.logger.info('Deleting document', { id });
-
-      await this.collection.delete({
-        ids: [id]
-      });
-    } catch (error) {
-      throw new AgentError('Failed to delete document', { cause: error });
-    }
-  }
-
-  async updateDocument(document: VectorDocument): Promise<void> {
-    try {
-      this.logger.info('Updating document', { id: document.id });
-
-      await this.collection.update({
-        ids: [document.id],
-        documents: [document.content],
-        metadatas: [document.metadata || {}],
-        embeddings: document.embedding ? [document.embedding] : undefined
-      });
-    } catch (error) {
-      throw new AgentError('Failed to update document', { cause: error });
-    }
-  }
-
-  async getDocument(id: string): Promise<VectorDocument | null> {
-    try {
-      this.logger.info('Getting document', { id });
-
-      const results = await this.collection.get({
-        ids: [id]
-      });
-
-      if (!results.ids[0].length) {
-        return null;
-      }
-
-      return {
-        id: results.ids[0][0],
-        content: results.documents[0][0],
-        metadata: results.metadatas[0][0],
-        embedding: results.embeddings?.[0][0]
-      };
-    } catch (error) {
-      throw new AgentError('Failed to get document', { cause: error });
+      throw new AgentError('Failed to search documents');
     }
   }
 } 

@@ -1,6 +1,10 @@
 {
-  "name": "electron",
+  "name": "@nootropic/electron",
   "version": "0.0.1",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@nootropic/shared": "workspace:*",
+    "@nootropic/runtime": "workspace:*"
+  }
 }

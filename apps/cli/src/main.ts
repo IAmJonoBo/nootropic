@@ -10,7 +10,7 @@
  */
 
 import { Command } from 'commander';
-import { Logger } from '@nootropic/runtime';
+import { Logger } from '@nootropic/shared';
 import { AgentError } from '@nootropic/runtime';
 import { PlannerService } from '@nootropic/agents/planner-agent';
 import { CoderService } from '@nootropic/agents/coder-agent';

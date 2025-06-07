@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@nootropic/shared": ["../../libs/shared/src/index.ts"],
+      "@nootropic/runtime": ["../../libs/runtime/src/index.ts"],
+      "@nootropic/context": ["../../libs/context/src/index.ts"]
+    },
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    { "path": "../../libs/shared" },
+    { "path": "../../libs/runtime" },
+    { "path": "../../libs/context" }
+  ]
+}

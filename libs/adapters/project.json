@@ -19,7 +19,8 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/libs/adapters"
+        "reportsDirectory": "../../coverage/libs/adapters",
+        "configFile": "libs/adapters/vitest.config.mjs"
       }
     },
     "lint": {
@@ -27,5 +28,5 @@
       "outputs": ["{options.outputFile}"]
     }
   },
-  "tags": ["scope:lib", "type:adapters"]
-} 
+  "tags": ["scope:adapters"]
+}

@@ -19,10 +19,11 @@
       "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "jestConfig": "libs/adapters/model-adapter/jest.config.ts"
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/libs/adapters/model-adapter"
       }
     }
   },

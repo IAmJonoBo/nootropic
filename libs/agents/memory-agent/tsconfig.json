@@ -1,12 +1,16 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "../../../dist/out-tsc",
     "rootDir": "."
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
+  "references": [
+    { "path": "../../../libs/shared" },
+    { "path": "../../../libs/runtime" },
+    { "path": "../../../libs/context" }
+  ]
 }
