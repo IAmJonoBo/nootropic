@@ -33,7 +33,7 @@
     "@temporalio/worker": "^1.11.8",
     "@temporalio/workflow": "^1.11.8",
     "@vscode/test-electron": "^2.5.2",
-    "chromadb": "^3.0.1",
+    "chromadb": "^3.0.3",
     "dotenv": "^16.5.0",
     "electron": "^36.4.0",
     "nestjs": "^0.0.1",
