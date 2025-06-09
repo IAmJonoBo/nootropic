@@ -120,7 +120,7 @@
     "vitest": "^3.2.2",
     "yo": "^5.1.0"
   },
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.9",
   "engines": {
     "node": ">=20.11.0"
   },
